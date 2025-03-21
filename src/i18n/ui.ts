@@ -37,36 +37,24 @@ export const ui = {
 		"advertising.content": "Our advertising services aim to maximize your ROI through targeted and effective ad campaigns. We specialize in creating compelling ad content and strategies that resonate with your audience, utilizing various platforms like Google Ads and social media to enhance your brand's reach and engagement.",
 		"privacy.wip": "Work in progress",
 		"privacy.wip.content": "This page will be updated soon",
-		"faqs.question1": "What's your favorite programming language?",
+		"faqs.question1": "What's the first FAQ question gonna be?",
 		"faqs.answer1":
-			"We love TypeScript for its type safety and modern features, but we're also proficient in Python, JavaScript, and Go.",
-		"faqs.question2": "Do you have a coffee machine in the office?",
+			"I don't know, but I know Saul Munn is gonna write it.",
+		"faqs.question2": "What about the second one?",
 		"faqs.answer2":
-			"Yes, and it's probably the most important piece of equipment we have! We run on caffeine and creativity.",
-		"faqs.question3": "What's your approach to rubber duck debugging?",
+			"That's for Ross Rheingans-Yoo to write and Ricki Heicklen to find out.",
+		"faqs.question3": "Ditto",
 		"faqs.answer3":
-			"We have a collection of rubber ducks, each specialized in different programming languages. They're surprisingly effective at finding bugs!",
-		"faqs.question4": "How do you handle merge conflicts?",
+			"Ditto",
+		"faqs.question4": "Ditto",
 		"faqs.answer4":
-			"With patience, coffee, and sometimes a bit of panic. But mostly with good Git practices and clear communication between team members.",
-		"faqs.question5": "What's your stance on tabs vs spaces?",
+			"Ditto",
+		"faqs.question5": "Ditto",
 		"faqs.answer5":
-			"This is a trick question! We use EditorConfig to maintain consistency across the team. But secretly, we're team spaces.",
-		"faqs.question6": "How many monitors do your developers use?",
+			"Ditto",
+		"faqs.question6": "Ricki why do we have to write so much copy for you this is due at noon",
 		"faqs.answer6":
-			"The correct answer is n+1, where n is the current number of monitors. There's always room for one more screen!",
-		"faqs.question7": "What's your debugging strategy?",
-		"faqs.answer7":
-			"First we try console.log, then we try proper debugging tools, finally we stare at the code until it confesses its bugs.",
-		"faqs.question8": "How do you celebrate successful deployments?",
-		"faqs.answer8":
-			"With a mix of relief, high-fives, and occasionally pizza. Then we immediately start worrying about the next deployment.",
-		"faqs.question9": "What's your preferred IDE theme?",
-		"faqs.answer9":
-			"Dark theme during the day, darker theme at night. Our developers are like vampires - we avoid bright lights.",
-		"faqs.question10": "How do you name your variables?",
-		"faqs.answer10":
-			"We follow strict naming conventions, but sometimes end up with classics like 'finalFinalVersionForReal' and 'thisWillDefinitelyWork'.",
+			"Trust me boys fixing the formatting for a 2 faq version is more work and more errorprone than adding dummy FAQs",
 		"faq.otherquestions": "Other questions?",
 		"thanks.subtitle": "Mail sent successfully",
 		"thanks.title": "Thank you",
