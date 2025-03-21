@@ -1,7 +1,10 @@
 ---
+import BlobCursorFollower from "@/components/global/BlobCursorFollower.astro";
 import BaseHead from "@components/BaseHead.astro";
 import { AstroSeo, type AstroSeoProps } from "@astrolib/seo";
 import { getLangFromUrl } from "../i18n/utils";
+
+const { pathname } = Astro.url;
 
 type Props = {
   seo?: AstroSeoProps;
@@ -28,6 +31,7 @@ const seo = {
     <AstroSeo {...seo} />
   </head>
   <body class="bg-slate-50">
+    {<BlobCursorFollower />}
     <slot />
   </body>
 </html> 

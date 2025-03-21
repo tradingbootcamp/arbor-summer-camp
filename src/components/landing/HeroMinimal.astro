@@ -1,5 +1,6 @@
 ---
 import LinkBlend from "@components/global/LinkBlend.astro";
+import InterestForm from "@components/InterestForm.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -28,6 +29,11 @@ const translatePath = useTranslatedPath(lang);
 								href={translatePath("/tickets/")}>
 								{t("minimal.tickets")}
 							</a>
+						</div>
+
+						<!-- Add Newsletter with custom styling -->
+						<div class="w-full max-w-md pt-8 opacity-0 newsletter-signup">
+							<InterestForm />
 						</div>
 
 						<small>
@@ -88,6 +94,15 @@ const translatePath = useTranslatedPath(lang);
 		opacity: 0;
 		visibility: hidden;
 	}
+
+	.hero .squircle-bg {
+		transition: background-color 0.3s ease;
+		will-change: transform;
+	}
+
+	.hero .squircle-bg a {
+		transition: color 0.3s ease;
+	}
 </style>
 
 <script>
@@ -126,16 +141,85 @@ const translatePath = useTranslatedPath(lang);
 				y: 0,
 				ease: "power2.out"
 			})
+			// Add newsletter animation
+			.to(".newsletter-signup", {
+				duration: 0.5,
+				autoAlpha: 1,
+				y: 0,
+				ease: "power2.out"
+			}, "-=0.5")
 			.to(".hero small", {
 				duration: 0.5,
 				autoAlpha: 1,
 				ease: "power2.out"
-			}, "-=0.5");
+			}, "-=0.25");
 
 		var goProjectsButton = document.getElementById("go-projects-button");
 		goProjectsButton?.addEventListener("click", function () {
 			gsap.to(window, { duration: 0.5, scrollTo: "#projects" });
 		});
+
+		const ticketButton = document.querySelector(".hero .squircle-bg");
+		
+		if (ticketButton) {
+			// Dramatic hover effect
+			ticketButton.addEventListener("mouseenter", () => {
+				gsap.to(ticketButton, {
+					scale: 1.05,
+					duration: 0.1,
+					ease: "power2.out",
+					backgroundColor: "#edb74d",  // Your golden accent color
+				});
+				
+				// Make the blob more dramatic
+				gsap.to("#blob", {
+					scale: 0.8,
+					opacity: 0.4,
+					duration: 0.5
+				});
+			});
+
+			ticketButton.addEventListener("mouseleave", () => {
+				gsap.to(ticketButton, {
+					scale: 1,
+					duration: 0.3,
+					ease: "power2.out",
+					backgroundColor: "#18181b",  // Back to original dark color
+				});
+				
+				gsap.to("#blob", {
+					scale: 0.5,
+					opacity: 0.2,
+					duration: 0.5
+				});
+			});
+
+			// Click effect
+			ticketButton.addEventListener("click", () => {
+				gsap.timeline()
+					.to(ticketButton, {
+						scale: 0.95,
+						duration: 0.1,
+						ease: "power2.in"
+					})
+					.to(ticketButton, {
+						scale: 1.15,
+						duration: 0.3,
+						ease: "power2.out"
+					})
+					.to(ticketButton, {
+						scale: 0,
+						opacity: 0,
+						duration: 0.5,
+						ease: "power2.in"
+					})
+					.to("#blob", {
+						scale: 2,
+						opacity: 0,
+						duration: 0.5
+					}, "<");
+			});
+		}
 	}
 
 	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
