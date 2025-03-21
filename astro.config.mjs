@@ -13,8 +13,7 @@ export default defineConfig({
 			},
 		},
 	},
-	site: "https://rickiheicklen.github.io",
-	base: "/arbor-summer-camp",
+	site: "https://arborsummercamp.com",
 	i18n: {
 		defaultLocale: "en",
 		locales: ["en", "it"],
