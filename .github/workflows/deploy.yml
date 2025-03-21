@@ -33,8 +33,15 @@ jobs:
           echo "Contents of .npmrc:"
           cat .npmrc
 
-      - name: Install dependencies
-        run: bun install
+      - name: Install GSAP Business
+        run: |
+          bun install @gsap/business
+          bun install gsap@npm:@gsap/business
+        env:
+          GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
+
+      - name: Install remaining dependencies
+        run: bun install --no-cache
         env:
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
 
