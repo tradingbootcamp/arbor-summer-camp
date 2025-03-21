@@ -47,6 +47,10 @@ jobs:
 
       - name: Build
         run: bun run build
+        env:
+          GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
+          PUBLIC_AIRTABLE_API_KEY: ${{ secrets.PUBLIC_AIRTABLE_API_KEY }}
+          PUBLIC_AIRTABLE_BASE_ID: ${{ secrets.PUBLIC_AIRTABLE_BASE_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
