@@ -18,14 +18,23 @@ const translatePath = useTranslatedPath(lang);
 				</h1>
 			</div> -->
 			<div class="flex flex-col items-center gap-5 text-center lg:gap-10">
-				<h1 class="mt-8 max-w-3xl font-mono text-black lg:text-lg">
-					{t("minimal.subtitle")}
-
+				<h1 class="mt-8 max-w-3xl space-y-6 text-black lg:text-lg">
+					<p class="font-mono">
+						A mysterious organization called Arbor has stepped forward to run an experimental summer camp (June 2-6) in the slice of time between <a href="https://less.online/" target="_blank" rel="noopener">LessOnline</a> and <a href="https://manifest.is/" target="_blank" rel="noopener">Manifest</a>.
+					</p>
+					
+					<p class="font-mono">
+						Hot meals are included for all five days. (Single-day passes with or without meals are also available.) Accommodation at <a href="https://lighthaven.space/" target="_blank" rel="noopener">Lighthaven</a> will soon be available for purchase.
+					</p>
+					
+					<p class="font-mono">
+						Conference-goers seeking a peaceful yet vibrant week of coworking, collaborating, and late campfire chats are warmly welcome. Other possible adventures will be announced in due time.
+					</p>
 				</h1>
 				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
 					<div class="squircle-bg rounded-lg bg-zinc-900" data-cursor-hover data-cursor-parallax>
 						<a
-							class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase"
+							class="flex w-full flex-1 items-center justify-center py-4 text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold"
 							aria-label="Buy Tickets"
 							href={PATHS.TICKETS}
 							target="_blank"
@@ -116,46 +125,72 @@ const translatePath = useTranslatedPath(lang);
 
 	gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
 
-	function init() {
-		const childSplit = new SplitText(".hero h1", {
+	function initSplitText(animate = false) {
+		// Kill any existing split text instances
+		if (window.currentSplit) {
+			window.currentSplit.revert();
+		}
+
+		const childSplit = new SplitText(".hero h1 p", {
 			type: "lines",
 			linesClass: "split-child",
 		});
-		const parentSplit = new SplitText(".hero h1", {
+		const parentSplit = new SplitText(".hero h1 p", {
 			linesClass: "split-parent",
 		});
 
-		// Hide the button initially
-		gsap.set(".hero .squircle-bg", { autoAlpha: 0, y: 20 });
-		gsap.set(".hero small", { autoAlpha: 0 });
+		// Store the current split instance for later cleanup
+		window.currentSplit = childSplit;
 
-		gsap.timeline()
-			.from(childSplit.lines, {
-				duration: 1.5,
-				yPercent: 100,
-				ease: "power4",
-				stagger: 0.1,
-			})
-			.set(".hero h1", { visibility: "visible" }, "<")
-			// Animate in the button after text animation
-			.to(".hero .squircle-bg", {
-				duration: 1,
-				autoAlpha: 1,
-				y: 0,
-				ease: "power2.out"
-			})
-			// Add newsletter animation
-			.to(".newsletter-signup", {
-				duration: 0.5,
-				autoAlpha: 1,
-				y: 0,
-				ease: "power2.out"
-			}, "-=0.5")
-			.to(".hero small", {
-				duration: 0.5,
-				autoAlpha: 1,
-				ease: "power2.out"
-			}, "-=0.25");
+		if (animate) {
+			// Initial animation sequence
+			gsap.set(".hero .squircle-bg", { autoAlpha: 0, y: 20 });
+			gsap.set(".hero small", { autoAlpha: 0 });
+			gsap.set(childSplit.lines, { autoAlpha: 0, y: 20 });
+
+			gsap.timeline()
+				.to(childSplit.lines, {
+					duration: 1,
+					autoAlpha: 1,
+					y: 0,
+					stagger: 0.3,
+					ease: "power4.out"
+				})
+				.set(".hero h1", { visibility: "visible" }, "<")
+				.to(".hero .squircle-bg", {
+					duration: 1,
+					autoAlpha: 1,
+					y: 0,
+					ease: "power2.out"
+				})
+				.to(".newsletter-signup", {
+					duration: 0.5,
+					autoAlpha: 1,
+					y: 0,
+					ease: "power2.out"
+				}, "-=0.5")
+				.to(".hero small", {
+					duration: 0.5,
+					autoAlpha: 1,
+					ease: "power2.out"
+				}, "-=0.25");
+		} else {
+			// Just ensure text is visible when resizing
+			gsap.set(".hero h1", { visibility: "visible" });
+			gsap.set(childSplit.lines, { autoAlpha: 1, y: 0 });
+		}
+	}
+
+	function init() {
+		// Initial load with animation
+		initSplitText(true);
+
+		// Resize without animation
+		let resizeTimeout;
+		window.addEventListener('resize', () => {
+			clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(() => initSplitText(false), 250);
+		});
 
 		var goProjectsButton = document.getElementById("go-projects-button");
 		goProjectsButton?.addEventListener("click", function () {
@@ -228,6 +263,6 @@ const translatePath = useTranslatedPath(lang);
 		}
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
 </script>
