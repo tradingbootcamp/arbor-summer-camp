@@ -197,28 +197,30 @@ const translatePath = useTranslatedPath(lang);
 				});
 			});
 
-			// Click effect
-			ticketButton.addEventListener("click", () => {
+			// Replace the click event listener with mousedown
+			ticketButton.addEventListener("mousedown", () => {
 				gsap.timeline()
 					.to(ticketButton, {
 						scale: 0.95,
-						duration: 0.1,
-						ease: "power2.in"
-					})
-					.to(ticketButton, {
-						scale: 1.15,
-						duration: 0.3,
-						ease: "power2.out"
-					})
-					.to(ticketButton, {
-						scale: 0,
-						opacity: 0,
-						duration: 0.5,
 						ease: "power2.in"
 					})
 					.to("#blob", {
 						scale: 2,
 						opacity: 0,
+						duration: 0.5
+					}, "<");
+			});
+
+			// Add mouseup to reset the animation if needed
+			ticketButton.addEventListener("mouseup", () => {
+				gsap.timeline()
+					.to(ticketButton, {
+						scale: 1,
+						ease: "power2.out"
+					})
+					.to("#blob", {
+						scale: 0.5,
+						opacity: 0.2,
 						duration: 0.5
 					}, "<");
 			});
