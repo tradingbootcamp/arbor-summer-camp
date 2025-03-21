@@ -13,7 +13,8 @@ export default defineConfig({
 			},
 		},
 	},
-	site: "https://mintaka.co",
+	site: "https://rickiheicklen.github.io",
+	base: "/arbor-summer-camp",
 	i18n: {
 		defaultLocale: "en",
 		locales: ["en", "it"],
