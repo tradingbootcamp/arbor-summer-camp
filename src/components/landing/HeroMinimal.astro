@@ -115,9 +115,33 @@ const translatePath = useTranslatedPath(lang);
 	.hero .squircle-bg a {
 		transition: color 0.3s ease;
 	}
+
+	.hero h1 a {
+		color: #edb74d; /* Golden accent color */
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+		display: inline-block;
+	}
+
+	.hero h1 a:hover {
+		opacity: 0.8;
+		border-bottom-color: currentColor;
+	}
+
+	.hero h1 a:active {
+		transform: scale(0.97);
+	}
 </style>
 
 <script>
+	// Add type declaration at the top of the script
+	declare global {
+		interface Window {
+			currentSplit: any;
+		}
+	}
+	
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { SplitText } from "gsap/SplitText";
@@ -186,7 +210,7 @@ const translatePath = useTranslatedPath(lang);
 		initSplitText(true);
 
 		// Resize without animation
-		let resizeTimeout;
+		let resizeTimeout: NodeJS.Timeout | undefined;
 		window.addEventListener('resize', () => {
 			clearTimeout(resizeTimeout);
 			resizeTimeout = setTimeout(() => initSplitText(false), 250);
