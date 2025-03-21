@@ -30,6 +30,8 @@ jobs:
           echo "always-auth=true" > .npmrc
           echo "//npm.greensock.com/:_authToken=${{ secrets.GSAP_TOKEN }}" >> .npmrc
           echo "@gsap:registry=https://npm.greensock.com" >> .npmrc
+          echo "Contents of .npmrc:"
+          cat .npmrc
 
       - name: Install dependencies
         run: bun install
