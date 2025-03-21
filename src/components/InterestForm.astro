@@ -66,7 +66,6 @@ const translatePath = useTranslatedPath(lang);
     const TABLE_NAME = 'Interest List Website';
 
     try {
-      // First, try to fetch the table schema
       const schemaResponse = await fetch(
         `https://api.airtable.com/v0/meta/bases/${AIRTABLE_BASE_ID}/tables`,
         {
@@ -77,9 +76,7 @@ const translatePath = useTranslatedPath(lang);
         }
       );
 
-    //   console.log('Schema response status:', schemaResponse.status);
       const schemaData = await schemaResponse.json();
-    //   console.log('Schema data:', schemaData);
 
       if (!schemaResponse.ok) {
         throw new Error(`Schema fetch failed: ${schemaData.error?.message}`);
@@ -91,7 +88,6 @@ const translatePath = useTranslatedPath(lang);
         table.fields.forEach((field: any) => {
           if (field.type === 'multipleSelects' || field.type === 'singleSelect') {
             fieldOptions[field.name] = field.options.choices.map((c: any) => c.name);
-            // console.log(`Found options for field ${field.name}:`, fieldOptions[field.name]);
           }
         });
       }
@@ -105,96 +101,58 @@ const translatePath = useTranslatedPath(lang);
     const AIRTABLE_BASE_ID = import.meta.env.PUBLIC_AIRTABLE_BASE_ID;
     const TABLE_NAME = 'SC Interest Form Output';
 
-    console.log('Starting Airtable submission with:', {
-        hasRecordId: !!recordId,
-        baseId: AIRTABLE_BASE_ID,
-        tableName: TABLE_NAME
-    });
-
     try {
-        const url = recordId 
-            ? `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}/${recordId}`
-            : `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}`;
-        
-        console.log('Submitting to URL:', url);
+      const url = recordId 
+        ? `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}/${recordId}`
+        : `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}`;
 
-        const method = recordId ? 'PATCH' : 'POST';
-        const fields: Record<string, any> = {};
-        
-        // Log form data entries
-        console.log('Form data entries:');
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
+      const method = recordId ? 'PATCH' : 'POST';
+      const fields: Record<string, any> = {};
+
+      if (!recordId) {
+        fields['Email'] = formData.get('email');
+      }
+
+      const fullName = formData.get('fullName');
+      if (fullName) fields['Full Name'] = fullName;
+
+      const questions = formData.get('questions');
+      if (questions) fields['Questions'] = questions;
+
+      for (const [fieldName, options] of Object.entries(fieldOptions)) {
+        const value = formData.get(fieldName);
+        if (value && options.includes(value as string)) {
+          fields[fieldName] = value;
         }
+      }
 
-        if (!recordId) {
-            fields['Email'] = formData.get('email');
-        }
+      const body = recordId 
+        ? { fields }
+        : { records: [{ fields }] };
 
-        const fullName = formData.get('fullName');
-        if (fullName) fields['Full Name'] = fullName;
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
 
-        const questions = formData.get('questions');
-        if (questions) fields['Questions'] = questions;
+      const responseData = await response.json();
 
-        // Log field options before processing
-        console.log('Available field options:', fieldOptions);
+      if (!response.ok) {
+        throw new Error(`Failed to submit: ${responseData.error?.message || 'Unknown error'}`);
+      }
 
-        for (const [fieldName, options] of Object.entries(fieldOptions)) {
-            const value = formData.get(fieldName);
-            console.log(`Processing field ${fieldName}:`, {
-                value,
-                validOptions: options,
-                isValid: value && options.includes(value as string)
-            });
-            if (value && options.includes(value as string)) {
-                fields[fieldName] = value;
-            }
-        }
-
-        const body = recordId 
-            ? { fields }
-            : { records: [{ fields }] };
-
-        console.log('Request configuration:', {
-            method,
-            headers: {
-                'Authorization': 'Bearer [REDACTED]',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body, null, 2)
-        });
-
-        const response = await fetch(url, {
-            method,
-            headers: {
-                'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-
-        const responseData = await response.json();
-        console.log('Response status:', response.status);
-        console.log('Response data:', responseData);
-
-        if (!response.ok) {
-            throw new Error(`Failed to submit: ${responseData.error?.message || 'Unknown error'}`);
-        }
-
-        if (!recordId && responseData.records) {
-            currentRecordId = responseData.records[0].id;
-            console.log('Stored new record ID:', currentRecordId);
-        }
-        
-        return true;
+      if (!recordId && responseData.records) {
+        currentRecordId = responseData.records[0].id;
+      }
+      
+      return true;
     } catch (error) {
-        console.error('Detailed error submitting to Airtable:', {
-            error,
-            message: (error as Error).message,
-            stack: (error as Error).stack
-        });
-        return false;
+      console.error('Error submitting to Airtable:', error);
+      return false;
     }
   }
 
