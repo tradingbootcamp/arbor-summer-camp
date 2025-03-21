@@ -190,7 +190,7 @@ const { pathname } = Astro.url;
 					</div>
 					<nav data-xbind.class="{'flex': open, 'hidden': !open}" class="hidden flex-grow flex-col justify-center py-12 md:flex md:py-0">
 						<ul
-							class="flex list-none flex-col items-end justify-center gap-2 px-2 text-center text-3xl md:flex-row md:items-center md:text-base">
+							class="flex list-none flex-col items-end justify-center gap-8 px-2 text-center text-3xl md:flex-row md:items-center md:text-base">
 							{
 								pages.map((page) => (
 									<li data-cursor-hover>
@@ -212,7 +212,7 @@ const { pathname } = Astro.url;
 									</li>
 								))
 							}
-							<li>
+							<!-- <li>
 								<a href={translatePath(path, `${lang === "it" ? "en" : "it"}`)} class="inline-block cursor-pointer px-1 py-[0.33rem]">
 									<span class="menu-item-container inline-block">
 										<span
@@ -221,7 +221,7 @@ const { pathname } = Astro.url;
 										</span>
 									</span>
 								</a>
-							</li>
+							</li> -->
 						</ul>
 					</nav>
 				</div>
