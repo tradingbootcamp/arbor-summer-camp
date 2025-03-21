@@ -20,36 +20,36 @@ const { Content } = await entry.render();
 const seo: AstroSeoProps = {
 	title: entry.data.title,
 	description: entry.data.description,
-	canonical: `https://arborsummercamp.com/blog/${entry.slug}/`,
+	canonical: `https://summercampcomingsoon.com/blog/${entry.slug}/`,
 	openGraph: {
 		url: entry.slug,
 		title: entry.data.title,
 		description: "{frontmatter.description}",
 		images: [
 			{
-				url: "https://arborsummercamp.com/opengraph/social-og.jpg",
+				url: "https://summercampcomingsoon.com/opengraph/social-og.jpg",
 				width: 1200,
 				height: 630,
 				alt: "Social open graph",
 				type: "image/jpeg",
 			},
 			{
-				url: "https://arborsummercamp.com/opengraph/twitter-og.jpg",
+				url: "https://summercampcomingsoon.com/opengraph/twitter-og.jpg",
 				width: 4096,
 				height: 4096,
 				alt: "Twitter open graph",
 				type: "image/jpeg",
 			},
-			{ url: "https://arborsummercamp.com/opengraph/social-og.jpg" },
-			{ url: "https://arborsummercamp.com/opengraph/twitter-og.jpg" },
+			{ url: "https://summercampcomingsoon.com/opengraph/social-og.jpg" },
+			{ url: "https://summercampcomingsoon.com/opengraph/twitter-og.jpg" },
 		],
-		site_name: "Arbor Summer Camp",
+		site_name: "Summer Camp",
 	},
-	twitter: {
-		handle: "@arborsummercamp",
-		site: "@arborsummercamp",
-		cardType: "summary_large_image",
-	},
+	// twitter: {
+	// 	handle: "@summercampcomingsoon",
+	// 	site: "@summercampcomingsoon",
+	// 	cardType: "summary_large_image",
+	// },
 };
 ---
 

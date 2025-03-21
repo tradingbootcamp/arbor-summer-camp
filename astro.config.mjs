@@ -13,7 +13,7 @@ export default defineConfig({
 			},
 		},
 	},
-	site: "https://arborsummercamp.com",
+	site: "https://summercampcomingsoon.com",
 	i18n: {
 		defaultLocale: "en",
 		locales: ["en", "it"],

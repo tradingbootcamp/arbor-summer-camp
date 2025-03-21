@@ -2,13 +2,13 @@
 	"name": "arbor-summer-camp",
 	"type": "module",
 	"version": "0.0.1",
-	"description": "arborsummercamp.com website",
+	"description": "summercampcomingsoon.com website",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/arborsummercamp/website.git"
+		"url": "https://github.com/summercampcomingsoon/website.git"
 	},
-	"bugs": "https://github.com/arborsummercamp/website/issues",
-	"homepage": "https://arborsummercamp.com",
+	"bugs": "https://github.com/summercampcomingsoon/website/issues",
+	"homepage": "https://summercampcomingsoon.com",
 	"files": [
 		"*"
 	],
