@@ -84,7 +84,7 @@ const { pathname } = Astro.url;
 					</div>
 					<nav data-xbind.class="{'flex': open, 'hidden': !open}" class="hidden flex-grow flex-col justify-center py-12 md:flex md:py-0">
 						<ul
-							class="flex list-none flex-col items-end justify-center gap-8 px-2 text-center text-3xl md:flex-row md:items-center md:text-base">
+							class="flex list-none flex-col items-end justify-center gap-2 px-2 text-center text-3xl md:flex-row md:items-center md:text-base">
 							{
 								pages.map((page) => (
 									<li data-cursor-hover>
@@ -106,16 +106,18 @@ const { pathname } = Astro.url;
 									</li>
 								))
 							}
-							<!-- <li>
-								<a href={translatePath(path, `${lang === "it" ? "en" : "it"}`)} class="inline-block cursor-pointer px-1 py-[0.33rem]">
+							<li>
+								<a 
+									href="/#faq" 
+									class="inline-block cursor-pointer px-1 py-[0.33rem]"
+									data-faq-link>
 									<span class="menu-item-container inline-block">
-										<span
-											class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
-											{lang === "it" ? "en" : "it"}
+										<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
+											FAQ
 										</span>
 									</span>
 								</a>
-							</li> -->
+							</li>
 						</ul>
 					</nav>
 				</div>
@@ -285,6 +287,29 @@ const { pathname } = Astro.url;
 
 			window?.removeEventListener("scroll", handleScroll);
 			window?.addEventListener("scroll", handleScroll);
+		}
+
+		// Add FAQ scroll handling
+		const faqLink = document.querySelector('a[data-faq-link]');
+		faqLink?.addEventListener('click', (e) => {
+			// Check if we're on the homepage
+			if (window.location.pathname === '/' || window.location.pathname === '/it/') {
+				e.preventDefault();
+				gsap.to(window, {
+					duration: 0.5,
+					scrollTo: "#faq"
+				});
+			}
+			// If not on homepage, let the normal navigation happen with the #faq hash
+		});
+
+		// Check for hash on page load
+		if (window.location.hash === '#faq') {
+			gsap.to(window, {
+				duration: 0.5,
+				scrollTo: "#faq",
+				delay: 0.1 // Small delay to ensure elements are loaded
+			});
 		}
 	}
 
