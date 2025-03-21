@@ -1,0 +1,33 @@
+---
+import BaseHead from "@components/BaseHead.astro";
+import { AstroSeo, type AstroSeoProps } from "@astrolib/seo";
+import { getLangFromUrl } from "../i18n/utils";
+
+type Props = {
+  seo?: AstroSeoProps;
+};
+
+const { seo: seoProp } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+const defaultSeo: AstroSeoProps = {
+  title: "Arbor Summer Camp",
+  description: "A container for the greater Lighthaven community",
+  canonical: "https://arborsummercamp.com",
+};
+
+const seo = {
+  ...defaultSeo,
+  ...seoProp,
+};
+---
+
+<html lang={lang}>
+  <head>
+    <BaseHead />
+    <AstroSeo {...seo} />
+  </head>
+  <body class="bg-slate-50">
+    <slot />
+  </body>
+</html> 

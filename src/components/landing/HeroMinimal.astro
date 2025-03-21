@@ -1,0 +1,137 @@
+---
+import LinkBlend from "@components/global/LinkBlend.astro";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<section id="hero" class="section home-dark-section hero min-h-screen">
+	<div class="mx-auto flex h-full flex-col py-4 lg:py-10">
+		<div class="relative flex flex-1 flex-col justify-around rounded-lg pb-10 pt-20 lg:rounded-2xl">
+			<!-- <div class="flex justify-center">
+				<h1 class="text-center font-display text-5xl font-extrabold uppercase sm:text-7xl md:text-8xl lg:text-9xl">
+					<span>{t("minimal.title")}</span>
+				</h1>
+			</div> -->
+			<div class="flex flex-col items-center gap-5 text-center lg:gap-10">
+				<h1 class="mt-8 max-w-3xl font-mono lg:text-lg">
+					{t("minimal.subtitle")}
+
+				</h1>
+					<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
+						<div class="squircle-bg rounded-lg bg-zinc-900" data-cursor-hover data-cursor-parallax>
+							<a
+								class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase"
+								aria-label="Buy Tickets"
+								href={translatePath("/tickets/")}>
+								{t("minimal.tickets")}
+							</a>
+						</div>
+
+						<small>
+							{t("or")}
+							<LinkBlend id="go-projects-button" isButton={true}>{t("hero.scroll")}</LinkBlend>
+						</small>
+					</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		padding-bottom: 0;
+		position: relative;
+		border-radius: inherit;
+		overflow: hidden;
+	}
+	.hero > div {
+		grid-column: 1 / span 12;
+	}
+
+	/* Hero appearance */
+	.hero h1,
+	.hero h2,
+	.hero h3 {
+		margin: 0;
+	}
+	.hero h1 {
+		margin: 0;
+		position: relative;
+		overflow: hidden;
+		visibility: hidden;
+	}
+	.hero h1 > div {
+		position: relative;
+		margin: 0;
+	}
+	.hero :global(.split-parent) {
+		overflow: hidden;
+	}
+	.hero :global(.split-child) {
+		display: inline-block;
+	}
+
+	/* Text rotator */
+	.rotator > span {
+		position: absolute;
+	}
+
+	.rotator > span:not(:nth-child(1)) {
+		opacity: 0;
+	}
+</style>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { SplitText } from "gsap/SplitText";
+	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+	gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+
+	function init() {
+		const childSplit = new SplitText(".hero h1", {
+			type: "lines",
+			linesClass: "split-child",
+		});
+		const parentSplit = new SplitText(".hero h1", {
+			linesClass: "split-parent",
+		});
+
+		// Hide the button initially
+		gsap.set(".hero .squircle-bg", { autoAlpha: 0, y: 20 });
+		gsap.set(".hero small", { autoAlpha: 0 });
+
+		gsap.timeline()
+			.from(childSplit.lines, {
+				duration: 1.5,
+				yPercent: 100,
+				ease: "power4",
+				stagger: 0.1,
+			})
+			.set(".hero h1", { visibility: "visible" }, "<")
+			// Animate in the button after text animation
+			.to(".hero .squircle-bg", {
+				duration: 1,
+				autoAlpha: 1,
+				y: 0,
+				ease: "power2.out"
+			})
+			.to(".hero small", {
+				duration: 0.5,
+				autoAlpha: 1,
+				ease: "power2.out"
+			}, "-=0.5");
+
+		var goProjectsButton = document.getElementById("go-projects-button");
+		goProjectsButton?.addEventListener("click", function () {
+			gsap.to(window, { duration: 0.5, scrollTo: "#projects" });
+		});
+	}
+
+	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
+	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+</script>
