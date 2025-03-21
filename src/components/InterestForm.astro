@@ -1,30 +1,27 @@
 ---
 const { class: className } = Astro.props;
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+import Button from "@components/global/Button.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<div class="w-full max-w-md">
+<div class="w-full">
   <form id="interestForm" class="space-y-4">
     <div class="flex gap-2">
       <input
         type="email"
         id="email"
         name="email"
-        placeholder="Enter your email"
+        placeholder="Your email"
         class={`flex-1 px-4 py-2 rounded-lg border border-base-300 focus:border-secondary focus:outline-none transition-colors`}
         required
       />
-      <button
-        type="submit"
-        id="notifyButton"
-        class="px-6 py-2 rounded-lg bg-gradient-to-r from-secondary/60 to-secondary/70 text-secondary-content hover:from-success/60 hover:to-success/70 transition-all duration-300"
-      >
-        Notify Me
-      </button>
+      <Button type="submit" id="notifyButton">
+        Wait for more information
+      </Button>
     </div>
 
     <div id="successMessage" class="hidden text-md text-base-content italic">
@@ -34,9 +31,25 @@ const translatePath = useTranslatedPath(lang);
     <div id="additionalFields" class="hidden space-y-4 transition-all duration-300">
     </div>
   </form>
+
+  <div id="customNotification" class="opacity-0 transform translate-y-4 transition-all duration-500 mt-4">
+    <div class="bg-gradient-to-r from-secondary to-success text-secondary-content p-4 rounded-lg shadow-lg">
+      <div class="flex items-center justify-center">
+        <div class="flex-shrink-0 mr-3">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <p class="text-sm font-medium">
+          Thanks! We'll get back to you, or not. Stay tuned.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
+  import { gsap } from "gsap";
 
   const form = document.getElementById('interestForm') as HTMLFormElement;  
 
@@ -90,70 +103,111 @@ const translatePath = useTranslatedPath(lang);
   async function submitToAirtable(formData: FormData, recordId?: string) {
     const AIRTABLE_API_KEY = import.meta.env.PUBLIC_AIRTABLE_API_KEY;
     const AIRTABLE_BASE_ID = import.meta.env.PUBLIC_AIRTABLE_BASE_ID;
-    const TABLE_NAME = 'Interest List Website';
+    const TABLE_NAME = 'SC Interest Form Output';
+
+    console.log('Starting Airtable submission with:', {
+        hasRecordId: !!recordId,
+        baseId: AIRTABLE_BASE_ID,
+        tableName: TABLE_NAME
+    });
 
     try {
-      const url = recordId 
-        ? `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}/${recordId}`
-        : `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}`;
+        const url = recordId 
+            ? `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}/${recordId}`
+            : `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}`;
+        
+        console.log('Submitting to URL:', url);
 
-      const method = recordId ? 'PATCH' : 'POST';
-      
-      // Only include fields that have values
-      const fields: Record<string, any> = {};
-      
-      // Always include email for new records
-      if (!recordId) {
-        fields['Email'] = formData.get('email');
-      }
-
-      // Add other fields if they have values
-      const fullName = formData.get('fullName');
-      if (fullName) fields['Full Name'] = fullName;
-
-      const questions = formData.get('questions');
-      if (questions) fields['Questions'] = questions;
-
-      // Handle dropdown fields - only include if they match valid options
-      for (const [fieldName, options] of Object.entries(fieldOptions)) {
-        const value = formData.get(fieldName);
-        if (value && options.includes(value as string)) {
-          fields[fieldName] = value;
+        const method = recordId ? 'PATCH' : 'POST';
+        const fields: Record<string, any> = {};
+        
+        // Log form data entries
+        console.log('Form data entries:');
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
         }
-      }
 
-      const body = recordId 
-        ? { fields }
-        : { records: [{ fields }] };
+        if (!recordId) {
+            fields['Email'] = formData.get('email');
+        }
 
-      console.log('Submitting with body:', body); // Debug log
+        const fullName = formData.get('fullName');
+        if (fullName) fields['Full Name'] = fullName;
 
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      });
+        const questions = formData.get('questions');
+        if (questions) fields['Questions'] = questions;
 
-      const responseData = await response.json();
-      console.log('Airtable response:', responseData);
+        // Log field options before processing
+        console.log('Available field options:', fieldOptions);
 
-      if (!response.ok) {
-        throw new Error(`Failed to submit: ${responseData.error?.message || 'Unknown error'}`);
-      }
+        for (const [fieldName, options] of Object.entries(fieldOptions)) {
+            const value = formData.get(fieldName);
+            console.log(`Processing field ${fieldName}:`, {
+                value,
+                validOptions: options,
+                isValid: value && options.includes(value as string)
+            });
+            if (value && options.includes(value as string)) {
+                fields[fieldName] = value;
+            }
+        }
 
-      // Store the record ID from the first submission
-      if (!recordId && responseData.records) {
-        currentRecordId = responseData.records[0].id;
-      }
-      
-      return true;
+        const body = recordId 
+            ? { fields }
+            : { records: [{ fields }] };
+
+        console.log('Request configuration:', {
+            method,
+            headers: {
+                'Authorization': 'Bearer [REDACTED]',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body, null, 2)
+        });
+
+        const response = await fetch(url, {
+            method,
+            headers: {
+                'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+
+        const responseData = await response.json();
+        console.log('Response status:', response.status);
+        console.log('Response data:', responseData);
+
+        if (!response.ok) {
+            throw new Error(`Failed to submit: ${responseData.error?.message || 'Unknown error'}`);
+        }
+
+        if (!recordId && responseData.records) {
+            currentRecordId = responseData.records[0].id;
+            console.log('Stored new record ID:', currentRecordId);
+        }
+        
+        return true;
     } catch (error) {
-      console.error('Error submitting to Airtable:', error);
-      return false;
+        console.error('Detailed error submitting to Airtable:', {
+            error,
+            message: (error as Error).message,
+            stack: (error as Error).stack
+        });
+        return false;
     }
+  }
+
+  function generateButtonHTML(text: string, options = {}) {
+    return `
+      <button
+        type="submit"
+        id="submitButton"
+        class="w-full px-6 py-2 rounded-lg bg-gradient-to-r from-trinidad-800/60 to-trinidad-900/60 text-secondary-content hover:from-trinidad-800/80 hover:to-trinidad-900/80 active:from-trinidad-800 active:to-trinidad-900 active:scale-95 transition-all duration-300"
+      >
+        ${text}
+      </button>
+    `;
   }
 
   function createAdditionalFields(
@@ -195,13 +249,7 @@ const translatePath = useTranslatedPath(lang);
         rows="${window.innerWidth < 768 ? '2' : '3'}"
         class="w-full px-4 py-2 rounded-lg border border-base-300 focus:border-secondary focus:outline-none transition-colors resize-none"
       ></textarea>
-      <button
-        type="submit"
-        id="submitButton"
-        class="w-full px-6 py-2 rounded-lg bg-gradient-to-r from-secondary/60 to-secondary/70 text-secondary-content hover:from-success/60 hover:to-success/70 transition-all duration-300"
-      >
-        Submit
-      </button>
+      ${generateButtonHTML('Submit')}
     `;
 
     additionalFields.innerHTML = fieldsHTML;
@@ -227,6 +275,35 @@ const translatePath = useTranslatedPath(lang);
     });
   }
 
+  function showNotification() {
+    const notification = document.getElementById('customNotification');
+    if (notification) {
+      // Reset any previous animation
+      gsap.set(notification, {
+        clearProps: "all",
+        opacity: 0,
+        y: 20
+      });
+
+      // Animate in
+      gsap.to(notification, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+      });
+
+      // Animate out after 3 seconds
+      gsap.to(notification, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        ease: "power2.in",
+        delay: 3
+      });
+    }
+  }
+
   // Modify the submit handler
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -236,12 +313,40 @@ const translatePath = useTranslatedPath(lang);
       // Full form submission - update existing record
       const success = await submitToAirtable(formData, currentRecordId || undefined);
       if (success) {
-        alert('Thank you for your interest! We\'ll be in touch soon.');
-        (form as HTMLFormElement).reset();
-        additionalFields?.classList.add('hidden');
-        successMessage?.classList.add('hidden');
-        notifyButton?.classList.remove('opacity-50', 'cursor-not-allowed');
-        currentRecordId = null;
+        if (!additionalFields?.classList.contains('hidden')) {
+          // Second submission - show notification and collapse form
+          showNotification();
+          
+          // Animate collapse
+          gsap.to(additionalFields, {
+            height: 0,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.inOut",
+            onComplete: () => {
+              additionalFields?.classList.add('hidden');
+              successMessage?.classList.add('hidden');
+              (form as HTMLFormElement).reset();
+              notifyButton?.classList.remove('opacity-50', 'cursor-not-allowed');
+              currentRecordId = null;
+              
+              // Reset height after animation
+              gsap.set(additionalFields, { height: "auto" });
+            }
+          });
+        } else {
+          // First submission - show additional fields
+          additionalFields?.classList.remove('hidden');
+          successMessage?.classList.remove('hidden');
+          
+          // Animate expansion
+          gsap.from(additionalFields, {
+            height: 0,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out"
+          });
+        }
       } else {
         alert('There was an error submitting your information. Please try again.');
       }

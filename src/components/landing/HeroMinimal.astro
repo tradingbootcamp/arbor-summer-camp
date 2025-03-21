@@ -21,26 +21,26 @@ const translatePath = useTranslatedPath(lang);
 					{t("minimal.subtitle")}
 
 				</h1>
-					<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
-						<div class="squircle-bg rounded-lg bg-zinc-900" data-cursor-hover data-cursor-parallax>
-							<a
-								class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase"
-								aria-label="Buy Tickets"
-								href={translatePath("/tickets/")}>
-								{t("minimal.tickets")}
-							</a>
-						</div>
+				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
+					<div class="squircle-bg rounded-lg bg-zinc-900" data-cursor-hover data-cursor-parallax>
+						<a
+							class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase"
+							aria-label="Buy Tickets"
+							href={translatePath("/tickets/")}>
+							{t("minimal.tickets")}
+						</a>
+					</div>
 
-						<!-- Add Newsletter with custom styling -->
-						<div class="w-full max-w-md pt-8 opacity-0 newsletter-signup">
-							<InterestForm />
-						</div>
+					<!-- Add Newsletter with custom styling -->
+					<div class="w-full max-w-lg pt-8 opacity-0 newsletter-signup">
+						<InterestForm />
+					</div>
 
 						<!-- <small>
 							{t("or")}
 							<LinkBlend id="go-projects-button" isButton={true}>{t("hero.scroll")}</LinkBlend>
 						</small> -->
-					</div>
+				</div>
 			</div>
 		</div>
 	</div>
