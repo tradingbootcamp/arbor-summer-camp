@@ -10,16 +10,16 @@ const translatePath = useTranslatedPath(lang);
 
 <div class="w-full">
   <form id="interestForm" class="space-y-4">
-    <div class="flex gap-2">
+    <div class="flex flex-col sm:flex-row gap-2">
       <input
         type="email"
         id="email"
         name="email"
         placeholder="Your email"
-        class={`flex-1 px-4 py-2 rounded-lg border border-base-300 focus:border-secondary focus:outline-none transition-colors`}
+        class="flex-1 px-4 py-2 text-sm sm:text-base rounded-lg border border-base-300 focus:border-secondary focus:outline-none transition-colors"
         required
       />
-      <Button type="submit" id="notifyButton">
+      <Button type="submit" id="notifyButton" class="text-sm sm:text-base whitespace-normal sm:whitespace-nowrap">
         Wait for more information
       </Button>
     </div>
