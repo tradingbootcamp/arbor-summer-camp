@@ -71,10 +71,16 @@ function cursorFollowerActive() {
 }
 ---
 
-<html lang={lang}>
+<html lang={lang} class="light">
 	<head>
 		<BaseHead />
 		<AstroSeo {...seo} />
+		<script>
+			// Force light mode
+			localStorage.setItem('theme', 'light');
+			document.documentElement.classList.remove('dark');
+			document.documentElement.classList.add('light');
+		</script>
 	</head>
 	<body class="bg-slate-50">
 		<BackgroundTexture />
