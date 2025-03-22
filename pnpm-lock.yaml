@@ -30,8 +30,8 @@ importers:
         specifier: ^5.0.9
         version: 5.0.9
       gsap:
-        specifier: npm:@gsap/business@3.12.7
-        version: '@gsap/business@3.12.7'
+        specifier: file:gsap-bonus.tgz
+        version: file:gsap-bonus.tgz
       tailwindcss:
         specifier: 3.4.1
         version: 3.4.1
@@ -535,9 +535,6 @@ packages:
 
   '@formatjs/intl-localematcher@0.6.0':
     resolution: {integrity: sha512-4rB4g+3hESy1bHSBG3tDFaMY2CH67iT7yne1e+0CLTsGLDcmoEWWpJjjpWVaYgYfYuohIRuo0E+N536gd2ZHZA==}
-
-  '@gsap/business@3.12.7':
-    resolution: {integrity: sha512-R70kt4G2xfGOVwyaEkBxz7kbwQRasC6NFjUN2kT7hKUtj3O8EytwBcAh0KW1hhLEJWs8E9IcKLXx2jV9gTJtwA==}
 
   '@headlessui/vue@1.7.23':
     resolution: {integrity: sha512-JzdCNqurrtuu0YW6QaDtR2PIYCKPUWq28csDyMvN4zmGccmE7lz40Is6hc3LA4HFeCI7sekZ/PQMTNmn9I/4Wg==}
@@ -2085,6 +2082,10 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  gsap@file:gsap-bonus.tgz:
+    resolution: {integrity: sha512-lWXISP5Lbfj7GnCiAQApJsu8n0eVWzdyuIp8Yw0ON/CFH3vQn6eg4OlRnioQHR441FbrYJDKDKTB3sNx5fjo3w==, tarball: file:gsap-bonus.tgz}
+    version: 3.12.7
 
   h3@1.15.1:
     resolution: {integrity: sha512-+ORaOBttdUm1E2Uu/obAyCguiI7MbBvsLTndc3gyK3zU+SYLoZXlyCP9Xgy0gikkGufFLTZXCXD6+4BsufnmHA==}
@@ -4500,8 +4501,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@gsap/business@3.12.7': {}
-
   '@headlessui/vue@1.7.23(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@tanstack/vue-virtual': 3.13.4(vue@3.5.13(typescript@5.8.2))
@@ -6388,6 +6387,8 @@ snapshots:
       responselike: 2.0.1
 
   graceful-fs@4.2.11: {}
+
+  gsap@file:gsap-bonus.tgz: {}
 
   h3@1.15.1:
     dependencies:

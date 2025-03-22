@@ -28,7 +28,7 @@
 		"@cloudflare/pages-plugin-mailchannels": "0.1.5",
 		"astro": "5.3.0",
 		"daisyui": "^5.0.9",
-		"gsap": "npm:@gsap/business@3.12.7",
+		"gsap": "file:gsap-bonus.tgz",
 		"tailwindcss": "3.4.1"
 	},
 	"devDependencies": {
