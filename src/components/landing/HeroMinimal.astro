@@ -24,7 +24,7 @@ const translatePath = useTranslatedPath(lang);
 					</p>
 					
 					<p class="font-mono">
-						Hot meals are included for all five days. (Single-day passes with or without meals are also available.) Accommodation at <a href="https://lighthaven.space/" target="_blank" rel="noopener">Lighthaven</a> will soon be available for purchase.
+						Lunch & dinner are included for all five days. (Single-day passes with or without meals are also available.) Accommodation at <a href="https://lighthaven.space/" target="_blank" rel="noopener">Lighthaven</a> will soon be available for purchase.
 					</p>
 					
 					<p class="font-mono">
@@ -174,21 +174,21 @@ const translatePath = useTranslatedPath(lang);
 
 			gsap.timeline()
 				.to(childSplit.lines, {
-					duration: 1,
+					duration: 0.5,
 					autoAlpha: 1,
 					y: 0,
-					stagger: 0.3,
+					stagger: 0.15,
 					ease: "power4.out"
 				})
 				.set(".hero h1", { visibility: "visible" }, "<")
 				.to(".hero .squircle-bg", {
-					duration: 1,
+					duration: 0.5,
 					autoAlpha: 1,
 					y: 0,
 					ease: "power2.out"
 				})
 				.to(".newsletter-signup", {
-					duration: 0.5,
+					duration: 0.2,
 					autoAlpha: 1,
 					y: 0,
 					ease: "power2.out"

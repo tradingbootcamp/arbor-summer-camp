@@ -1,7 +1,7 @@
-<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="30 30 140 100" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
   <style>
-    circle { fill: green; }
-    line { stroke: green; stroke-width: 4; }
+    circle { fill: #edb74d; }
+    line { stroke: #edb74d; stroke-width: 4; }
   </style>
   <!-- Root node -->
   <circle cx="100" cy="30" r="8" />
