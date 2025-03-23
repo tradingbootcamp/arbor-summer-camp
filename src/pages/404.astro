@@ -1,16 +1,16 @@
 ---
 import Error404 from "@/components/infopages/Error404.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import MinimalLayout from "@/layouts/MinimalLayout.astro";
 import type { AstroSeoProps } from "@astrolib/seo";
 
 const seo: AstroSeoProps = {
-	title: "404 Error: Page Not Found - Summer Camp",
+	title: "404 Error: Page Not Found",
 	description:
 		"Oops! The page you're looking for doesn't exist. Navigate back to Summer Camp's homepage.",
 	canonical: "https://summercampcomingsoon.com/404/",
 };
 ---
 
-<BaseLayout seo={seo}>
+<MinimalLayout seo={seo}>
 	<Error404 />
-</BaseLayout>
+</MinimalLayout>
