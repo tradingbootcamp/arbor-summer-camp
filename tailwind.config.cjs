@@ -92,7 +92,6 @@ module.exports = {
 		require("@tailwindcss/typography"),
 		require("@tailwindcss/forms"),
 		require("@tailwindcss/aspect-ratio"),
-		require("daisyui"),
 	],
 	overrides: [
 		{
@@ -102,8 +101,9 @@ module.exports = {
 			},
 		},
 	],
-	daisyui: {
-		themes: ["light"],
-		darkTheme: "light",
-	},
+	// Right now this fucks up when computer is on dark mode, pls fix before pushing again Ricki
+	// daisyui: {
+	// 	themes: ["light"],
+	// 	darkTheme: "light",
+	// },
 };
