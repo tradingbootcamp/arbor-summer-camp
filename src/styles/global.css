@@ -35,6 +35,7 @@
 	--grid-gap: 4vw;
 	--base-padding-x: max(6vw, 60px);
 	--base-padding-y: clamp(30px, 4vw, 50px);
+	--gold-500: #edb74d;
 }
 
 @media (max-width: 812px) {

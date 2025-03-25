@@ -73,6 +73,9 @@ module.exports = {
 					900: "hsl(9, 79%, 28%)",
 					950: "hsl(7, 86%, 15%)",
 				},
+				gold: {
+					500: "#edb74d",
+				},
 			},
 			fontFamily: {
 				display: ["Midnight", ...defaultTheme.fontFamily.sans],
