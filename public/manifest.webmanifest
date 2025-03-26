@@ -4,9 +4,9 @@
 	"display": "standalone",
 	"scope": "/",
 	"start_url": "/",
-	"description": "Web Agency Leading in Performant Web Design Solutions - Mintaka Studio",
-	"name": "Mintaka",
-	"short_name": "Mintaka",
+	"description": "Summer Camp",
+	"name": "Arbor",
+	"short_name": "Arbor",
 	"icons": [
 		{
 			"src": "/images/minimal_green_cs_tree_logo.svg",
