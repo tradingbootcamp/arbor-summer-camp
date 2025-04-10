@@ -84,9 +84,11 @@ function cursorFollowerActive() {
 	</head>
 	<body class="bg-slate-50">
 		<BackgroundTexture />
-		<Navigation />
-		{cursorFollowerActive() && <BlobCursorFollower />}
-		<slot />
-		<Footer />
+		<div class="relative z-[1]">
+			<Navigation />
+			{cursorFollowerActive() && <BlobCursorFollower />}
+			<slot />
+			<Footer />
+		</div>
 	</body>
 </html>
