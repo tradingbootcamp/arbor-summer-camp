@@ -30,7 +30,7 @@ const allProjects = (await getCollection("projects"))
 <section id="projects" class:list={["section work-preview-section home-dark-section py-12", className]}>
 	<div class="col-span-12 col-start-1 mx-auto max-w-7xl">
 		<h2 class="sr-only">{t("projects")}</h2>
-		<ol class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:gap-44">
+		<ol class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-16">
 			{
 				allProjects.map((project, index) => (
 					<WokCard
@@ -40,8 +40,8 @@ const allProjects = (await getCollection("projects"))
 						link={`/work/${project.slug}`}
 						class={
 							index % 2 === 0
-								? `md:col-start-1 md:row-start-${Math.floor(index / 2) * 2 + 1} md:row-span-2`
-								: `md:col-start-2 md:row-start-${Math.floor(index / 2) * 2 + 2} md:row-span-2`
+								? `md:col-start-1 md:row-start-${Math.floor(index / 2) * 4 + 1} md:row-span-4`
+								: `md:col-start-2 md:row-start-${Math.floor(index / 2) * 4 + 2} md:row-span-4`
 						}
 					/>
 				))
@@ -95,7 +95,7 @@ const allProjects = (await getCollection("projects"))
 		});
 
 		if (window.innerWidth >= 768) {
-			projects.forEach((project) => {
+			projects.forEach((project, index) => {
 				gsap.to(project, {
 					scrollTrigger: {
 						trigger: ".work-preview-section ol",
@@ -105,7 +105,7 @@ const allProjects = (await getCollection("projects"))
 						markers: false,
 					},
 					ease: "none",
-					y: `-200px`,
+					y: `-200px`, // Lighter staggered effect
 				});
 			});
 		}
