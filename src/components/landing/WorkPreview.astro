@@ -36,6 +36,7 @@ const allProjects = (await getCollection("projects"))
 					<WokCard
 						image={project.data.image.source}
 						project={project.data.title}
+						description={project.data.description}
 						link={`/work/${project.slug}`}
 						class={
 							index % 2 === 0

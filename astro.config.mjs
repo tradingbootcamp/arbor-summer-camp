@@ -16,7 +16,7 @@ export default defineConfig({
 	site: "https://summercampcomingsoon.com",
 	i18n: {
 		defaultLocale: "en",
-		locales: ["en", "it"],
+		locales: ["en"],
 	},
 	markdown: {
 		drafts: true,
