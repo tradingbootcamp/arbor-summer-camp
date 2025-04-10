@@ -48,12 +48,64 @@ const allProjects = (await getCollection("projects"))
 			}
 		</ol>
 	</div>
+	<!-- Add animated fireflies for ambient effect -->
+	<div class="fireflies absolute inset-0 z-0 pointer-events-none"></div>
 </section>
 
 <style is:global>
+	/* Image clip styling */
 	.work-preview-section ol li img {
 		--clip: 0%;
 		clip-path: inset(var(--clip) round 0.5rem);
+	}
+	
+	/* Parchment styling */
+	.parchment {
+		background-color: #f8f3e3;
+		border-radius: 0.5rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+		position: relative;
+		overflow: hidden;
+	}
+	
+	/* Paper texture */
+	.parchment::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-image: url('https://www.transparenttextures.com/patterns/paper.png');
+		opacity: 0.4;
+		pointer-events: none;
+		z-index: 1;
+	}
+	
+	/* Firefly animation */
+	.firefly {
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		background-color: rgba(255, 210, 120, 0.8);
+		border-radius: 50%;
+		filter: blur(2px);
+		box-shadow: 0 0 10px 2px rgba(255, 180, 0, 0.6);
+		animation: firefly 6s ease-in-out infinite;
+	}
+	
+	@keyframes firefly {
+		0%, 100% {
+			opacity: 0;
+			transform: scale(0.3);
+		}
+		50% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		0%, 25%, 75%, 100% {
+			transform: translate(0, 0);
+		}
+		50% {
+			transform: translate(10px, -10px);
+		}
 	}
 </style>
 
@@ -64,8 +116,10 @@ const allProjects = (await getCollection("projects"))
 	gsap.registerPlugin(ScrollTrigger);
 
 	function init() {
+		// Original animations for image reveals
 		const projects = gsap.utils.toArray(".work-preview-section ol li") as gsap.DOMTarget[];
 		const previews = gsap.utils.toArray(".work-preview-section ol li img") as gsap.DOMTarget[];
+		
 		previews.forEach((preview) => {
 			gsap.from(preview, {
 				scrollTrigger: {
@@ -80,6 +134,7 @@ const allProjects = (await getCollection("projects"))
 			});
 		});
 
+		// Background color shift
 		gsap.to(".home-dark-section", {
 			scrollTrigger: {
 				trigger: ".work-preview-section",
@@ -94,23 +149,93 @@ const allProjects = (await getCollection("projects"))
 			color: "#fff",
 		});
 
-		if (window.innerWidth >= 768) {
-			projects.forEach((project) => {
-				gsap.to(project, {
+		// Sequential reveal animation for WokCards
+		projects.forEach((project, index) => {
+			// Set initial position based on left/right column
+			const isEven = index % 2 === 0;
+			
+			// Set initial state - invisible and offset from sides
+			gsap.set(project, { 
+				autoAlpha: 0, 
+				x: isEven ? -50 : 50,
+				y: 20,
+				scale: 0.95
+			});
+			
+			// Create reveal animation with staggered timing
+			gsap.to(project, {
+				scrollTrigger: {
+					trigger: project,
+					start: "top bottom-=100",
+					end: "center center",
+					toggleActions: "play none none reverse",
+				},
+				duration: 0.9,
+				autoAlpha: 1,
+				x: 0,
+				y: 0,
+				scale: 1,
+				ease: "power2.out",
+				delay: index * 0.15 // Staggered delay
+			});
+		});
+
+		// Parchment cards animation (if they exist)
+		const parchmentCards = gsap.utils.toArray('#projects .parchment:not(li)');
+		if (parchmentCards.length > 0) {
+			parchmentCards.forEach((card, index) => {
+				const isEven = index % 2 === 0;
+				
+				// Set initial position
+				gsap.set(card, { 
+					autoAlpha: 0, 
+					x: isEven ? -50 : 50,
+					y: 20,
+					scale: 0.95
+				});
+				
+				// Create animation
+				gsap.to(card, {
 					scrollTrigger: {
-						trigger: ".work-preview-section ol",
-						start: "top bottom",
-						end: "bottom center",
-						scrub: 1,
-						markers: false,
+						trigger: card,
+						start: "top bottom-=100",
+						end: "center center",
+						toggleActions: "play none none reverse",
 					},
-					ease: "none",
-					y: `-200px`,
+					duration: 0.9,
+					autoAlpha: 1,
+					x: 0,
+					y: 0,
+					scale: 1,
+					ease: "power2.out",
+					delay: index * 0.15 // Stagger the animations
 				});
 			});
 		}
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
+	
+	// Create fireflies dynamically for this section
+	function createFireflies() {
+		const firefliesContainer = document.querySelector('#projects .fireflies');
+		if (!firefliesContainer) return;
+		
+		for (let i = 0; i < 15; i++) {
+			const firefly = document.createElement('div');
+			firefly.classList.add('firefly');
+			
+			// Random positioning
+			firefly.style.left = `${Math.random() * 100}%`;
+			firefly.style.top = `${Math.random() * 100}%`;
+			
+			// Random animation delay
+			firefly.style.animationDelay = `${Math.random() * 6}s`;
+			
+			firefliesContainer.appendChild(firefly);
+		}
+	}
+	
+	document.addEventListener("DOMContentLoaded", createFireflies);
 </script>

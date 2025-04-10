@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
 	darkMode: false,
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -13,6 +15,9 @@ module.exports = {
 			"2xl": "1536px",
 		},
 		extend: {
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+			},
 			borderRadius: {
 				"4xl": "2rem",
 				"5xl": "3rem",
@@ -75,6 +80,41 @@ module.exports = {
 				},
 				gold: {
 					500: "#edb74d",
+				},
+				campfire: {
+					100: '#FFF1E5', // Soft paper
+					200: '#FFE0C4', // Warm cream
+					300: '#FFCBA4', // Soft peach
+					400: '#FAA275', // Sunset orange
+					500: '#E6784F', // Ember orange
+					600: '#C25D3A', // Deep ember
+					700: '#8A3D2A', // Firewood
+					800: '#5E2D20', // Dark wood
+					900: '#2D1A14', // Night shadow
+				},
+				forest: {
+					50: '#EEFBEE',
+					100: '#D0EAD3',
+					200: '#A2D1A7',
+					300: '#75B87D',
+					400: '#4C9956',
+					500: '#2E6937',
+					600: '#1F4A26',
+					700: '#153519',
+					800: '#0F2412',
+					900: '#091409',
+				},
+				night: {
+					50: '#F5F6F9',
+					100: '#E3E7EF',
+					200: '#C0C9D9',
+					300: '#94A1BA',
+					400: '#677696',
+					500: '#465574',
+					600: '#364059',
+					700: '#27303F',
+					800: '#1B2130',
+					900: '#121620', // Deep night sky
 				},
 			},
 			fontFamily: {

@@ -42,25 +42,40 @@ const points = [
 ];
 ---
 
-<section id="services" class:list={["section home-dark-section services-section relative", className]}>
-	<div class="wrapper col-span-12 h-screen w-full">
-		<h2 class="sr-only">{t("services")}</h2>
-		<div class="indicators absolute left-0 top-0 mt-[10vh] hidden h-[80vh] w-1 flex-col justify-between gap-2">
-			{points.map(() => <div class="indicator w-full grow bg-[#333333]" />)}
+<section id="services" class:list={["section relative py-20 lg:py-32", className]}>
+	<div class="mx-auto max-w-7xl px-8 col-span-12">
+		<!-- Section heading with decorative element -->
+		<div class="mb-16 text-center">
+			<h2 class="section-title pb-4">{t("services")}</h2>
+			<div class="mx-auto h-1 w-16 bg-gradient-to-r from-campfire-500 to-transparent"></div>
 		</div>
-		{
-			points.map(({ title, content, image }) => (
-				<div class="point flex h-screen w-full flex-col items-center justify-center gap-x-20 gap-y-12 p-16 pr-0 md:flex-row lg:gap-x-40">
-					<div class="hidden w-full max-w-80 lg:block">
-						<Fragment set:html={image} class="" />
+
+		<div class="wrapper relative">
+			{
+				points.map(({ title, content, image }, index) => (
+					<div class="mb-24 flex flex-col items-center lg:items-start lg:flex-row gap-12">
+						<!-- Create parchment-like background for each service -->
+						<div class="relative w-full max-w-sm parchment p-6 lg:p-8">
+							<div class="absolute -inset-px bg-gradient-to-tr from-campfire-300/20 to-transparent rounded-lg"></div>
+							<div class="relative">
+								<Fragment set:html={image} class="text-campfire-700 w-12 h-12 mb-4" />
+								<h3 class="font-display text-2xl font-bold text-campfire-700 mb-4">{title}</h3>
+								<p class="text-night-800" set:html={content} />
+							</div>
+							
+							<!-- Add decorative corner flourishes -->
+							<div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-campfire-500/30 rounded-tl-lg"></div>
+							<div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-campfire-500/30 rounded-tr-lg"></div>
+							<div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-campfire-500/30 rounded-bl-lg"></div>
+							<div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-campfire-500/30 rounded-br-lg"></div>
+						</div>
+						
+						<!-- Add firefly accent to alternate sides -->
+						<div class={`firefly absolute ${index % 2 === 0 ? '-left-2' : '-right-2'} top-1/2`}></div>
 					</div>
-					<article class="flex flex-col gap-14">
-						<h3 class="faq font-display text-4xl uppercase md:text-5xl lg:text-6xl">{title}</h3>
-						<p class="max-w-2xl text-lg" set:html={content} />
-					</article>
-				</div>
-			))
-		}
+				))
+			}
+		</div>
 	</div>
 </section>
 

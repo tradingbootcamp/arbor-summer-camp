@@ -1,0 +1,16 @@
+---
+import MinimalLayout from "@/layouts/MinimalLayout.astro";
+import HeroMinimal from "@components/landing/HeroMinimal.astro";
+import type { AstroSeoProps } from "@astrolib/seo";
+
+
+const seo: AstroSeoProps = {
+  title: "Summer Camp",
+  description: "Buy tickets now, find out what for later",
+  canonical: "https://summercampcomingsoon.com/hero/",
+};
+---
+
+<MinimalLayout seo={seo}>
+  <HeroMinimal />
+</MinimalLayout>

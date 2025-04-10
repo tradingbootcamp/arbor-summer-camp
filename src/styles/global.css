@@ -150,3 +150,107 @@ html {
 	background: #fff;
 	mask-image: paint(squircle);
 }
+
+/* Additional campfire styles to add to your global.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500;600&display=swap');
+
+.campfire-glow {
+  box-shadow: 0 0 15px rgba(230, 120, 79, 0.3), 0 0 30px rgba(194, 93, 58, 0.2);
+}
+
+.paper-texture {
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  background-repeat: repeat;
+}
+
+.parchment {
+  background-color: rgba(255, 241, 229, 0.97);
+  background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
+  background-blend-mode: overlay;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.prose-campfire {
+  @apply prose-stone;
+  @apply prose-headings:font-display prose-headings:text-campfire-600;
+  @apply prose-p:text-night-800 prose-p:leading-relaxed;
+  @apply prose-a:text-campfire-600 prose-a:underline prose-a:decoration-campfire-400 prose-a:decoration-2 hover:prose-a:text-campfire-500;
+  @apply prose-img:rounded-lg prose-img:shadow-md;
+}
+
+.section-title {
+  @apply font-display text-4xl md:text-5xl lg:text-6xl font-bold text-campfire-300 relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(230, 120, 79, 1) 0%, rgba(230, 120, 79, 0) 100%);
+}
+
+/* Firefly animation for background accents */
+.firefly {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(255, 235, 170, 0.8);
+  box-shadow: 0 0 5px 1px rgba(255, 235, 170, 0.5);
+  animation: firefly 6s infinite ease-in-out;
+  z-index: 1;
+}
+
+@keyframes firefly {
+  0% { opacity: 0; transform: translateY(0) translateX(0); }
+  10% { opacity: 1; }
+  50% { opacity: 0.3; transform: translateY(-20px) translateX(10px); }
+  70% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-40px) translateX(-10px); }
+}
+
+/* Add this to your global.css for additional string light effects */
+
+/* Horizontal string lights that can be used in specific sections */
+.string-lights-horizontal {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-image: 
+    repeating-linear-gradient(90deg, 
+      rgba(255,215,128,0) 0px,
+      rgba(255,215,128,0) 25px,
+      rgba(255,215,128,0.8) 30px,
+      rgba(255,215,128,0) 35px);
+  filter: drop-shadow(0 0 5px rgba(255,215,128,0.5));
+  animation: twinkle-horizontal 4s infinite alternate;
+}
+
+/* String for the lights */
+.string-lights-horizontal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+}
+
+@keyframes twinkle-horizontal {
+  0%, 100% {
+    opacity: 0.7;
+    background-position: 0 0;
+  }
+  50% {
+    opacity: 1;
+    background-position: 15px 0;
+  }
+}

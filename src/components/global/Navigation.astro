@@ -39,87 +39,30 @@ let pages = [
 const { pathname } = Astro.url;
 ---
 
-<header>
-	<a href={translatePath("/")} aria-label="Home" class="logo absolute z-50 flex h-[4.5rem] items-center md:h-[5.9rem]">
-		<img 
-			src="/images/minimal_green_cs_tree_logo.svg" 
-			alt="Logo" 
-			class="h-7 w-auto md:h-9"
-		/>
-	</a>
-	<div data-xdata="{ open: false }" class="navigation fixed right-0 top-0 z-50" data-xbind.class="{'w-full navbar-open': open}">
-		<div class="ml-auto md:max-w-fit" data-xbind.class="{'max-w-3xl': open, 'max-w-[8rem]': !open }">
-			<div class="mx-auto w-full">
-				<div
-					class="shadow-thick resizable nav-container squircle relative mx-auto flex w-full flex-col justify-center overflow-x-hidden bg-zinc-900 backdrop-blur-xl backdrop-filter md:flex-row-reverse">
-					<div class="flex flex-row items-center justify-end md:hidden">
-						<a class="px-3 py-[0.4rem] pl-4" href={translatePath("/contact/")} aria-label="Contact Page">
-							<Icon class="text-white" name="octicon:mail-16" width="20" data-xbind.class="{'hidden': open}" />
-						</a>
-						<button
-							data-xon.click="open = !open"
-							data-xbind.style="{'padding-top': open ? '1rem' : '0.4rem'}"
-							aria-label="Open navbar"
-							class="inline-flex items-center justify-center px-3 py-[0.4rem] pr-4 text-white hover:text-blue-300 focus:text-white focus:outline-none">
-							<svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-								<path
-									data-xbind.class="{'hidden': open, 'inline-flex': !open }"
-									class="inline-flex"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M4 6h16M4 12h16M4 18h16">
-								</path>
-								<path
-									data-xbind.class="{'hidden': !open, 'inline-flex': open }"
-									class="hidden"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M6 18L18 6M6 6l12 12">
-								</path>
-							</svg>
-						</button>
-					</div>
-					<nav data-xbind.class="{'flex': open, 'hidden': !open}" class="hidden flex-grow flex-col justify-center py-12 md:flex md:py-0">
-						<ul
-							class="flex list-none flex-col items-end justify-center gap-2 px-2 text-center text-3xl md:flex-row md:items-center md:text-base">
-							{
-								pages.map((page) => (
-									<li data-cursor-hover>
-										<a
-											href={translatePath(page.url)}
-											class={`inline-block cursor-pointer px-1 py-[0.33rem] ${
-												page.url === pathname ||
-												page.url === pathname.replace(/^\/it|\/$/, "") ||
-												(page.url === "/blog" && (pathname.startsWith("/blog") || pathname.startsWith("/it/blog")))
-													? "active"
-													: ""
-											}`}>
-											<span class="menu-item-container inline-block">
-												<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
-													{page.title}
-												</span>
-											</span>
-										</a>
-									</li>
-								))
-							}
-							<li>
-								<a 
-									href="/#faq" 
-									class="inline-block cursor-pointer px-1 py-[0.33rem]"
-									data-faq-link>
-									<span class="menu-item-container inline-block">
-										<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
-											FAQ
-										</span>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
+<header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+	<div class="px-8 py-4 mx-auto">
+		<div class="relative flex items-center justify-between">
+			<a href="/" class="flex items-center">
+				<span class="self-center text-xl font-display font-semibold whitespace-nowrap text-campfire-100">
+					Summer Camp
+				</span>
+			</a>
+			
+			<nav class="hidden md:flex items-center space-x-8">
+				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">About</a>
+				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Schedule</a>
+				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Location</a>
+				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">FAQ</a>
+			</nav>
+			
+			<div class="flex items-center">
+				<a 
+					href="/tickets/" 
+					class="group relative px-5 py-2 overflow-hidden rounded-lg bg-campfire-500 text-white font-medium transition-all hover:bg-campfire-600"
+				>
+					<span class="relative z-10">Buy Tickets</span>
+					<span class="absolute inset-0 bg-gradient-to-r from-campfire-600 to-campfire-500 opacity-0 transition-opacity group-hover:opacity-100"></span>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -314,4 +257,15 @@ const { pathname } = Astro.url;
 
 	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
 	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+
+	// Add scroll behavior for navbar
+	const navbar = document.getElementById('navbar');
+	
+	window.addEventListener('scroll', () => {
+		if (window.scrollY > 50) {
+			navbar.classList.add('bg-night-900/90', 'backdrop-blur-sm', 'shadow-md');
+		} else {
+			navbar.classList.remove('bg-night-900/90', 'backdrop-blur-sm', 'shadow-md');
+		}
+	});
 </script>

@@ -1,149 +1,156 @@
 ---
 import LinkBlend from "@components/global/LinkBlend.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+import { PATHS } from "@config/constants";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<section id="hero" class="section home-dark-section hero min-h-screen">
-	<div class="mx-auto flex h-full flex-col py-4 lg:py-10">
-		<div class="relative flex flex-1 flex-col justify-around rounded-lg pb-10 pt-20 lg:rounded-2xl">
-			<div class="flex justify-center">
-				<h1 class="text-center font-display text-5xl font-extrabold uppercase sm:text-7xl md:text-8xl lg:text-9xl">
-					<span>{t("hero.title.main")}</span>
-					<span class="rotator relative inline-flex h-20 w-full justify-center md:h-24 lg:h-32">
-						<span>{t("hero.title.1")}</span><span>{t("hero.title.2")}</span><span>{t("hero.title.3")}</span><span>
-							{t("hero.title.4")}
-						</span><span>{t("hero.title.1")}</span>
-					</span>
-				</h1>
-			</div>
-			<div class="flex flex-col items-center gap-5 text-center lg:gap-10">
-				<p class="mt-8 max-w-3xl font-mono lg:text-lg">
-					{t("hero.subtitle")}
-				</p>
-				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
-					<div class="squircle-bg rounded-lg bg-zinc-900" data-cursor-hover data-cursor-parallax>
-						<a
-							class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-8xl font-bold"
-							aria-label="Buy Tickets"
-							href={translatePath("/tickets/")}>
-							{t("tickets")}
-						</a>
-					</div>
-
-					<small>
-						{t("or")}
-						<LinkBlend id="go-projects-button" isButton={true}>{t("hero.scroll")}</LinkBlend>
-					</small>
+<section id="hero" class="section relative min-h-screen overflow-hidden py-20">
+	<!-- Add fireflies for ambient effect -->
+	<div class="fireflies absolute inset-0 z-0"></div>
+	
+	<div class="relative z-10 mx-auto flex h-full flex-col items-center justify-center px-8">
+		<div class="max-w-5xl text-center">
+			<h1 class="font-display text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+				<span class="block">A Gathering of Minds</span>
+				<span class="mt-2 block bg-gradient-to-r from-campfire-300 to-campfire-500 bg-clip-text text-transparent">
+					Under Summer Stars
+				</span>
+			</h1>
+			
+			<p class="mt-8 max-w-3xl mx-auto text-lg font-serif text-campfire-100 md:text-xl">
+				A mysterious organization called Arbor has stepped forward to run an experimental summer camp (June 2-6) in the slice of time between <a href="https://less.online/" target="_blank" rel="noopener" class="text-campfire-300 underline decoration-campfire-500 hover:text-campfire-400">LessOnline</a> and <a href="https://manifest.is/" target="_blank" rel="noopener" class="text-campfire-300 underline decoration-campfire-500 hover:text-campfire-400">Manifest</a>.
+			</p>
+			
+			<p class="mt-4 max-w-3xl mx-auto text-lg font-serif text-campfire-200 md:text-xl">
+				Conference-goers seeking a peaceful yet vibrant week of coworking, collaborating, and late campfire chats are warmly welcome.
+			</p>
+			
+			<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+				<div class="group relative">
+					<!-- Paper texture behind button -->
+					<div class="absolute inset-0 rounded-lg bg-campfire-600 opacity-80 transition-all duration-300 group-hover:scale-105"></div>
+					
+					<!-- Animated ember glow -->
+					<div class="absolute inset-0 rounded-lg bg-gradient-to-tr from-campfire-700 to-campfire-500 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70"></div>
+					
+					<a 
+						class="relative flex items-center justify-center rounded-lg bg-campfire-500 px-8 py-4 text-xl font-bold text-white transition-all duration-300 group-hover:scale-105"
+						aria-label="Buy Tickets"
+						href={PATHS.TICKETS}
+						target="_blank"
+						rel="noopener">
+						
+						<span class="relative z-10">Buy tickets</span>
+						<!-- Add a subtle flame animation on hover -->
+						<span class="flame absolute bottom-0 left-0 right-0 h-8 opacity-0 transition-opacity duration-300 group-hover:opacity-70"></span>
+					</a>
 				</div>
+				
+				<a href="#" id="go-projects-button" class="text-campfire-300 underline decoration-campfire-400 hover:text-campfire-400">
+					Learn more about the experience
+				</a>
 			</div>
 		</div>
 	</div>
+	
+	<!-- Decorative elements -->
+	<!-- <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-night-900 to-transparent opacity-50"></div> -->
 </section>
 
 <style>
-	.hero {
-		padding-bottom: 0;
+	.section {
 		position: relative;
-		border-radius: inherit;
-		overflow: hidden;
-	}
-	.hero > div {
-		grid-column: 1 / span 12;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: var(--base-padding-y) var(--base-padding-x);
 	}
 
-	/* Hero appearance */
-	.hero h1,
-	.hero h2,
-	.hero h3 {
-		margin: 0;
-	}
-	.hero h1 {
-		margin: 0;
-		position: relative;
-		overflow: hidden;
-		visibility: hidden;
-	}
-	.hero h1 > div {
-		position: relative;
-		margin: 0;
-	}
-	.hero :global(.split-parent) {
-		overflow: hidden;
-	}
-	.hero :global(.split-child) {
-		display: inline-block;
-	}
-
-	/* Text rotator */
-	.rotator > span {
+	/* Create fireflies for ambient effect */
+	.fireflies {
 		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		pointer-events: none;
 	}
 
-	.rotator > span:not(:nth-child(1)) {
-		opacity: 0;
+	.flame {
+		background: linear-gradient(to top, rgba(255,140,40,0.8) 0%, rgba(255,210,80,0.4) 60%, rgba(255,240,150,0.2) 100%);
+		border-radius: 0 0 50% 50%;
+		filter: blur(4px);
+	}
+
+	/* Add text shadow for better contrast against background */
+	h1 {
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+	}
+
+	/* Link styling */
+	a {
+		transition: all 0.3s ease;
 	}
 </style>
 
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { SplitText } from "gsap/SplitText";
 	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-	gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-	function init() {
-		const childSplit = new SplitText(".hero h1", {
-			type: "lines",
-			linesClass: "split-child",
-		});
-		const parentSplit = new SplitText(".hero h1", {
-			linesClass: "split-parent",
-		});
-
-		gsap.timeline()
-			.from(childSplit.lines, {
-				duration: 1.5,
-				yPercent: 100,
-				ease: "power4",
-				stagger: 0.1,
-			})
-			.set(".hero h1", { visibility: "visible" }, "<")
-			.then(() => {
-				const words = document.querySelectorAll(".hero .rotator > span");
-
-				let rotatorTimeline = gsap.timeline({ repeat: -1 });
-				rotatorTimeline.timeScale(0.5);
-
-				for (let i = 0; i < words.length; i++) {
-					let delay = i - 1;
-					let wordTL = gsap.timeline();
-					if (i !== 0) {
-						gsap.set(words[i], { opacity: 1 });
-						wordTL.from(words[i], { duration: 1, yPercent: 100, opacity: 0, ease: "power4.out" });
-					} else {
-						// Handle the first one specially
-						delay += 1;
-						gsap.set(words[0], { opacity: 1, yPercent: 0 });
-					}
-
-					if (i !== words.length - 1) {
-						wordTL.to(words[i], { duration: 1, yPercent: -100, opacity: 0, ease: "power4.out" });
-					}
-					rotatorTimeline.add(wordTL, delay);
-				}
-			});
-
-		var goProjectsButton = document.getElementById("go-projects-button");
-		goProjectsButton?.addEventListener("click", function () {
-			gsap.to(window, { duration: 0.5, scrollTo: "#projects" });
-		});
+	// Create fireflies dynamically
+	function createFireflies() {
+		const firefliesContainer = document.querySelector('.fireflies');
+		if (!firefliesContainer) return;
+		
+		for (let i = 0; i < 20; i++) {
+			const firefly = document.createElement('div');
+			firefly.classList.add('firefly');
+			
+			// Random positioning
+			firefly.style.left = `${Math.random() * 100}%`;
+			firefly.style.top = `${Math.random() * 100}%`;
+			
+			// Random animation delay
+			firefly.style.animationDelay = `${Math.random() * 6}s`;
+			
+			firefliesContainer.appendChild(firefly);
+		}
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	function init() {
+		createFireflies();
+		
+		// Scroll to projects section
+		var goProjectsButton = document.getElementById("go-projects-button");
+		goProjectsButton?.addEventListener("click", function (e) {
+			e.preventDefault();
+			gsap.to(window, { duration: 1, scrollTo: "#projects", ease: "power2.inOut" });
+		});
+		
+		// Hero section animations
+		gsap.fromTo('.hero h1', 
+			{ y: 30, opacity: 0 },
+			{ y: 0, opacity: 1, duration: 1.2, ease: "power2.out", delay: 0.3 }
+		);
+		
+		gsap.fromTo('.hero p', 
+			{ y: 20, opacity: 0 },
+			{ y: 0, opacity: 1, duration: 1, ease: "power2.out", delay: 0.8 }
+		);
+		
+		gsap.fromTo('.hero a', 
+			{ y: 10, opacity: 0 },
+			{ y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.2 }
+		);
+	}
+
+	document.addEventListener("DOMContentLoaded", init);
 </script>
