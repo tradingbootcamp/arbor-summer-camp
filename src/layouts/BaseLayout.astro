@@ -83,26 +83,36 @@ function cursorFollowerActive() {
 		</script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap" />
 	</head>
-	<body class="bg-night-900/20 text-campfire-100 bg-fixed bg-blend-multiply font-serif">
-		<!-- Replace the fixed gradient div with this -->
-		<div id="scrolling-gradient" class="fixed inset-0 bg-gradient-to-b from-transparent via-night-900/0 to-night-900/0 z-[-2]"></div>
+	<body class="bg-sky-50 text-forest-800 font-serif">
+		<!-- Background image with parallax effect --> 
+		<div id="background-image" class="fixed inset-0 bg-[url('/images/scarborough_day_background_2.png')] bg-cover bg-center opacity-100 z-[0] mask-gradient"></div>
 		
-		<!-- Background image with higher opacity -->
-		<div class="fixed inset-0 bg-[url('/images/summer_camp_aesthetic_1.png')] bg-cover bg-center opacity-75 z-[-3]"></div>
+		<!-- Watercolor wash effect -->
+		<div class="fixed inset-0 bg-gradient-radial from-transparent via-sky-100/20 to-meadow-100/10 mix-blend-soft-light z-[1]"></div>
 		
-		<!-- Subtle paper texture overlay -->
-		<div class="fixed inset-0 bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')] opacity-5 z-[-1]"></div>
+		<!-- Very light white overlay to mute the background without hiding it -->
+		<div class="fixed inset-0 bg-white/20 z-[2]"></div>
 		
-		<!-- String lights across the page -->
-		<div class="string-lights-container fixed w-full h-full overflow-hidden z-[1] pointer-events-none">
+		<!-- Paper texture overlay for the entire site -->
+		<div class="fixed inset-0 bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')] opacity-25 mix-blend-overlay z-[3]"></div>
+		
+		<!-- Fireflies across the page - subtle ambient effect -->
+		<div class="fireflies-container fixed w-full h-full overflow-hidden z-[4] pointer-events-none">
+		</div>
+		
+		<!-- Diagonal string lights -->
+		<div class="string-lights-container fixed w-full h-full z-[5] pointer-events-none">
 			<div class="string-lights-diagonal"></div>
 		</div>
 		
+		<!-- Subtle vignette effect -->
+		<div class="fixed inset-0 bg-gradient-radial from-transparent to-black/20 mix-blend-multiply z-[6] pointer-events-none"></div>
+		
 		<Navigation />
-		{cursorFollowerActive() && <BlobCursorFollower />}
+		<!-- {cursorFollowerActive() && <BlobCursorFollower />} -->
 		<slot />
 		<Footer />
-		<!-- Add this script before the closing body tag -->
+		
 		<script>
 			import { gsap } from "gsap";
 			import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -110,23 +120,69 @@ function cursorFollowerActive() {
 			gsap.registerPlugin(ScrollTrigger);
 			
 			document.addEventListener("DOMContentLoaded", () => {
-				gsap.to("#scrolling-gradient", {
+				// Create fireflies dynamically
+				createFireflies();
+				
+				// Create a timeline for background transitions and parallax
+				const backgroundTl = gsap.timeline({
 					scrollTrigger: {
 						trigger: "#hero",
 						start: "top top",
 						end: "bottom top",
 						scrub: true,
-					},
-					backgroundImage: "linear-gradient(to bottom, rgba(17,24,39,0.3), rgba(17,24,39,0.6) 50%, rgba(17,24,39,0.85))",
-					ease: "power1.inOut"
+					}
 				});
+				
+				// Parallax effect - move background image up as user scrolls down
+				backgroundTl.to("#background-image", {
+					y: "-100%", // Move up by 100% of its height
+					ease: "none"
+				});
+
+				// Fade out background image as user scrolls
+				backgroundTl.to("#background-image", {
+					opacity: 0.2,
+					ease: "power1.inOut"
+				}, "<"); // Start at the same time as the parallax effect
 			});
+			
+			// Create fireflies dynamically
+			function createFireflies() {
+				const firefliesContainer = document.querySelector('.fireflies-container');
+				if (!firefliesContainer) return;
+				
+				for (let i = 0; i < 30; i++) {
+					const firefly = document.createElement('div');
+					firefly.classList.add('firefly');
+					
+					// Random positioning
+					firefly.style.left = `${Math.random() * 100}%`;
+					firefly.style.top = `${Math.random() * 100}%`;
+					
+					// Random animation delay
+					firefly.style.animationDelay = `${Math.random() * 8}s`;
+					
+					// Random size variation
+					const size = 2 + Math.random() * 3;
+					firefly.style.width = `${size}px`;
+					firefly.style.height = `${size}px`;
+					
+					// Random colors - warm yellow/orange tones
+					const hue = Math.floor(Math.random() * 30) + 40; // yellows and light oranges
+					const saturation = Math.floor(Math.random() * 20) + 80; // fairly saturated
+					const lightness = Math.floor(Math.random() * 10) + 80; // very light colors
+					firefly.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.8)`;
+					firefly.style.boxShadow = `0 0 ${5 + Math.random() * 5}px 1px hsla(${hue}, ${saturation}%, ${lightness}%, 0.5)`;
+					
+					firefliesContainer.appendChild(firefly);
+				}
+			}
 		</script>
 	</body>
 </html>
 
 <style>
-	/* Diagonal hanging string lights */
+	/* Diagonal hanging string lights - daytime version */
 	.string-lights-container {
 		position: fixed;
 		width: 100%;
@@ -139,7 +195,7 @@ function cursorFollowerActive() {
 		width: 100%;
 		height: 100%;
 		background-image: 
-			radial-gradient(circle, rgba(255,215,128,0.8) 0%, rgba(255,215,128,0) 70%),
+			radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%),
 			linear-gradient(to bottom, transparent, transparent);
 		background-size: 30px 30px, 100% 100%;
 		background-position: 0 0, 0 0;
@@ -149,21 +205,21 @@ function cursorFollowerActive() {
 			linear-gradient(135deg, #000 1px, transparent 1px);
 		mask-size: 30px 30px, 30px 30px;
 		mask-position: 0 0, 0 0;
-		animation: twinkle 3s infinite alternate;
+		animation: daytime-twinkle 5s infinite alternate;
 	}
 
-	@keyframes twinkle {
+	@keyframes daytime-twinkle {
 		0% {
-			opacity: 0.5;
-			filter: blur(0.5px) brightness(0.8);
-		}
-		50% {
-			opacity: 0.8;
+			opacity: 0.3;
 			filter: blur(0.5px) brightness(1);
 		}
+		50% {
+			opacity: 0.5;
+			filter: blur(0.5px) brightness(1.2);
+		}
 		100% {
-			opacity: 0.6;
-			filter: blur(0.5px) brightness(0.9);
+			opacity: 0.4;
+			filter: blur(0.5px) brightness(1.1);
 		}
 	}
 
@@ -171,9 +227,43 @@ function cursorFollowerActive() {
 	:global(h1, h2, h3, h4) {
 		font-family: 'Playfair Display', serif;
 		letter-spacing: -0.025em;
+		text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 	}
 	
 	:global(body) {
 		font-family: 'Lora', serif;
+	}
+
+	:global(p) {
+		text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.2);
+	}
+
+	.mask-gradient {
+		-webkit-mask-image: linear-gradient(to bottom, 
+			rgba(0,0,0,1) 0%, 
+			rgba(0,0,0,0.95) 40%, 
+			rgba(0,0,0,0.9) 90%, 
+			rgba(0,0,0,0) 100%);
+		mask-image: linear-gradient(to bottom, 
+			rgba(0,0,0,1) 0%, 
+			rgba(0,0,0,0.95) 40%, 
+			rgba(0,0,0,0.9) 90%, 
+			rgba(0,0,0,0) 100%);
+	}
+
+	.deckled-edge {
+		position: relative;
+	}
+
+	.deckled-edge::after {
+		content: "";
+		position: absolute;
+		bottom: -10px;
+		left: 0;
+		right: 0;
+		height: 10px;
+		background-image: url('/images/deckled-edge.png');
+		background-repeat: repeat-x;
+		background-size: 20px 10px;
 	}
 </style>

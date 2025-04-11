@@ -39,31 +39,58 @@ let pages = [
 const { pathname } = Astro.url;
 ---
 
-<header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
-	<div class="px-8 py-4 mx-auto">
-		<div class="relative flex items-center justify-between">
-			<a href="/" class="flex items-center">
-				<span class="self-center text-xl font-display font-semibold whitespace-nowrap text-campfire-100">
-					Summer Camp
-				</span>
+<header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300">
+	<div class="container mx-auto px-8">
+		<nav class="flex items-center justify-between py-4">
+			<!-- Logo -->
+			<a href="/" class="flex items-center space-x-2">
+				<span class="text-2xl font-display font-bold text-forest-700">Scarborough Fair</span>
 			</a>
 			
-			<nav class="hidden md:flex items-center space-x-8">
-				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">About</a>
-				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Schedule</a>
-				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Location</a>
-				<a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">FAQ</a>
-			</nav>
-			
-			<div class="flex items-center">
+			<!-- Desktop navigation -->
+			<div class="hidden md:flex items-center space-x-8">
+				<a href="/" class="text-forest-700 hover:text-forest-900 transition-colors">Home</a>
+				<a href="#services" class="text-forest-700 hover:text-forest-900 transition-colors">Services</a>
+				<a href="#work" class="text-forest-700 hover:text-forest-900 transition-colors">Activities</a>
+				<a href="#" class="text-forest-700 hover:text-forest-900 transition-colors">About</a>
+				<a href="#" class="text-forest-700 hover:text-forest-900 transition-colors">Contact</a>
+				
+				<!-- CTA Button -->
 				<a 
-					href="/tickets/" 
-					class="group relative px-5 py-2 overflow-hidden rounded-lg bg-campfire-500 text-white font-medium transition-all hover:bg-campfire-600"
+					href="#" 
+					class="watercolor-btn px-6 !py-2 rounded-lg transition-colors shadow-md hover:shadow-lg"
 				>
-					<span class="relative z-10">Buy Tickets</span>
-					<span class="absolute inset-0 bg-gradient-to-r from-campfire-600 to-campfire-500 opacity-0 transition-opacity group-hover:opacity-100"></span>
+					Buy Tickets
 				</a>
 			</div>
+			
+			<!-- Mobile menu button -->
+			<button id="mobile-menu-button" class="md:hidden text-forest-700 hover:text-forest-900 transition-colors">
+				<Icon name="mdi:menu" class="w-8 h-8" />
+			</button>
+		</nav>
+	</div>
+	
+	<!-- Mobile menu -->
+	<div id="mobile-menu" class="fixed inset-0 bg-sky-100 z-50 flex flex-col justify-center items-center transform translate-x-full transition-transform duration-300">
+		<button id="close-mobile-menu" class="absolute top-6 right-8 text-forest-700 hover:text-forest-900 transition-colors">
+			<Icon name="mdi:close" class="w-8 h-8" />
+		</button>
+		
+		<div class="flex flex-col items-center space-y-6 text-xl">
+			<a href="/" class="text-forest-700 hover:text-forest-900 transition-colors">Home</a>
+			<a href="#services" class="text-forest-700 hover:text-forest-900 transition-colors">Services</a>
+			<a href="#work" class="text-forest-700 hover:text-forest-900 transition-colors">Activities</a>
+			<a href="#" class="text-forest-700 hover:text-forest-900 transition-colors">About</a>
+			<a href="#" class="text-forest-700 hover:text-forest-900 transition-colors">Contact</a>
+			
+			<!-- CTA Button -->
+			<a 
+				href="#" 
+				class="bg-meadow-500 hover:bg-meadow-600 text-white px-6 py-2 rounded-lg transition-colors shadow-md hover:shadow-lg mt-4"
+			>
+				Buy Tickets
+			</a>
 		</div>
 	</div>
 </header>
@@ -268,4 +295,64 @@ const { pathname } = Astro.url;
 			navbar.classList.remove('bg-night-900/90', 'backdrop-blur-sm', 'shadow-md');
 		}
 	});
+
+	// Handle navigation background on scroll
+	function handleNavigation() {
+		const header = document.getElementById('main-header');
+		if (!header) return;
+		
+		const scrollWatcher = () => {
+			// Calculate opacity based on scroll position
+			const scrollY = window.scrollY;
+			const minOpacity = 20; // Starting at 20% opacity
+			const maxOpacity = 70; // Max at 80% opacity
+			const scrollThreshold = 300; // Longer scroll distance for smoother transition
+			
+			// Calculate opacity value between min and max based on scroll position
+			const opacity = Math.min(
+				minOpacity + ((maxOpacity - minOpacity) * scrollY / scrollThreshold), 
+				maxOpacity
+			);
+			
+			if (scrollY > 10) {
+				// Apply calculated opacity with backdrop blur and shadow
+				header.style.backgroundColor = `rgba(226, 242, 253, ${opacity / 100})`;
+				header.classList.add('backdrop-blur-sm', 'shadow-md');
+			} else {
+				// Reset to initial state
+				header.style.backgroundColor = '';
+				header.classList.remove('backdrop-blur-sm', 'shadow-md');
+			}
+		};
+		
+		window.addEventListener('scroll', scrollWatcher);
+		scrollWatcher(); // Initial check
+		
+		// Mobile menu functionality
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const closeMenuButton = document.getElementById('close-mobile-menu');
+		const mobileMenu = document.getElementById('mobile-menu');
+		const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+		
+		if (mobileMenuButton && closeMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener('click', () => {
+				mobileMenu.classList.remove('translate-x-full');
+				document.body.style.overflow = 'hidden';
+			});
+			
+			closeMenuButton.addEventListener('click', () => {
+				mobileMenu.classList.add('translate-x-full');
+				document.body.style.overflow = '';
+			});
+			
+			mobileMenuLinks?.forEach(link => {
+				link.addEventListener('click', () => {
+					mobileMenu.classList.add('translate-x-full');
+					document.body.style.overflow = '';
+				});
+			});
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', handleNavigation);
 </script>

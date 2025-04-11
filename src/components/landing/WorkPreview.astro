@@ -1,164 +1,159 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import yourProjectImage from "@assets/images/projects/yourProject.png";
-import WokCard from "@components/work/WokCard.astro";
-import { getLangFromUrl, useTranslatedPath, useTranslations } from "@i18n/utils";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+import { Icon } from "astro-icon/components";
+
+const { class: className } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
-const { class: className } = Astro.props;
-
-const allProjects = (await getCollection("projects"))
-	.filter((prj) => {
-		const [postLang, ...slug] = prj.slug.split("/");
-		return postLang === lang;
-	})
-	.map((prj) => {
-		const [postLang, slug] = prj.slug.split("/");
-
-		return {
-			...prj,
-			slug: slug,
-		};
-	})
-	.sort((a, b) => Number(b.data.pubDate) - Number(a.data.pubDate));
+// Define projects
+const projects = [
+	{
+		title: "Trading Bootcamp",
+		description: "Learn to think like a trader",
+		longDescription: "Our Trading Bootcamp offers an immersive experience where participants learn trading strategies through hands-on practice. You'll work with experienced traders, engage in simulated market scenarios, and develop your own trading style. Perfect for beginners and intermediate traders looking to sharpen their skills in a supportive environment.",
+		image: "/images/_theo_presenting_2_cropped.jpeg",
+		link: "#"
+	},
+	{
+		title: "Paint Drying Bootcamp",
+		description: "Learn to not think for a change",
+		longDescription: "This was originally an April Fools' joke, but we happened to sell some tickets so we're going to paint a wall of Mox. Painting will happen Thursday night, and watching the paint dry will happen at Tradegala Friday night. Includes VIP tickets to Tradegala.",
+		image: "/images/mox_mural.png",
+		link: "#"
+	},
+	{
+		title: "Tradegala",
+		description: "A markets-infused costume party celebrating Arbor's launch",
+		longDescription: "A markets-infused costume party celebrating Arbor's launch. Attendees will be given Clips, our play currency, and encouraged to trade on various activities. The theme of the evening is Trees.",
+		image: "/images/tradegala_cover.png",
+		link: "#"
+	},
+	{
+		title: "Provide Your Own Liquidity",
+		description: "A chaotic auction of weird goods and services",
+		longDescription: "PYOL is our trading bootcamp afterparty and auction. Participants bid on bespoke goods and services of various weird flavors using Clips, our play currency. You can only bid on auction items once you have Clips — which you can get by taking the bootcamp, by attending Tradegala two nights earlier, or by selling your goods and services in the auction.",
+		image: "/images/pyol.png",
+		link: "#"
+	}
+];
 ---
 
-<section id="projects" class:list={["section work-preview-section home-dark-section py-12", className]}>
-	<div class="col-span-12 col-start-1 mx-auto max-w-7xl">
-		<h2 class="sr-only">{t("projects")}</h2>
+<section id="work" class:list={["work-preview-section relative py-8 lg:py-16", className]}>
+	<!-- No need for a gradient transition at the top anymore -->
+	
+	<!-- Add butterflies container -->
+	<!-- <div class="butterflies absolute inset-0 z-0"></div> -->
+	
+	<div class="mx-auto max-w-8xl px-16 relative z-10">
+		<!-- Section heading with decorative element -->
+		<div class="mb-12 text-center">
+			<h2 class="section-title-daytime pb-0">{t("branch")}</h2>
+		</div>
 		
-		<!-- Carousel container with overflow -->
+		<!-- Carousel container -->
 		<div class="carousel-container relative">
-			<!-- Previous/Next buttons -->
-			<button class="carousel-nav carousel-prev absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-3 text-night-900 shadow-lg opacity-0 transition-opacity duration-300">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-				</svg>
-			</button>
-			
-			<div class="carousel-track overflow-hidden">
-				<div class="carousel-slides flex transition-transform duration-500 ease-out">
-					{
-						allProjects.map((project) => (
-							<div class="carousel-slide flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(50%-2rem)] px-2 md:px-4 h-full">
-								<WokCard
-									image={project.data.image.source}
-									project={project.data.title}
-									description={project.data.description}
-									link={`/work/${project.slug}`}
-									class="h-full project-card" 
-									data-project-title={project.data.title}
-									data-project-description={project.data.description}
-									data-project-slug={project.slug}
-								/>
-							</div>
-						))
-					}
-				</div>
-			</div>
-			
-			<button class="carousel-nav carousel-next absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-3 text-night-900 shadow-lg opacity-0 transition-opacity duration-300">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-				</svg>
-			</button>
-			
-			<!-- Indicators (dots) -->
-			<div class="carousel-indicators flex justify-center mt-6 gap-2">
+			<!-- Carousel track -->
+			<div class="carousel-track flex">
 				{
-					allProjects.map((_, index) => (
-						<button 
-							class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" 
-							data-index={index}
-							aria-label={`Go to slide ${index + 1}`}
-						></button>
+					projects.map((project, index) => (
+						<div class="carousel-item w-full flex-shrink-0 px-4" data-index={index}>
+							<div class="daytime-paper overflow-hidden group h-full" data-project={JSON.stringify(project)}>
+								<div class="block h-full cursor-pointer">
+									<div class="relative overflow-hidden h-64">
+										<img 
+											src={project.image} 
+											alt={project.title} 
+											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+										/>
+										<!-- Overlay gradient -->
+
+									</div>
+									<div class="p-6">
+										<h3 class="font-display text-2xl font-bold text-forest-700 mb-2">{project.title}</h3>
+										<p class="text-forest-600 mb-4">{project.description}</p>
+										<div class="flex items-center text-meadow-800 font-medium">
+											<span>Read more</span>
+											<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+											</svg>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					))
 				}
 			</div>
 		</div>
 	</div>
 	
-	<!-- Modal container (initially hidden) -->
-	<div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
-		<!-- Modal backdrop -->
-		<div class="modal-backdrop absolute inset-0 bg-night-900/80 backdrop-blur-sm"></div>
-		
-		<!-- Modal content -->
-		<div class="modal-content relative bg-[#f8f3e3] rounded-lg max-w-3xl w-full mx-4 p-0 shadow-2xl transform scale-90 transition-all duration-500 opacity-0">
-			<!-- Close button -->
-			<button class="modal-close absolute -right-4 -top-4 z-10 bg-campfire-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-campfire-700 transition-colors duration-300">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-				</svg>
-			</button>
-			
-			<!-- Project display -->
-			<div class="overflow-hidden rounded-t-lg relative aspect-video">
-				<img id="modal-image" src="" alt="" class="h-full w-full object-cover">
-				<!-- Paper edge effect -->
-				<div class="absolute bottom-0 h-4 w-full bg-gradient-to-t from-[#f8f3e3]/80 to-transparent"></div>
-			</div>
-			
-			<div class="p-8 bg-[#f8f3e3] text-night-800">
-				<h2 id="modal-title" class="font-display text-3xl font-bold text-campfire-700 mb-4"></h2>
-				<p id="modal-description" class="text-night-800 text-lg mb-8"></p>
-				
-				<!-- Full project button -->
-				<a id="modal-link" href="#" class="inline-block px-6 py-3 rounded-full bg-campfire-600 text-white font-medium transition-all duration-300 hover:bg-campfire-700 hover:shadow-lg">
-					View Full Project
-				</a>
+	<!-- Carousel navigation buttons - moved here -->
+	<div class="carousel-controls relative max-w-8xl mx-auto px-4">
+		<button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md z-10">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-forest-700">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+			</svg>
+		</button>
+		<button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md z-10">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-forest-700">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+			</svg>
+		</button>
+	</div>
+	
+	<!-- Modal for project details -->
+	<div id="project-modal" class="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/80 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+		<div class="daytime-paper max-w-4xl w-full max-h-[90vh] overflow-y-auto relative z-[1001]">
+			<div class="p-6">
+				<div class="flex justify-between items-start mb-4">
+					<h3 id="modal-title" class="font-display text-3xl font-bold text-forest-700"></h3>
+					<button id="close-modal" class="text-forest-500 hover:text-forest-700 focus:outline-none focus:ring-2 focus:ring-forest-500 rounded-full p-1">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</button>
+				</div>
+				<div id="modal-content"></div>
 			</div>
 		</div>
 	</div>
-	
-	<!-- Add animated fireflies for ambient effect -->
-	<div class="fireflies absolute inset-0 z-0 pointer-events-none"></div>
 </section>
 
-<style is:global>
-	/* Image clip styling */
-	.work-preview-section .carousel-slide img {
-		--clip: 0%;
-		clip-path: inset(var(--clip) round 0.5rem);
-	}
-	
-	/* Parchment styling */
-	.parchment {
-		background-color: #f8f3e3;
-		border-radius: 0.5rem;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+<style>
+	.work-preview-section {
 		position: relative;
+		width: 100%;
+	}
+	
+	/* Carousel styles */
+	.carousel-container {
 		overflow: hidden;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
+		position: relative;
+		padding: 0;
 	}
 	
-	/* Ensure the card content fills the available height */
-	.parchment > a {
+	.carousel-track {
 		display: flex;
-		flex-direction: column;
-		height: 100%;
+		transition: transform 0.3s ease-out;
 	}
 	
-	/* Make the description area take remaining space */
-	.parchment > a > div:last-child {
-		flex-grow: 1;
-		display: flex;
-		flex-direction: column;
-	}
-	
-	/* Push the button to the bottom */
-	.parchment > a > div:last-child > div:last-child {
-		margin-top: auto;
+	.carousel-item {
+		width: 100%;
+		flex-shrink: 0;
 	}
 	
 	/* Paper texture */
-	.parchment::before {
+	.daytime-paper {
+		position: relative;
+		background-color: white;
+		border-radius: 0.5rem;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	}
+	
+	.daytime-paper::before {
 		content: "";
 		position: absolute;
 		inset: 0;
@@ -166,425 +161,370 @@ const allProjects = (await getCollection("projects"))
 		opacity: 0.4;
 		pointer-events: none;
 		z-index: 1;
+		border-radius: 0.5rem;
 	}
 	
-	/* Firefly animation */
-	.firefly {
+	/* Butterfly animation */
+	.butterfly {
 		position: absolute;
-		width: 6px;
-		height: 6px;
-		background-color: rgba(255, 210, 120, 0.8);
-		border-radius: 50%;
-		filter: blur(2px);
-		box-shadow: 0 0 10px 2px rgba(255, 180, 0, 0.6);
-		animation: firefly 6s ease-in-out infinite;
+		width: 12px;
+		height: 10px;
+		background-color: rgba(255, 255, 255, 0.9);
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+		clip-path: polygon(
+			0% 50%, 
+			25% 0%, 
+			75% 0%, 
+			100% 50%, 
+			75% 100%, 
+			25% 100%
+		);
+		animation: butterfly 8s ease-in-out infinite;
+		z-index: 1;
 	}
 	
-	@keyframes firefly {
+	@keyframes butterfly {
 		0%, 100% {
-			opacity: 0;
-			transform: scale(0.3);
+			transform: translate(0, 0) rotate(0deg) scale(1);
+		}
+		25% {
+			transform: translate(10px, -15px) rotate(5deg) scale(1.05);
 		}
 		50% {
-			opacity: 1;
-			transform: scale(1);
+			transform: translate(20px, 0) rotate(-5deg) scale(1);
 		}
-		0%, 25%, 75%, 100% {
-			transform: translate(0, 0);
-		}
-		50% {
-			transform: translate(10px, -10px);
+		75% {
+			transform: translate(10px, 15px) rotate(5deg) scale(1.05);
 		}
 	}
 	
-	/* Carousel specific styles */
-	.carousel-container {
-		position: relative;
-		width: 100%;
+	/* Responsive adjustments */
+	@media (min-width: 768px) {
+		.carousel-item {
+			width: 50%;
+		}
 	}
 	
-	.carousel-container:hover .carousel-nav {
-		opacity: 1;
-	}
-	
-	.carousel-slide {
-		transition: transform 0.5s ease-out;
-	}
-	
-	.carousel-indicator.active {
-		background-color: #64748b;
-		width: 10px;
+	@media (min-width: 1024px) {
+		.carousel-item {
+			width: 33.333%;
+		}
 	}
 	
 	/* Modal styles */
 	#project-modal {
-		perspective: 1200px;
+		will-change: opacity;
 	}
 	
-	#project-modal.active {
-		opacity: 1;
-		pointer-events: auto;
+	#project-modal .daytime-paper {
+		will-change: transform;
+		max-height: 90vh;
 	}
 	
-	#project-modal.active .modal-content {
-		transform: scale(1);
-		opacity: 1;
+	/* Improve scrollbar in modal */
+	#project-modal .daytime-paper::-webkit-scrollbar {
+		width: 6px;
 	}
 	
-	.modal-content {
-		transform-style: preserve-3d;
-		transform-origin: center;
+	#project-modal .daytime-paper::-webkit-scrollbar-track {
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 3px;
 	}
 	
-	/* Paper effect on modal */
-	.modal-content::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background-image: url('https://www.transparenttextures.com/patterns/paper.png');
-		opacity: 0.3;
-		pointer-events: none;
-		z-index: 1;
-		border-radius: 0.5rem;
+	#project-modal .daytime-paper::-webkit-scrollbar-thumb {
+		background-color: rgba(79, 70, 229, 0.2);
+		border-radius: 3px;
+	}
+	
+	#project-modal .daytime-paper::-webkit-scrollbar-thumb:hover {
+		background-color: rgba(79, 70, 229, 0.4);
+	}
+	
+	/* Ensure modal is on top of everything */
+	body.modal-open {
+		position: relative;
+	}
+	
+	body.modal-open #project-modal {
+		position: fixed;
+		z-index: 9999 !important; /* Use !important to override any other z-index */
+	}
+	
+	/* Ensure the modal content is above the backdrop */
+	#project-modal .daytime-paper {
+		position: relative;
+		z-index: 10000 !important;
+	}
+	
+	/* Add styles for the carousel controls container */
+	.carousel-controls {
+		position: relative;
+		margin-top: -200px; /* Adjust this value to position the buttons vertically */
+		height: 0;
+		pointer-events: none; /* This allows clicks to pass through to elements below */
+	}
+	
+	.carousel-controls button {
+		pointer-events: auto; /* Re-enable pointer events for the buttons */
 	}
 </style>
 
 <script>
-	import { gsap } from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { Draggable } from "gsap/Draggable";
-
-	gsap.registerPlugin(ScrollTrigger, Draggable);
-
-	function initCarousel() {
-		const carouselTrack = document.querySelector('.carousel-slides');
-		const carousel = document.querySelector('.carousel-container');
-		const slides = gsap.utils.toArray('.carousel-slide');
-		const indicators = gsap.utils.toArray('.carousel-indicator');
-		const nextBtn = document.querySelector('.carousel-next');
-		const prevBtn = document.querySelector('.carousel-prev');
-		const trackWidth = carouselTrack.scrollWidth;
-		const slideWidth = slides[0].offsetWidth;
+	// Create butterflies for ambient effect
+	function createButterflies() {
+		const workSection = document.getElementById('work');
+		if (!workSection) return;
 		
-		let currentIndex = 0;
-		const totalSlides = slides.length;
-		const visibleSlides = window.innerWidth >= 768 ? 2 : 1;
-		const maxIndex = totalSlides - visibleSlides;
+		const butterfliesContainer = workSection.querySelector('.butterflies');
+		if (!butterfliesContainer) return;
 		
-		// Set initial active indicator
-		if (indicators.length > 0) {
-			indicators[0].classList.add('active');
-		}
-		
-		// Initialize image reveal animations
-		slides.forEach((slide) => {
-			const image = slide.querySelector('img');
-			if (image) {
-				gsap.from(image, {
-					scrollTrigger: {
-						trigger: image,
-						start: "top bottom",
-						end: "center center",
-						scrub: 1,
-						markers: false,
-					},
-					ease: "power3.out",
-					"--clip": "30%",
-				});
-			}
-		});
-		
-		// Function to update carousel
-		function goToSlide(index) {
-			// Bound the index to valid range
-			currentIndex = Math.max(0, Math.min(index, maxIndex));
+		for (let i = 0; i < 10; i++) {
+			const butterfly = document.createElement('div');
+			butterfly.classList.add('butterfly');
 			
-			// Calculate the translation amount
-			const xPosition = -currentIndex * slideWidth;
+			// Random positioning
+			butterfly.style.left = `${Math.random() * 100}%`;
+			butterfly.style.top = `${Math.random() * 100}%`;
 			
-			// Animate the carousel
-			gsap.to(carouselTrack, {
-				x: xPosition,
-				duration: 0.5,
-				ease: "power2.out"
-			});
+			// Random animation delay
+			butterfly.style.animationDelay = `${Math.random() * 6}s`;
 			
-			// Update indicators
-			indicators.forEach((indicator, i) => {
-				indicator.classList.toggle('active', i === currentIndex);
-			});
+			// Random colors - light pastel shades
+			const hue = Math.floor(Math.random() * 60) + 160; // blues and greens
+			const saturation = Math.floor(Math.random() * 30) + 70; // fairly saturated
+			const lightness = Math.floor(Math.random() * 20) + 70; // light colors
+			butterfly.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.7)`;
+			
+			butterfliesContainer.appendChild(butterfly);
 		}
+	}
+	
+	// Carousel functionality
+	function setupCarousel() {
+		const track = document.querySelector('.carousel-track');
+		const items = document.querySelectorAll('.carousel-item');
+		const prevButton = document.querySelector('.carousel-prev');
+		const nextButton = document.querySelector('.carousel-next');
+		const carouselContainer = document.querySelector('.carousel-container');
 		
-		// Event listeners for next/prev buttons
-		if (nextBtn) {
-			nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-		}
+		if (!track || !items.length || !prevButton || !nextButton || !carouselContainer) return;
 		
-		if (prevBtn) {
-			prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-		}
+		let currentTranslateX = 0;
+		let itemWidth = items[0].offsetWidth;
+		const maxTranslate = (items.length * itemWidth) - carouselContainer.offsetWidth;
 		
-		// Event listeners for indicators
-		indicators.forEach((indicator, i) => {
-			indicator.addEventListener('click', () => goToSlide(i));
-		});
+		// Touch tracking variables
+		let touchStartX = 0;
+		let touchEndX = 0;
+		let isDragging = false;
+		let startTranslateX = 0;
 		
-		// Implement drag functionality
-		const dragInstance = Draggable.create(carouselTrack, {
-			type: "x",
-			inertia: true,
-			bounds: {
-				minX: -trackWidth + slideWidth * visibleSlides,
-				maxX: 0
-			},
-			onDragEnd: function() {
-				// Calculate which slide is closest to the start position
-				const slideIndex = Math.round(Math.abs(this.endX) / slideWidth);
-				goToSlide(slideIndex);
-			}
-		})[0];
-		
-		// Add wheel event to control carousel with mouse wheel
-		if (carousel) {
-			carousel.addEventListener('wheel', (e) => {
-				e.preventDefault();
-				
-				// Determine direction and sensitivity
-				const delta = Math.sign(e.deltaY);
-				
-				// Move to next/previous slide based on wheel direction
-				if (delta > 0) {
-					goToSlide(currentIndex + 1);
-				} else {
-					goToSlide(currentIndex - 1);
-				}
-			}, { passive: false });
+		// Update carousel position
+		function updateCarouselPosition(translateX) {
+			// Ensure we don't scroll past the bounds
+			currentTranslateX = Math.max(0, Math.min(translateX, maxTranslate));
+			track.style.transform = `translateX(-${currentTranslateX}px)`;
+			
+			// Update button states
+			prevButton.disabled = currentTranslateX <= 0;
+			prevButton.style.opacity = currentTranslateX <= 0 ? '0.5' : '1';
+			nextButton.disabled = currentTranslateX >= maxTranslate;
+			nextButton.style.opacity = currentTranslateX >= maxTranslate ? '0.5' : '1';
 		}
 		
 		// Handle window resize
-		window.addEventListener('resize', () => {
-			// Recalculate dimensions
-			const newSlideWidth = slides[0].offsetWidth;
-			const newVisibleSlides = window.innerWidth >= 768 ? 2 : 1;
-			const newMaxIndex = totalSlides - newVisibleSlides;
+		function handleResize() {
+			itemWidth = items[0].offsetWidth;
+			const containerWidth = carouselContainer.offsetWidth;
+			const newMaxTranslate = (items.length * itemWidth) - containerWidth;
 			
-			// Update bounds for draggable
-			dragInstance.vars.bounds = {
-				minX: -trackWidth + newSlideWidth * newVisibleSlides,
-				maxX: 0
-			};
-			
-			// Re-position to current slide
-			goToSlide(Math.min(currentIndex, newMaxIndex));
+			// Adjust current position if needed
+			if (currentTranslateX > newMaxTranslate) {
+				currentTranslateX = newMaxTranslate;
+				updateCarouselPosition(currentTranslateX);
+			}
+		}
+		
+		// Event listeners for navigation buttons
+		prevButton.addEventListener('click', () => {
+			// Move left by 1/3 of the container width
+			const moveAmount = carouselContainer.offsetWidth / 3;
+			updateCarouselPosition(currentTranslateX - moveAmount);
 		});
 		
-		// Optional: Auto-play functionality
-		let autoplayInterval;
+		nextButton.addEventListener('click', () => {
+			// Move right by 1/3 of the container width
+			const moveAmount = carouselContainer.offsetWidth / 3;
+			updateCarouselPosition(currentTranslateX + moveAmount);
+		});
 		
-		function startAutoplay() {
-			autoplayInterval = setInterval(() => {
-				const nextIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-				goToSlide(nextIndex);
-			}, 5000); // Change slide every 5 seconds
-		}
+		// Add wheel event listener for trackpad swipes
+		let wheelDeltaX = 0;
+		let isScrolling;
 		
-		function stopAutoplay() {
-			clearInterval(autoplayInterval);
-		}
+		carouselContainer.addEventListener('wheel', (e) => {
+			// Detect horizontal scrolling with trackpad
+			if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+				e.preventDefault();
+				
+				// Accumulate deltaX with a damping factor for smoother scrolling
+				wheelDeltaX += e.deltaX * 0.5;
+				
+				// Update position
+				updateCarouselPosition(currentTranslateX + wheelDeltaX);
+				
+				// Reset accumulated delta after a short delay
+				clearTimeout(isScrolling);
+				isScrolling = setTimeout(() => {
+					wheelDeltaX = 0;
+				}, 150);
+			}
+		}, { passive: false });
 		
-		// Start autoplay initially
-		startAutoplay();
+		// Touch events for mobile swipe
+		carouselContainer.addEventListener('touchstart', (e) => {
+			touchStartX = e.touches[0].clientX;
+			isDragging = true;
+			startTranslateX = currentTranslateX;
+			
+			// Disable transition during drag
+			track.style.transition = 'none';
+		}, { passive: true });
 		
-		// Pause autoplay when interacting with carousel
-		document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoplay);
-		document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoplay);
-		document.querySelector('.carousel-container').addEventListener('touchstart', stopAutoplay, { passive: true });
-		document.querySelector('.carousel-container').addEventListener('touchend', startAutoplay);
+		carouselContainer.addEventListener('touchmove', (e) => {
+			if (!isDragging) return;
+			
+			touchEndX = e.touches[0].clientX;
+			const diffX = touchStartX - touchEndX;
+			
+			// Move the track with finger
+			updateCarouselPosition(startTranslateX + diffX);
+		}, { passive: true });
+		
+		carouselContainer.addEventListener('touchend', () => {
+			if (!isDragging) return;
+			isDragging = false;
+			
+			// Re-enable transition
+			track.style.transition = 'transform 0.3s ease-out';
+		}, { passive: true });
+		
+		// Handle window resize
+		window.addEventListener('resize', handleResize);
+		
+		// Initial setup
+		handleResize();
 	}
 	
-	// Handle project card clicks and modal functionality
-	function initProjectModals() {
+	// Handle modal functionality
+	function setupModal() {
+		const projectCards = document.querySelectorAll('[data-project]');
 		const modal = document.getElementById('project-modal');
 		const modalTitle = document.getElementById('modal-title');
-		const modalDescription = document.getElementById('modal-description');
-		const modalImage = document.getElementById('modal-image');
-		const modalLink = document.getElementById('modal-link');
-		const modalClose = document.querySelector('.modal-close');
-		const modalBackdrop = document.querySelector('.modal-backdrop');
-		const projectCards = document.querySelectorAll('.project-card');
+		const modalContent = document.getElementById('modal-content');
+		const closeModal = document.getElementById('close-modal');
+		const modalDialog = modal?.querySelector('.daytime-paper');
 		
-		let originElement = null;
-		let isAnimating = false;
+		if (!modal || !modalTitle || !modalContent || !closeModal || !modalDialog) return;
 		
-		// Function to open modal with zoom effect
-		function openModal(element, title, description, image, slug) {
-			if (isAnimating) return;
-			isAnimating = true;
+		// Function to open modal
+		function openModal(projectData) {
+			modalTitle.textContent = projectData.title || '';
+			modalContent.innerHTML = `
+				<img src="${projectData.image}" alt="${projectData.title}" class="w-full h-64 object-cover rounded-lg mb-4">
+				<p class="text-forest-600 mb-6">${projectData.longDescription || projectData.description || ''}</p>
+				<a href="${projectData.link}" class="inline-block px-5 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors">Buy tickets</a>
+			`;
 			
-			// Store the original element for zoom effect
-			originElement = element;
+			// Show modal
+			modal.classList.add('opacity-100', 'pointer-events-auto');
 			
-			// Get the position and size of the clicked card
-			const rect = element.getBoundingClientRect();
-			const viewportHeight = window.innerHeight;
-			const viewportWidth = window.innerWidth;
+			// Prevent background scrolling
+			document.body.style.overflow = 'hidden';
 			
-			// Set modal content
-			modalTitle.textContent = title;
-			modalDescription.textContent = description;
-			modalImage.src = image.src;
-			modalImage.alt = title;
-			modalLink.href = `/work/${slug}`;
+			// Focus on the modal dialog for accessibility
+			closeModal.focus();
 			
-			// Stop autoplay when modal is open
-			if (typeof stopAutoplay === 'function') {
-				stopAutoplay();
-			}
+			// Add animation to the modal dialog
+			modalDialog.animate(
+				[
+					{ opacity: 0, transform: 'scale(0.95)' },
+					{ opacity: 1, transform: 'scale(1)' }
+				],
+				{ duration: 200, easing: 'ease-out' }
+			);
 			
-			// Make modal visible but still transparent for animation
-			modal.classList.add('active');
-			document.body.style.overflow = 'hidden'; // Prevent scrolling
-			
-			// Create zoom animation timeline
-			const tl = gsap.timeline({
-				onComplete: () => { isAnimating = false; }
-			});
-			
-			// Initial position for zoom effect (starting from the card position)
-			gsap.set('.modal-content', {
-				x: rect.left + rect.width/2 - viewportWidth/2,
-				y: rect.top + rect.height/2 - viewportHeight/2,
-				width: rect.width,
-				height: rect.height,
-				borderRadius: '0.5rem',
-				overflow: 'hidden'
-			});
-			
-			// Animate from card to full modal
-			tl.to('.modal-content', {
-				duration: 0.5,
-				x: 0,
-				y: 0,
-				width: 'auto',
-				height: 'auto',
-				scale: 1,
-				opacity: 1,
-				ease: "power3.out"
-			});
-			
-			// Bounce effect at the end
-			tl.to('.modal-content', {
-				duration: 0.2,
-				scale: 1.02,
-				ease: "power1.out"
-			}, "-=0.1");
-			
-			tl.to('.modal-content', {
-				duration: 0.2,
-				scale: 1,
-				ease: "elastic.out(1, 0.5)"
-			});
-			
-			// Fade in backdrop
-			tl.to('.modal-backdrop', {
-				duration: 0.5,
-				opacity: 1
-			}, 0);
-		}
-		
-		// Function to close modal with reverse zoom
-		function closeModal() {
-			if (isAnimating || !originElement) return;
-			isAnimating = true;
-			
-			const rect = originElement.getBoundingClientRect();
-			const viewportHeight = window.innerHeight;
-			const viewportWidth = window.innerWidth;
-			
-			// Resume autoplay after closing modal
-			if (typeof startAutoplay === 'function') {
-				startAutoplay();
-			}
-			
-			// Create closing animation timeline
-			const tl = gsap.timeline({
-				onComplete: () => {
-					modal.classList.remove('active');
-					document.body.style.overflow = '';
-					isAnimating = false;
+			// Force the modal to be on top of everything
+			document.querySelectorAll('section, header, footer, .fixed').forEach(el => {
+				if (el !== modal && !modal.contains(el)) {
+					el.style.position = el.style.position || getComputedStyle(el).position;
+					el.dataset.originalZIndex = el.style.zIndex || getComputedStyle(el).zIndex;
+					
+					// Only adjust z-index if the element might be above our modal
+					const zIndex = parseInt(el.dataset.originalZIndex) || 0;
+					if (zIndex >= 900) {
+						el.style.zIndex = '899';
+					}
 				}
 			});
-			
-			// Animate back to original position
-			tl.to('.modal-content', {
-				duration: 0.4,
-				x: rect.left + rect.width/2 - viewportWidth/2,
-				y: rect.top + rect.height/2 - viewportHeight/2,
-				width: rect.width,
-				height: rect.height,
-				scale: 0.9,
-				opacity: 0,
-				ease: "power3.in"
-			});
-			
-			// Fade out backdrop
-			tl.to('.modal-backdrop', {
-				duration: 0.4,
-				opacity: 0
-			}, 0);
 		}
 		
-		// Add click event listeners to project cards
+		// Function to close modal
+		function closeModalFunc() {
+			// Animate closing
+			const animation = modalDialog.animate(
+				[
+					{ opacity: 1, transform: 'scale(1)' },
+					{ opacity: 0, transform: 'scale(0.95)' }
+				],
+				{ duration: 150, easing: 'ease-in' }
+			);
+			
+			animation.onfinish = () => {
+				modal.classList.remove('opacity-100', 'pointer-events-auto');
+				// Re-enable scrolling
+				document.body.style.overflow = '';
+				
+				// Restore original z-index values
+				document.querySelectorAll('[data-original-z-index]').forEach(el => {
+					if (el.dataset.originalZIndex) {
+						el.style.zIndex = el.dataset.originalZIndex;
+						delete el.dataset.originalZIndex;
+					}
+				});
+			};
+		}
+		
+		// Add click event to project cards
 		projectCards.forEach(card => {
 			card.addEventListener('click', (e) => {
-				e.preventDefault(); // Prevent default link behavior
-				
-				// Get project details
-				const cardImg = card.querySelector('img');
-				const cardTitle = card.dataset.projectTitle;
-				const cardDescription = card.dataset.projectDescription;
-				const cardSlug = card.dataset.projectSlug;
-				
-				openModal(card, cardTitle, cardDescription, cardImg, cardSlug);
+				e.preventDefault();
+				const projectData = JSON.parse(card.getAttribute('data-project') || '{}');
+				openModal(projectData);
 			});
 		});
 		
-		// Close modal when clicking close button or backdrop
-		if (modalClose) modalClose.addEventListener('click', closeModal);
-		if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+		// Close modal when clicking the close button
+		closeModal.addEventListener('click', closeModalFunc);
 		
-		// Close modal with escape key
+		// Close modal when clicking outside
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal) {
+				closeModalFunc();
+			}
+		});
+		
+		// Close modal with Escape key
 		document.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape' && modal.classList.contains('active')) {
-				closeModal();
+			if (e.key === 'Escape' && modal.classList.contains('opacity-100')) {
+				closeModalFunc();
 			}
 		});
 	}
 	
-	// Create fireflies dynamically for this section
-	function createFireflies() {
-		const firefliesContainer = document.querySelector('#projects .fireflies');
-		if (!firefliesContainer) return;
-		
-		for (let i = 0; i < 15; i++) {
-			const firefly = document.createElement('div');
-			firefly.classList.add('firefly');
-			
-			// Random positioning
-			firefly.style.left = `${Math.random() * 100}%`;
-			firefly.style.top = `${Math.random() * 100}%`;
-			
-			// Random animation delay
-			firefly.style.animationDelay = `${Math.random() * 6}s`;
-			
-			firefliesContainer.appendChild(firefly);
-		}
-	}
-	
-	// Initialize everything on DOM load
-	document.addEventListener("DOMContentLoaded", () => {
-		initCarousel();
-		initProjectModals();
-		createFireflies();
+	document.addEventListener('DOMContentLoaded', () => {
+		createButterflies();
+		setupCarousel();
+		setupModal();
 	});
 </script>

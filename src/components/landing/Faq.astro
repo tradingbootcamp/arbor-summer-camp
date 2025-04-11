@@ -36,22 +36,24 @@ const faqs = [
 ---
 
 <section id="faq" class="section col-span-12 relative py-20 lg:py-32">
+	<!-- Add butterflies for ambient effect -->
+	<div class="fireflies absolute inset-0 z-0"></div>
+	
 	<div class="relative col-span-12 z-10 mx-auto max-w-7xl px-8">
 		<!-- Section heading with decorative element -->
-		<div class="mb-16 text-center">
-			<h2 class="section-title pb-4">{t("faq.title")}</h2>
-			<div class="mx-auto h-1 w-16 bg-gradient-to-r from-campfire-500 to-transparent"></div>
+		<div class="mt-16 mb-8 text-center">
+			<h2 class="section-title-daytime pb-4">FAQ</h2>
 		</div>
 
 		<div class="faq-list mx-auto max-w-3xl space-y-6">
 			{
 				faqs.map(({ question, answer }) => (
-					<details class="group parchment">
-						<summary class="flex cursor-pointer items-center justify-between px-6 py-4 font-display text-lg font-medium text-campfire-700">
+					<details class="group daytime-paper">
+						<summary class="flex cursor-pointer items-center justify-between px-6 py-4 font-display text-lg font-medium text-forest-700">
 							<span>{question}</span>
 							<svg 
 								xmlns="http://www.w3.org/2000/svg" 
-								class="h-5 w-5 transform transition-transform duration-300 group-open:rotate-180" 
+								class="h-5 w-5 transform transition-transform duration-300 group-open:rotate-180 text-forest-600" 
 								viewBox="0 0 20 20" 
 								fill="currentColor"
 							>
@@ -59,21 +61,18 @@ const faqs = [
 							</svg>
 						</summary>
 						<div class="px-6 pb-6 pt-2">
-							<p class="text-night-800">{answer}</p>
+							<p class="text-forest-700">{answer}</p>
 						</div>
 					</details>
 				))
 			}
 		</div>
 	</div>
-	
-	<!-- Add decorative elements -->
-	<div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-night-900/80 to-transparent"></div>
-	
-	<!-- Add some horizontal string lights at the top of the section -->
+		
+	<!-- Add some horizontal string lights at the top of the section
 	<div class="absolute top-0 left-0 right-0 h-10 overflow-hidden">
-		<div class="string-lights-horizontal"></div>
-	</div>
+		<div class="string-lights-horizontal-day"></div>
+	</div> -->
 </section>
 
 <style>
@@ -91,7 +90,35 @@ const faqs = [
 	}
 	
 	details[open] {
-		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+	}
+	
+	/* Daytime paper styling */
+	.daytime-paper {
+		background-color: rgba(255, 253, 240, 0.97);
+		background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
+		background-blend-mode: overlay;
+		border-radius: 0.5rem;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	}
+	
+	/* Butterfly styling */
+	.butterfly {
+		position: absolute;
+		width: 12px;
+		height: 10px;
+		background-color: rgba(255, 255, 255, 0.9);
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+		clip-path: polygon(
+			0% 50%, 
+			25% 0%, 
+			75% 0%, 
+			100% 50%, 
+			75% 100%, 
+			25% 100%
+		);
+		animation: butterfly 8s infinite ease-in-out;
+		z-index: 1;
 	}
 </style>
 
@@ -111,7 +138,44 @@ const faqs = [
 
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
+	// Replace createButterflies function with createFireflies
+	function createFireflies() {
+	const sectionElement = document.querySelector('#your-section-id');
+	if (!sectionElement) return;
+	
+	const firefliesContainer = sectionElement.querySelector('.fireflies');
+	if (!firefliesContainer) return;
+	
+	for (let i = 0; i < 15; i++) {
+		const firefly = document.createElement('div');
+		firefly.classList.add('firefly');
+		
+		// Random positioning
+		firefly.style.left = `${Math.random() * 100}%`;
+		firefly.style.top = `${Math.random() * 100}%`;
+		
+		// Random animation delay
+		firefly.style.animationDelay = `${Math.random() * 8}s`;
+		
+		// Random size variation
+		const size = 2 + Math.random() * 3;
+		firefly.style.width = `${size}px`;
+		firefly.style.height = `${size}px`;
+		
+		// Random colors - warm yellow/orange tones
+		const hue = Math.floor(Math.random() * 30) + 40; // yellows and light oranges
+		const saturation = Math.floor(Math.random() * 20) + 80; // fairly saturated
+		const lightness = Math.floor(Math.random() * 10) + 80; // very light colors
+		firefly.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.8)`;
+		firefly.style.boxShadow = `0 0 ${5 + Math.random() * 5}px 1px hsla(${hue}, ${saturation}%, ${lightness}%, 0.5)`;
+		
+		firefliesContainer.appendChild(firefly);
+	}
+	}
+
 	function init() {
+		createFireflies();
+		
 		gsap.to("#faq", {
 			scrollTrigger: {
 				trigger: "#faq",
@@ -126,39 +190,63 @@ const faqs = [
 
 		const linePath = document.querySelector("#faq-more-question-path");
 
-		gsap.set(linePath, { drawSVG: 0 });
+		if (linePath) {
+			gsap.set(linePath, { drawSVG: 0 });
 
-		let otherQTl = gsap
-			.timeline({
-				scrollTrigger: {
-					trigger: ".faq-more-questions",
-					start: "center 90%",
-					end: "center top",
-					markers: false,
-					toggleActions: "play none none reverse",
-				},
-			})
-			.to(".faq-more-questions .other-question-title", {
-				opacity: 1,
-				duration: 0.5,
-			})
-			.to(
-				linePath,
-				{
-					drawSVG: "100%",
-					duration: 2,
-				},
-				"<",
-			)
-			.to(
-				".faq-contact-us-button",
-				{
+			let otherQTl = gsap
+				.timeline({
+					scrollTrigger: {
+						trigger: ".faq-more-questions",
+						start: "center 90%",
+						end: "center top",
+						markers: false,
+						toggleActions: "play none none reverse",
+					},
+				})
+				.to(".faq-more-questions .other-question-title", {
 					opacity: 1,
-				},
-				">-=1.5",
-			);
+					duration: 0.5,
+				})
+				.to(
+					linePath,
+					{
+						drawSVG: "100%",
+						duration: 2,
+					},
+					"<",
+				)
+				.to(
+					".faq-contact-us-button",
+					{
+						opacity: 1,
+					},
+					">-=1.5",
+				);
+		}
+		
+		// Add hover animation to FAQ items
+		const faqItems = document.querySelectorAll('.faq-list details');
+		faqItems.forEach(item => {
+			item.addEventListener('mouseenter', () => {
+				gsap.to(item, {
+					y: -5,
+					boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
+					duration: 0.3
+				});
+			});
+			
+			item.addEventListener('mouseleave', () => {
+				if (!item.hasAttribute('open')) {
+					gsap.to(item, {
+						y: 0,
+						boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)',
+						duration: 0.3
+					});
+				}
+			});
+		});
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
 </script>

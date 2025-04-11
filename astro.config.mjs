@@ -35,6 +35,10 @@ export default defineConfig({
 		}),
 		sitemap(),
 		mdx(),
-		icon(),
+		icon({
+			include: {
+				mdi: ["*"],
+			},
+		}),
 	],
 });

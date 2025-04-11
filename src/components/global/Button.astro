@@ -4,6 +4,7 @@ interface Props {
   id?: string;
   class?: string;
   disabled?: boolean;
+  variant?: "primary" | "secondary" | "outline";
 }
 
 const { 
@@ -11,6 +12,7 @@ const {
   id,
   class: className,
   disabled = false,
+  variant = "primary",
 } = Astro.props;
 ---
 
@@ -19,15 +21,111 @@ const {
   id={id}
   disabled={disabled}
   class:list={[
-    "px-6 py-2 rounded-lg",
-    "bg-gradient-to-r from-[#edb74d] to-[#e0ab42]",
-    "text-white",
-    "hover:from-[#edb74d] hover:to-[#f4c866]",
-    "active:from-[#c99a33] active:to-[#b38a2e] active:scale-95",
-    "transition-all duration-300",
+    "px-6 py-2 rounded-lg relative overflow-hidden group",
+    "font-medium text-lg transition-all duration-500",
+    "watercolor-button",
+    variant === "primary" && "watercolor-button-primary",
+    variant === "secondary" && "watercolor-button-secondary",
+    variant === "outline" && "watercolor-button-outline",
     disabled && "opacity-50 cursor-not-allowed",
     className
   ]}
 >
-  <slot />
+  <span class="relative z-10"><slot /></span>
+  <div class="watercolor-splash absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 </button>
+
+<style>
+  .watercolor-button {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    background-color: transparent;
+  }
+  
+  .watercolor-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    background-repeat: repeat;
+    opacity: 0.2;
+    z-index: 1;
+    mix-blend-mode: overlay;
+  }
+  
+  .watercolor-button-primary {
+    color: #2e7d32;
+    box-shadow: 
+      0 1px 5px rgba(74, 222, 128, 0.15),
+      inset 0 0 0 1px rgba(74, 222, 128, 0.3);
+  }
+  
+  .watercolor-button-primary:hover {
+    color: #1b5e20;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 3px 10px rgba(74, 222, 128, 0.2),
+      inset 0 0 0 1px rgba(74, 222, 128, 0.5);
+  }
+  
+  .watercolor-button-primary:active {
+    transform: translateY(1px) scale(0.99);
+    box-shadow: 
+      0 1px 3px rgba(74, 222, 128, 0.15),
+      inset 0 0 0 1px rgba(74, 222, 128, 0.4);
+  }
+  
+  .watercolor-button-primary .watercolor-splash {
+    background: radial-gradient(circle at center, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
+  }
+  
+  .watercolor-button-secondary {
+    color: #1565c0;
+    box-shadow: 
+      0 1px 5px rgba(147, 197, 253, 0.15),
+      inset 0 0 0 1px rgba(147, 197, 253, 0.3);
+  }
+  
+  .watercolor-button-secondary:hover {
+    color: #0d47a1;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 3px 10px rgba(147, 197, 253, 0.2),
+      inset 0 0 0 1px rgba(147, 197, 253, 0.5);
+  }
+  
+  .watercolor-button-secondary:active {
+    transform: translateY(1px) scale(0.99);
+    box-shadow: 
+      0 1px 3px rgba(147, 197, 253, 0.15),
+      inset 0 0 0 1px rgba(147, 197, 253, 0.4);
+  }
+  
+  .watercolor-button-secondary .watercolor-splash {
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  }
+  
+  .watercolor-button-outline {
+    color: #4ade80;
+    box-shadow: inset 0 0 0 1px rgba(74, 222, 128, 0.3);
+  }
+  
+  .watercolor-button-outline:hover {
+    color: #22c55e;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 3px 10px rgba(74, 222, 128, 0.1),
+      inset 0 0 0 1px rgba(74, 222, 128, 0.5);
+  }
+  
+  .watercolor-button-outline:active {
+    transform: translateY(1px) scale(0.99);
+    box-shadow: inset 0 0 0 1px rgba(74, 222, 128, 0.6);
+  }
+  
+  .watercolor-button-outline .watercolor-splash {
+    background: radial-gradient(circle at center, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
+  }
+</style>

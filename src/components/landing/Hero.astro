@@ -2,6 +2,7 @@
 import LinkBlend from "@components/global/LinkBlend.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
 import { PATHS } from "@config/constants";
+import WatercolorLink from "@components/global/WatercolorLink.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,50 +10,42 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <section id="hero" class="section relative min-h-screen overflow-hidden py-20">
-	<!-- Add fireflies for ambient effect -->
-	<div class="fireflies absolute inset-0 z-0"></div>
+	<!-- Add butterflies for ambient effect -->
+	<div class="fireflies absolute inset-0 z-10"></div>
 	
-	<div class="relative z-10 mx-auto flex h-full flex-col items-center justify-center px-8">
+	<!-- Remove the overlay that might be blocking the background -->
+	<!-- <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px] z-[1]"></div> -->
+	
+	<div class="relative z-20 mx-auto flex h-full flex-col items-center justify-center px-8">
 		<div class="max-w-5xl text-center">
-			<h1 class="font-display text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-				<span class="block">A Gathering of Minds</span>
-				<span class="mt-2 block bg-gradient-to-r from-campfire-300 to-campfire-500 bg-clip-text text-transparent">
-					Under Summer Stars
-				</span>
+			<h1 class="font-display text-5xl font-bold tracking-tight text-forest-700 md:text-6xl lg:text-7xl">
+				<span class="block">Scarborough Fair</span>
+				<!-- <span class="mt-2 block bg-gradient-to-r from-meadow-500 to-forest-600 bg-clip-text text-transparent">
+					Under Summer Skies
+				</span> -->
 			</h1>
 			
-			<p class="mt-8 max-w-3xl mx-auto text-lg font-serif text-campfire-100 md:text-xl">
-				A mysterious organization called Arbor has stepped forward to run an experimental summer camp (June 2-6) in the slice of time between <a href="https://less.online/" target="_blank" rel="noopener" class="text-campfire-300 underline decoration-campfire-500 hover:text-campfire-400">LessOnline</a> and <a href="https://manifest.is/" target="_blank" rel="noopener" class="text-campfire-300 underline decoration-campfire-500 hover:text-campfire-400">Manifest</a>.
+			<p class="mt-8 max-w-2xl mx-auto text-lg font-serif text-forest-700 md:text-xl">
+				A container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.
 			</p>
 			
-			<p class="mt-4 max-w-3xl mx-auto text-lg font-serif text-campfire-200 md:text-xl">
-				Conference-goers seeking a peaceful yet vibrant week of coworking, collaborating, and late campfire chats are warmly welcome.
-			</p>
-			
-			<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+			<div class="mt-10 flex flex-col items-center justify-center gap-6">
 				<div class="group relative">
-					<!-- Paper texture behind button -->
-					<div class="absolute inset-0 rounded-lg bg-campfire-600 opacity-80 transition-all duration-300 group-hover:scale-105"></div>
-					
-					<!-- Animated ember glow -->
-					<div class="absolute inset-0 rounded-lg bg-gradient-to-tr from-campfire-700 to-campfire-500 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70"></div>
-					
+
 					<a 
-						class="relative flex items-center justify-center rounded-lg bg-campfire-500 px-8 py-4 text-xl font-bold text-white transition-all duration-300 group-hover:scale-105"
+						class="watercolor-btn relative flex items-center justify-center rounded-lg px-8 py-4 text-lg font-medium transition-all duration-500"
 						aria-label="Buy Tickets"
 						href={PATHS.TICKETS}
 						target="_blank"
 						rel="noopener">
 						
 						<span class="relative z-10">Buy tickets</span>
-						<!-- Add a subtle flame animation on hover -->
-						<span class="flame absolute bottom-0 left-0 right-0 h-8 opacity-0 transition-opacity duration-300 group-hover:opacity-70"></span>
 					</a>
 				</div>
 				
-				<a href="#" id="go-projects-button" class="text-campfire-300 underline decoration-campfire-400 hover:text-campfire-400">
+				<WatercolorLink href="#" id="go-projects-button" class="text-lg">
 					Learn more about the experience
-				</a>
+				</WatercolorLink>
 			</div>
 		</div>
 	</div>
@@ -72,8 +65,8 @@ const translatePath = useTranslatedPath(lang);
 		padding: var(--base-padding-y) var(--base-padding-x);
 	}
 
-	/* Create fireflies for ambient effect */
-	.fireflies {
+	/* Create butterflies for ambient effect */
+	.butterflies {
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -81,15 +74,16 @@ const translatePath = useTranslatedPath(lang);
 		pointer-events: none;
 	}
 
-	.flame {
-		background: linear-gradient(to top, rgba(255,140,40,0.8) 0%, rgba(255,210,80,0.4) 60%, rgba(255,240,150,0.2) 100%);
-		border-radius: 0 0 50% 50%;
+	.leaf {
+		background: linear-gradient(to top, rgba(40,140,40,0.8) 0%, rgba(80,210,80,0.4) 60%, rgba(150,240,150,0.2) 100%);
+		border-radius: 0 50% 50% 50%;
 		filter: blur(4px);
+		transform: rotate(45deg);
 	}
 
 	/* Add text shadow for better contrast against background */
 	h1 {
-		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+		text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
 	}
 
 	/* Link styling */
@@ -105,52 +99,80 @@ const translatePath = useTranslatedPath(lang);
 
 	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-	// Create fireflies dynamically
-	function createFireflies() {
-		const firefliesContainer = document.querySelector('.fireflies');
-		if (!firefliesContainer) return;
+	// Create butterflies dynamically
+	function createButterflies() {
+		const butterfliesContainer = document.querySelector('.butterflies');
+		if (!butterfliesContainer) return;
 		
-		for (let i = 0; i < 20; i++) {
-			const firefly = document.createElement('div');
-			firefly.classList.add('firefly');
+		for (let i = 0; i < 15; i++) {
+			const butterfly = document.createElement('div');
+			butterfly.classList.add('butterfly');
 			
 			// Random positioning
-			firefly.style.left = `${Math.random() * 100}%`;
-			firefly.style.top = `${Math.random() * 100}%`;
+			butterfly.style.left = `${Math.random() * 100}%`;
+			butterfly.style.top = `${Math.random() * 100}%`;
 			
 			// Random animation delay
-			firefly.style.animationDelay = `${Math.random() * 6}s`;
+			butterfly.style.animationDelay = `${Math.random() * 6}s`;
 			
-			firefliesContainer.appendChild(firefly);
+			// Random colors - light pastel shades
+			const hue = Math.floor(Math.random() * 60) + 160; // blues and greens
+			const saturation = Math.floor(Math.random() * 30) + 70; // fairly saturated
+			const lightness = Math.floor(Math.random() * 20) + 70; // light colors
+			butterfly.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.7)`;
+			
+			butterfliesContainer.appendChild(butterfly);
 		}
 	}
 
-	function init() {
+	function createFireflies() {
+	const sectionElement = document.querySelector('#your-section-id');
+	if (!sectionElement) return;
+	
+	const firefliesContainer = sectionElement.querySelector('.fireflies');
+	if (!firefliesContainer) return;
+	
+	for (let i = 0; i < 15; i++) {
+		const firefly = document.createElement('div');
+		firefly.classList.add('firefly');
+		
+		// Random positioning
+		firefly.style.left = `${Math.random() * 100}%`;
+		firefly.style.top = `${Math.random() * 100}%`;
+		
+		// Random animation delay
+		firefly.style.animationDelay = `${Math.random() * 8}s`;
+		
+		// Random size variation
+		const size = 2 + Math.random() * 3;
+		firefly.style.width = `${size}px`;
+		firefly.style.height = `${size}px`;
+		
+		// Random colors - warm yellow/orange tones
+		const hue = Math.floor(Math.random() * 30) + 40; // yellows and light oranges
+		const saturation = Math.floor(Math.random() * 20) + 80; // fairly saturated
+		const lightness = Math.floor(Math.random() * 10) + 80; // very light colors
+		firefly.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.8)`;
+		firefly.style.boxShadow = `0 0 ${5 + Math.random() * 5}px 1px hsla(${hue}, ${saturation}%, ${lightness}%, 0.5)`;
+		
+		firefliesContainer.appendChild(firefly);
+	}
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
 		createFireflies();
 		
 		// Scroll to projects section
-		var goProjectsButton = document.getElementById("go-projects-button");
-		goProjectsButton?.addEventListener("click", function (e) {
-			e.preventDefault();
-			gsap.to(window, { duration: 1, scrollTo: "#projects", ease: "power2.inOut" });
-		});
-		
-		// Hero section animations
-		gsap.fromTo('.hero h1', 
-			{ y: 30, opacity: 0 },
-			{ y: 0, opacity: 1, duration: 1.2, ease: "power2.out", delay: 0.3 }
-		);
-		
-		gsap.fromTo('.hero p', 
-			{ y: 20, opacity: 0 },
-			{ y: 0, opacity: 1, duration: 1, ease: "power2.out", delay: 0.8 }
-		);
-		
-		gsap.fromTo('.hero a', 
-			{ y: 10, opacity: 0 },
-			{ y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.2 }
-		);
-	}
-
-	document.addEventListener("DOMContentLoaded", init);
+		const goProjectsButton = document.getElementById('go-projects-button');
+		if (goProjectsButton) {
+			goProjectsButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				gsap.to(window, {
+					duration: 1,
+					scrollTo: '#services',
+					ease: 'power2.inOut'
+				});
+			});
+		}
+	});
 </script>

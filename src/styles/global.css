@@ -202,16 +202,16 @@ html {
   border-radius: 50%;
   background-color: rgba(255, 235, 170, 0.8);
   box-shadow: 0 0 5px 1px rgba(255, 235, 170, 0.5);
-  animation: firefly 6s infinite ease-in-out;
+  animation: firefly 8s infinite ease-in-out;
   z-index: 1;
 }
 
 @keyframes firefly {
-  0% { opacity: 0; transform: translateY(0) translateX(0); }
-  10% { opacity: 1; }
-  50% { opacity: 0.3; transform: translateY(-20px) translateX(10px); }
-  70% { opacity: 0.8; }
-  100% { opacity: 0; transform: translateY(-40px) translateX(-10px); }
+  0% { opacity: 0.3; transform: translateY(0) translateX(0); }
+  25% { opacity: 0.8; transform: translateY(-15px) translateX(10px); }
+  50% { opacity: 0.4; transform: translateY(-5px) translateX(20px); }
+  75% { opacity: 0.7; transform: translateY(-20px) translateX(5px); }
+  100% { opacity: 0.3; transform: translateY(0) translateX(0); }
 }
 
 /* Add this to your global.css for additional string light effects */
@@ -253,4 +253,192 @@ html {
     opacity: 1;
     background-position: 15px 0;
   }
+}
+
+/* Daytime theme styles */
+.daytime-glow {
+  box-shadow: 0 0 15px rgba(79, 230, 180, 0.3), 0 0 30px rgba(58, 194, 150, 0.2);
+}
+
+.daytime-paper {
+  background-color: rgba(255, 253, 240, 0.97);
+  background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
+  background-blend-mode: overlay;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.prose-daytime {
+  @apply prose-stone;
+  @apply prose-headings:font-display prose-headings:text-forest-600;
+  @apply prose-p:text-forest-800 prose-p:leading-relaxed;
+  @apply prose-a:text-sky-600 prose-a:underline prose-a:decoration-sky-400 prose-a:decoration-2 hover:prose-a:text-sky-500;
+  @apply prose-img:rounded-lg prose-img:shadow-md;
+}
+
+.section-title-daytime {
+  @apply font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-600 relative;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Butterfly animation for background accents */
+.butterfly {
+  position: absolute;
+  width: 12px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  clip-path: polygon(
+    0% 50%, 
+    25% 0%, 
+    75% 0%, 
+    100% 50%, 
+    75% 100%, 
+    25% 100%
+  );
+  animation: butterfly 8s infinite ease-in-out;
+  z-index: 1;
+}
+
+@keyframes butterfly {
+  0% { opacity: 0.7; transform: translateY(0) translateX(0) rotate(0deg); }
+  25% { opacity: 1; transform: translateY(-15px) translateX(10px) rotate(15deg); }
+  50% { opacity: 0.8; transform: translateY(-5px) translateX(20px) rotate(-10deg); }
+  75% { opacity: 0.9; transform: translateY(-20px) translateX(5px) rotate(5deg); }
+  100% { opacity: 0.7; transform: translateY(0) translateX(0) rotate(0deg); }
+}
+
+/* Horizontal string lights for daytime */
+.string-lights-horizontal-day {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background-image: 
+    radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+  background-size: 30px 10px;
+  background-position: 0 0;
+  background-repeat: space;
+  opacity: 0.6;
+}
+
+/* Add text shadow for better readability against background images */
+#hero h1, 
+#hero p {
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+/* Enhance butterfly visibility */
+.butterfly {
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
+}
+
+/* Add a subtle animation to the backdrop blur in hero section */
+@keyframes subtle-blur {
+  0%, 100% { backdrop-filter: blur(2px); }
+  50% { backdrop-filter: blur(3px); }
+}
+
+#hero .backdrop-blur-sm {
+  animation: subtle-blur 8s infinite ease-in-out;
+}
+
+/* Enhanced paper texture for the site background */
+body {
+  background-color: #f0f9ff; /* sky-50 */
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  background-blend-mode: overlay;
+}
+
+/* Smooth transition between sections */
+section {
+  position: relative;
+  z-index: 10;
+}
+
+/* Watercolor Button Styles */
+.watercolor-btn {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(186, 230, 253, 0.7); /* sky-200 at 70% opacity */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(74, 222, 128, 0.3);
+  transition: all 1s ease;
+  transform-origin: center;
+  color: #166534;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.watercolor-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  background-repeat: repeat;
+  opacity: 0.8;
+  z-index: -1;
+  transition: opacity 0.8s ease;
+}
+
+.watercolor-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.7s ease, opacity 0.5s ease;
+  z-index: -2;
+}
+
+.watercolor-btn:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(74, 222, 128, 0.5);
+  color: #14532d;
+}
+
+.watercolor-btn:hover::before {
+  opacity: 0.3;
+}
+
+.watercolor-btn:hover::after {
+  transform: scale(1);
+  opacity: 0.3;
+}
+
+.watercolor-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(74, 222, 128, 0.4);
+}
+
+/* Secondary watercolor button (blue) */
+.watercolor-btn-secondary {
+  color: #1e40af;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+.watercolor-btn-secondary:hover {
+  color: #1e3a8a;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(59, 130, 246, 0.5);
+}
+
+/* Outline watercolor button */
+.watercolor-btn-outline {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px rgba(74, 222, 128, 0.3);
+}
+
+.watercolor-btn-outline:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(74, 222, 128, 0.5);
+}
+
+.watercolor-btn-outline:hover::before {
+  opacity: 0.1;
 }

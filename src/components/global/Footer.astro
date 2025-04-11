@@ -1,89 +1,130 @@
 ---
-import Newsletter from "@components/blog/Newsletter.astro";
-import { getLangFromUrl, useTranslatedPath, useTranslations } from "@i18n/utils";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
 import { Icon } from "astro-icon/components";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative py-12 mt-20">
-	<div class="mx-auto max-w-7xl px-8">
-		<div class="border-t border-campfire-800 pt-12">
-			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-				<div>
-					<h3 class="font-display text-xl font-semibold text-campfire-300 mb-4">Summer Camp</h3>
-					<p class="text-campfire-200 max-w-xs">
-						An intellectual retreat where minds meet under summer stars for connection and discovery.
-					</p>
-				</div>
-				
-				<div>
-					<h3 class="font-display text-lg font-semibold text-campfire-300 mb-4">Quick Links</h3>
-					<ul class="space-y-2">
-						<li><a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">About Us</a></li>
-						<li><a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Schedule</a></li>
-						<li><a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Location</a></li>
-						<li><a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">FAQ</a></li>
-					</ul>
-				</div>
-				
-				<div>
-					<h3 class="font-display text-lg font-semibold text-campfire-300 mb-4">Connect</h3>
-					<ul class="space-y-2">
-						<li><a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Twitter</a></li>
-						<li><a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Instagram</a></li>
-						<li><a href="#" class="text-campfire-200 hover:text-campfire-100 transition-colors">Contact Us</a></li>
-					</ul>
-				</div>
-				
-				<div>
-					<h3 class="font-display text-lg font-semibold text-campfire-300 mb-4">Newsletter</h3>
-					<p class="text-campfire-200 mb-4">Stay updated with upcoming events and activities.</p>
-					<div class="flex">
-						<input type="email" placeholder="Your email" class="w-full bg-night-800 border-campfire-700 text-campfire-100 focus:ring-campfire-500 focus:border-campfire-500 rounded-l-lg">
-						<button class="bg-campfire-600 hover:bg-campfire-500 text-white rounded-r-lg px-4">
-							Sign Up
-						</button>
-					</div>
-				</div>
-			</div>
-			
-			<div class="mt-12 flex flex-col md:flex-row items-center justify-between gap-y-4 border-t border-campfire-800 pt-8">
-				<div class="text-campfire-400">©2025 ARBOR</div>
-				<button
-					id="go-top-button"
-					aria-label="Go to Top"
-					class="group bg-night-800 hover:bg-campfire-700 text-campfire-300 hover:text-white transition-colors duration-300 p-2 rounded-full"
-				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="transition-transform group-hover:-translate-y-1">
-						<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-							<path d="M12 19V5M5 12l7-7 7 7"/>
-						</g>
-					</svg>
-				</button>
-			</div>
+<footer class="relative bg-gradient-to-b from-sky-100 to-sky-200 pt-16 pb-8 overflow-hidden">
+	<!-- Decorative elements -->
+	<div class="absolute inset-0 overflow-hidden">
+		<!-- Butterflies -->
+		<div class="fireflies absolute inset-0 z-0"></div>
+		
+		<!-- String lights at the top -->
+		<div class="absolute top-0 left-0 right-0 h-10 overflow-hidden">
+			<div class="string-lights-horizontal-day"></div>
 		</div>
 	</div>
 	
-	<!-- Add decorative elements -->
-	<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-campfire-700/30 to-transparent"></div>
+	<div class="container mx-auto px-8 relative z-10">
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+			<!-- Logo and description -->
+			<div class="md:col-span-2">
+				<div class="flex items-center mb-4">
+					<span class="text-2xl font-display font-bold text-forest-700">Scarborough Fair</span>
+				</div>
+				<p class="text-forest-600 mb-6 max-w-md">
+					A container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.
+				</p>
+				<div class="flex space-x-4">
+					<a href="#" class="text-forest-600 hover:text-forest-800 transition-colors">
+						<Icon name="mdi:twitter" class="w-6 h-6" />
+					</a>
+					<a href="#" class="text-forest-600 hover:text-forest-800 transition-colors">
+						<Icon name="mdi:instagram" class="w-6 h-6" />
+					</a>
+					<a href="#" class="text-forest-600 hover:text-forest-800 transition-colors">
+						<Icon name="mdi:facebook" class="w-6 h-6" />
+					</a>
+				</div>
+			</div>
+			
+			<!-- Quick links -->
+			<div>
+				<h3 class="text-lg font-bold text-forest-700 mb-4">Quick Links</h3>
+				<ul class="space-y-2">
+					<li><a href="#" class="text-forest-600 hover:text-forest-800 transition-colors">Home</a></li>
+					<li><a href="#services" class="text-forest-600 hover:text-forest-800 transition-colors">Services</a></li>
+					<li><a href="#work" class="text-forest-600 hover:text-forest-800 transition-colors">Activities</a></li>
+					<li><a href="#" class="text-forest-600 hover:text-forest-800 transition-colors">About Us</a></li>
+					<li><a href="#" class="text-forest-600 hover:text-forest-800 transition-colors">Contact</a></li>
+				</ul>
+			</div>
+			
+			<!-- Contact info -->
+			<div>
+				<h3 class="text-lg font-bold text-forest-700 mb-4">Contact Us</h3>
+				<ul class="space-y-2">
+					<li class="flex items-start">
+						<Icon name="mdi:map-marker" class="w-5 h-5 text-forest-600 mt-0.5 mr-2" />
+						<span class="text-forest-600">123 Forest Lane, Nature Valley, CA 94123</span>
+					</li>
+					<li class="flex items-center">
+						<Icon name="mdi:email" class="w-5 h-5 text-forest-600 mr-2" />
+						<a href="mailto:info@summercamp.com" class="text-forest-600 hover:text-forest-800 transition-colors">info@summercamp.com</a>
+					</li>
+					<li class="flex items-center">
+						<Icon name="mdi:phone" class="w-5 h-5 text-forest-600 mr-2" />
+						<a href="tel:+1234567890" class="text-forest-600 hover:text-forest-800 transition-colors">(123) 456-7890</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- Copyright and bottom links -->
+		<div class="border-t border-forest-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+			<p class="text-forest-600 text-sm mb-4 md:mb-0">
+				&copy; {currentYear} Arbor. All rights reserved.
+			</p>
+			<div class="flex space-x-6">
+				<a href="#" class="text-forest-600 hover:text-forest-800 transition-colors text-sm">Privacy Policy</a>
+				<a href="#" class="text-forest-600 hover:text-forest-800 transition-colors text-sm">Terms of Service</a>
+				<a href="#" class="text-forest-600 hover:text-forest-800 transition-colors text-sm">Cookie Policy</a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 <script>
-	import { gsap } from "gsap";
-	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+// Replace createButterflies function with createFireflies
+function createFireflies() {
+  const sectionElement = document.querySelector('#your-section-id');
+  if (!sectionElement) return;
+  
+  const firefliesContainer = sectionElement.querySelector('.fireflies');
+  if (!firefliesContainer) return;
+  
+  for (let i = 0; i < 15; i++) {
+    const firefly = document.createElement('div');
+    firefly.classList.add('firefly');
+    
+    // Random positioning
+    firefly.style.left = `${Math.random() * 100}%`;
+    firefly.style.top = `${Math.random() * 100}%`;
+    
+    // Random animation delay
+    firefly.style.animationDelay = `${Math.random() * 8}s`;
+    
+    // Random size variation
+    const size = 2 + Math.random() * 3;
+    firefly.style.width = `${size}px`;
+    firefly.style.height = `${size}px`;
+    
+    // Random colors - warm yellow/orange tones
+    const hue = Math.floor(Math.random() * 30) + 40; // yellows and light oranges
+    const saturation = Math.floor(Math.random() * 20) + 80; // fairly saturated
+    const lightness = Math.floor(Math.random() * 10) + 80; // very light colors
+    firefly.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.8)`;
+    firefly.style.boxShadow = `0 0 ${5 + Math.random() * 5}px 1px hsla(${hue}, ${saturation}%, ${lightness}%, 0.5)`;
+    
+    firefliesContainer.appendChild(firefly);
+  }
+}
 
-	gsap.registerPlugin(ScrollToPlugin);
-
-	document.addEventListener("DOMContentLoaded", () => {
-		var goTopButton = document.getElementById("go-top-button");
-
-		if (!goTopButton) return;
-
-		goTopButton.addEventListener("click", function () {
-			gsap.to(window, { duration: 1, scrollTo: 0, ease: "power2.inOut" });
-		});
-	});
+	document.addEventListener('DOMContentLoaded', createFireflies);
 </script>

@@ -1,0 +1,40 @@
+---
+const { href, class: className, ...rest } = Astro.props;
+---
+
+<a 
+  href={href} 
+  class:list={[
+    "relative inline-block text-forest-600 hover:text-forest-700 transition-colors duration-500",
+    "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px]",
+    "after:bg-gradient-to-r after:from-forest-300/50 after:to-transparent",
+    "after:transform after:origin-bottom-left",
+    "hover:after:h-[2px]",
+    className
+  ]}
+  {...rest}
+>
+  <slot />
+</a>
+
+<style>
+  a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    background-repeat: repeat;
+    opacity: 0.2;
+    z-index: -1;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s ease;
+  }
+  
+  a:hover::before {
+    transform: scaleY(1);
+  }
+</style> 
