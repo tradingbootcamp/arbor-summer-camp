@@ -1,5 +1,4 @@
 ---
-import BlobCursorFollower from "@/components/global/BlobCursorFollower.astro";
 import { AstroSeo, type AstroSeoProps } from "@astrolib/seo";
 import BaseHead from "@components/BaseHead.astro";
 import BackgroundTexture from "@components/global/BackgroundTexture.astro";
@@ -99,7 +98,6 @@ function cursorFollowerActive() {
 		</div>
 		
 		<Navigation />
-		{cursorFollowerActive() && <BlobCursorFollower />}
 		<slot />
 		<Footer />
 		<!-- Add this script before the closing body tag -->
