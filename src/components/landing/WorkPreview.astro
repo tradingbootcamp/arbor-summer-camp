@@ -279,13 +279,20 @@ const allProjects = (await getCollection("projects"))
 
 	gsap.registerPlugin(ScrollTrigger, Draggable);
 
+	// Global references to autoplay functions
+	let globalStartAutoplay: (() => void) | null = null;
+	let globalStopAutoplay: (() => void) | null = null;
+
 	function initCarousel() {
-		const carouselTrack = document.querySelector('.carousel-slides');
-		const carousel = document.querySelector('.carousel-container');
-		const slides = gsap.utils.toArray('.carousel-slide');
-		const indicators = gsap.utils.toArray('.carousel-indicator');
-		const nextBtn = document.querySelector('.carousel-next');
-		const prevBtn = document.querySelector('.carousel-prev');
+		const carouselTrack = document.querySelector<HTMLElement>('.carousel-slides');
+		const carousel = document.querySelector<HTMLElement>('.carousel-container');
+		const slides = gsap.utils.toArray<HTMLElement>('.carousel-slide');
+		const indicators = gsap.utils.toArray<HTMLElement>('.carousel-indicator');
+		const nextBtn = document.querySelector<HTMLButtonElement>('.carousel-next');
+		const prevBtn = document.querySelector<HTMLButtonElement>('.carousel-prev');
+		
+		if (!carouselTrack || !carousel || slides.length === 0) return;
+		
 		const trackWidth = carouselTrack.scrollWidth;
 		const slideWidth = slides[0].offsetWidth;
 		
@@ -301,7 +308,7 @@ const allProjects = (await getCollection("projects"))
 		
 		// Initialize image reveal animations
 		slides.forEach((slide) => {
-			const image = slide.querySelector('img');
+			const image = slide.querySelector<HTMLImageElement>('img');
 			if (image) {
 				gsap.from(image, {
 					scrollTrigger: {
@@ -318,7 +325,7 @@ const allProjects = (await getCollection("projects"))
 		});
 		
 		// Function to update carousel
-		function goToSlide(index) {
+		function goToSlide(index: number) {
 			// Bound the index to valid range
 			currentIndex = Math.max(0, Math.min(index, maxIndex));
 			
@@ -369,7 +376,7 @@ const allProjects = (await getCollection("projects"))
 		
 		// Add wheel event to control carousel with mouse wheel
 		if (carousel) {
-			carousel.addEventListener('wheel', (e) => {
+			carousel.addEventListener('wheel', (e: WheelEvent) => {
 				e.preventDefault();
 				
 				// Determine direction and sensitivity
@@ -401,28 +408,37 @@ const allProjects = (await getCollection("projects"))
 			goToSlide(Math.min(currentIndex, newMaxIndex));
 		});
 		
-		// Optional: Auto-play functionality
-		let autoplayInterval;
+		// Auto-play functionality
+		let autoplayInterval: number | undefined;
 		
 		function startAutoplay() {
-			autoplayInterval = setInterval(() => {
+			autoplayInterval = window.setInterval(() => {
 				const nextIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
 				goToSlide(nextIndex);
-			}, 5000); // Change slide every 5 seconds
+			}, 5000);
 		}
 		
 		function stopAutoplay() {
-			clearInterval(autoplayInterval);
+			if (autoplayInterval) {
+				clearInterval(autoplayInterval);
+			}
 		}
+		
+		// Make autoplay functions globally accessible
+		globalStartAutoplay = startAutoplay;
+		globalStopAutoplay = stopAutoplay;
 		
 		// Start autoplay initially
 		startAutoplay();
 		
 		// Pause autoplay when interacting with carousel
-		document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoplay);
-		document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoplay);
-		document.querySelector('.carousel-container').addEventListener('touchstart', stopAutoplay, { passive: true });
-		document.querySelector('.carousel-container').addEventListener('touchend', startAutoplay);
+		const carouselContainer = document.querySelector('.carousel-container');
+		if (carouselContainer) {
+			carouselContainer.addEventListener('mouseenter', stopAutoplay);
+			carouselContainer.addEventListener('mouseleave', startAutoplay);
+			carouselContainer.addEventListener('touchstart', stopAutoplay, { passive: true });
+			carouselContainer.addEventListener('touchend', startAutoplay);
+		}
 	}
 	
 	// Handle project card clicks and modal functionality
@@ -430,17 +446,25 @@ const allProjects = (await getCollection("projects"))
 		const modal = document.getElementById('project-modal');
 		const modalTitle = document.getElementById('modal-title');
 		const modalDescription = document.getElementById('modal-description');
-		const modalImage = document.getElementById('modal-image');
-		const modalLink = document.getElementById('modal-link');
-		const modalClose = document.querySelector('.modal-close');
-		const modalBackdrop = document.querySelector('.modal-backdrop');
-		const projectCards = document.querySelectorAll('.project-card');
+		const modalImage = document.getElementById('modal-image') as HTMLImageElement;
+		const modalLink = document.getElementById('modal-link') as HTMLAnchorElement;
+		const modalClose = document.querySelector<HTMLButtonElement>('.modal-close');
+		const modalBackdrop = document.querySelector<HTMLElement>('.modal-backdrop');
+		const projectCards = document.querySelectorAll<HTMLElement>('.project-card');
 		
-		let originElement = null;
+		if (!modal || !modalTitle || !modalDescription || !modalImage || !modalLink) return;
+		
+		let originElement: HTMLElement | null = null;
 		let isAnimating = false;
 		
 		// Function to open modal with zoom effect
-		function openModal(element, title, description, image, slug) {
+		function openModal(
+			element: HTMLElement,
+			title: string,
+			description: string,
+			image: HTMLImageElement,
+			slug: string
+		) {
 			if (isAnimating) return;
 			isAnimating = true;
 			
@@ -453,19 +477,17 @@ const allProjects = (await getCollection("projects"))
 			const viewportWidth = window.innerWidth;
 			
 			// Set modal content
-			modalTitle.textContent = title;
-			modalDescription.textContent = description;
+			if (modalTitle) modalTitle.textContent = title;
+			if (modalDescription) modalDescription.textContent = description;
 			modalImage.src = image.src;
 			modalImage.alt = title;
 			modalLink.href = `/work/${slug}`;
 			
 			// Stop autoplay when modal is open
-			if (typeof stopAutoplay === 'function') {
-				stopAutoplay();
-			}
+			if (globalStopAutoplay) globalStopAutoplay();
 			
 			// Make modal visible but still transparent for animation
-			modal.classList.add('active');
+			if (modal) modal.classList.add('active');
 			document.body.style.overflow = 'hidden'; // Prevent scrolling
 			
 			// Create zoom animation timeline
@@ -525,14 +547,12 @@ const allProjects = (await getCollection("projects"))
 			const viewportWidth = window.innerWidth;
 			
 			// Resume autoplay after closing modal
-			if (typeof startAutoplay === 'function') {
-				startAutoplay();
-			}
+			if (globalStartAutoplay) globalStartAutoplay();
 			
 			// Create closing animation timeline
 			const tl = gsap.timeline({
 				onComplete: () => {
-					modal.classList.remove('active');
+					if (modal) modal.classList.remove('active');
 					document.body.style.overflow = '';
 					isAnimating = false;
 				}
@@ -563,12 +583,14 @@ const allProjects = (await getCollection("projects"))
 				e.preventDefault(); // Prevent default link behavior
 				
 				// Get project details
-				const cardImg = card.querySelector('img');
-				const cardTitle = card.dataset.projectTitle;
-				const cardDescription = card.dataset.projectDescription;
-				const cardSlug = card.dataset.projectSlug;
+				const cardImg = card.querySelector<HTMLImageElement>('img');
+				const cardTitle = card.getAttribute('data-project-title');
+				const cardDescription = card.getAttribute('data-project-description');
+				const cardSlug = card.getAttribute('data-project-slug');
 				
-				openModal(card, cardTitle, cardDescription, cardImg, cardSlug);
+				if (cardImg && cardTitle && cardDescription && cardSlug) {
+					openModal(card, cardTitle, cardDescription, cardImg, cardSlug);
+				}
 			});
 		});
 		
