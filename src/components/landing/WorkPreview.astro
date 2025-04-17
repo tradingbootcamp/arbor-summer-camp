@@ -32,7 +32,7 @@ const allProjects = (await getCollection("projects"))
 		<h2 class="sr-only">{t("projects")}</h2>
 		
 		<!-- Carousel container with overflow -->
-		<div class="carousel-container relative">
+		<div class="carousel-container relative h-[600px]">
 			<!-- Previous/Next buttons -->
 			<button class="carousel-nav carousel-prev absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-3 text-night-900 shadow-lg opacity-0 transition-opacity duration-300">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,8 +40,8 @@ const allProjects = (await getCollection("projects"))
 				</svg>
 			</button>
 			
-			<div class="carousel-track overflow-hidden">
-				<div class="carousel-slides flex transition-transform duration-500 ease-out">
+			<div class="carousel-track overflow-hidden h-full">
+				<div class="carousel-slides flex transition-transform duration-500 ease-out h-full">
 					{
 						allProjects.map((project) => (
 							<div class="carousel-slide flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(50%-2rem)] px-2 md:px-4 h-full">
@@ -150,6 +150,7 @@ const allProjects = (await getCollection("projects"))
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
+		overflow: hidden;
 	}
 	
 	/* Push the button to the bottom */
@@ -209,11 +210,33 @@ const allProjects = (await getCollection("projects"))
 	
 	.carousel-slide {
 		transition: transform 0.5s ease-out;
+		height: 100%;
+	}
+	
+	.carousel-track {
+		height: 100%;
+	}
+	
+	.carousel-slides {
+		height: 100%;
 	}
 	
 	.carousel-indicator.active {
 		background-color: #64748b;
 		width: 10px;
+	}
+	
+	/* Responsive height adjustments */
+	@media (max-width: 768px) {
+		.carousel-container {
+			height: 500px;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.carousel-container {
+			height: 450px;
+		}
 	}
 	
 	/* Modal styles */
