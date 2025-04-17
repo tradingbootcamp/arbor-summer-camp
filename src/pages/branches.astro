@@ -1,0 +1,81 @@
+---
+import MinimalLayout from "@/layouts/MinimalLayout.astro";
+import type { AstroSeoProps } from "@astrolib/seo";
+import { Markdown } from 'astro-remote';
+
+const seo: AstroSeoProps = {
+	title: "Run a Branch",
+	description: "Maybe *you* should run something at Summer College?",
+	canonical: "https://summercampcomingsoon.com/branches/",
+};
+
+const markdownContent = `
+# A campus…<br/>while school is *in* session
+
+We’ve called [Lighthaven](http://lighthaven.space) a “campus”, but it mostly seems to have two modes: “monolithic event” and “school is out of session”. For June 2–6—the week between [LessOnline](http://less.online) and [Manifest](http://manifest.is)—we’d like to try something different.
+
+Last year, the week was called “Summer Camp”, and was mostly a relaxing interlude between the two conferences. But in a few scattered buildings on campus, some campers came together for an experimental 2.5-day course on quant trading. The instructors had a blast (and it’s rumored that the students did, too), and ultimately a series of Quant Trading Bootcamps was born, run by an org that would later be renamed Arbor.
+
+This year, Arbor is organizing [Summer *College*](http://summercampcomingsoon.com).
+
+Our vision involves participants spread among an abundance of multi-day workshops (that we’re calling “branches” because we like trees) but regathering for intermingled conversations during meals and unscheduled evenings. Some inspirations for what it feels like include ‘Disneyland’ and, well, ‘college’.
+
+# Sample branches
+
+- **[Trading Bootcamp](https://trading.camp/) ($1,X00):** taught by former Jane Street traders Ricki Heicklen and Ross Rheingans-Yoo, and ~~perfected~~ substantially improved over the last year, this will be the single biggest and most ambitious version yet. Learn the heuristics that quantitative traders use through intense trading games, shouted discussion, and loudly-spoken discussion. Fun for ~~the whole family~~ the sort of person has not yet been turned off by this paragraph and has an interest in learning more about what quant trading is, whether you like it, and whether you’re any good at it.
+- **Rationality Bootcamp ($400):** taught by [you?]. Learn how to feel your feelings, grow into yourself, and become a systematic winner at life.
+- **Make A Stained Glass Window For Lighthaven (-$200)**: application-only; students learn the physical skills for creating stained glass from [teacher] and collaborate on a piece commissioned by Lightcone Infrastructure for installation by the end of the week.
+- **Write The World ($0):** led by [you?], [your favorite journalist?], [your favorite tech blogger?] — accountability check-ins and (lots of) peer-reading sessions on how to do various flavors of journalism in “the real world:” financial, investigative, tech, etc.
+- **Elua Incubator for Punching [Moloch](https://slatestarcodex.com/2014/07/30/meditations-on-moloch/) in the Face (-$1,000):** pretty simple: [you?] give teams of two-to-three grantees 4 days, $1k in credits from [AI vendor], and a chance to pitch to grantmakers and VCs at the end. Application required; space is fairly limited.
+- **Become Chef ($200):** led by [you?]. Learn how to cook/bake/make-food-real-good from an ex-professional chef. You’ll use the Lighthaven kitchens to make your own meals throughout Summer College, iteratively improving until Thursday night’s dinner—which you & your branch-mates will make for the whole camp.
+- **Rooting out the Truth ($50):** led by [you?], this is a class where you are given a handful of claims about the world, science, history, etc, and you are tasked with figuring out which ones are true and which ones are false. You do this with & without teammates, each day, intensively rooting out ground truth, throughout the internet & the world.
+- **Give Yourself Some Slack, Man ($0):** led by [you?]. The only required work is cancelling all of your meetings that week. Play board games, hang out, get sleep, stare at a tree for a few hours, whatever.
+- **Insert Thing You’re Most Excited About ($?):** led by you. We’ll fill this paragraph in after you send us the title, price, and words.
+- …and more on the way!
+
+# The ask
+
+Maybe *you* should run a branch?
+
+If you already know what you’d like to do, great! Let the Arbor organizers know by reaching out to whoever sent you our way (or email [ross@trading.camp](mailto:ross@trading.camp)).
+
+If you don't, we have ideas of branches you could take up the mantle of. Some are above, more are in our heads.
+
+Bring your cool, new, experimental shit. Bring your interests and turn them into a multi-day class. This is a chance to do something exciting, something that could bloom & grow: the point is for you to test out an idea you've always wanted a chance to try.
+
+# The rest of the details
+
+Parameters of a branch:
+
+- Recommended 10–50 participants.
+    - Larger branches may be possible, but we want to ensure a balance of curated options—a red-black tree, not a baobab.
+- Recommended price in the $100+ range (though we won’t stop you from charging a different amount, e.g. $0, $1k, or -$1k).
+    - Benefits of charging money include acquiring the money and getting more-invested participants who feel that they’ve committed something to your thing. Drawbacks include barriers to entry, if you want to get lots of people.
+- We strongly recommend that you set an expectation that participants commit to attending all days of the branch instead of dropping in and out.
+- Depending on what you're doing, you may be more or less open to non-participants sitting in on some sessions. We suggest that you decide ahead of time how limited-access you want your branch to be.
+- You may restrict participants through application, drawing of lots, consulting of signs and portents, or by applying ~~no restriction at all~~ the selection effects through which all things are inevitably selected.
+
+Schedule constraints:
+
+- Branches be 3-4 days. This is an opportunity to do something more ambitious than a one-continuous-block talk/session.
+- Your planned activities should last the full day, with breaks for lunch and ending before dinner. Lunchtime, dinnertime, or after-dinner activities aren’t forbidden by any means, but we’re expecting you to make them available to all attendees, not just your own students.
+- Branch activities can leave the Lighthaven campus, but should return all participants to lunch (12:30–13:30) and dinner (18:30–19:30) each day.
+
+Economics:
+
+- Meals, venue, payment infrastructure, and our broad offer for occasional operational support on-site day of—as well as beforehand/in prep—is included.
+- How much to charge for participation in your branch—or whether to charge at all—is up to you. If you do decide to charge, we’ll split the revenue 80% to you, and 20% to Summer College. If you decide not to, you will not receive payment except in having a great environment to run your workshop.
+
+# Just want to buy a ticket as an attendee?
+
+You can do that [here](https://www.havenbookings.space/festival-season).
+`;
+---
+
+<MinimalLayout seo={seo}>
+	<section class="py-8 px-4 mx-auto max-w-3xl">
+		<div class="prose prose-lg mx-auto text-black">
+			<Markdown content={markdownContent} />
+		</div>
+	</section>
+</MinimalLayout>
