@@ -7,11 +7,11 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<section id="hero" class="section home-dark-section hero min-h-screen">
+<section id="hero" class="section home-dark-section hero hero-background min-h-screen">
 	<div class="mx-auto flex h-full flex-col py-4 lg:py-10">
-		<div class="relative flex flex-1 flex-col justify-around rounded-lg pb-10 pt-20 lg:rounded-2xl">
-			<div class="flex justify-center">
-				<h1 class="text-center font-display text-5xl font-extrabold uppercase sm:text-7xl md:text-8xl lg:text-9xl">
+		<div class="relative flex flex-col justify-around rounded-lg pb-10 pt-40 md:pt-60 lg:rounded-2xl">
+			<div class="flex justify-center md:pt-10">
+				<h1 class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text8xl text-forest-950 text-shadow">
 					<span>{t("hero.title.main")}</span>
 					<!-- <span class="rotator relative inline-flex h-20 w-full justify-center md:h-24 lg:h-32">
 						<span>{t("hero.title.1")}</span><span>{t("hero.title.2")}</span><span>{t("hero.title.3")}</span><span>
@@ -21,22 +21,22 @@ const translatePath = useTranslatedPath(lang);
 				</h1>
 			</div>
 			<div class="flex flex-col items-center gap-5 text-center lg:gap-10">
-				<p class="mt-8 max-w-3xl font-mono lg:text-lg">
+				<p class="mt-8 max-w-3xl font-mono lg:text-lg text-forest-900 text-shadow-sm">
 					{t("hero.subtitle")}
 				</p>
 				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
-					<div class="squircle-bg rounded-lg bg-zinc-900" data-cursor-hover data-cursor-parallax>
+					<div class="rounded-lg bg-campfire-500 hover:bg-campfire-600 transition-colors" data-cursor-hover data-cursor-parallax>
 						<a
-							class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-8xl font-bold"
+							class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-white transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl font-bold"
 							aria-label="Buy Tickets"
 							href={translatePath("/tickets/")}>
 							{t("tickets")}
 						</a>
 					</div>
 
-					<small>
+					<small class="text-forest-900 font-medium">
 						{t("or")}
-						<LinkBlend id="go-projects-button" isButton={true}>{t("hero.scroll")}</LinkBlend>
+						<LinkBlend id="go-projects-button" isButton={true} class="text-campfire-600 hover:text-campfire-500">{t("hero.scroll")}</LinkBlend>
 					</small>
 				</div>
 			</div>
@@ -55,6 +55,37 @@ const translatePath = useTranslatedPath(lang);
 		grid-column: 1 / span 12;
 	}
 
+	/* Background image with fade effect */
+	.hero-background {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('/public/images/asc_cover.png');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: 0;
+		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+		-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0) 100%);
+		/* Add a brightness filter to make the image sunnier */
+		filter: brightness(1.2) saturate(1.2);
+	}
+
+	/* Replace dark overlay with a light, sunny one */
+	.hero-background::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		/* Use a light golden overlay instead of dark */
+		background: linear-gradient(to bottom, rgba(255, 236, 179, 0.3), rgba(245, 158, 11, 0));
+		z-index: -1;
+	}
+
 	/* Hero appearance */
 	.hero h1,
 	.hero h2,
@@ -71,6 +102,16 @@ const translatePath = useTranslatedPath(lang);
 		position: relative;
 		margin: 0;
 	}
+	
+	/* Adjust text shadow for better readability on bright background */
+	.text-shadow {
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+	}
+	
+	.text-shadow-sm {
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	}
+	
 	.hero :global(.split-parent) {
 		overflow: hidden;
 	}
