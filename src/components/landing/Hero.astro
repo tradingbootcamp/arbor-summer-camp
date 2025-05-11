@@ -8,20 +8,18 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <section id="hero" class="section home-dark-section hero hero-background min-h-screen">
-	<div class="mx-auto flex h-full flex-col py-4 lg:py-10">
-		<div class="relative flex flex-col justify-around rounded-lg pb-10 pt-40 md:pt-60 lg:rounded-2xl">
-			<div class="flex justify-center md:pt-10">
-				<h1 class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text8xl text-forest-950 text-shadow">
-					<span>{t("hero.title.main")}</span>
-					<!-- <span class="rotator relative inline-flex h-20 w-full justify-center md:h-24 lg:h-32">
-						<span>{t("hero.title.1")}</span><span>{t("hero.title.2")}</span><span>{t("hero.title.3")}</span><span>
-							{t("hero.title.4")}
-						</span><span>{t("hero.title.1")}</span>
-					</span> -->
+	<div class="flex h-full flex-col py-4 lg:py-10">
+		<div class="relative flex flex-col justify-around rounded-lg pb-10 lg:rounded-2xl" style="min-height: 90vh;">
+			<!-- Title container with absolute positioning -->
+			<div class="absolute top-[30%] left-0 right-0 transform -translate-y-1/2 flex justify-center">
+				<h1 id="hero-title" class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text-8xl text-forest-950 text-shadow">
+					{t("hero.title.main")}
 				</h1>
 			</div>
-			<div class="flex flex-col items-center gap-5 text-center lg:gap-10">
-				<p class="mt-8 max-w-3xl font-mono lg:text-lg text-forest-900 text-shadow-sm">
+			
+			<!-- Content below the title -->
+			<div class="absolute top-[40%] left-0 right-0 flex flex-col items-center gap-5 text-center lg:gap-5">
+				<p class="mt-8 max-w-5xl font-mono lg:text-lg text-forest-900 text-shadow-sm">
 					{t("hero.subtitle")}
 				</p>
 				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
@@ -92,16 +90,6 @@ const translatePath = useTranslatedPath(lang);
 	.hero h3 {
 		margin: 0;
 	}
-	.hero h1 {
-		margin: 0;
-		position: relative;
-		overflow: hidden;
-		visibility: hidden;
-	}
-	.hero h1 > div {
-		position: relative;
-		margin: 0;
-	}
 	
 	/* Adjust text shadow for better readability on bright background */
 	.text-shadow {
@@ -111,80 +99,43 @@ const translatePath = useTranslatedPath(lang);
 	.text-shadow-sm {
 		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 	}
-	
-	.hero :global(.split-parent) {
-		overflow: hidden;
-	}
-	.hero :global(.split-child) {
-		display: inline-block;
-	}
-
-	/* Text rotator */
-	.rotator > span {
-		position: absolute;
-	}
-
-	.rotator > span:not(:nth-child(1)) {
-		opacity: 0;
-	}
 </style>
 
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { SplitText } from "gsap/SplitText";
 	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-	gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 	function init() {
-		const childSplit = new SplitText(".hero h1", {
-			type: "lines",
-			linesClass: "split-child",
-		});
-		const parentSplit = new SplitText(".hero h1", {
-			linesClass: "split-parent",
-		});
-
-		gsap.timeline()
-			.from(childSplit.lines, {
-				duration: 1.5,
-				yPercent: 100,
-				ease: "power4",
-				stagger: 0.1,
-			})
-			.set(".hero h1", { visibility: "visible" }, "<")
-			.then(() => {
-				const words = document.querySelectorAll(".hero .rotator > span");
-
-				let rotatorTimeline = gsap.timeline({ repeat: -1 });
-				rotatorTimeline.timeScale(0.5);
-
-				for (let i = 0; i < words.length; i++) {
-					let delay = i - 1;
-					let wordTL = gsap.timeline();
-					if (i !== 0) {
-						gsap.set(words[i], { opacity: 1 });
-						wordTL.from(words[i], { duration: 1, yPercent: 100, opacity: 0, ease: "power4.out" });
-					} else {
-						// Handle the first one specially
-						delay += 1;
-						gsap.set(words[0], { opacity: 1, yPercent: 0 });
-					}
-
-					if (i !== words.length - 1) {
-						wordTL.to(words[i], { duration: 1, yPercent: -100, opacity: 0, ease: "power4.out" });
-					}
-					rotatorTimeline.add(wordTL, delay);
-				}
+		// Simple fade-in animation for the title
+		const heroTitle = document.getElementById("hero-title");
+		
+		if (heroTitle) {
+			// Set initial state
+			gsap.set(heroTitle, { 
+				opacity: 0,
+				y: 30
 			});
+			
+			// Animate in
+			gsap.to(heroTitle, {
+				duration: 1.2,
+				opacity: 1,
+				y: 0,
+				ease: "power3.out",
+				delay: 0.3
+			});
+		}
 
-		var goProjectsButton = document.getElementById("go-projects-button");
+		// Handle scroll button
+		const goProjectsButton = document.getElementById("go-projects-button");
 		goProjectsButton?.addEventListener("click", function () {
 			gsap.to(window, { duration: 0.5, scrollTo: "#projects" });
 		});
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
 </script>
