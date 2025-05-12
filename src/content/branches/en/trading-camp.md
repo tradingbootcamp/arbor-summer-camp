@@ -4,12 +4,12 @@ shortDescription: "Learn quantitative trading from former Jane Street traders"
 instructor:
   name: "Ricki Heicklen"
   image:
-    source: "@assets/images/instructors/yoav.png"
+    source: "@assets/images/instructors/ricki.png"
     alt: "Ricki Heicklen"
-    position: "right"
+    position: "left"
   link: "/author/ricki-heicklen"
 coverImage:
-  source: "@assets/images/projects/adverse_selection_banner.webp"
+  source: "@assets/images/projects/bootcamp_crosswords.JPG"
   alt: "Trading Bootcamp banner"
 cost: "$1,850"
 dates: "June 2-6, 2024"
