@@ -9,7 +9,7 @@ instructor:
     position: "leftish"
   link: "/author/daniel-kokotajlo"
 coverImage:
-  source: "@assets/images/projects/bootcamp_crosswords.JPG"
+  source: "@assets/images/projects/aifp_ttx.png"
   alt: "AIFP TTX"
 cost: "By application"
 dates: "June 3-5, 2025"
