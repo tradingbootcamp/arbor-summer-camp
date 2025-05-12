@@ -1,0 +1,147 @@
+---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<section id="explanation" class="section branches-section home-dark-section py-16 lg:py-24">
+    <div class="wrapper col-span-12 h-screen w-full">
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-forest-950">What is Arbor Summer College?</h2>
+      <p class="mt-4 text-xl max-w-3xl mx-auto text-forest-800">
+        A pedagogy playground for experimental learning
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7 prose prose-lg">
+        <p class="mb-4">
+          Arbor Summer College (Mon June 2 - Fri June 6) is a pedagogy playground — a place to teach and take experimental bootcamps, workshops, seminars, and multi-day immersive experiences in the most target-rich environment a teacher could dream of. It takes place the week between <a href="https://less.online/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-400 no-underline">LessOnline</a> and <a href="https://manifest.is/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-400 no-underline">Manifest</a>, when hundreds of curious learners will flock to Lighthaven to discuss, debate, and bet on every topic under the sun.
+        </p>
+        
+        <p class="mb-4">
+          These branches will run in parallel across campus, spanning 2-5 days. Some, like Trading Bootcamp and the AI Future Project's 2027 tabletop AI wargame, are established bootcamps and workshops that have stood the tests of time and selection effects. Others are brand new — and will go through Arbor's pedagogy incubator the prior week, where branch leaders will learn everything from "how to model what's happening in your students' minds" to "what supplies are in your bootcamp go-box?" and get to playtest their classes on each other with substantial feedback.
+        </p>
+        
+        <p>
+          Lunch, dinner, and evenings will be blocked off for communal activities and downtime, to allow ASC attendees to mingle and munch together.
+        </p>
+      </div>
+      
+      <div class="lg:col-span-5">
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100">
+          <div class="bg-campfire-500 py-4 px-6 flex justify-between items-center">
+            <h3 class="text-xl font-bold text-white">Branches</h3>
+            <a href="#branches" class="text-white text-sm hover:text-white/80 flex items-center transition-colors duration-200">
+              See all
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+          
+          <div class="p-6">
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-campfire-500 mr-2 text-xl">•</span>
+                <span>Vibe coding for the non-coder</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-campfire-500 mr-2 text-xl">•</span>
+                <span>AI tabletop wargaming</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-campfire-500 mr-2 text-xl">•</span>
+                <span>Puzzles-based approach to security mindset</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-campfire-500 mr-2 text-xl">•</span>
+                <span>How to build an exchange from scratch</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-campfire-500 mr-2 text-xl">•</span>
+                <span>Aerial silks</span>
+              </li>
+            </ul>
+            
+            <div class="mt-6 pt-6 border-t border-slate-200">
+              <p class="text-forest-800 font-medium">
+                Have a branch proposal? We'd love to hear about it!
+              </p>
+              <div class="mt-4 flex flex-col sm:flex-row gap-4">
+                <a href="/branches/independent" class="flex-1 p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors duration-200 group">
+                  <h4 class="font-bold group-hover:text-campfire-600">Independent Branch</h4>
+                  <p class="text-sm mt-2">Minimal support from us, for existing established workshops</p>
+                  <span class="text-campfire-500 text-xs mt-3 inline-block group-hover:translate-x-1 transition-transform duration-200">Learn more →</span>
+                </a>
+                <a href="/branches/incubated" class="flex-1 p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors duration-200 group">
+                  <h4 class="font-bold group-hover:text-campfire-600">Incubated Branch</h4>
+                  <p class="text-sm mt-2">Attend our pedagogy incubator May 26-29, and playtest your curriculum with feedback and support</p>
+                  <span class="text-campfire-500 text-xs mt-3 inline-block group-hover:translate-x-1 transition-transform duration-200">Learn more →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .explanation-section {
+    position: relative;
+    background-color: #f8f9fa;
+    overflow: hidden;
+  }
+  
+  .explanation-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/texture-light.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    z-index: 0;
+  }
+  
+  .explanation-section > div {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get all links that point to the branches section
+    const branchesLinks = document.querySelectorAll('a[href="#branches"]');
+    
+    branchesLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Get the target element
+        const target = document.getElementById('branches');
+        
+        if (target) {
+          // Smooth scroll to the target
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Optionally update URL hash
+          history.pushState(null, null, '#branches');
+        }
+      });
+    });
+  });
+</script>

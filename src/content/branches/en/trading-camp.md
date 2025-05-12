@@ -2,7 +2,7 @@
 title: "Trading Bootcamp"
 shortDescription: "Learn quantitative trading from former Jane Street traders"
 instructor:
-  name: "Ricki Heicklen"
+  name: "Ricki Heicklen, Ross Rheingans-Yoo, David Holt"
   image:
     source: "@assets/images/instructors/ricki.png"
     alt: "Ricki Heicklen"
@@ -12,7 +12,7 @@ coverImage:
   source: "@assets/images/projects/bootcamp_crosswords.JPG"
   alt: "Trading Bootcamp banner"
 cost: "$1,850"
-dates: "June 2-6, 2024"
+dates: "June 3-5, 2025"
 sponsor:
   name: "Sponsor this branch?"
   link: "mailto:ricki@trading.camp"

@@ -1,0 +1,87 @@
+---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<section id="explanation" class="section home-dark-section explanation-section py-16 lg:py-24">
+<div class="wrapper col-span-12 h-screen w-full">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="prose prose-lg max-w-none">
+        <h2 class="text-3xl font-bold mb-6 text-forest-950">What is Arbor Summer College?</h2>
+        <p class="mb-4">
+          Arbor Summer College (Mon June 2 - Fri June 6) is a pedagogy playground — a place to teach and take experimental bootcamps, workshops, seminars, and multi-day immersive experiences in the most target-rich environment a teacher could dream of. It takes place the week between <a href="https://less.online/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-500">LessOnline</a> and <a href="https://manifest.is/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-500">Manifest</a>, when hundreds of curious learners will flock to Lighthaven to discuss, debate, and bet on every topic under the sun.
+        </p>
+        <p class="mb-4">
+          These branches will run in parallel across campus, spanning 2-5 days. We'll have 10-15 different experimental "branches" (workshops, bootcamps, what have you) running in parallel. My team at Arbor is also running a pedagogy incubator the week before (May 26-29), to help prepare new-ish branch leaders with promising ideas but not much teaching experience.
+        </p>
+      </div>
+      
+      <div class="bg-slate-50 p-8 rounded-xl shadow-sm">
+        <h3 class="text-2xl font-bold mb-4 text-forest-950">Some likely branches include:</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <span class="text-campfire-500 mr-2">•</span>
+            <span>Vibe coding for the non-coder</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-campfire-500 mr-2">•</span>
+            <span>AI tabletop wargaming</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-campfire-500 mr-2">•</span>
+            <span>Puzzles-based approach to security mindset</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-campfire-500 mr-2">•</span>
+            <span>How to build an exchange from scratch</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-campfire-500 mr-2">•</span>
+            <span>Aerial silks</span>
+          </li>
+        </ul>
+        
+        <div class="mt-8 pt-6 border-t border-slate-200">
+          <p class="mb-4">
+            The branches are each multi-day workshops, on any of a range of topics. Our intention is for the week to be a pedagogy playground, where ASC attendees can be guinea pigs for anything you want to figure out.
+          </p>
+          <p>
+            If you have a bootcamp/workshop/etc idea in your pocket, we'd love to hear about it and figure out whether it makes sense for you to run it as an <strong>independent branch</strong> (with minimal support from us, for existing established workshops) or as an <strong>incubated branch</strong>, which requires attending our pedagogy incubator May 26-29.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<style>
+  .explanation-section {
+    position: relative;
+    background-color: #f8f9fa;
+    overflow: hidden;
+  }
+  
+  .explanation-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/texture-light.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    z-index: 0;
+  }
+  
+  .explanation-section > div {
+    position: relative;
+    z-index: 1;
+  }
+</style> 

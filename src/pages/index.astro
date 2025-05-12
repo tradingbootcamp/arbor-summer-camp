@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@components/landing/Hero.astro";
+import Explanation from "@components/landing/Explanation.astro";
 import Services from "@components/landing/Services.astro";
 import Tagline from "@components/landing/Tagline.astro";
 import Branches from "@components/landing/Branches.astro";
@@ -9,8 +10,9 @@ import Faq from "@components/landing/Faq.astro";
 
 <BaseLayout>
 	<Hero />
+	<Explanation />
 	<Branches class="!pt-20 pb-20 lg:!pt-36 lg:pb-40" />
-	<Services />
+	<!-- <Services /> -->
 	<Tagline />
 	<Faq />
 </BaseLayout>
