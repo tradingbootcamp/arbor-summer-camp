@@ -19,6 +19,7 @@ sponsor:
 isIncubator: false
 purchaseLink: "https://trading.camp"
 pubDate: 2024-04-15
+order: 1
 ---
 
 You might be coming in with an idea of what it means to think like an engineer, a founder, or a lawyer. Trader mindset is another way to see the world.

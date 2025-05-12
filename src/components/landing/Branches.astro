@@ -23,7 +23,12 @@ const allBranches = (await getCollection("branches"))
 			slug: slug,
 		};
 	})
-	.sort((a, b) => Number(b.data.pubDate) - Number(a.data.pubDate));
+	.sort((a, b) => {
+		if (a.data.order !== b.data.order) {
+			return a.data.order - b.data.order;
+		}
+		return Number(b.data.pubDate) - Number(a.data.pubDate);
+	});
 ---
 
 <section id="branches" class:list={["section branches-section home-dark-section py-12", className]}>

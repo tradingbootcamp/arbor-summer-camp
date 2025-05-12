@@ -12,22 +12,16 @@ coverImage:
   source: "@assets/images/projects/code_bloom.png"
   alt: "Code Bloom banner"
 cost: "$300"
-dates: "June 3-6, 2025"
+dates: "June 3-5, 2025"
 sponsor:
   name: "Sponsor this branch?"
   link: "mailto:ricki@trading.camp"
 isIncubator: false
 purchaseLink: "https://trading.camp"
 pubDate: 2024-04-15
+order: 2
 ---
 
-You might be coming in with an idea of what it means to think like an engineer, a founder, or a lawyer. Trader mindset is another way to see the world.
+Code Bloom is a 3-day workshop where you'll go from zero coding knowledge to creating functional web applications through our "vibe coding" approach. You'll spend most of your time actively building projects, with instructors ready to help when you hit roadblocks.
 
-We believe that the best way to learn to trade is to trade. Most days center around live trading in teams with fake money on our internal exchange.
-
-Trading Bootcamp answers three core questions:
-- What is quant trading?
-- Do I like it?
-- Am I any good at it?
-
-Most of our students have no experience in trading going in, but do have a little background in programming and math. 
+AI coding tools are quietly approaching human-level capabilities, and now's the ideal time to learn how to direct them effectively. At Code Bloom, you'll develop practical skills to leverage today's AI tools and learn to use our library of resources including code templates and optimized prompts that you'll take home after the workshop. Consider it a practical shortcut to turning your concepts into reality.

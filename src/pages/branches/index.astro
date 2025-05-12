@@ -22,7 +22,15 @@ const allBranches = (await getCollection("branches"))
 			slug: slug,
 		};
 	})
-	.sort((a, b) => Number(b.data.pubDate) - Number(a.data.pubDate));
+	// Sort by order first, then by pubDate as a fallback
+	.sort((a, b) => {
+		// First sort by order
+		if (a.data.order !== b.data.order) {
+			return a.data.order - b.data.order;
+		}
+		// If orders are the same, fall back to pubDate
+		return Number(b.data.pubDate) - Number(a.data.pubDate);
+	});
 
 const seo: AstroSeoProps = {
 	title: "Branches - Arbor Summer College",

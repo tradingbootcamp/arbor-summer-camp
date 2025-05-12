@@ -64,6 +64,7 @@ const branchesCollection = defineCollection({
 			isIncubator: z.boolean().default(false),
 			purchaseLink: z.string().optional(),
 			pubDate: z.date(),
+			order: z.number().default(999),
 		}),
 });
 
