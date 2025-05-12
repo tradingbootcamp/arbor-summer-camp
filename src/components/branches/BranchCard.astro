@@ -8,6 +8,7 @@ const translatePath = useTranslatedPath(lang);
 
 const { 
     coverImage, 
+    coverPosition,
     title, 
     shortDescription, 
     link, 
@@ -42,7 +43,8 @@ if (instructorPosition === "left") {
                 class="h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-300 cover-image" 
                 src={coverImage} 
                 alt={title} 
-            />
+                style={{ objectPosition: coverPosition || 'center' }}
+                />
             
             <!-- Instructor Cutout Overlay -->
             {instructor.image && (

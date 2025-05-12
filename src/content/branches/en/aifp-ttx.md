@@ -2,15 +2,16 @@
 title: "AGI table-top exercise"
 shortDescription: "Simulate the development of superintelligence in 2027"
 instructor:
-  name: "Daniel Kokotajlo, "
+  name: "Eli Lifland"
   image:
-    source: "@assets/images/instructors/daniel_eli.png"
+    source: "@assets/images/instructors/eli.png"
     alt: "Daniel Kokotajlo"
     position: "leftish"
   link: "/author/daniel-kokotajlo"
 coverImage:
-  source: "@assets/images/projects/aifp_ttx.png"
+  source: "@assets/images/projects/aifp_race.png"
   alt: "AIFP TTX"
+  position: "right"
 cost: "By application"
 dates: "June 3-5, 2025"
 sponsor:

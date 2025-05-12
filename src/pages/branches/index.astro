@@ -55,6 +55,7 @@ const seo: AstroSeoProps = {
 					allBranches.map((branch) => (
 						<BranchCard
 							coverImage={branch.data.coverImage.source}
+							coverPosition={branch.data.coverImage.position}
 							title={branch.data.title}
 							shortDescription={branch.data.shortDescription}
 							instructor={branch.data.instructor}

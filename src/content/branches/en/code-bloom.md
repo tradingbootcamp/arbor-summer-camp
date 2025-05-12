@@ -11,6 +11,7 @@ instructor:
 coverImage:
   source: "@assets/images/projects/code_bloom.png"
   alt: "Code Bloom banner"
+  position: "right"
 cost: "$300"
 dates: "June 3-5, 2025"
 sponsor:

@@ -54,6 +54,7 @@ const branchesCollection = defineCollection({
 			coverImage: z.object({
 				source: image(),
 				alt: z.string(),
+				position: z.string().optional(),
 			}),
 			cost: z.string(),
 			dates: z.string(),
