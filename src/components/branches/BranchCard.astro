@@ -24,6 +24,10 @@ if (instructorPosition === "left") {
     positionClass = "left-[18%] transform -translate-x-1/2";
 } else if (instructorPosition === "right") {
     positionClass = "left-[78%] transform -translate-x-1/2";
+} else if (instructorPosition === "leftish") {
+    positionClass = "left-[25%] transform -translate-x-1/2";
+} else if (instructorPosition === "rightish") {
+    positionClass = "left-[78%] transform -translate-x-1/2";
 } else if (typeof instructorPosition === "number") {
     // Allow numeric values (0-100) for precise positioning
     positionClass = `left-[${instructorPosition}%] transform -translate-x-1/2`;
