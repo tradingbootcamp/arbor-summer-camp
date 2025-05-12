@@ -111,7 +111,6 @@ html {
 	position: relative;
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(12, minmax(0, 1fr));
 	column-gap: var(--grid-gap);
 	padding: var(--base-padding-y) var(--base-padding-x);
 }

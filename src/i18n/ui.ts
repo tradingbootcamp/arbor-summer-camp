@@ -32,7 +32,7 @@ export const ui = {
 		"hero.title.4": "Poker", // ricki remember to replace this! 
 		"hero.subtitle":
 			"A container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.",
-		"hero.scroll": "see branches",
+		"hero.scroll": "scroll to see more",
 		"prologue.title": "Prologue",
 		"apps.title": "",
 		"uiux.title": "",
