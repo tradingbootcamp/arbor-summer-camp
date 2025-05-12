@@ -37,6 +37,36 @@ const projectsCollection = defineCollection({
 		}),
 });
 
+const branchesCollection = defineCollection({
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			shortDescription: z.string(),
+			instructor: z.object({
+				name: z.string(),
+				image: z.object({
+					source: image(),
+					alt: z.string(),
+					position: z.string().optional(),
+				}),
+				link: z.string().optional(),
+			}),
+			coverImage: z.object({
+				source: image(),
+				alt: z.string(),
+			}),
+			cost: z.string(),
+			dates: z.string(),
+			sponsor: z.object({
+				name: z.string().optional(),
+				link: z.string().optional(),
+			}).optional(),
+			isIncubator: z.boolean().default(false),
+			purchaseLink: z.string().optional(),
+			pubDate: z.date(),
+		}),
+});
+
 const authorsCollection = defineCollection({
 	schema: ({ image }) =>
 		z.object({
@@ -52,5 +82,6 @@ const authorsCollection = defineCollection({
 export const collections = {
 	posts: postsCollection,
 	projects: projectsCollection,
+	branches: branchesCollection,
 	authors: authorsCollection,
 };

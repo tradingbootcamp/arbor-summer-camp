@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BranchCard from "@components/branches/BranchCard.astro";
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const { class: className } = Astro.props;
+
+const allBranches = (await getCollection("branches"))
+	.filter((branch) => {
+		const [postLang, ...slug] = branch.slug.split("/");
+		return postLang === lang;
+	})
+	.map((branch) => {
+		const [postLang, slug] = branch.slug.split("/");
+
+		return {
+			...branch,
+			slug: slug,
+		};
+	})
+	.sort((a, b) => Number(b.data.pubDate) - Number(a.data.pubDate));
+---
+
+<section id="branches" class:list={["section branches-section home-dark-section py-12", className]}>
+	<div class="col-span-12 col-start-1 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- <h2 class="text-3xl font-bold mb-12 text-center">Summer College Branches</h2> -->
+		<ol class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:gap-44">
+			{
+				allBranches.map((branch, index) => (
+					<BranchCard
+						coverImage={branch.data.coverImage.source}
+						title={branch.data.title}
+						shortDescription={branch.data.shortDescription}
+						instructor={branch.data.instructor}
+						instructorPosition={branch.data.instructor.image.position}
+						cost={branch.data.cost}
+						isIncubator={branch.data.isIncubator}
+						link={`/branches/${branch.slug}`}
+						class={
+							index % 2 === 0
+								? `md:col-start-1 md:row-start-${Math.floor(index / 2) * 2 + 1} md:row-span-2`
+								: `md:col-start-2 md:row-start-${Math.floor(index / 2) * 2 + 2} md:row-span-2`
+						}
+					/>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style is:global>
+	.branches-section ol li .cover-image {
+		--clip: 0%;
+		clip-path: inset(var(--clip) round 0.5rem);
+	}
+</style>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	function init() {
+		const branches = gsap.utils.toArray(".branches-section ol li") as gsap.DOMTarget[];
+		const previews = gsap.utils.toArray(".branches-section ol li .cover-image") as gsap.DOMTarget[];
+		previews.forEach((preview) => {
+			gsap.from(preview, {
+				scrollTrigger: {
+					trigger: preview,
+					start: "top bottom",
+					end: "center center",
+					scrub: 1,
+					markers: false,
+				},
+				ease: "power3.out",
+				"--clip": "30%",
+			});
+		});
+
+		if (window.innerWidth >= 768) {
+			branches.forEach((branch) => {
+				gsap.to(branch, {
+					scrollTrigger: {
+						trigger: ".branches-section ol",
+						start: "top bottom",
+						end: "bottom center",
+						scrub: 1,
+						markers: false,
+					},
+					ease: "none",
+					y: `-200px`,
+				});
+			});
+		}
+	}
+
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
+</script>

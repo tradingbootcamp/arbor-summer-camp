@@ -1,0 +1,124 @@
+---
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const { 
+    coverImage, 
+    title, 
+    shortDescription, 
+    link, 
+    cost, 
+    instructor, 
+    isIncubator,
+    instructorPosition = "center",
+    class: className 
+} = Astro.props;
+
+// Calculate position classes based on instructorPosition
+let positionClass = "left-1/2 transform -translate-x-1/2"; // Default (center)
+if (instructorPosition === "left") {
+    positionClass = "left-[18%] transform -translate-x-1/2";
+} else if (instructorPosition === "right") {
+    positionClass = "left-[78%] transform -translate-x-1/2";
+} else if (typeof instructorPosition === "number") {
+    // Allow numeric values (0-100) for precise positioning
+    positionClass = `left-[${instructorPosition}%] transform -translate-x-1/2`;
+}
+---
+
+<li class:list={["flex flex-col", className]}>
+    <a href={translatePath(link)} aria-label={`Branch: ${title}`}>
+        <div class="relative h-[25rem] overflow-hidden rounded-md lg:rounded-lg">
+            <!-- Cover Image (Background) -->
+            <Image 
+                class="h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-300 cover-image" 
+                src={coverImage} 
+                alt={title} 
+            />
+            
+            <!-- Instructor Cutout Overlay -->
+            {instructor.image && (
+                <div class={`absolute bottom-0 ${positionClass} instructor-cutout-container`}>
+                    <Image 
+                        src={instructor.image.source} 
+                        alt={instructor.image.alt}
+                        class="h-[90%] w-auto object-contain instructor-cutout" 
+                    />
+                </div>
+            )}
+            
+            {isIncubator && (
+                <div class="absolute top-4 right-4 bg-sunshine-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+                    Incubator
+                </div>
+            )}
+            
+            <!-- Banner at bottom that cuts off instructor image -->
+            <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-4 banner-overlay">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-mono text-lg font-medium uppercase tracking-wide md:mt-0 lg:text-xl text-black">
+                        {title}
+                    </h3>
+                    <span class="font-mono text-base font-bold text-black">{cost}</span>
+                </div>
+                <p class="mt-2 text-sm text-slate-600 line-clamp-1">{shortDescription}</p>
+            </div>
+        </div>
+    </a>
+    
+    <div class="px-2 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <span class="text-sm">{instructor.name}</span>
+            </div>
+            <a 
+                href={translatePath(link)} 
+                class="text-base font-medium hover:text-primary-700"
+            >
+                Learn more &rarr;
+            </a>
+        </div>
+    </div>
+</li>
+
+<style>
+    .instructor-cutout-container {
+        /* Ensure the instructor image is positioned correctly */
+        z-index: 10;
+        pointer-events: none; /* Allow clicks to pass through to the link */
+        position: absolute;
+        bottom: 0;
+        /* Set a fixed width instead of auto to maintain consistency */
+        width: 60%; /* Fixed percentage width */
+        height: 90%;
+        /* Use transform for positioning without affecting size */
+        transform: translateX(-50%);
+    }
+    
+    .instructor-cutout {
+        /* Adjust these values as needed for your specific cutout images */
+        object-position: bottom;
+        filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+        width: auto;
+        height: 100%;
+        max-height: 100%;
+        /* Center the image within its container */
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .banner-overlay {
+        /* Create a banner that appears to cut off the instructor image */
+        z-index: 20;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Add styles for the cover image */
+    .cover-image-container {
+        position: relative;
+    }
+</style> 
