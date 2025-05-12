@@ -39,279 +39,244 @@ let pages = [
 const { pathname } = Astro.url;
 ---
 
-<header>
-	<a href={translatePath("/")} aria-label="Home" class="logo absolute z-50 flex h-[4.5rem] items-center md:h-[5.9rem]">
-		<img 
-			src="/images/minimal_green_cs_tree_logo.svg" 
-			alt="Logo" 
-			class="h-7 w-auto md:h-9"
-		/>
-	</a>
-	<div data-xdata="{ open: false }" class="navigation fixed right-0 top-0 z-50" data-xbind.class="{'w-full navbar-open': open}">
-		<div class="ml-auto md:max-w-fit" data-xbind.class="{'max-w-3xl': open, 'max-w-[8rem]': !open }">
-			<div class="mx-auto w-full">
-				<div
-					class="shadow-thick resizable nav-container squircle relative mx-auto flex w-full flex-col justify-center overflow-x-hidden bg-zinc-900 backdrop-blur-xl backdrop-filter md:flex-row-reverse">
-					<div class="flex flex-row items-center justify-end md:hidden">
-						<a class="px-3 py-[0.4rem] pl-4" href={translatePath("/contact/")} aria-label="Contact Page">
-							<Icon class="text-white" name="octicon:mail-16" width="20" data-xbind.class="{'hidden': open}" />
-						</a>
-						<button
-							data-xon.click="open = !open"
-							data-xbind.style="{'padding-top': open ? '1rem' : '0.4rem'}"
-							aria-label="Open navbar"
-							class="inline-flex items-center justify-center px-3 py-[0.4rem] pr-4 text-white hover:text-blue-300 focus:text-white focus:outline-none">
-							<svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-								<path
-									data-xbind.class="{'hidden': open, 'inline-flex': !open }"
-									class="inline-flex"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M4 6h16M4 12h16M4 18h16">
-								</path>
-								<path
-									data-xbind.class="{'hidden': !open, 'inline-flex': open }"
-									class="hidden"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M6 18L18 6M6 6l12 12">
-								</path>
-							</svg>
-						</button>
-					</div>
-					<nav data-xbind.class="{'flex': open, 'hidden': !open}" class="hidden flex-grow flex-col justify-center py-12 md:flex md:py-0">
-						<ul
-							class="flex list-none flex-col items-end justify-center gap-2 px-2 text-center text-3xl md:flex-row md:items-center md:text-base">
-							{
-								pages.map((page) => (
-									<li data-cursor-hover>
-										<a
-											href={translatePath(page.url)}
-											class={`inline-block cursor-pointer px-1 py-[0.33rem] ${
-												page.url === pathname ||
-												page.url === pathname.replace(/^\/it|\/$/, "") ||
-												(page.url === "/blog" && (pathname.startsWith("/blog") || pathname.startsWith("/it/blog")))
-													? "active"
-													: ""
-											}`}>
-											<span class="menu-item-container inline-block">
-												<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
-													{page.title}
-												</span>
-											</span>
-										</a>
-									</li>
-								))
-							}
-							<li>
-								<a 
-									href="/#faq" 
-									class="inline-block cursor-pointer px-1 py-[0.33rem]"
-									data-faq-link>
-									<span class="menu-item-container inline-block">
-										<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
-											FAQ
-										</span>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
+<header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-8 md:py-6">
+	<div class="container mx-auto flex items-center justify-between">
+		<!-- Logo -->
+		<a href={translatePath("/")} aria-label="Home" class="logo flex items-center">
+			<img 
+				src="/images/minimal_green_cs_tree_logo.svg" 
+				alt="Logo" 
+				class="h-8 w-auto md:h-10"
+			/>
+		</a>
+
+		<!-- Mobile menu button -->
+		<button 
+			id="mobile-menu-toggle" 
+			class="flex md:hidden items-center justify-center p-2 text-forest-900"
+			aria-label="Toggle menu"
+		>
+			<Icon name="octicon:three-bars-16" width="24" class="menu-icon" />
+			<Icon name="octicon:x-16" width="24" class="close-icon hidden" />
+		</button>
+
+		<!-- Navigation -->
+		<nav id="main-nav" class="hidden md:flex items-center space-x-8">
+			{
+				pages.map((page) => (
+					<a
+						href={translatePath(page.url)}
+						class={`nav-link relative font-medium text-forest-900 hover:text-forest-700 transition-colors ${
+							page.url === pathname ||
+							page.url === pathname.replace(/^\/it|\/$/, "") 
+								? "active"
+								: ""
+						}`}
+					>
+						{page.title}
+					</a>
+				))
+			}
+			<a 
+				href="/#faq" 
+				class="nav-link relative font-medium text-forest-900 hover:text-forest-700 transition-colors"
+				data-faq-link
+			>
+				FAQ
+			</a>
+		</nav>
+	</div>
+
+	<!-- Mobile menu (hidden by default) -->
+	<div id="mobile-menu" class="hidden bg-forest-50/95 shadow-lg rounded-b-lg mt-2 py-4 px-6 md:hidden">
+		<nav class="flex flex-col space-y-4">
+			{
+				pages.map((page) => (
+					<a
+						href={translatePath(page.url)}
+						class={`text-lg font-medium text-forest-900 hover:text-forest-700 ${
+							page.url === pathname ||
+							page.url === pathname.replace(/^\/it|\/$/, "") 
+								? "active"
+								: ""
+						}`}
+					>
+						{page.title}
+					</a>
+				))
+			}
+			<a 
+				href="/#faq" 
+				class="text-lg font-medium text-forest-900 hover:text-forest-700"
+				data-faq-link
+			>
+				FAQ
+			</a>
+		</nav>
 	</div>
 </header>
 
 <style>
-	.navigation {
-		mix-blend-mode: difference;
+	header {
+		background-color: rgba(240, 253, 244, 0); /* forest-50 with 0 opacity */
+		backdrop-filter: blur(0px);
+		transition: all 0.3s ease;
 	}
-	.navigation.navbar-open {
-		mix-blend-mode: luminosity;
+
+	header.scrolled {
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		background-color: rgba(240, 253, 244, 0.95); /* forest-50 with 95% opacity */
+		backdrop-filter: blur(8px);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	}
-	.navigation,
-	.logo {
-		padding: 1rem var(--base-padding-x);
-	}
-	@media (min-width: 768px) {
-		.navigation,
-		.logo {
-			padding: 2rem var(--base-padding-x);
-		}
-	}
-	.resizable:before {
-		content: "|";
+
+	.nav-link::after {
+		content: "";
 		position: absolute;
-		left: 0.4rem;
-		top: 0.36rem;
-		font-size: 12px;
-		line-height: 23px;
-		color: #8e8e8e;
-		opacity: 0;
-		text-shadow: 4px 0 #8e8e8e;
-		transition: all 0.5s ease;
+		bottom: -4px;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #166534; /* forest-800 */
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 0.3s ease;
 	}
-	.collapsed .resizable:before {
+
+	.nav-link:hover::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	.nav-link.active::after {
+		transform: scaleX(1);
+		background-color: #166534; /* forest-800 */
+	}
+
+	/* Mobile menu active styles */
+	.mobile-menu-open {
+		max-height: 300px;
 		opacity: 1;
 	}
-	nav a .menu-item-container {
-		border-radius: 0.45rem;
-	}
-	nav a.active .menu-item-container,
-	nav a:hover .menu-item-container {
-		transition: background-color 0.3s ease;
-	}
-	nav ul:not(.collapsed) a.active .menu-item-container {
-		transition-duration: 0.5s;
-		background: #aaa;
-	}
-	nav ul:not(.collapsed) a:hover .menu-item-container {
-		background: #fff;
-	}
-	nav ul:not(.collapsed) a.active .menu-item-container .menu-item,
-	nav ul:not(.collapsed) a:hover .menu-item-container .menu-item {
-		color: #000;
-	}
-	nav ul.collapsed a.active .menu-item-container .menu-item,
-	nav ul.collapsed a:hover .menu-item-container .menu-item {
-		color: #fff;
+
+	#mobile-menu a.active {
+		color: #166534; /* forest-800 */
+		font-weight: 600;
 	}
 </style>
 
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-	gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
+	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 	function init() {
-		gsap.timeline({
-			defaults: {
-				duration: 1,
-				ease: "power2.out",
-			},
-		})
-			.from(".logo-svg path", { drawSVG: 0 })
-			.to(".logo-svg path", { fill: "#000", duration: 2 }, "<+=0.5");
-
-		let isHoveringMenu = false;
-		let menuCollapsed = false;
-
-		const pageLinksUl = document.querySelector("header .nav-container nav ul");
-
-		if (!pageLinksUl) {
-			return;
-		}
-
-		let menuCollapseTl = gsap
-			.timeline({
-				defaults: {
-					ease: "back.inOut(1.7)",
-					duration: 0.4,
-				},
-				paused: true,
-				onStart: () => {
-					pageLinksUl.classList.add("collapsed");
-				},
-			})
-			.to("header .nav-container", { width: 125 })
-			.to(
-				pageLinksUl,
-				{
-					x: () => {
-						const pathName = window.location.pathname;
-
-						if (pathName === "/" || pathName === "/it/") {
-							return "9.5rem";
-						} else if (pathName.startsWith("/blog") || pathName.startsWith("/it/blog")) {
-							return "3.5rem";
-						}
-
-						return "-3.5rem";
-					},
-				},
-				"<",
-			);
-
-		const isTouchDevice = window.matchMedia("(hover: none)").matches;
-
-		if (window.innerWidth >= 768 && !isTouchDevice) {
-			function expandMenu() {
-				menuCollapseTl.reverse();
-				pageLinksUl?.classList.remove("collapsed");
-				document.querySelector("header .navigation")?.classList.remove("collapsed");
-				menuCollapsed = false;
-			}
-
-			function collapseMenu() {
-				if (window.scrollY > 200) {
-					menuCollapseTl.play();
-					pageLinksUl?.classList.add("collapsed");
-					document.querySelector("header .navigation")?.classList.add("collapsed");
-					menuCollapsed = true;
+		// Header scroll effect
+		const header = document.querySelector('header');
+		
+		// Only add the scrolled class when user has scrolled at least 10px
+		ScrollTrigger.create({
+			start: 0,
+			onUpdate: (self) => {
+				if (window.scrollY < 10) {
+					header?.classList.remove('scrolled');
+				} else {
+					header?.classList.add('scrolled');
 				}
 			}
+		});
 
-			collapseMenu();
+		// Mobile menu toggle
+		const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+		const mobileMenu = document.getElementById('mobile-menu');
+		const menuIcon = document.querySelector('.menu-icon');
+		const closeIcon = document.querySelector('.close-icon');
 
-			const navContainer = document.querySelector(".nav-container") as HTMLElement;
+		mobileMenuToggle?.addEventListener('click', () => {
+			mobileMenu?.classList.toggle('hidden');
+			menuIcon?.classList.toggle('hidden');
+			closeIcon?.classList.toggle('hidden');
+		});
 
-			function mouseEnterHandler() {
-				isHoveringMenu = true;
-				expandMenu();
-			}
-
-			function mouseLeaveHandler() {
-				isHoveringMenu = false;
-				collapseMenu();
-			}
-
-			function handleScroll() {
-				if (window.scrollY > 200 && !isHoveringMenu && !menuCollapsed) {
-					collapseMenu();
-				} else if (window.scrollY <= 200 && menuCollapsed) {
-					expandMenu();
+		// FAQ scroll handling
+		const faqLinks = document.querySelectorAll('a[data-faq-link]');
+		faqLinks.forEach(link => {
+			link.addEventListener('click', (e) => {
+				// Check if we're on the homepage
+				if (window.location.pathname === '/' || window.location.pathname === '/it/') {
+					e.preventDefault();
+					gsap.to(window, {
+						duration: 0.8,
+						scrollTo: {
+							y: "#faq",
+							offsetY: 100
+						},
+						ease: "power3.inOut"
+					});
+					
+					// Close mobile menu if open
+					if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+						mobileMenu.classList.add('hidden');
+						menuIcon?.classList.remove('hidden');
+						closeIcon?.classList.add('hidden');
+					}
 				}
-			}
-
-			navContainer?.removeEventListener("mouseenter", mouseEnterHandler);
-			navContainer?.addEventListener("mouseenter", mouseEnterHandler);
-
-			navContainer?.removeEventListener("mouseleave", mouseLeaveHandler);
-			navContainer?.addEventListener("mouseleave", mouseLeaveHandler);
-
-			window?.removeEventListener("scroll", handleScroll);
-			window?.addEventListener("scroll", handleScroll);
-		}
-
-		// Add FAQ scroll handling
-		const faqLink = document.querySelector('a[data-faq-link]');
-		faqLink?.addEventListener('click', (e) => {
-			// Check if we're on the homepage
-			if (window.location.pathname === '/' || window.location.pathname === '/it/') {
-				e.preventDefault();
-				gsap.to(window, {
-					duration: 0.5,
-					scrollTo: "#faq"
-				});
-			}
-			// If not on homepage, let the normal navigation happen with the #faq hash
+				// If not on homepage, let the normal navigation happen with the #faq hash
+			});
 		});
 
 		// Check for hash on page load
 		if (window.location.hash === '#faq') {
 			gsap.to(window, {
 				duration: 0.5,
-				scrollTo: "#faq",
+				scrollTo: {
+					y: "#faq",
+					offsetY: 100
+				},
 				delay: 0.1 // Small delay to ensure elements are loaded
+			});
+		}
+
+		// Highlight active section when scrolling
+		const sections = document.querySelectorAll('section[id]');
+		const navLinks = document.querySelectorAll('.nav-link');
+		
+		if (sections.length > 0) {
+			ScrollTrigger.create({
+				start: 'top 30%',
+				end: 'bottom 70%',
+				markers: false,
+				onUpdate: function() {
+					let currentSection = '';
+					
+					sections.forEach(section => {
+						const sectionTop = section.offsetTop;
+						const sectionHeight = section.offsetHeight;
+						
+						if (window.scrollY >= sectionTop - 200 && 
+							window.scrollY < sectionTop + sectionHeight - 200) {
+							currentSection = section.getAttribute('id') || '';
+						}
+					});
+					
+					navLinks.forEach(link => {
+						link.classList.remove('active');
+						const href = link.getAttribute('href');
+						if (href && href.includes(`#${currentSection}`)) {
+							link.classList.add('active');
+						}
+					});
+				}
 			});
 		}
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	// Initialize on page load
+	document.addEventListener("DOMContentLoaded", init);
+	
+	// Also initialize on view transitions (for Astro)
+	document.addEventListener("astro:page-load", init);
 </script>

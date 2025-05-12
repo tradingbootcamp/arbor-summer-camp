@@ -1,0 +1,317 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, getUrlWithoutLang, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const isDev = import.meta.env.DEV;
+
+const lang = getLangFromUrl(Astro.url);
+const path = getUrlWithoutLang(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+let pages = [
+	{
+		title: "Home",
+		url: "/",
+	},
+	// {
+	// 	title: "Services",
+	// 	url: "/services",
+	// },
+	{
+		title: "Buy",
+		url: "/buy/",
+	},
+	{
+		title: t("contact"),
+		url: "/contact/",
+	},
+];
+
+// if (isDev) {
+// 	pages.push({
+// 		title: "Overview",
+// 		url: "/system/overview",
+// 	});
+// }
+
+const { pathname } = Astro.url;
+---
+
+<header>
+	<a href={translatePath("/")} aria-label="Home" class="logo absolute z-50 flex h-[4.5rem] items-center md:h-[5.9rem]">
+		<img 
+			src="/images/minimal_green_cs_tree_logo.svg" 
+			alt="Logo" 
+			class="h-7 w-auto md:h-9"
+		/>
+	</a>
+	<div data-xdata="{ open: false }" class="navigation fixed right-0 top-0 z-50" data-xbind.class="{'w-full navbar-open': open}">
+		<div class="ml-auto md:max-w-fit" data-xbind.class="{'max-w-3xl': open, 'max-w-[8rem]': !open }">
+			<div class="mx-auto w-full">
+				<div
+					class="shadow-thick resizable nav-container squircle relative mx-auto flex w-full flex-col justify-center overflow-x-hidden bg-zinc-900 backdrop-blur-xl backdrop-filter md:flex-row-reverse">
+					<div class="flex flex-row items-center justify-end md:hidden">
+						<a class="px-3 py-[0.4rem] pl-4" href={translatePath("/contact/")} aria-label="Contact Page">
+							<Icon class="text-white" name="octicon:mail-16" width="20" data-xbind.class="{'hidden': open}" />
+						</a>
+						<button
+							data-xon.click="open = !open"
+							data-xbind.style="{'padding-top': open ? '1rem' : '0.4rem'}"
+							aria-label="Open navbar"
+							class="inline-flex items-center justify-center px-3 py-[0.4rem] pr-4 text-white hover:text-blue-300 focus:text-white focus:outline-none">
+							<svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+								<path
+									data-xbind.class="{'hidden': open, 'inline-flex': !open }"
+									class="inline-flex"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M4 6h16M4 12h16M4 18h16">
+								</path>
+								<path
+									data-xbind.class="{'hidden': !open, 'inline-flex': open }"
+									class="hidden"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M6 18L18 6M6 6l12 12">
+								</path>
+							</svg>
+						</button>
+					</div>
+					<nav data-xbind.class="{'flex': open, 'hidden': !open}" class="hidden flex-grow flex-col justify-center py-12 md:flex md:py-0">
+						<ul
+							class="flex list-none flex-col items-end justify-center gap-2 px-2 text-center text-3xl md:flex-row md:items-center md:text-base">
+							{
+								pages.map((page) => (
+									<li data-cursor-hover>
+										<a
+											href={translatePath(page.url)}
+											class={`inline-block cursor-pointer px-1 py-[0.33rem] ${
+												page.url === pathname ||
+												page.url === pathname.replace(/^\/it|\/$/, "") ||
+												(page.url === "/blog" && (pathname.startsWith("/blog") || pathname.startsWith("/it/blog")))
+													? "active"
+													: ""
+											}`}>
+											<span class="menu-item-container inline-block">
+												<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
+													{page.title}
+												</span>
+											</span>
+										</a>
+									</li>
+								))
+							}
+							<li>
+								<a 
+									href="/#faq" 
+									class="inline-block cursor-pointer px-1 py-[0.33rem]"
+									data-faq-link>
+									<span class="menu-item-container inline-block">
+										<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
+											FAQ
+										</span>
+									</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<style>
+	.navigation {
+		mix-blend-mode: difference;
+	}
+	.navigation.navbar-open {
+		mix-blend-mode: luminosity;
+	}
+	.navigation,
+	.logo {
+		padding: 1rem var(--base-padding-x);
+	}
+	@media (min-width: 768px) {
+		.navigation,
+		.logo {
+			padding: 2rem var(--base-padding-x);
+		}
+	}
+	.resizable:before {
+		content: "|";
+		position: absolute;
+		left: 0.4rem;
+		top: 0.36rem;
+		font-size: 12px;
+		line-height: 23px;
+		color: #8e8e8e;
+		opacity: 0;
+		text-shadow: 4px 0 #8e8e8e;
+		transition: all 0.5s ease;
+	}
+	.collapsed .resizable:before {
+		opacity: 1;
+	}
+	nav a .menu-item-container {
+		border-radius: 0.45rem;
+	}
+	nav a.active .menu-item-container,
+	nav a:hover .menu-item-container {
+		transition: background-color 0.3s ease;
+	}
+	nav ul:not(.collapsed) a.active .menu-item-container {
+		transition-duration: 0.5s;
+		background: #aaa;
+	}
+	nav ul:not(.collapsed) a:hover .menu-item-container {
+		background: #fff;
+	}
+	nav ul:not(.collapsed) a.active .menu-item-container .menu-item,
+	nav ul:not(.collapsed) a:hover .menu-item-container .menu-item {
+		color: #000;
+	}
+	nav ul.collapsed a.active .menu-item-container .menu-item,
+	nav ul.collapsed a:hover .menu-item-container .menu-item {
+		color: #fff;
+	}
+</style>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+
+	gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
+
+	function init() {
+		gsap.timeline({
+			defaults: {
+				duration: 1,
+				ease: "power2.out",
+			},
+		})
+			.from(".logo-svg path", { drawSVG: 0 })
+			.to(".logo-svg path", { fill: "#000", duration: 2 }, "<+=0.5");
+
+		let isHoveringMenu = false;
+		let menuCollapsed = false;
+
+		const pageLinksUl = document.querySelector("header .nav-container nav ul");
+
+		if (!pageLinksUl) {
+			return;
+		}
+
+		let menuCollapseTl = gsap
+			.timeline({
+				defaults: {
+					ease: "back.inOut(1.7)",
+					duration: 0.4,
+				},
+				paused: true,
+				onStart: () => {
+					pageLinksUl.classList.add("collapsed");
+				},
+			})
+			.to("header .nav-container", { width: 125 })
+			.to(
+				pageLinksUl,
+				{
+					x: () => {
+						const pathName = window.location.pathname;
+
+						if (pathName === "/" || pathName === "/it/") {
+							return "9.5rem";
+						} else if (pathName.startsWith("/blog") || pathName.startsWith("/it/blog")) {
+							return "3.5rem";
+						}
+
+						return "-3.5rem";
+					},
+				},
+				"<",
+			);
+
+		const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
+		if (window.innerWidth >= 768 && !isTouchDevice) {
+			function expandMenu() {
+				menuCollapseTl.reverse();
+				pageLinksUl?.classList.remove("collapsed");
+				document.querySelector("header .navigation")?.classList.remove("collapsed");
+				menuCollapsed = false;
+			}
+
+			function collapseMenu() {
+				if (window.scrollY > 200) {
+					menuCollapseTl.play();
+					pageLinksUl?.classList.add("collapsed");
+					document.querySelector("header .navigation")?.classList.add("collapsed");
+					menuCollapsed = true;
+				}
+			}
+
+			collapseMenu();
+
+			const navContainer = document.querySelector(".nav-container") as HTMLElement;
+
+			function mouseEnterHandler() {
+				isHoveringMenu = true;
+				expandMenu();
+			}
+
+			function mouseLeaveHandler() {
+				isHoveringMenu = false;
+				collapseMenu();
+			}
+
+			function handleScroll() {
+				if (window.scrollY > 200 && !isHoveringMenu && !menuCollapsed) {
+					collapseMenu();
+				} else if (window.scrollY <= 200 && menuCollapsed) {
+					expandMenu();
+				}
+			}
+
+			navContainer?.removeEventListener("mouseenter", mouseEnterHandler);
+			navContainer?.addEventListener("mouseenter", mouseEnterHandler);
+
+			navContainer?.removeEventListener("mouseleave", mouseLeaveHandler);
+			navContainer?.addEventListener("mouseleave", mouseLeaveHandler);
+
+			window?.removeEventListener("scroll", handleScroll);
+			window?.addEventListener("scroll", handleScroll);
+		}
+
+		// Add FAQ scroll handling
+		const faqLink = document.querySelector('a[data-faq-link]');
+		faqLink?.addEventListener('click', (e) => {
+			// Check if we're on the homepage
+			if (window.location.pathname === '/' || window.location.pathname === '/it/') {
+				e.preventDefault();
+				gsap.to(window, {
+					duration: 0.5,
+					scrollTo: "#faq"
+				});
+			}
+			// If not on homepage, let the normal navigation happen with the #faq hash
+		});
+
+		// Check for hash on page load
+		if (window.location.hash === '#faq') {
+			gsap.to(window, {
+				duration: 0.5,
+				scrollTo: "#faq",
+				delay: 0.1 // Small delay to ensure elements are loaded
+			});
+		}
+	}
+
+	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
+	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+</script>
