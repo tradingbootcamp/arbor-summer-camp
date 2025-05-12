@@ -1,31 +1,21 @@
 ---
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl, getUrlWithoutLang, useTranslations, useTranslatedPath } from "@i18n/utils";
 
 const isDev = import.meta.env.DEV;
 
-const lang = getLangFromUrl(Astro.url);
-const path = getUrlWithoutLang(Astro.url);
-const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
-
+// Simplified navigation without language handling
 let pages = [
 	{
 		title: "Home",
 		url: "/",
 	},
-	// {
-	// 	title: "Services",
-	// 	url: "/services",
-	// },
 	{
-		title: "Buy",
-		url: "/buy/",
+		title: "Branches",
+		url: "#branches",
 	},
 	{
-		title: t("contact"),
-		url: "/contact/",
+		title: "Incubator",
+		url: "/incubator/",
 	},
 ];
 
@@ -42,7 +32,7 @@ const { pathname } = Astro.url;
 <header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-8 md:py-6">
 	<div class="container mx-auto flex items-center justify-between">
 		<!-- Logo -->
-		<a href={translatePath("/")} aria-label="Home" class="logo flex items-center">
+		<a href="/" aria-label="Home" class="logo flex items-center">
 			<img 
 				src="/images/minimal_green_cs_tree_logo.svg" 
 				alt="Logo" 
@@ -65,10 +55,9 @@ const { pathname } = Astro.url;
 			{
 				pages.map((page) => (
 					<a
-						href={translatePath(page.url)}
+						href={page.url}
 						class={`nav-link relative font-medium text-forest-900 hover:text-forest-700 transition-colors ${
-							page.url === pathname ||
-							page.url === pathname.replace(/^\/it|\/$/, "") 
+							pathname === page.url || pathname === page.url.slice(0, -1)
 								? "active"
 								: ""
 						}`}
@@ -93,10 +82,9 @@ const { pathname } = Astro.url;
 			{
 				pages.map((page) => (
 					<a
-						href={translatePath(page.url)}
+						href={page.url}
 						class={`text-lg font-medium text-forest-900 hover:text-forest-700 ${
-							page.url === pathname ||
-							page.url === pathname.replace(/^\/it|\/$/, "") 
+							pathname === page.url || pathname === page.url.slice(0, -1)
 								? "active"
 								: ""
 						}`}
