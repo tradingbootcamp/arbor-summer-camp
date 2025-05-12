@@ -1,10 +1,10 @@
 <svg viewBox="30 30 140 100" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
   <style>
     :root {
-      --gold-500: #edb74d;
+      --forest-900: #14532d;
     }
-    circle { fill: var(--gold-500); }
-    line { stroke: var(--gold-500); stroke-width: 4; }
+    circle { fill: var(--forest-900); }
+    line { stroke: var(--forest-900); stroke-width: 4; }
   </style>
   <!-- Root node -->
   <circle cx="100" cy="30" r="8" />
