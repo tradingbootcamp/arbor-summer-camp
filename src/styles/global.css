@@ -11,12 +11,12 @@
 }
 
 :root {
-	font-family: "Inter", sans-serif;
+	font-family: "Quicksand", sans-serif;
 }
 
 @supports (font-variation-settings: normal) {
 	:root {
-		font-family: "Inter var", sans-serif;
+		font-family: "Quicksand", sans-serif;
 	}
 }
 
@@ -47,7 +47,7 @@
 
 html {
 	scrollbar-gutter: stable;
-	@apply overflow-x-hidden bg-slate-100 text-stone-900;
+	@apply overflow-x-hidden bg-forest-50 text-stone-900;
 }
 
 /* Custom scrollbar */

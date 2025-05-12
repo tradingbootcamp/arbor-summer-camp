@@ -92,8 +92,8 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				display: ["Midnight", ...defaultTheme.fontFamily.sans],
-				sans: ["Inter", ...defaultTheme.fontFamily.sans],
+				display: ["Outfit", ...defaultTheme.fontFamily.sans],
+				sans: ["Nunito", ...defaultTheme.fontFamily.sans],
 				mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
 			},
 		},
