@@ -11,7 +11,7 @@ const postsCollection = defineCollection({
 				link: z.string(),
 			}),
 			image: z.object({
-				source: image(),
+				source: z.union([image(), z.string()]),
 				alt: z.string(),
 			}),
 
@@ -31,7 +31,7 @@ const projectsCollection = defineCollection({
 				link: z.string(),
 			}),
 			image: z.object({
-				source: image(),
+				source: z.union([image(), z.string()]),
 				alt: z.string(),
 			}),
 		}),
@@ -45,14 +45,14 @@ const branchesCollection = defineCollection({
 			instructor: z.object({
 				name: z.string(),
 				image: z.object({
-					source: image(),
+					source: z.union([image(), z.string()]),
 					alt: z.string(),
 					position: z.string().optional(),
 				}),
 				link: z.string().optional(),
 			}),
 			coverImage: z.object({
-				source: image(),
+				source: z.union([image(), z.string()]),
 				alt: z.string(),
 				position: z.string().optional(),
 			}),
@@ -75,7 +75,7 @@ const authorsCollection = defineCollection({
 			name: z.string(),
 			description: z.string(),
 			image: z.object({
-				source: image(),
+				source: z.union([image(), z.string()]),
 				alt: z.string(),
 			}),
 		}),
