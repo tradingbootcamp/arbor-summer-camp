@@ -19,14 +19,10 @@ pubDate: 2024-04-15
 order: 3
 ---
 
-You might be coming in with an idea of what it means to think like an engineer, a founder, or a lawyer. Trader mindset is another way to see the world.
+Stock exchanges routinely process tens of thousands of messages per second, and are designed to process millions in case of high volatility. This isn’t particularly surprising - for instance, Google handles approximately this many queries. What’s surprising is that stock exchanges can do this on a single server, whereas Google’s search engine runs on untold fleets of machines around the world.
 
-We believe that the best way to learn to trade is to trade. Most days center around live trading in teams with fake money on our internal exchange.
+I discuss the engineering constraints of building very high throughput systems in resource constrained environments
 
-Trading Bootcamp answers three core questions:
+Teams draft design proposals for handling specific challenges
 
-- What is quant trading?
-- Do I like it?
-- Am I any good at it?
-
-Most of our students have no experience in trading going in, but do have a little background in programming and math.
+Attendees compete to optimize market components in toy market environments
