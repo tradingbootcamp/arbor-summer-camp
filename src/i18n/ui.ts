@@ -7,7 +7,7 @@ export const defaultLang = "en";
 export const ui = {
 	en: {
 		or: "or",
-		tickets: "Tickets",
+		tickets: "Tickets Jun 2–6",
 		contact: "Contact",
 		contacts: "Contacts",
 		contactus: "Contact us",
@@ -31,7 +31,7 @@ export const ui = {
 		"hero.title.3": "Writing",
 		"hero.title.4": "Poker", // ricki remember to replace this! 
 		"hero.subtitle":
-			"A container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.",
+			"In the week between LessOnline and Manifest, gather at Lighthaven to learn from each other...",
 		"hero.scroll": "scroll to see more",
 		"prologue.title": "Prologue",
 		"apps.title": "",
@@ -47,7 +47,7 @@ export const ui = {
 		"privacy.wip.content": "This page will be updated soon",
 		"faqs.question1": "What's the first FAQ question gonna be?",
 		"faqs.answer1":
-			"I don't know, but I know Saul Munn is gonna write it.",
+			"I don't know.",
 		"faqs.question2": "What about the second one?",
 		"faqs.answer2":
 			"That's for Ross Rheingans-Yoo to write and Ricki Heicklen to find out.",

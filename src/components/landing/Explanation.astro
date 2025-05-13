@@ -20,15 +20,17 @@ const translatePath = useTranslatedPath(lang);
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div class="lg:col-span-7 prose prose-lg">
         <p class="mb-4">
-          Arbor Summer College (Mon June 2 - Fri June 6) is a pedagogy playground — a place to teach and take experimental bootcamps, workshops, seminars, and multi-day immersive experiences in the most target-rich environment a teacher could dream of. It takes place the week between <a href="https://less.online/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-400 no-underline">LessOnline</a> and <a href="https://manifest.is/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-400 no-underline">Manifest</a>, when hundreds of curious learners will flock to Lighthaven to discuss, debate, and bet on every topic under the sun.
+          Arbor Summer College (Mon, June 2–Fri, June 6) is a a place to teach and take experimental bootcamps, workshops, seminars, and multi-day immersive experiences in the most target-rich environment a teacher could dream of. 
+        </p>   
+        <p class="mb-4">
+          It takes place the week between <a href="https://less.online/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-400 no-underline">LessOnline</a> and <a href="https://manifest.is/" target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-400 no-underline">Manifest</a>, when hundreds of curious learners will flock to Lighthaven to discuss, debate, and bet on every topic under the sun.
+        </p>
+        <p class="mb-4">
+          Think "college" and "Disneyland". Branches like <b>Trading Bootcamp</b> and the <b>AI Future Project's 2027 tabletop AI wargame</b> will run in parallel across campus throughout the week. 
         </p>
         
         <p class="mb-4">
-          These branches will run in parallel across campus, spanning 2-5 days. Some, like Trading Bootcamp and the AI Future Project's 2027 tabletop AI wargame, are established bootcamps and workshops that have stood the tests of time and selection effects. Others are brand new — and will go through Arbor's pedagogy incubator the prior week, where branch leaders will learn everything from "how to model what's happening in your students' minds" to "what supplies are in your bootcamp go-box?" and get to playtest their classes on each other with substantial feedback.
-        </p>
-        
-        <p>
-          Lunch, dinner, and evenings will be blocked off for communal activities and downtime, to allow ASC attendees to mingle and munch together.
+          Brand new workshops will go through Arbor's pedagogy incubator, where branch leaders will learn everything from "how to model what's happening in your students' minds" to "what supplies are in your bootcamp go-box?" and get to playtest their classes on each other with substantial feedback.
         </p>
       </div>
       
@@ -149,7 +151,7 @@ const translatePath = useTranslatedPath(lang);
           });
           
           // Optionally update URL hash
-          history.pushState(null, null, '#branches');
+          history.pushState('', '', '#branches');
         }
       });
     });

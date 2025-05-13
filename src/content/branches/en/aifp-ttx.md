@@ -25,8 +25,9 @@ You might be coming in with an idea of what it means to think like an engineer, 
 We believe that the best way to learn to trade is to trade. Most days center around live trading in teams with fake money on our internal exchange.
 
 Trading Bootcamp answers three core questions:
+
 - What is quant trading?
 - Do I like it?
 - Am I any good at it?
 
-Most of our students have no experience in trading going in, but do have a little background in programming and math. 
+Most of our students have no experience in trading going in, but do have a little background in programming and math.
