@@ -13,21 +13,21 @@ const translatePath = useTranslatedPath(lang);
 			<!-- Using flex column instead of absolute positioning for better responsiveness -->
 			<div class="flex flex-col items-center justify-center pt-[5vh] gap-4 md:gap-4 lg:gap-4">
 				<!-- Date line above the title -->
-				<p id="hero-date" class="text-center font-mono text-xl font-bold text-campfire-600 text-shadow-sm">
+				<p id="hero-date" class="text-center font-mono text-xl font-bold text-campfire-600 text-shadow-sm opacity-0 translate-y-8">
 					Monday, June 2 – Friday, June 6
 				</p>
 				
 				<!-- Title container -->
-				<h1 id="hero-title" class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text-8xl text-forest-950 text-shadow">
+				<h1 id="hero-title" class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text-8xl text-forest-950 text-shadow opacity-0 translate-y-8">
 					ARBOR SUMMER COLLEGE
 				</h1>
 				
 				<!-- Content below the title -->
 				<div class="flex flex-col items-center gap-2 text-center">
-					<p id="hero-subtitle" class="max-w-5xl font-mono lg:text-lg text-forest-900 text-shadow-sm">
+					<p id="hero-subtitle" class="max-w-5xl font-mono lg:text-lg text-forest-900 text-shadow-sm opacity-0 translate-y-8">
 						A pedagogy playground for experimental learning between&nbsp;LessOnline&nbsp;and&nbsp;Manifest
 					</p>
-					<div id="hero-cta" class="flex flex-col items-center justify-center gap-3 lg:col-start-1 mt-4">
+					<div id="hero-cta" class="flex flex-col items-center justify-center gap-3 lg:col-start-1 mt-4 opacity-0 translate-y-8">
 						<div class="rounded-lg bg-campfire-500 hover:bg-campfire-600 transition-colors" data-cursor-hover data-cursor-parallax>
 							<a
 								class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-white transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl font-display font-bold"
@@ -121,13 +121,8 @@ const translatePath = useTranslatedPath(lang);
 		const heroSubtitle = document.getElementById("hero-subtitle");
 		const heroCta = document.getElementById("hero-cta");
 		
-		// Set initial states
-		gsap.set([heroDate, heroTitle, heroSubtitle, heroCta], { 
-			opacity: 0,
-			y: 30
-		});
-		
-		// Create a timeline for sequential animation
+		// Create a timeline for sequential animation - no need to set initial states in JS
+		// as they're now set in the HTML/CSS
 		const tl = gsap.timeline();
 		
 		// Animate date first
@@ -169,6 +164,9 @@ const translatePath = useTranslatedPath(lang);
 		});
 	}
 
+	// Run the animation as soon as possible, not just on DOMContentLoaded
+	init();
+	// Keep the DOMContentLoaded listener as a fallback
 	document.removeEventListener("DOMContentLoaded", init);
 	document.addEventListener("DOMContentLoaded", init);
 </script>
