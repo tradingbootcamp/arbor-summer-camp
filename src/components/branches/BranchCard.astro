@@ -33,27 +33,47 @@ if (instructorPosition === "left") {
     // Allow numeric values (0-100) for precise positioning
     positionClass = `left-[${instructorPosition}%] transform -translate-x-1/2`;
 }
+
+// Helper function to determine if a path is a string path
+const isStringPath = (path) => typeof path === 'string';
 ---
 
 <li class:list={["flex flex-col", className]}>
     <a href={translatePath(link)} aria-label={`Branch: ${title}`}>
         <div class="relative h-[25rem] overflow-hidden rounded-md lg:rounded-lg">
             <!-- Cover Image (Background) -->
-            <Image 
-                class="h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-300 cover-image" 
-                src={coverImage} 
-                alt={title} 
-                style={{ objectPosition: coverPosition || 'center' }}
+            {isStringPath(coverImage) ? (
+                <img 
+                    class="h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-300 cover-image" 
+                    src={coverImage} 
+                    alt={title} 
+                    style={{ objectPosition: coverPosition || 'center' }}
                 />
+            ) : (
+                <Image 
+                    class="h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-300 cover-image" 
+                    src={coverImage} 
+                    alt={title} 
+                    style={{ objectPosition: coverPosition || 'center' }}
+                />
+            )}
             
             <!-- Instructor Cutout Overlay -->
             {instructor.image && (
                 <div class={`absolute top-0 ${positionClass} instructor-cutout-container`}>
-                    <Image 
-                        src={instructor.image.source} 
-                        alt={instructor.image.alt}
-                        class="h-[90%] w-auto object-contain instructor-cutout" 
-                    />
+                    {isStringPath(instructor.image.source) ? (
+                        <img 
+                            src={instructor.image.source} 
+                            alt={instructor.image.alt}
+                            class="h-[90%] w-auto object-contain instructor-cutout" 
+                        />
+                    ) : (
+                        <Image 
+                            src={instructor.image.source} 
+                            alt={instructor.image.alt}
+                            class="h-[90%] w-auto object-contain instructor-cutout" 
+                        />
+                    )}
                 </div>
             )}
             

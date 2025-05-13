@@ -9,7 +9,7 @@ instructor:
     position: "leftish"
   link: "/author/daniel-kokotajlo"
 coverImage:
-  source: "@assets/images/projects/aifp_race.png"
+  source: "@assets/images/branch-covers/aifp_race.png"
   alt: "AIFP TTX"
   position: "right"
 cost: "By application"

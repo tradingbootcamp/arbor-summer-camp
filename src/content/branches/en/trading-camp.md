@@ -9,7 +9,7 @@ instructor:
     position: "left"
   link: "/author/ricki-heicklen"
 coverImage:
-  source: "@assets/images/projects/bootcamp_crosswords.JPG"
+  source: "@assets/images/branch-covers/bootcamp_crosswords.png"
   alt: "Trading Bootcamp banner"
 cost: "$1,850"
 dates: "June 3-5, 2025"

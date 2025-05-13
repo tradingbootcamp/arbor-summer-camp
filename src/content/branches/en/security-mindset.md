@@ -9,7 +9,7 @@ instructor:
     position: "right"
   link: "/author/twig-theis"
 coverImage:
-  source: "@assets/images/projects/adverse_selection_banner.webp"
+  source: "@assets/images/branch-covers/adverse_selection_banner.webp"
   alt: "Security Mindset banner"
 cost: "$300"
 dates: "June 2-6, 2025"

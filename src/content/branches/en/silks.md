@@ -9,7 +9,7 @@ instructor:
     position: "leftish"
   link: "/author/sydney-von-arx"
 coverImage:
-  source: "@assets/images/projects/lighthaven_gardens_tree.jpg"
+  source: "@assets/images/branch-covers/lighthaven_gardens_tree.jpg"
   alt: "Aerial Silks banner"
   position: "right"
 cost: "$300"
