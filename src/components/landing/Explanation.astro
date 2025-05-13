@@ -34,7 +34,7 @@ const translatePath = useTranslatedPath(lang);
       
       <div class="lg:col-span-5">
         <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100">
-          <div class="bg-campfire-500 py-4 px-6 flex justify-between items-center">
+          <div class="bg-campfire-500 py-3 px-6 flex justify-between items-center">
             <h3 class="text-xl font-bold text-white">Branches</h3>
             <a href="#branches" class="text-white text-sm hover:text-white/80 flex items-center transition-colors duration-200">
               See all
@@ -65,6 +65,16 @@ const translatePath = useTranslatedPath(lang);
               <li class="flex items-start">
                 <span class="text-campfire-500 mr-2 text-xl">•</span>
                 <span>Aerial silks</span>
+              </li>
+              <!-- And more! -->
+              <li class="flex items-start">
+                <span class="text-campfire-500 mr-2 text-xl">•</span>
+                <a href="#branches" class="group flex items-center text-forest-800 hover:text-campfire-600 transition-colors duration-200">
+                  <span>... and more!</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
               </li>
             </ul>
             

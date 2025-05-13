@@ -14,9 +14,6 @@ coverImage:
   position: "right"
 cost: "By application"
 dates: "June 3-5, 2025"
-sponsor:
-  name: "Sponsor this branch?"
-  link: "mailto:ricki@trading.camp"
 isIncubator: false
 purchaseLink: "https://example.com"
 pubDate: 2024-04-15

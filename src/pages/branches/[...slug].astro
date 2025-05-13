@@ -41,7 +41,7 @@ const seo: AstroSeoProps = {
 ---
 
 <BaseLayout seo={seo}>
-	<article class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+	<article class="mx-auto max-w-6xl px-4 py-16 sm:px-10 lg:px-16 mt-10">
 		<div class="mb-12">
 			<Image 
 				src={entry.data.coverImage.source} 
@@ -51,22 +51,21 @@ const seo: AstroSeoProps = {
 			/>
 		</div>
 
-		<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-			<div class="lg:col-span-2">
+		<div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+			<div class="lg:col-span-3">
 				<h1 class="text-4xl font-bold mb-6">{entry.data.title}</h1>
 				<div class="prose prose-lg max-w-none">
-					<p class="text-xl mb-8">{entry.data.description}</p>
 					<Content />
 				</div>
 			</div>
 
-			<div class="lg:col-span-1">
-				<div class="bg-slate-50 p-6 rounded-xl sticky top-8">
+			<div class="lg:col-span-2">
+				<div class="bg-slate-50 p-6 rounded-xl sticky top-8 shadow-sm border border-slate-100"> 
 					<div class="mb-6 flex items-center gap-4">
 						<Image 
 							src={entry.data.instructor.image.source} 
 							alt={entry.data.instructor.image.alt}
-							class="h-16 w-16 rounded-full object-cover" 
+							class="h-auto max-w-[100px] rounded object-contain" 
 						/>
 						<div>
 							<h3 class="font-medium">Instructor</h3>

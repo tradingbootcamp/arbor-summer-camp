@@ -13,9 +13,6 @@ coverImage:
   alt: "Trading Bootcamp banner"
 cost: "$1,850"
 dates: "June 3-5, 2025"
-sponsor:
-  name: "Sponsor this branch?"
-  link: "mailto:ricki@trading.camp"
 isIncubator: false
 purchaseLink: "https://trading.camp"
 pubDate: 2024-04-15
