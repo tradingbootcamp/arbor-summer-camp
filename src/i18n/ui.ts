@@ -26,6 +26,7 @@ export const ui = {
 		"minimal.subtitle": "A mysterious organization called Arbor has stepped forward to run an experimental summer camp from June 2–6. Hot meals are included for all 5 days. [1-2 additional sentence will go here]",
 		"minimal.tickets": "Buy Tickets Anyway",
 		"hero.title.main": "Arbor Summer College",
+		"hero.title.main": "Arbor Summer College",
 		"hero.title.1": "trading",
 		"hero.title.2": "Rationality",
 		"hero.title.3": "Writing",
