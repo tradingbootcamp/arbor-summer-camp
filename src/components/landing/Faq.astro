@@ -11,28 +11,28 @@ const translatePath = useTranslatedPath(lang);
 // Replace these with your actual translations once we confirm it works
 const faqs = [
 	{
-		question: "What is Arbor Summer College?",
-		answer: "Arbor Summer College is a container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year."
+		question: "I have an idea. Can I bring my workshop/talk/thing here?",
+		answer: "Yes, absolutely. The framework for this is that you run a branch, which is a multi-day workshop; for less established projects we also provide pedagogical training beforehand and resources during Summer College."
 	},
 	{
 		question: "When and where is it happening?",
-		answer: "It's taking place from June 2-6 at Lighthaven. The event includes lunch and dinner for all five days."
+		answer: "It's taking place from June 2-6 at <a href='https://www.lighthaven.space'>Lighthaven</a>, which is located at 2740 Telegraph Avenue, Berkeley, CA. The event includes lunch and dinner for all five days."
 	},
 	{
 		question: "How can I get tickets?",
-		answer: "You can purchase tickets directly from our website. Single-day passes with or without meals are also available."
+		answer: "You can purchase tickets directly from our website or purchase multiple events' tickets via <a href='https://www.havenbookings.space/festival-season'>the festival season site</a>. Single-day passes are also available. Each of LessOnline, Summer Camp, and Manifest require separate tickets."
 	},
 	{
-		question: "Is accommodation available?",
-		answer: "Yes, accommodation at Lighthaven will soon be available for purchase."
+		question: "Is housing provided?",
+		answer: "A limited number of onsite rooms can be purchased from Lighthaven, but there will be many times more people in attendance than rooms, so most people will have to find other housing."
 	},
 	{
-		question: "What activities will be available?",
-		answer: "The event includes coworking, collaborating, and late campfire chats. Other possible adventures will be announced in due time."
+		question: "Can I bring my kids?",
+		answer: "Yes! Kids are very welcome at the event. There is a dedicated branch for children."
 	},
 	{
-		question: "Who is organizing this event?",
-		answer: "A mysterious organization called Arbor has stepped forward to run this experimental summer camp."
+		question: "There's multiple branches I'm interested in that are happening at the same time. Can I do both somehow?",
+		answer: "Unfortunately, no. The branches are not designed for people to drop in and out. We recommend picking one and committing to it."
 	}
 ];
 
@@ -82,7 +82,7 @@ const faqs = [
 									</svg>
 								</summary>
 								<div class="px-4 pb-4 pt-0">
-									<p class="text-forest-800">{answer}</p>
+									<p class="text-forest-800" set:html={answer} />
 								</div>
 							</details>
 						</div>
