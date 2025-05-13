@@ -7,7 +7,7 @@ export const defaultLang = "en";
 export const ui = {
 	en: {
 		or: "or",
-		tickets: "Tickets Jun 2–6",
+		tickets: "Tickets",
 		contact: "Contact",
 		contacts: "Contacts",
 		contactus: "Contact us",
@@ -31,7 +31,7 @@ export const ui = {
 		"hero.title.3": "Writing",
 		"hero.title.4": "Poker", // ricki remember to replace this! 
 		"hero.subtitle":
-			"In the week between LessOnline and Manifest, gather at Lighthaven to learn from each other...",
+			"A pedagogy playground for experimental learning between LessOnline and Manifest",
 		"hero.scroll": "scroll to see more",
 		"prologue.title": "Prologue",
 		"apps.title": "",

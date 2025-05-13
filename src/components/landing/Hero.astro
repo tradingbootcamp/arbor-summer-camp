@@ -8,34 +8,40 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <section id="hero" class="section home-dark-section hero hero-background min-h-screen">
-	<div class="flex h-full flex-col py-4 lg:py-10">
-		<div class="relative flex flex-col justify-around rounded-lg pb-10 lg:rounded-2xl" style="min-height: 90vh;">
-			<!-- Title container with absolute positioning -->
-			<div class="absolute top-[30%] left-0 right-0 transform -translate-y-1/2 flex justify-center">
-				<h1 id="hero-title" class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text-8xl text-forest-950 text-shadow">
-					{t("hero.title.main")}
-				</h1>
-			</div>
-			
-			<!-- Content below the title -->
-			<div class="absolute top-[40%] left-0 right-0 flex flex-col items-center gap-5 text-center lg:gap-5">
-				<p class="mt-8 max-w-5xl font-mono lg:text-lg text-forest-900 text-shadow-sm">
-					{t("hero.subtitle")}
+	<div class="flex h-full flex-col">
+		<div class="relative flex flex-col justify-around rounded-lg pb-10 lg:rounded-2xl" style="min-height: 80vh;">
+			<!-- Using flex column instead of absolute positioning for better responsiveness -->
+			<div class="flex flex-col items-center justify-center pt-[5vh] gap-4 md:gap-4 lg:gap-4">
+				<!-- Date line above the title -->
+				<p id="hero-date" class="text-center font-mono text-xl font-bold text-campfire-600 text-shadow-sm">
+					Monday, June 2 – Friday, June 6
 				</p>
-				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
-					<div class="rounded-lg bg-campfire-500 hover:bg-campfire-600 transition-colors" data-cursor-hover data-cursor-parallax>
-						<a
-							class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-white transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl font-display font-bold"
-							aria-label="Buy Tickets"
-							href={translatePath("/tickets/")}>
-							{t("tickets")}
-						</a>
-					</div>
+				
+				<!-- Title container -->
+				<h1 id="hero-title" class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text-8xl text-forest-950 text-shadow">
+					ARBOR SUMMER COLLEGE
+				</h1>
+				
+				<!-- Content below the title -->
+				<div class="flex flex-col items-center gap-2 text-center">
+					<p id="hero-subtitle" class="max-w-5xl font-mono lg:text-lg text-forest-900 text-shadow-sm">
+						A pedagogy playground for experimental learning between&nbsp;LessOnline&nbsp;and&nbsp;Manifest
+					</p>
+					<div id="hero-cta" class="flex flex-col items-center justify-center gap-3 lg:col-start-1 mt-4">
+						<div class="rounded-lg bg-campfire-500 hover:bg-campfire-600 transition-colors" data-cursor-hover data-cursor-parallax>
+							<a
+								class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-white transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl font-display font-bold"
+								aria-label="Buy Tickets"
+								href={translatePath("/tickets/")}>
+								{t("tickets")}
+							</a>
+						</div>
 
-					<small class="text-forest-900 font-medium">
-						{t("or")}
-						<LinkBlend id="go-projects-button" isButton={true} class="text-campfire-600 hover:text-campfire-500">{t("hero.scroll")}</LinkBlend>
-					</small>
+						<small class="text-forest-900 font-medium">
+							{t("or")}
+							<LinkBlend id="go-projects-button" isButton={true} class="text-campfire-600 hover:text-campfire-500">{t("hero.scroll")}</LinkBlend>
+						</small>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -109,25 +115,52 @@ const translatePath = useTranslatedPath(lang);
 	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 	function init() {
-		// Simple fade-in animation for the title
+		// Sequential animation for all elements
+		const heroDate = document.getElementById("hero-date");
 		const heroTitle = document.getElementById("hero-title");
+		const heroSubtitle = document.getElementById("hero-subtitle");
+		const heroCta = document.getElementById("hero-cta");
 		
-		if (heroTitle) {
-			// Set initial state
-			gsap.set(heroTitle, { 
-				opacity: 0,
-				y: 30
-			});
-			
-			// Animate in
-			gsap.to(heroTitle, {
-				duration: 1.2,
-				opacity: 1,
-				y: 0,
-				ease: "power3.out",
-				delay: 0.3
-			});
-		}
+		// Set initial states
+		gsap.set([heroDate, heroTitle, heroSubtitle, heroCta], { 
+			opacity: 0,
+			y: 30
+		});
+		
+		// Create a timeline for sequential animation
+		const tl = gsap.timeline();
+		
+		// Animate date first
+		tl.to(heroDate, {
+			duration: 0.8,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
+		});
+		
+		// Then animate title
+		tl.to(heroTitle, {
+			duration: 1,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
+		}, "-=0.4"); // Start slightly before the previous animation finishes
+		
+		// Then animate subtitle
+		tl.to(heroSubtitle, {
+			duration: 0.8,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
+		}, "-=0.4");
+		
+		// Finally animate CTA
+		tl.to(heroCta, {
+			duration: 0.8,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
+		}, "-=0.4");
 
 		// Handle scroll button
 		const goProjectsButton = document.getElementById("go-projects-button");
