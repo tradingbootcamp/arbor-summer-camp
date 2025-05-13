@@ -2,7 +2,7 @@
 title: "Trading Bootcamp"
 shortDescription: "Learn quantitative trading from former Jane Street traders"
 instructor:
-  name: "Ricki Heicklen, Ross Rheingans-Yoo, David Holt"
+  name: "David Holt, Ricki Heicklen, Ross Rheingans-Yoo"
   image:
     source: "@assets/images/instructors/ricki.png"
     alt: "Ricki Heicklen"
