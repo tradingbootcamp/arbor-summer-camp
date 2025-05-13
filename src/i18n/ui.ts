@@ -31,7 +31,7 @@ export const ui = {
 		"hero.title.3": "Writing",
 		"hero.title.4": "Poker", // ricki remember to replace this! 
 		"hero.subtitle":
-			"A pedagogy playground for experimental learning between LessOnline and Manifest",
+			"A pedagogy playground for experimental learning the week between LessOnline and Manifest",
 		"hero.scroll": "scroll to see more",
 		"prologue.title": "Prologue",
 		"apps.title": "",
