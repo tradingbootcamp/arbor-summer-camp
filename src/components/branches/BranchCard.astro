@@ -21,17 +21,25 @@ const {
 
 // Calculate position classes based on instructorPosition
 let positionClass = "left-1/2 transform -translate-x-1/2"; // Default (center)
+let incubatorPosition = "right-4"; // Default incubator position
+
 if (instructorPosition === "left") {
     positionClass = "left-[18%] transform -translate-x-1/2";
+    incubatorPosition = "right-4"; // Instructor left, incubator right
 } else if (instructorPosition === "right") {
     positionClass = "left-[78%] transform -translate-x-1/2";
+    incubatorPosition = "left-4"; // Instructor right, incubator left
 } else if (instructorPosition === "leftish") {
     positionClass = "left-[25%] transform -translate-x-1/2";
+    incubatorPosition = "right-4"; // Instructor leftish, incubator right
 } else if (instructorPosition === "rightish") {
     positionClass = "left-[78%] transform -translate-x-1/2";
+    incubatorPosition = "left-4"; // Instructor rightish, incubator left
 } else if (typeof instructorPosition === "number") {
     // Allow numeric values (0-100) for precise positioning
     positionClass = `left-[${instructorPosition}%] transform -translate-x-1/2`;
+    // For numeric positions, place incubator on opposite side
+    incubatorPosition = instructorPosition < 50 ? "right-4" : "left-4";
 }
 
 // Helper function to determine if a path is a string path
@@ -78,7 +86,7 @@ const isStringPath = (path) => typeof path === 'string';
             )}
             
             {isIncubator && (
-                <div class="absolute top-4 right-4 bg-sunshine-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+                <div class={`absolute top-4 ${incubatorPosition} bg-sunshine-500 text-black px-3 py-1 rounded-full text-sm font-bold`}>
                     Incubator
                 </div>
             )}
