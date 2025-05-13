@@ -9,7 +9,7 @@ instructor:
     position: "right"
   link: "/author/yoav-tzfati"
 coverImage:
-  source: "@assets/images/projects/code_bloom.png"
+  source: "@assets/images/projects/Code_Bloom.png"
   alt: "Code Bloom banner"
   position: "right"
 cost: "$300"
