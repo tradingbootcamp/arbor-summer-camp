@@ -58,6 +58,20 @@ const branchesCollection = defineCollection({
 			}),
 			cost: z.string(),
 			dates: z.string(),
+			schedule: z.array(
+				z.object({
+					day: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]),
+					activities: z.array(
+						z.object({
+							name: z.string(),
+							startTime: z.string(), // Format: "HH:MM" (24-hour)
+							endTime: z.string(),   // Format: "HH:MM" (24-hour)
+							type: z.enum(["session", "break", "meal"]).default("session"),
+							description: z.string().optional(),
+						})
+					),
+				})
+			).optional(),
 			sponsor: z.object({
 				name: z.string().optional(),
 				link: z.string().optional(),
