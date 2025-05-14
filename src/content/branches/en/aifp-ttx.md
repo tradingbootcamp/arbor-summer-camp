@@ -15,7 +15,7 @@ coverImage:
 cost: "By application"
 dates: "June 3-5, 2025"
 isIncubator: false
-purchaseLink: "https://example.com"
+purchaseLink: "https://airtable.com/appPNss2oaCbmycbh/pagQyf3LnlqvfCa9l/form"
 pubDate: 2024-04-15
 order: 0
 ---
