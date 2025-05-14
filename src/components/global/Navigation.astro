@@ -215,21 +215,32 @@ const { pathname } = Astro.url;
 						menuIcon?.classList.remove('hidden');
 						closeIcon?.classList.add('hidden');
 					}
+				} else {
+					// If not on homepage, navigate to homepage without the hash
+					// and set a session storage flag to scroll after navigation
+					e.preventDefault();
+					sessionStorage.setItem('scrollToFaq', 'true');
+					window.location.href = '/';
 				}
-				// If not on homepage, let the normal navigation happen with the #faq hash
 			});
 		});
 
-		// Check for hash on page load
-		if (window.location.hash === '#faq') {
-			gsap.to(window, {
-				duration: 0.5,
-				scrollTo: {
-					y: "#faq",
-					offsetY: 100
-				},
-				delay: 0.1 // Small delay to ensure elements are loaded
-			});
+		// Check for FAQ hash on page load OR the session storage flag
+		if (window.location.hash === '#faq' || sessionStorage.getItem('scrollToFaq') === 'true') {
+			// Clear the flag immediately
+			sessionStorage.removeItem('scrollToFaq');
+			
+			// Delay the scroll slightly to ensure the page is fully rendered
+			setTimeout(() => {
+				gsap.to(window, {
+					duration: 0.8,
+					scrollTo: {
+						y: "#faq",
+						offsetY: 100
+					},
+					ease: "power3.inOut"
+				});
+			}, 100); // Small delay to ensure elements are loaded
 		}
 
 		// Highlight active section when scrolling
@@ -263,6 +274,57 @@ const { pathname } = Astro.url;
 					});
 				}
 			});
+		}
+
+		// Branch scroll handling
+		const branchesLinks = document.querySelectorAll('a[href="#branches"]');
+		branchesLinks.forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				
+				// Check if we're on the homepage
+				if (window.location.pathname === '/' || window.location.pathname === '/it/') {
+					// If on homepage, just scroll to the branches section
+					gsap.to(window, {
+						duration: 0.8,
+						scrollTo: {
+							y: "#branches",
+							offsetY: 100
+						},
+						ease: "power3.inOut"
+					});
+					
+					// Close mobile menu if open
+					if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+						mobileMenu.classList.add('hidden');
+						menuIcon?.classList.remove('hidden');
+						closeIcon?.classList.add('hidden');
+					}
+				} else {
+					// If not on homepage, navigate to homepage without the hash
+					// and set a session storage flag to scroll after navigation
+					sessionStorage.setItem('scrollToBranches', 'true');
+					window.location.href = '/';
+				}
+			});
+		});
+
+		// Check for branches hash on page load OR the session storage flag
+		if (window.location.hash === '#branches' || sessionStorage.getItem('scrollToBranches') === 'true') {
+			// Clear the flag immediately
+			sessionStorage.removeItem('scrollToBranches');
+			
+			// Delay the scroll slightly to ensure the page is fully rendered
+			setTimeout(() => {
+				gsap.to(window, {
+					duration: 0.8, // Longer duration for smoother scroll
+					scrollTo: {
+						y: "#branches",
+						offsetY: 100
+					},
+					ease: "power3.inOut"
+				});
+			}, 100); // Small delay to ensure elements are loaded
 		}
 	}
 
