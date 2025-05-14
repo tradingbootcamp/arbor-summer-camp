@@ -4,9 +4,9 @@ shortDescription: "Learn quantitative trading from former Jane Street traders"
 instructor:
   name: "David Holt, Ricki Heicklen, Ross Rheingans-Yoo"
   image:
-    source: "@assets/images/instructors/ricki.png"
+    source: "@assets/images/instructors/ricki_asc.png"
     alt: "Ricki Heicklen"
-    position: "left"
+    position: "right"
   link: "/author/ricki-heicklen"
 coverImage:
   source: "@assets/images/branch-covers/bootcamp_crosswords.png"
