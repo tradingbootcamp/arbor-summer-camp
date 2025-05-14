@@ -26,3 +26,5 @@ I discuss the engineering constraints of building very high throughput systems i
 Teams draft design proposals for handling specific challenges
 
 Attendees compete to optimize market components in toy market environments
+
+*Rachel Wonnacott has been a trading firm software engineer for five years.*
