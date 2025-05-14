@@ -12,10 +12,10 @@ coverImage:
   source: "@assets/images/branch-covers/Code_Bloom.png"
   alt: "Code Bloom banner"
   position: "right"
-cost: "$300"
+cost: "$150"
 dates: "June 3-5, 2025"
 isIncubator: true
-purchaseLink: "https://trading.camp"
+purchaseLink: "https://example.com"
 pubDate: 2024-04-15
 order: 2
 ---

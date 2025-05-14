@@ -9,13 +9,13 @@ instructor:
     position: "leftish"
   link: "/author/sydney-von-arx"
 coverImage:
-  source: "@assets/images/branch-covers/lighthaven_gardens_tree.jpg"
+  source: "@assets/images/branch-covers/lighthaven.png"
   alt: "Aerial Silks banner"
   position: "right"
-cost: "$300"
+cost: "$150"
 dates: "June 3-5, 2025"
 isIncubator: false
-purchaseLink: "https://trading.camp"
+purchaseLink: "https://example.com"
 pubDate: 2024-04-15
 order: 6
 ---

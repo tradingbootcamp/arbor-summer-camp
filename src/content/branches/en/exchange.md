@@ -11,10 +11,10 @@ instructor:
 coverImage:
   source: "@assets/images/branch-covers/adverse_selection_banner.webp"
   alt: "Exchange banner"
-cost: "$300"
+cost: "$150"
 dates: "June 3-5, 2025"
 isIncubator: true
-purchaseLink: "https://trading.camp"
+purchaseLink: "https://example.com"
 pubDate: 2024-04-15
 order: 3
 ---

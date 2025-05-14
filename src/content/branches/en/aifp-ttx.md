@@ -2,7 +2,7 @@
 title: "AGI table-top exercise"
 shortDescription: "Simulate the development of superintelligence in 2027"
 instructor:
-  name: "Eli Lifland"
+  name: "Eli Lifland & Jonas Vollmer"
   image:
     source: "@assets/images/instructors/eli.png"
     alt: "Daniel Kokotajlo"
@@ -20,14 +20,6 @@ pubDate: 2024-04-15
 order: 0
 ---
 
-You might be coming in with an idea of what it means to think like an engineer, a founder, or a lawyer. Trader mindset is another way to see the world.
+The researchers behind AI 2027 have developed a tabletop exercise based on their scenario forecast. It takes ~3.5 hours and allows 8–14 players to take on different roles, such as the US president, the frontier AI company CEO, China, or the company’s safety team. It aims to accurately simulate what actions their actor would take throughout 2027. 
 
-We believe that the best way to learn to trade is to trade. Most days center around live trading in teams with fake money on our internal exchange.
-
-Trading Bootcamp answers three core questions:
-
-- What is quant trading?
-- Do I like it?
-- Am I any good at it?
-
-Most of our students have no experience in trading going in, but do have a little background in programming and math.
+No technical knowledge is required. Many previous participants found the exercise very valuable for developing their own thinking about how AGI might go and what they might want to do about it. Eli Lifland (researcher at the AI Futures Project) and Jonas Vollmer (their COO) will be at Arbor Summer College to run the tabletop exercise.

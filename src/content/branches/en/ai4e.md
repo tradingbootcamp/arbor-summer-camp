@@ -1,0 +1,31 @@
+---
+title: "Designing AI Interfaces for Better Epistemics"
+shortDescription: "Workshop to develop new interfaces that improve human thinking"
+instructor:
+  name: "Nicholas Dupuis"
+  image:
+    source: "@assets/images/instructors/niki.png"
+    alt: "Nicholas Dupuis"
+    position: "right"
+  link: "/author/nicholas-dupuis"
+coverImage:
+  source: "@assets/images/branch-covers/adverse_selection_banner.webp"
+  alt: "AI4E banner"
+  position: "right"
+cost: "$150"
+dates: "June 3-5, 2025"
+isIncubator: true
+purchaseLink: "https://example.com"
+pubDate: 2024-04-15
+order: 7
+---
+
+We're going to spend three days re-designing the future of human+machine interaction, exploring beyond chat bots and agents to invent new ways to support HUMAN thinking with advanced AI. This is not a hackathon! While we encourage you to (vibe)code wherever it helps, you are not expected to have a technical background, and the outputs are welcome to be anywhere on the spectrum from rough sketches to functional prototypes. 
+
+Our mission is to BREAK OUT of the limiting chatbot/agent frame and re-imagine what interfaces could and should exist to support human thinking in an increasingly automated era. Together we'll:
+- Explore what tools already exist (and use some of them ourselves!) 
+- Examine the differential abilities of humans vs modern AI systems
+- Make a quick sketch of the AI for Epistemics field
+	- Individual vs Collective
+	- Raising the floor vs raising the ceiling
+- Collaboratively design new interfaces to improve human thinking
