@@ -1,0 +1,185 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { AstroSeoProps } from "@astrolib/seo";
+import { getCollection } from "astro:content";
+import BranchCard from "@components/branches/BranchCard.astro";
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// Get only incubator branches
+const incubatorBranches = (await getCollection("branches"))
+	.filter((branch) => {
+		const [postLang, ...slug] = branch.slug.split("/");
+		return postLang === lang && branch.data.isIncubator === true;
+	})
+	.map((branch) => {
+		const [postLang, slug] = branch.slug.split("/");
+
+		return {
+			...branch,
+			slug: slug,
+		};
+	})
+	// Sort by order first, then by pubDate as a fallback
+	.sort((a, b) => {
+		// First sort by order
+		if (a.data.order !== b.data.order) {
+			return a.data.order - b.data.order;
+		}
+		// If orders are the same, fall back to pubDate
+		return Number(b.data.pubDate) - Number(a.data.pubDate);
+	});
+
+const seo: AstroSeoProps = {
+	title: "Pedagogy Incubator - Arbor Summer College",
+	description: "Learn about our pedagogy incubator for experimental learning experiences",
+	canonical: "https://summercampcomingsoon.com/incubator/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<section class="py-16 px-4 sm:px-6 lg:px-8">
+		<div class="mx-auto max-w-7xl mt-10">
+			<div class="text-center mb-12">
+				<h1 class="text-4xl font-bold mb-4">Pedagogy Incubator</h1>
+				<p class="text-xl max-w-3xl mx-auto">
+					Where experimental learning experiences are born and refined
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+				<div class="lg:col-span-7 prose prose-lg">
+					<p class="mb-4">
+						The Arbor Pedagogy Incubator (May 26-29) is where branch leaders with promising ideas but limited teaching experience can develop and refine their curriculum with substantial feedback and support.
+					</p>
+					<p class="mb-4">
+						During the incubator, you'll learn everything from "how to model what's happening in your students' minds" to "what supplies are in your bootcamp go-box?" and get to playtest your classes on each other with substantial feedback.
+					</p>
+					<p class="mb-4">
+						Our goal is to create a safe space for experimentation, where you can take risks, receive constructive criticism, and iterate on your teaching approach before presenting it to students at Summer College.
+					</p>
+					<p class="mb-4">
+						The incubator is designed for those who have a compelling idea for a branch but want guidance on how to structure it effectively, create engaging activities, and deliver a transformative learning experience.
+					</p>
+				</div>
+				
+				<div class="lg:col-span-5">
+					<div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100">
+						<div class="bg-sunshine-500 py-3 px-6 flex justify-between items-center">
+							<h3 class="text-xl font-bold text-black">Incubator Benefits</h3>
+						</div>
+						
+						<div class="p-6">
+							<ul class="space-y-3">
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Structured curriculum development support</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Feedback from experienced educators</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Opportunity to playtest your workshop</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Community of fellow experimental educators</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Resources and materials for your branch</span>
+								</li>
+							</ul>
+							
+							<div class="mt-6 pt-6 border-t border-slate-200">
+								<p class="text-forest-800 font-medium">
+									Interested in joining the incubator?
+								</p>
+								<div class="mt-4">
+									<a href="/branches/incubated" class="block w-full p-4 bg-sunshine-500 hover:bg-sunshine-600 text-black text-center font-bold rounded-lg transition-colors">
+										Apply to the Incubator
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-12">
+				<h2 class="text-3xl font-bold mb-6">Incubated Branches</h2>
+				<p class="text-xl mb-8">
+					Explore the branches that have gone through our pedagogy incubator and will be offered at Summer College
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					incubatorBranches.map((branch) => (
+						<BranchCard
+							coverImage={branch.data.coverImage.source}
+							coverPosition={branch.data.coverImage.position}
+							title={branch.data.title}
+							shortDescription={branch.data.shortDescription}
+							instructor={branch.data.instructor}
+							instructorPosition={branch.data.instructor.image.position}
+							cost={branch.data.cost}
+							isIncubator={branch.data.isIncubator}
+							link={`/branches/${branch.slug}`}
+						/>
+					))
+				}
+			</div>
+
+			{incubatorBranches.length === 0 && (
+				<div class="text-center py-12">
+					<p class="text-lg text-gray-600">No incubated branches available yet. Check back soon!</p>
+				</div>
+			)}
+		</div>
+	</section>
+
+	<section class="bg-forest-50 py-16 px-4 sm:px-6 lg:px-8">
+		<div class="mx-auto max-w-7xl">
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-bold mb-4">Join the Incubator</h2>
+				<p class="text-xl max-w-3xl mx-auto">
+					Have an idea for a branch? Apply to join our pedagogy incubator and bring your vision to life.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+				<div class="bg-white p-8 rounded-xl shadow-sm">
+					<h3 class="text-2xl font-bold mb-4">For New Teachers</h3>
+					<p class="mb-4">
+						If you have a compelling idea but limited teaching experience, the incubator provides the support and structure you need to develop an effective curriculum.
+					</p>
+					<p class="mb-4">
+						You'll receive guidance on pedagogy, activity design, and facilitation techniques to ensure your branch delivers a transformative learning experience.
+					</p>
+					<a href="/branches/incubated" class="inline-block mt-4 px-6 py-3 bg-sunshine-500 hover:bg-sunshine-600 text-black font-bold rounded-lg transition-colors">
+						Apply as a New Teacher
+					</a>
+				</div>
+
+				<div class="bg-white p-8 rounded-xl shadow-sm">
+					<h3 class="text-2xl font-bold mb-4">For Experienced Educators</h3>
+					<p class="mb-4">
+						If you already have teaching experience but want to experiment with new approaches or content, the incubator offers a collaborative environment to refine your ideas.
+					</p>
+					<p class="mb-4">
+						You'll have the opportunity to playtest your curriculum with peers, receive feedback, and iterate on your approach before Summer College.
+					</p>
+					<a href="/branches/independent" class="inline-block mt-4 px-6 py-3 bg-forest-500 hover:bg-forest-600 text-white font-bold rounded-lg transition-colors">
+						Run an Independent Branch
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout> 
