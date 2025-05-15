@@ -16,7 +16,7 @@ export const ui = {
 		services: "Services",
 		homepage: "Homepage",
 		tagline:
-			"A container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.",
+			"A container for the greater Lighthaven community to participate in intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.",
 		"projects.yours": "Your branch",
 		"projects.see": "See branch",
 		"branches.see": "Learn more",
