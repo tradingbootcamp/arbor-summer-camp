@@ -2,12 +2,12 @@
 title: "Visual art"
 shortDescription: "Learn to draw!"
 instructor:
-  name: "Scy Yoon"
+  name: "Sy Etirabys"
   image:
     source: "@assets/images/instructors/scy.png"
-    alt: "Scy Yoon"
+    alt: "Sy Etirabys"
     position: "left"
-  link: "/author/scy-yoon"
+  link: "/author/sy-etirabys"
 coverImage:
   source: "@assets/images/branch-covers/2024_gradient_tree_2.png"
   alt: "painting banner"
@@ -20,4 +20,4 @@ pubDate: 2024-04-15
 order: 7
 ---
 
-Scy, the artist behind the art for Manifest, will give drop-in art classes. [See examples of her work (it's for sale!) →](https://scyy.fi/art/best)
+Sy Etirabys, the artist behind the art for Manifest, will give drop-in art classes. [See examples of her work (it's for sale!) →](https://scyy.fi/art)
