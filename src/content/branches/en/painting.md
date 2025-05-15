@@ -20,4 +20,4 @@ pubDate: 2024-04-15
 order: 7
 ---
 
-Scy, the artist behind the art for Manifest, will give drop-in art classes. [See examples of her work (it's for sale!) →](https://x.com/etirabys/status/1544839353406328834)
+Scy, the artist behind the art for Manifest, will give drop-in art classes. [See examples of her work (it's for sale!) →](https://scyy.fi/art/best)

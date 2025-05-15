@@ -9,7 +9,7 @@ instructor:
     position: "left"
   link: "/author/rachel-wonnacott"
 coverImage:
-  source: "@assets/images/branch-covers/archiving.png"
+  source: "@assets/images/branch-covers/rachel-banner.png"
   alt: "Exchange banner"
 cost: "$150"
 dates: "June 3-5, 2025"
