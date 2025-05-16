@@ -82,7 +82,7 @@ const seo: AstroSeoProps = {
 
 					<div class="mb-6">
 						<h3 class="font-medium mb-1">Cost</h3>
-						<p class="text-2xl font-bold">{entry.data.cost}</p>
+						<p class="text-2xl font-bold">{entry.data.cost === "Apply" ? "By application" : entry.data.cost}</p>
 					</div>
 
 					<!-- {entry.data.sponsor && (
@@ -114,7 +114,7 @@ const seo: AstroSeoProps = {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							{entry.data.cost === "By application" ? "Apply Now" : "Register Now"}
+							{entry.data.cost === "Apply" ? "Apply Now" : "Register Now"}
 						</a>
 					) : (
 						<a 
@@ -123,7 +123,7 @@ const seo: AstroSeoProps = {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							{entry.data.cost === "By application" ? "Apply Now" : "Register Now"}
+							{entry.data.cost === "Apply" ? "Apply Now" : "Register Now"}
 						</a>
 					)}
 				</div>

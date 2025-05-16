@@ -17,7 +17,8 @@ const {
     isIncubator,
     instructorPosition = "center",
     instructorWidth = "60%",
-    class: className 
+    class: className,
+    dates = null // New prop for dates
 } = Astro.props;
 
 // Calculate position classes based on instructorPosition
@@ -49,7 +50,7 @@ const isStringPath = (path) => typeof path === 'string';
 
 <li class:list={["flex flex-col branch-card-container", className]}>
     <a href={translatePath(link)} aria-label={`Branch: ${title}`} class="branch-card-link">
-        <div class="relative h-[25rem] overflow-hidden rounded-md lg:rounded-lg branch-card">
+        <div class="relative h-[15rem] md:h-[25rem] overflow-hidden rounded-md lg:rounded-lg branch-card">
             <!-- Cover Image (Background) -->
             {isStringPath(coverImage) ? (
                 <img 
@@ -89,17 +90,22 @@ const isStringPath = (path) => typeof path === 'string';
             )}
             
             <!-- Banner at bottom that cuts off instructor image -->
-            <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-4 banner-overlay">
+            <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-3 md:p-4 banner-overlay">
                 <div class="flex items-center justify-between">
-                    <h3 class="font-mono text-lg font-medium uppercase tracking-wide md:mt-0 lg:text-xl text-black">
+                    <h3 class="font-mono text-md md:text-lg font-medium uppercase tracking-wide md:mt-0 lg:text-xl text-black">
                         {title}
                     </h3>
                     <span class="font-mono text-base font-bold text-black">{cost}</span>
                 </div>
-                <div class="mt-2">
-                    <p class="text-sm text-slate-600 line-clamp-1">{shortDescription}</p>
-                    <div class="mt-1 flex items-center justify-between">
-                        <span class="text-sm text-slate-600 italic">{instructor.name}</span>
+                <div class="mt-1 md:mt-3">
+                    <p class="text-xs md:text-sm text-slate-600">{shortDescription}</p>
+                    <div class="mt-1 md:mt-2 flex items-center justify-between">
+                        <span class="text-xs md:text-sm text-slate-600 italic">{instructor.name}</span>
+                        {dates && (
+                            <span class="text-xs px-2 py-0.5 bg-campfire-100 text-campfire-800 rounded-full font-medium whitespace-nowrap">
+                                {dates}
+                            </span>
+                        )}
                     </div>
                 </div>
             </div>
@@ -141,7 +147,8 @@ const isStringPath = (path) => typeof path === 'string';
     .branch-card-container:hover h3,
     .branch-card-container:hover .text-base.font-bold,
     .branch-card-container:hover .text-sm.text-slate-600,
-    .branch-card-container:hover .text-base.font-medium {
+    .branch-card-container:hover .text-base.font-medium,
+    .branch-card-container:hover .text-xs.bg-campfire-100 {
         color: theme('colors.campfire.800');
         transition: color 0.3s ease;
     }

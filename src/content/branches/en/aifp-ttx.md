@@ -12,8 +12,8 @@ coverImage:
   source: "@assets/images/branch-covers/aifp_race.png"
   alt: "AIFP TTX"
   position: "right"
-cost: "By application"
-dates: "June 3-5, 2025"
+cost: "Apply"
+dates: "Single day"
 isIncubator: false
 purchaseLink: "https://airtable.com/appPNss2oaCbmycbh/pagQyf3LnlqvfCa9l/form"
 pubDate: 2024-04-15

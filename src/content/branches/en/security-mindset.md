@@ -12,7 +12,7 @@ coverImage:
   source: "@assets/images/branch-covers/adverse_selection_banner.webp"
   alt: "Security Mindset banner"
 cost: "$150"
-dates: "June 2-6, 2025"
+dates: "Tues-Thurs"
 isIncubator: true
 pubDate: 2024-04-15
 order: 4

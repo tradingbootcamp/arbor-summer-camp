@@ -13,7 +13,7 @@ coverImage:
   alt: "Code Bloom banner"
   position: "right"
 cost: "$150"
-dates: "June 3-5, 2025"
+dates: "Tues-Thurs"
 isIncubator: true
 pubDate: 2024-04-15
 order: 2

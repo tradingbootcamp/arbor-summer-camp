@@ -1,8 +1,8 @@
 ---
-title: "Quant Trading Bootcamp"
+title: "Trading Bootcamp"
 shortDescription: "Learn how to think like a trader"
 instructor:
-  name: "David Holt, Ross Rheingans-Yoo, Ricki Heicklen"
+  name: "David Holt, Ricki Heicklen, Ross Rheingans-Yoo"
   image:
     source: "@assets/images/instructors/david_ross_ricki.png"
     alt: "David Holt, Ross Rheingans-Yoo, Ricki Heicklen"
@@ -16,7 +16,7 @@ pageImage:
   alt: "Trading Bootcamp banner"
   position: "center"
 cost: "$1,850"
-dates: "June 3-5, 2025"
+dates: "Tues-Thurs"
 isIncubator: false
 purchaseLink: "https://trading.camp"
 pubDate: 2024-04-15

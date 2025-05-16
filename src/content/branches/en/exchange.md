@@ -12,7 +12,7 @@ coverImage:
   source: "@assets/images/branch-covers/rachel_banner.png"
   alt: "Exchange banner"
 cost: "$150"
-dates: "June 3-5, 2025"
+dates: "Tues-Thurs"
 isIncubator: true
 pubDate: 2024-04-15
 order: 1
