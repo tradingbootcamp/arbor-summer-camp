@@ -26,6 +26,7 @@ Bring your own supplies (see prereqs), either digital or physical. I intend to r
 I'm attending ASC with a 2 month old baby. The class will be roughly one third each of: (a) I am not there, but the prompts/instructions I have written up will be on a projector (or if no projector available, a webpage), (b) I am guaranteed to be there, teaching or facilitating discussions, (c) I will be there with a baby to take questions + do 1:1, but will disappear at any time if the baby seems unhappier than you.
 
 We will
+
 - do an optional 1h tutorial on the Procreate app
 - examine paintings that look nice but don't require much technical skill, and discuss what makes them good
 - look at reference photos with a lot going on and actively choosing which parts to elide, emphasize, or change
@@ -34,10 +35,11 @@ We will
 - have relatively unstructured discussion about what art we respectively most like and "how they work"
 - and, of course, draw
 
-Prerequisites: Bring your own material. My recommendations are: 
-1. iPad with the Procreate app on it, plus Apple Pencil, 
-2. any other portable device with a digital art app that you already know, 
-3. colored pencils and notebook, 
+Prerequisites: Bring your own material. My recommendations are:
+
+1. iPad with the Procreate app on it, plus Apple Pencil,
+2. any other portable device with a digital art app that you already know,
+3. colored pencils and notebook,
 4. any other medium you're sure you can keep off the furniture or floor – so no charcoal, pastels, or paint.
 
 The Procreate app (~$10) on iPad leads in its category by such a large margin that I'd borrow an iPad if you don't have one but a willing friend does. I'll start with an optional 1h intro on the app.
