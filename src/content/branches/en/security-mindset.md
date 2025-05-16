@@ -9,7 +9,7 @@ instructor:
     position: "right"
   link: "/author/twig-theis"
 coverImage:
-  source: "@assets/images/branch-covers/adverse_selection_banner.webp"
+  source: "@assets/images/branch-covers/security_mindset.png"
   alt: "Security Mindset banner"
 cost: "$150"
 dates: "Tues-Thurs"

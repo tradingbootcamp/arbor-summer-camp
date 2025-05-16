@@ -82,7 +82,17 @@ const seo: AstroSeoProps = {
 
 					<div class="mb-6">
 						<h3 class="font-medium mb-1">Cost</h3>
-						<p class="text-2xl font-bold">{entry.data.cost === "Apply" ? "By application" : entry.data.cost}</p>
+						<div class="space-y-2">
+							<p class="flex items-center">
+								<span class="text-2xl font-bold">{entry.data.cost === "Apply" ? "By application" : entry.data.cost}</span>
+								<span class="text-sm ml-2 text-slate-600">for this branch</span>
+							</p>
+							<p class="flex items-center">
+								<span class="text-2xl font-bold">+</span>
+								<a href="https://bit.ly/sc-tickets" class="text-2xl font-bold text-campfire-500 hover:text-campfire-600 transition-colors ml-1" target="_blank" rel="noopener noreferrer">$375</a>
+								<span class="text-sm ml-2 text-slate-600">for ASC admission</span>
+							</p>
+						</div>
 					</div>
 
 					<!-- {entry.data.sponsor && (
