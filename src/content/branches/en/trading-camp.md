@@ -18,7 +18,7 @@ pageImage:
 cost: "$1,850"
 dates: "Tues-Thurs"
 isIncubator: false
-purchaseLink: "https://trading.camp"
+purchaseLink: "https://airtable.com/appTX8ljKL2tArGsn/pagSnjPOt9DdmlT1B/form"
 pubDate: 2024-04-15
 order: 8
 # schedule:
@@ -74,7 +74,7 @@ order: 8
 #         type: "session"
 ---
 
-You might be coming in with an idea of what it means to think like an engineer, a founder, or a lawyer. This bootcamp teaches another framework: how to think like a trader.
+You might be coming in with an idea of what it means to think like an engineer, a founder, or a lawyer. <a href="https://trading.camp">Our trading bootcamp</a> teaches another framework: how to think like a trader.
 
 We believe that the best way to learn to trade is to trade, so a large part of our bootcamp focuses on live trading (using fake currency) on our internal exchange. We create specific trading scenarios to teach the same concepts you would encounter in live markets such as pricing, probability estimation, arbitrage and adverse selection.
 
