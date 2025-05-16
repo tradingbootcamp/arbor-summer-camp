@@ -18,6 +18,7 @@ const sponsorshipTiers = [
   {
     name: "Silver",
     price: "$2,500",
+    greeting: "Hi Ricki,",
     perks: [
       "Logo on branch page",
       "Logo on branch materials",
@@ -28,6 +29,7 @@ const sponsorshipTiers = [
   {
     name: "Gold",
     price: "$5,000",
+    greeting: "Hey Ricki,",
     perks: [
       "All Silver tier benefits",
       "Larger logo placement",
@@ -39,6 +41,7 @@ const sponsorshipTiers = [
   {
     name: "Platinum",
     price: "$10,000",
+    greeting: "Hello Ricki,",
     perks: [
       "All Gold tier benefits",
       "Premium logo placement",
@@ -167,7 +170,7 @@ const sponsorshipTiers = [
             
             <div class="p-6 mt-auto">
               <a 
-                href="/contact" 
+                href={`mailto:ricki@trading.camp?subject=Arbor%20Summer%20College%20${tier.name}%20Sponsorship%20Inquiry&body=${tier.greeting}%0A%0AI'm%20interested%20in%20learning%20more%20about%20the%20${tier.name}%20sponsorship%20tier%20for%20an%20incubated%20branch%20at%20Arbor%20Summer%20College.`} 
                 class={`block w-full p-3 text-center font-bold rounded-lg transition-colors ${
                   tier.name === "Silver" ? "bg-slate-300 hover:bg-slate-400 text-slate-800" : 
                   tier.name === "Gold" ? "bg-sunshine-400 hover:bg-sunshine-500 text-black" : 
