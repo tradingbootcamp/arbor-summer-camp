@@ -12,15 +12,6 @@
 
 :root {
 	font-family: "Quicksand", sans-serif;
-}
-
-@supports (font-variation-settings: normal) {
-	:root {
-		font-family: "Quicksand", sans-serif;
-	}
-}
-
-:root {
 	--astro-code-color-text: #ffffff;
 	--astro-code-color-background: #131313;
 	--astro-code-token-constant: #8b919b;
@@ -36,6 +27,18 @@
 	--base-padding-x: max(6vw, 60px);
 	--base-padding-y: clamp(30px, 4vw, 50px);
 	--gold-500: #edb74d;
+	--campfire-500: #f97316;
+	--campfire-600: #ea580c;
+	--campfire-700: #c2410c;
+	--campfire-800: #9a3412;
+	--campfire-900: #7c2d12;
+	--campfire-950: #431407;
+}
+
+@supports (font-variation-settings: normal) {
+	:root {
+		font-family: "Quicksand", sans-serif;
+	}
 }
 
 @media (max-width: 812px) {

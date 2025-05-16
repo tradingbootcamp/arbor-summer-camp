@@ -24,7 +24,7 @@ const faqs = [
 	},
 	{
 		question: "Is housing provided?",
-		answer: "A limited number of onsite rooms can be purchased from Lighthaven, but there will be many times more people in attendance than rooms, so most people will have to find other housing."
+		answer: "A limited number of onsite rooms <a href='https://www.havenbookings.space/events/festival-season-2025' target='_blank' rel='noopener noreferrer'>can be purchased from Lighthaven</a>, but there will be many times more people in attendance than rooms, so most people will have to find other housing."
 	},
 	{
 		question: "Can I bring my kids?",
@@ -65,7 +65,7 @@ const faqs = [
 // ];
 ---
 
-<section id="faq" class:list={["section faq-section relative bg-forest-50 text-forest-950", className]}>
+<section id="faq" class:list={["section faq-section relative bg-forest-50 text-forest-950 faq-content", className]}>
 	<div class="wrapper w-full py-10">
 		<div class="mx-auto max-w-5xl px-4">
 			<h2 class="mb-12 font-display text-4xl font-bold md:text-5xl">FAQ</h2>
@@ -124,6 +124,17 @@ const faqs = [
 	.faq-item {
 		position: relative;
 		z-index: 1;
+	}
+	
+	/* Global style for links within the FAQ content */
+	:global(.faq-content a) {
+		color: var(--campfire-600) !important;
+		font-weight: 500 !important;
+		transition: color 0.2s ease !important;
+	}
+	
+	:global(.faq-content a:hover) {
+		color: var(--campfire-700) !important;
 	}
 </style>
 
