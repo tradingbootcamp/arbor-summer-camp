@@ -156,6 +156,14 @@ const seo: AstroSeoProps = {
 					  {/* Mobile Calendar Visualization */}
 					  <div class="mb-12 max-w-4xl mx-auto lg:hidden">
 						<div class="space-y-4">
+					      {/* Arbor Pedagogy Incubator */}
+						  <div class="bg-forest-500/20 p-4 rounded-lg border-2 border-gray-900">
+							<div class="flex items-center justify-between gap-8">
+							  <h3 class="text-lg font-semibold">Arbor Pedagogy Incubator</h3>
+							  <p class="text-lg text-gray-600">Mon, May 26 - Thu, May 29</p>
+							</div>
+						  </div>
+						
 						  {/* LessOnline */}
 						  <div class="bg-[#f8f3e2] p-4 rounded-lg border-2 border-gray-900">
 							<div class="flex items-center justify-between gap-8">
@@ -224,7 +232,9 @@ const seo: AstroSeoProps = {
 								</li>
 								<li class="flex items-start">
 									<span class="text-sunshine-500 mr-2 text-xl">•</span>
-									<span>An Arbor Apprentice assigned to support your branch</span>
+									<span>An <span class="tooltip-trigger border-b-2 border-dotted border-black/50 relative cursor-help inline">Arbor&nbsp;Apprentice<span class="tooltip top-8 left-0 w-80 bg-white/90 backdrop-blur-sm text-forest-800 text-xs py-1 px-2 rounded shadow-md opacity-0 invisible transition-opacity duration-200 pointer-events-none z-10 font-mono fixed">
+											Arbor Apprentices are trained to support your branch, via both pedagogical and logistical support. They'll also participate in the incubator, with a slightly different focus — for example, "how to be a good whiteboard scribe when someone is teaching"
+										</span></span> assigned to support your branch</span>
 								</li>
 								<li class="flex items-start">
 									<span class="text-sunshine-500 mr-2 text-xl">•</span>
@@ -322,4 +332,96 @@ const seo: AstroSeoProps = {
 			</div>
 		</div>
 	</section> -->
-</BaseLayout> 
+</BaseLayout>
+
+<script>
+	import { gsap } from "gsap";
+
+	function initTooltips() {
+		// Tooltip functionality
+		const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
+		
+		tooltipTriggers.forEach(trigger => {
+			const tooltip = trigger.querySelector('.tooltip');
+			
+			// For desktop: mouseover/mouseout
+			trigger.addEventListener('mouseenter', () => {
+				if (tooltip) {
+					// Position the tooltip based on trigger's position
+					const triggerRect = trigger.getBoundingClientRect();
+					const tooltipRect = tooltip.getBoundingClientRect();
+					
+					// Center horizontally below the trigger
+					const left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+					const top = triggerRect.bottom + 8; // 8px below the trigger
+					
+					// Ensure tooltip stays within viewport
+					const adjustedLeft = Math.max(10, Math.min(left, window.innerWidth - tooltipRect.width - 10));
+					
+					tooltip.style.left = `${adjustedLeft}px`;
+					tooltip.style.top = `${top}px`;
+					
+					gsap.to(tooltip, {
+						opacity: 1,
+						visibility: 'visible',
+						duration: 0.2,
+						ease: 'power1.out'
+					});
+				}
+			});
+			
+			trigger.addEventListener('mouseleave', () => {
+				if (tooltip) {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
+			
+			// For mobile: touch events
+			trigger.addEventListener('touchstart', (e) => {
+				e.preventDefault();
+				if (tooltip) {
+					// Toggle tooltip visibility
+					if (tooltip.style.opacity === '1') {
+						gsap.to(tooltip, {
+							opacity: 0,
+							visibility: 'hidden',
+							duration: 0.2,
+							ease: 'power1.in'
+						});
+					} else {
+						gsap.to(tooltip, {
+							opacity: 1,
+							visibility: 'visible',
+							duration: 0.2,
+							ease: 'power1.out'
+						});
+					}
+				}
+			});
+		});
+		
+		// Close tooltip when clicking elsewhere on mobile
+		document.addEventListener('touchstart', (e) => {
+			const tooltips = document.querySelectorAll('.tooltip-trigger');
+			tooltips.forEach(trigger => {
+				const tooltip = trigger.querySelector('.tooltip');
+				if (!trigger.contains(e.target) && tooltip && tooltip.style.opacity === '1') {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
+		});
+	}
+
+	// Run the initialization function
+	document.addEventListener("DOMContentLoaded", initTooltips);
+</script> 
