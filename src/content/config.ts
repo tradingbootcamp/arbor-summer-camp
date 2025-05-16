@@ -56,6 +56,11 @@ const branchesCollection = defineCollection({
 				alt: z.string(),
 				position: z.string().optional(),
 			}),
+			pageImage: z.object({
+				source: z.union([image(), z.string()]),
+				alt: z.string(),
+				position: z.string().optional(),
+			}).optional(),
 			cost: z.string(),
 			dates: z.string(),
 			schedule: z.array(

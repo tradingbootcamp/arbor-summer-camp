@@ -45,9 +45,9 @@ const seo: AstroSeoProps = {
 	<article class="mx-auto max-w-6xl px-4 py-16 sm:px-10 lg:px-16 mt-10">
 		<div class="mb-12">
 			<Image 
-				src={entry.data.coverImage.source} 
-				alt={entry.data.coverImage.alt}
-				style={{ objectPosition: entry.data.coverImage.position || 'center'}}
+				src={entry.data.pageImage?.source || entry.data.coverImage.source} 
+				alt={entry.data.pageImage?.alt || entry.data.coverImage.alt}
+				style={{ objectPosition: entry.data.pageImage?.position || entry.data.coverImage.position || 'center'}}
 				class="w-full h-[40vh] object-cover rounded-xl" 
 			/>
 		</div>

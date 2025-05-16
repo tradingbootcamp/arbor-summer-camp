@@ -9,7 +9,7 @@ instructor:
     position: "right"
   link: "/author/nicholas-dupuis"
 coverImage:
-  source: "@assets/images/branch-covers/adverse_selection_banner.webp"
+  source: "@assets/images/branch-covers/ai4e_background.jpg"
   alt: "AI4E banner"
   position: "right"
 cost: "$150"
