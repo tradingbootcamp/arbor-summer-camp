@@ -1,7 +1,7 @@
 ---
 import LinkBlend from "@components/global/LinkBlend.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
-
+import { PATHS } from "@config/constants";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
@@ -37,7 +37,9 @@ const translatePath = useTranslatedPath(lang);
 							<a
 								class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-white transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl font-display font-bold"
 								aria-label="Buy Tickets"
-								href={translatePath("/tickets/")}>
+								href={PATHS.TICKETS}
+								target="_blank"
+								rel="noopener">
 								{t("tickets")}
 							</a>
 						</div>
