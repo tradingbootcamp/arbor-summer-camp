@@ -2,6 +2,7 @@
 const { class: className } = Astro.props;
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
 import CustomButton from "@components/global/CustomButton.astro";
+import RickiImage from "@assets/images/instructors/ricki_asc.png";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -10,58 +11,74 @@ const translatePath = useTranslatedPath(lang);
 
 <section id="custom-question" class="section bg-forest-50 text-forest-950 py-16">
   <div class="wrapper w-full">
-    <div class="mx-auto max-w-3xl px-4">
-      <h2 class="mb-4 font-display text-3xl font-bold md:text-4xl text-center">More questions?</h2>
-      <p class="mb-8 text-center">ASC us anything ;)</p>
-      
-      <div class="p-6 rounded-lg shadow-sm">
-        <form id="customQuestionForm" class="space-y-4">
-          <div class="flex flex-col gap-4">
-            
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              placeholder="Name"
-              class="w-full px-4 py-2 rounded-lg border border-forest-200 focus:border-forest-700 focus:outline-none transition-colors text-black"
-            />
+    <div class="mx-auto max-w-3xl lg:max-w-5xl px-4">
+      <div class="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
+        <div class="flex-1">
+          <h2 class="mb-4 font-display text-3xl font-bold md:text-4xl">More questions?</h2>
+          <p class="mb-8">ASC us anything ;)</p>
+          
+          <div class="flex flex-col lg:flex-row gap-8">
+            <div class="rounded-lg w-full max-w-3xl">
+              <form id="customQuestionForm" class="space-y-4">
+                <div class="flex flex-col gap-4">
+                  
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Name"
+                    class="w-full px-4 py-2 rounded-lg border border-forest-200 focus:border-forest-700 focus:outline-none transition-colors text-black"
+                  />
 
-            <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            class="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-forest-200 focus:border-forest-700 focus:outline-none transition-colors text-black"
-            required
-            />
+                  <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  class="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-forest-200 focus:border-forest-700 focus:outline-none transition-colors text-black"
+                  required
+                  />
 
-            <textarea
-              id="questions"
-              name="questions"
-              placeholder="What would you like to know?"
-              rows="3"
-              class="w-full px-4 py-2 rounded-lg border border-forest-200 focus:border-forest-700 focus:outline-none transition-colors resize-none text-black"
-            ></textarea>
-            
-            <CustomButton type="submit" id="submitButton" class="bg-forest-800 text-sm sm:text-base whitespace-normal sm:whitespace-nowrap">
-              Submit Question
-            </CustomButton>
-          </div>
-        </form>
-      </div>
-      
-      <div id="customNotification" class="opacity-0 transform translate-y-4 transition-all duration-500 mt-4">
-        <div class="bg-gradient-to-r from-secondary to-success text-secondary-content p-4 rounded-lg shadow-lg">
-          <div class="flex items-center justify-center">
-            <div class="flex-shrink-0 mr-3">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+                  <textarea
+                    id="questions"
+                    name="questions"
+                    placeholder="What would you like to know?"
+                    rows="3"
+                    class="w-full px-4 py-2 rounded-lg border border-forest-200 focus:border-forest-700 focus:outline-none transition-colors resize-none text-black"
+                  ></textarea>
+                  
+                  <CustomButton type="submit" id="submitButton" class="bg-forest-800 text-sm sm:text-base whitespace-normal sm:whitespace-nowrap">
+                    Submit Question
+                  </CustomButton>
+                </div>
+              </form>
             </div>
-            <p class="text-sm font-medium">
-              Thanks for your question! We'll get back to you soon.
-            </p>
           </div>
+          
+          <div id="customNotification" class="opacity-0 transform translate-y-4 transition-all duration-500 mt-4">
+            <div class="bg-gradient-to-r from-secondary to-success text-secondary-content p-4 rounded-lg shadow-lg">
+              <div class="flex items-center justify-center">
+                <div class="flex-shrink-0 mr-3">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <p class="text-sm font-medium">
+                  Thanks for your question! We'll get back to you soon.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hidden lg:flex flex-shrink-0 items-end self-stretch">
+          <a href="mailto:ricki@trading.camp" class="transition-transform duration-300 hover:scale-105 cursor-pointer">
+            <img 
+              src={RickiImage.src} 
+              alt="Instructor Ricki" 
+              class="w-72 h-auto mb-16"
+            />
+          </a>
         </div>
       </div>
     </div>
