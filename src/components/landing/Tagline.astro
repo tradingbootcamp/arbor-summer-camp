@@ -9,26 +9,26 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <!-- The best thing? It's all in one -->
-<div id="smooth-wrapper" class:list={["section tagline-section relative bg-zinc-900 text-white", className]}>
+<div id="smooth-wrapper" class:list={["section tagline-section relative bg-forest-50 text-forest-950", className]}>
 	<div class="tagline-arrows">
 		<svg
 			stroke-linecap="round"
-			class="h-[15rem] w-[15rem] rotate-45 md:w-[20rem] md:rotate-0 lg:w-[25rem]"
+			class="h-[15rem] w-[15rem] rotate-45 md:w-[18rem] md:rotate-0 lg:w-[20rem]"
 			stroke-linejoin="round"
 			viewBox="0 0 550 330">
 			<path
 				id="tagline-arrow-path"
 				fill="none"
-				stroke="#fff"
+				stroke="#166534"
 				stroke-width="10"
 				d="M8.5,7.8C46.3,67,121.7,185.5,265.5,185.9c42.8,0.1,120.5-55.9-25.2-120.3
 	C79-5.8,177.6,164.1,222.3,207.7c59.1,49.9,83.8,62.1,162.6,96.8">
 			</path>
-			<path class="opacity-0" id="tagline-arrow" stroke="white" stroke-width="12" d="M465.7 172.9l47.1 6-29.8 33.3-17.3-39.3z"></path>
+			<path class="opacity-0" id="tagline-arrow" stroke="#166534" stroke-width="12" d="M465.7 172.9l47.1 6-29.8 33.3-17.3-39.3z"></path>
 		</svg>
 	</div>
-	<div class="text col-span-12 flex justify-center font-light">
-		<p id="services-tagline" class="max-w-5xl text-center text-4xl md:text-5xl lg:text-7xl">
+	<div class="text flex justify-center font-light">
+		<p id="services-tagline" class="max-w-5xl text-center text-4xl md:text-4xl lg:text-5xl">
 			{t("tagline")}
 		</p>
 	</div>
@@ -36,13 +36,32 @@ const translatePath = useTranslatedPath(lang);
 
 <style>
 	.text > p > :global(div) {
-		background: linear-gradient(to right, rgb(255, 255, 255) 50%, rgb(37, 37, 37) 50%);
+		background: linear-gradient(to right, rgb(22, 101, 52) 50%, rgb(240, 253, 244) 50%);
 		background-size: 200% 100%;
 		background-position-x: 100%;
 		color: transparent;
 		background-clip: text;
 		-webkit-background-clip: text;
 		line-height: 1.2;
+	}
+	
+	.tagline-section {
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.tagline-section::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('/images/texture-light.png');
+		background-size: cover;
+		background-position: center;
+		opacity: 0.05;
+		z-index: 0;
 	}
 </style>
 

@@ -1,43 +1,56 @@
 ---
 import LinkBlend from "@components/global/LinkBlend.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
-
+import { PATHS } from "@config/constants";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<section id="hero" class="section home-dark-section hero min-h-screen">
-	<div class="mx-auto flex h-full flex-col py-4 lg:py-10">
-		<div class="relative flex flex-1 flex-col justify-around rounded-lg pb-10 pt-20 lg:rounded-2xl">
-			<div class="flex justify-center">
-				<h1 class="text-center font-display text-5xl font-extrabold uppercase sm:text-7xl md:text-8xl lg:text-9xl">
-					<span>{t("hero.title.main")}</span>
-					<span class="rotator relative inline-flex h-20 w-full justify-center md:h-24 lg:h-32">
-						<span>{t("hero.title.1")}</span><span>{t("hero.title.2")}</span><span>{t("hero.title.3")}</span><span>
-							{t("hero.title.4")}
-						</span><span>{t("hero.title.1")}</span>
-					</span>
-				</h1>
-			</div>
-			<div class="flex flex-col items-center gap-5 text-center lg:gap-10">
-				<p class="mt-8 max-w-3xl font-mono lg:text-lg">
-					{t("hero.subtitle")}
+<section id="hero" class="section home-dark-section hero hero-background min-h-screen">
+	<div class="flex h-full flex-col">
+		<div class="relative flex flex-col justify-around rounded-lg pb-10 lg:rounded-2xl" style="min-height: 80vh;">
+			<!-- Using flex column instead of absolute positioning for better responsiveness -->
+			<div class="flex flex-col items-center justify-center pt-[5vh] gap-4 md:gap-4 lg:gap-4">
+				<!-- Date line above the title -->
+				<p id="hero-date" class="text-center font-mono text-md md:text-xl font-bold text-campfire-600 text-shadow-sm opacity-0 translate-y-8">
+					<span class="inline md:inline">Monday, June 2 – Friday, June 6</span>
+					<span class="hidden md:inline"> | </span>
+					<span class="hidden md:inline"><a href="https://lighthaven.org" target="_blank" class="text-campfire-600 hover:text-campfire-500 transition-colors">Lighthaven&nbsp;Campus</a>,&nbsp;Berkeley&nbsp;CA</span>
 				</p>
-				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
-					<div class="squircle-bg rounded-lg bg-zinc-900" data-cursor-hover data-cursor-parallax>
-						<a
-							class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-slate-200 transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-8xl font-bold"
-							aria-label="Buy Tickets"
-							href={translatePath("/tickets/")}>
-							{t("tickets")}
-						</a>
-					</div>
+				
+				<!-- Title container -->
+				<h1 id="hero-title" class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text-8xl text-forest-950 text-shadow opacity-0 translate-y-8">
+					ARBOR SUMMER COLLEGE
+				</h1>
+				
+				<!-- Content below the title -->
+				<div class="flex flex-col items-center gap-2 text-center">
+					<p id="hero-subtitle" class="max-w-6xl font-mono md:text-lg lg:text-xl text-forest-900 text-shadow-sm opacity-0 translate-y-8">
+						A <span class="tooltip-trigger relative cursor-help">micromester
+							<span class="tooltip absolute top-8 left-1/2 -translate-x-1/2 w-40 bg-white/90 backdrop-blur-sm text-forest-800 text-xs py-1 px-2 rounded shadow-md opacity-0 invisible transition-opacity duration-200 pointer-events-none z-10 font-mono">
+								like a minimester, but even smaller
+							</span>
+						</span> of workshops and bootcamps the week between 
+						<a href="https://less.online" target="_blank" class="text-forest-900 hover:text-campfire-600 transition-colors">LessOnline</a>&nbsp;and&nbsp;<a href="https://manifest.is" target="_blank" class="text-forest-900 hover:text-campfire-600 transition-colors">Manifest</a>
+					</p>
+					<div id="hero-cta" class="flex flex-col items-center justify-center gap-3 lg:col-start-1 mt-4 opacity-0 translate-y-8">
+						<div class="rounded-lg bg-campfire-500 hover:bg-campfire-600 transition-colors" data-cursor-hover data-cursor-parallax>
+							<a
+								class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-white transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl font-display font-bold"
+								aria-label="Buy Tickets"
+								href={PATHS.TICKETS}
+								target="_blank"
+								rel="noopener">
+								{t("tickets")}
+							</a>
+						</div>
 
-					<small>
-						{t("or")}
-						<LinkBlend id="go-projects-button" isButton={true}>{t("hero.scroll")}</LinkBlend>
-					</small>
+						<small class="text-forest-900 font-medium">
+							{t("or")}
+							<LinkBlend id="go-projects-button" isButton={true} class="text-campfire-600 hover:text-campfire-500">{t("hero.scroll")}</LinkBlend>
+						</small>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -55,95 +68,195 @@ const translatePath = useTranslatedPath(lang);
 		grid-column: 1 / span 12;
 	}
 
+	/* Background image with fade effect */
+	.hero-background {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('/images/oli_asc_cover.png');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: 0;
+		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+		-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0) 100%);
+		/* Add a brightness filter to make the image sunnier */
+		filter: brightness(1.2) saturate(1.2);
+	}
+
+	/* Replace dark overlay with a light, sunny one */
+	.hero-background::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		/* Use a light golden overlay instead of dark */
+		background: linear-gradient(to bottom, rgba(255, 236, 179, 0.3), rgba(245, 158, 11, 0));
+		z-index: -1;
+	}
+
 	/* Hero appearance */
 	.hero h1,
 	.hero h2,
 	.hero h3 {
 		margin: 0;
 	}
-	.hero h1 {
-		margin: 0;
-		position: relative;
-		overflow: hidden;
-		visibility: hidden;
+	
+	/* Adjust text shadow for better readability on bright background */
+	.text-shadow {
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 	}
-	.hero h1 > div {
-		position: relative;
-		margin: 0;
+	
+	.text-shadow-sm {
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 	}
-	.hero :global(.split-parent) {
-		overflow: hidden;
+	
+	/* Tooltip styles */
+	.tooltip-trigger {
+		/* Removed the border-bottom style */
 	}
-	.hero :global(.split-child) {
-		display: inline-block;
-	}
-
-	/* Text rotator */
-	.rotator > span {
+	
+	.tooltip::after {
+		content: '';
 		position: absolute;
-	}
-
-	.rotator > span:not(:nth-child(1)) {
-		opacity: 0;
+		bottom: 100%; /* Changed from top to bottom */
+		left: 50%;
+		transform: translateX(-50%);
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent transparent rgba(255, 255, 255, 0.9) transparent; /* Changed arrow direction */
 	}
 </style>
 
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { SplitText } from "gsap/SplitText";
 	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-	gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 	function init() {
-		const childSplit = new SplitText(".hero h1", {
-			type: "lines",
-			linesClass: "split-child",
+		// Sequential animation for all elements
+		const heroDate = document.getElementById("hero-date");
+		const heroTitle = document.getElementById("hero-title");
+		const heroSubtitle = document.getElementById("hero-subtitle");
+		const heroCta = document.getElementById("hero-cta");
+		
+		// Create a timeline for sequential animation - no need to set initial states in JS
+		// as they're now set in the HTML/CSS
+		const tl = gsap.timeline();
+		
+		// Animate date first
+		tl.to(heroDate, {
+			duration: 0.8,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
 		});
-		const parentSplit = new SplitText(".hero h1", {
-			linesClass: "split-parent",
+		
+		// Then animate title
+		tl.to(heroTitle, {
+			duration: 1,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
+		}, "-=0.4"); // Start slightly before the previous animation finishes
+		
+		// Then animate subtitle
+		tl.to(heroSubtitle, {
+			duration: 0.8,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
+		}, "-=0.4");
+		
+		// Finally animate CTA
+		tl.to(heroCta, {
+			duration: 0.8,
+			opacity: 1,
+			y: 0,
+			ease: "power3.out"
+		}, "-=0.4");
+
+		// Handle scroll button
+		const goProjectsButton = document.getElementById("go-projects-button");
+		goProjectsButton?.addEventListener("click", function () {
+			gsap.to(window, { duration: 0.5, scrollTo: "#explanation" });
 		});
-
-		gsap.timeline()
-			.from(childSplit.lines, {
-				duration: 1.5,
-				yPercent: 100,
-				ease: "power4",
-				stagger: 0.1,
-			})
-			.set(".hero h1", { visibility: "visible" }, "<")
-			.then(() => {
-				const words = document.querySelectorAll(".hero .rotator > span");
-
-				let rotatorTimeline = gsap.timeline({ repeat: -1 });
-				rotatorTimeline.timeScale(0.5);
-
-				for (let i = 0; i < words.length; i++) {
-					let delay = i - 1;
-					let wordTL = gsap.timeline();
-					if (i !== 0) {
-						gsap.set(words[i], { opacity: 1 });
-						wordTL.from(words[i], { duration: 1, yPercent: 100, opacity: 0, ease: "power4.out" });
-					} else {
-						// Handle the first one specially
-						delay += 1;
-						gsap.set(words[0], { opacity: 1, yPercent: 0 });
-					}
-
-					if (i !== words.length - 1) {
-						wordTL.to(words[i], { duration: 1, yPercent: -100, opacity: 0, ease: "power4.out" });
-					}
-					rotatorTimeline.add(wordTL, delay);
+		
+		// Tooltip functionality
+		const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
+		
+		tooltipTriggers.forEach(trigger => {
+			const tooltip = trigger.querySelector('.tooltip');
+			
+			// For desktop: mouseover/mouseout
+			trigger.addEventListener('mouseenter', () => {
+				if (tooltip) {
+					gsap.to(tooltip, {
+						opacity: 1,
+						visibility: 'visible',
+						duration: 0.2,
+						ease: 'power1.out'
+					});
 				}
 			});
-
-		var goProjectsButton = document.getElementById("go-projects-button");
-		goProjectsButton?.addEventListener("click", function () {
-			gsap.to(window, { duration: 0.5, scrollTo: "#projects" });
+			
+			trigger.addEventListener('mouseleave', () => {
+				if (tooltip) {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
+			
+			// For mobile: touch events
+			trigger.addEventListener('touchstart', (e) => {
+				e.preventDefault();
+				if (tooltip) {
+					// Toggle tooltip visibility
+					if (tooltip.style.opacity === '1') {
+						gsap.to(tooltip, {
+							opacity: 0,
+							visibility: 'hidden',
+							duration: 0.2,
+							ease: 'power1.in'
+						});
+					} else {
+						gsap.to(tooltip, {
+							opacity: 1,
+							visibility: 'visible',
+							duration: 0.2,
+							ease: 'power1.out'
+						});
+					}
+				}
+			});
+			
+			// Close tooltip when clicking elsewhere on mobile
+			document.addEventListener('touchstart', (e) => {
+				if (!trigger.contains(e.target) && tooltip && tooltip.style.opacity === '1') {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
 		});
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	// Run the animation as soon as possible, not just on DOMContentLoaded
+	init();
+	// Keep the DOMContentLoaded listener as a fallback
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
 </script>

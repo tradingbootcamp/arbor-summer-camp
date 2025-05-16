@@ -11,7 +11,7 @@ const postsCollection = defineCollection({
 				link: z.string(),
 			}),
 			image: z.object({
-				source: image(),
+				source: z.union([image(), z.string()]),
 				alt: z.string(),
 			}),
 
@@ -31,9 +31,60 @@ const projectsCollection = defineCollection({
 				link: z.string(),
 			}),
 			image: z.object({
-				source: image(),
+				source: z.union([image(), z.string()]),
 				alt: z.string(),
 			}),
+		}),
+});
+
+const branchesCollection = defineCollection({
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			shortDescription: z.string(),
+			instructor: z.object({
+				name: z.string(),
+				image: z.object({
+					source: z.union([image(), z.string()]),
+					alt: z.string(),
+					position: z.string().optional(),
+				}),
+				link: z.string().optional(),
+			}),
+			coverImage: z.object({
+				source: z.union([image(), z.string()]),
+				alt: z.string(),
+				position: z.string().optional(),
+			}),
+			pageImage: z.object({
+				source: z.union([image(), z.string()]),
+				alt: z.string(),
+				position: z.string().optional(),
+			}).optional(),
+			cost: z.string(),
+			dates: z.string(),
+			schedule: z.array(
+				z.object({
+					day: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]),
+					activities: z.array(
+						z.object({
+							name: z.string(),
+							startTime: z.string(), // Format: "HH:MM" (24-hour)
+							endTime: z.string(),   // Format: "HH:MM" (24-hour)
+							type: z.enum(["session", "break", "meal"]).default("session"),
+							description: z.string().optional(),
+						})
+					),
+				})
+			).optional(),
+			sponsor: z.object({
+				name: z.string().optional(),
+				link: z.string().optional(),
+			}).optional(),
+			isIncubator: z.boolean().default(false),
+			purchaseLink: z.string().optional().default("https://bit.ly/asc-branches"),
+			pubDate: z.date(),
+			order: z.number().default(999),
 		}),
 });
 
@@ -43,7 +94,7 @@ const authorsCollection = defineCollection({
 			name: z.string(),
 			description: z.string(),
 			image: z.object({
-				source: image(),
+				source: z.union([image(), z.string()]),
 				alt: z.string(),
 			}),
 		}),
@@ -52,5 +103,6 @@ const authorsCollection = defineCollection({
 export const collections = {
 	posts: postsCollection,
 	projects: projectsCollection,
+	branches: branchesCollection,
 	authors: authorsCollection,
 };

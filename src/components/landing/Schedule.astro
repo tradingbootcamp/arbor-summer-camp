@@ -1,0 +1,209 @@
+---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// Define the days of the week
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+// Define time slots from 9:00 to 22:00 (hourly)
+const timeSlots = [];
+for (let hour = 9; hour <= 22; hour++) {
+  timeSlots.push(`${hour.toString().padStart(2, '0')}:00`);
+}
+
+// Define activities with start and end times
+const activities = [
+  // Monday
+  { day: "Monday", start: "09:00", end: "10:00", name: "No Classes", type: "free" },
+  { day: "Monday", start: "10:00", end: "12:30", name: "Branches in Session", type: "class" },
+  { day: "Monday", start: "12:30", end: "13:30", name: "Lunch", type: "meal" },
+  { day: "Monday", start: "13:30", end: "18:00", name: "Branches in Session", type: "class" },
+  { day: "Monday", start: "18:00", end: "19:00", name: "Dinner", type: "meal" },
+  
+  // Tuesday
+  { day: "Tuesday", start: "10:00", end: "12:30", name: "Branches in Session", type: "class" },
+  { day: "Tuesday", start: "12:30", end: "13:30", name: "Lunch", type: "meal" },
+  { day: "Tuesday", start: "13:30", end: "18:00", name: "Branches in Session", type: "class" },
+  { day: "Tuesday", start: "18:00", end: "19:00", name: "Dinner", type: "meal" },
+  
+  // Wednesday
+  { day: "Wednesday", start: "10:00", end: "12:30", name: "Branches in Session", type: "class" },
+  { day: "Wednesday", start: "12:30", end: "13:30", name: "Lunch", type: "meal" },
+  { day: "Wednesday", start: "13:30", end: "18:00", name: "Branches in Session", type: "class" },
+  { day: "Wednesday", start: "18:00", end: "19:00", name: "Dinner", type: "meal" },
+  { day: "Wednesday", start: "19:00", end: "22:00", name: "ACX Meetup", type: "event" },
+  
+  // Thursday
+  { day: "Thursday", start: "10:00", end: "12:30", name: "Branches in Session", type: "class" },
+  { day: "Thursday", start: "12:30", end: "13:30", name: "Lunch", type: "meal" },
+  { day: "Thursday", start: "13:30", end: "18:00", name: "Branches in Session", type: "class" },
+  { day: "Thursday", start: "18:00", end: "19:00", name: "Dinner", type: "meal" },
+  { day: "Thursday", start: "19:00", end: "22:00", name: "Provide Your Own Liquidity", type: "event", link: "https://partiful.com/e/TBD" },
+  
+  // Friday
+  { day: "Friday", start: "10:00", end: "12:30", name: "Branches in Session", type: "class" },
+  { day: "Friday", start: "12:30", end: "13:30", name: "Lunch", type: "meal" },
+  { day: "Friday", start: "13:30", end: "18:00", name: "Manifest Conference Begins", type: "event" },
+  { day: "Friday", start: "18:00", end: "19:00", name: "Dinner", type: "meal" },
+  { day: "Friday", start: "19:00", end: "22:00", name: "Career Fair", type: "event" }
+];
+
+// Helper function to get activities for a specific day
+function getActivitiesForDay(day) {
+  return activities.filter(activity => activity.day === day);
+}
+
+// Helper function to calculate position and height based on time
+function calculateTimePosition(time) {
+  const [hours, minutes] = time.split(':').map(Number);
+  return (hours - 9) * 60 + minutes; // Minutes from 9:00
+}
+
+// Helper function to calculate height based on duration
+function calculateHeight(start, end) {
+  const startMinutes = calculateTimePosition(start);
+  const endMinutes = calculateTimePosition(end);
+  return endMinutes - startMinutes;
+}
+
+// Total minutes in the day (9:00 - 22:00 = 13 hours = 780 minutes)
+const totalMinutes = 13 * 60;
+---
+
+<section id="schedule" class="section schedule-section py-16 lg:py-24">
+  <div class="wrapper w-full">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-forest-950">Summer College Schedule</h2>
+        <p class="mt-4 text-xl max-w-3xl mx-auto text-forest-800">
+          June 2-6, 2025 at <a href="https://lighthaven.space" target="_blank" rel="noopener" class="hover:text-campfire-400 no-underline">Lighthaven Campus</a>
+        </p>
+      </div>
+      
+      <div class="overflow-x-auto">
+        <div class="min-w-[800px]">
+          <!-- Calendar with time slots on the left -->
+          <div class="border border-gray-200 rounded-lg bg-white">
+            <!-- Header Row with Days -->
+            <div class="grid grid-cols-[80px_repeat(5,1fr)]">
+              <div class="p-4 border-b-2 border-r border-gray-200"></div>
+              {days.map(day => (
+                <div class="p-4 text-center font-semibold border-b-2 border-r border-gray-200 last:border-r-0">
+                  <div class="text-lg">{day}</div>
+                  <div class="text-sm text-gray-500">
+                    {day === "Monday" ? "Jun 2" : 
+                     day === "Tuesday" ? "Jun 3" : 
+                     day === "Wednesday" ? "Jun 4" : 
+                     day === "Thursday" ? "Jun 5" : "Jun 6"}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <!-- Time slots and activities -->
+            <div class="relative" style="height: 780px;"> <!-- 13 hours * 60 minutes -->
+              
+              <!-- Time labels on the left -->
+              {timeSlots.map((time, index) => (
+                <div class="absolute left-0 border-t border-gray-200 text-sm text-gray-500 pl-2" 
+                     style={`top: ${index * 60}px; height: 20px; width: 80px;`}>
+                  {time}
+                </div>
+              ))}
+              
+              <!-- Horizontal time grid lines -->
+              {timeSlots.map((time, index) => (
+                <div class="absolute left-0 right-0 border-t border-gray-200" 
+                     style={`top: ${index * 60}px; height: 1px; width: 100%;`}>
+                </div>
+              ))}
+              
+              <!-- Vertical day separators -->
+              <div class="absolute top-0 bottom-0 border-r border-gray-200" style="left: 80px; width: 1px; height: 100%;"></div>
+              {[1, 2, 3, 4].map(index => (
+                <div class="absolute top-0 bottom-0 border-r border-gray-200" 
+                     style={`left: ${80 + (index * ((100 - 80) / 5))}%; width: 1px; height: 100%;`}>
+                </div>
+              ))}
+              
+              <!-- Activities for each day -->
+              {days.map((day, dayIndex) => {
+                const dayActivities = getActivitiesForDay(day);
+                
+                return dayActivities.map(activity => {
+                  const startPos = calculateTimePosition(activity.start);
+                  const height = calculateHeight(activity.start, activity.end);
+                  const columnWidth = (100 - 80/6) / 5;
+                  const leftPos = 80 + (dayIndex * columnWidth);
+                  
+                  return (
+                    <div 
+                      class={`absolute rounded-sm border border-gray-200 p-2 ${
+                        activity.type === 'meal' 
+                          ? 'bg-forest-100 text-forest-800' 
+                          : activity.type === 'free' 
+                            ? 'bg-gray-100 text-gray-700'
+                            : activity.type === 'event'
+                              ? 'bg-sunshine-50 text-campfire-800'
+                              : 'bg-campfire-50 text-campfire-800'
+                      }`}
+                      style={`top: ${startPos}px; height: ${height}px; left: ${leftPos/6}%; width: ${columnWidth/6}%;`}
+                    >
+                      <div class="font-medium">
+                        {activity.link ? (
+                          <a href={activity.link} target="_blank" rel="noopener" class="text-campfire-600 hover:text-campfire-800">
+                            {activity.name} →
+                          </a>
+                        ) : (
+                          activity.name
+                        )}
+                      </div>
+                      <div class="text-xs mt-1 opacity-75">
+                        {activity.start} - {activity.end}
+                      </div>
+                    </div>
+                  );
+                });
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center text-sm text-gray-500">
+        <p>All participants are expected to attend lunch (12:30-1:30) and dinner (6:00-7:00) each day.</p>
+        <p class="mt-2">Branches run from 10am-12:30pm and 1:30pm-6pm Tuesday through Thursday, with a modified schedule on Monday and Friday.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .schedule-section {
+    position: relative;
+    background-color: #f0f5f0;
+    overflow: hidden;
+  }
+  
+  .schedule-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/texture-light.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    z-index: 0;
+  }
+  
+  .schedule-section > div {
+    position: relative;
+    z-index: 1;
+  }
+</style> 

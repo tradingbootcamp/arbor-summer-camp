@@ -1,0 +1,142 @@
+---
+const { schedule } = Astro.props;
+
+// Define standard meal times
+const standardMeals = [
+  { name: "Lunch", startTime: "12:30", endTime: "13:30", type: "meal" },
+  { name: "Dinner", startTime: "18:30", endTime: "19:30", type: "meal" }
+];
+
+// Days of the week
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+// Time slots from 9:00 to 21:00
+const timeSlots = [];
+for (let hour = 9; hour <= 21; hour++) {
+  timeSlots.push(`${hour.toString().padStart(2, '0')}:00`);
+  if (hour < 21) {
+    timeSlots.push(`${hour.toString().padStart(2, '0')}:30`);
+  }
+}
+
+// Helper function to determine if an activity is happening at a given time slot
+function isActivityAtTimeSlot(activities, timeSlot) {
+  if (!activities) return null;
+  
+  const [hour, minute] = timeSlot.split(':').map(Number);
+  const timeInMinutes = hour * 60 + minute;
+  
+  for (const activity of activities) {
+    const [startHour, startMinute] = activity.startTime.split(':').map(Number);
+    const [endHour, endMinute] = activity.endTime.split(':').map(Number);
+    
+    const startTimeInMinutes = startHour * 60 + startMinute;
+    const endTimeInMinutes = endHour * 60 + endMinute;
+    
+    if (timeInMinutes >= startTimeInMinutes && timeInMinutes < endTimeInMinutes) {
+      return activity;
+    }
+  }
+  
+  return null;
+}
+
+// Merge standard meals with provided schedule
+const mergedSchedule = days.map(day => {
+  const daySchedule = schedule?.find(s => s.day === day);
+  
+  // Start with standard meals
+  const activities = [...standardMeals];
+  
+  // Add custom activities if they exist
+  if (daySchedule?.activities) {
+    activities.push(...daySchedule.activities);
+  }
+  
+  return {
+    day,
+    activities
+  };
+});
+---
+
+<div class="mt-12 mb-8">
+  <h2 class="text-2xl font-bold mb-6">Schedule</h2>
+  
+  <div class="overflow-x-auto">
+    <div class="min-w-[800px]">
+      <!-- Schedule Grid -->
+      <div class="grid grid-cols-[100px_repeat(5,1fr)] bg-white border border-slate-200 rounded-lg">
+        <!-- Header Row with Days -->
+        <div class="bg-slate-50 p-3 font-medium border-b border-slate-200"></div>
+        {days.map(day => (
+          <div class="bg-slate-50 p-3 font-medium text-center border-b border-slate-200 border-l border-slate-200">
+            {day}
+          </div>
+        ))}
+        
+        <!-- Time Slots -->
+        {timeSlots.map(timeSlot => (
+          <>
+            <!-- Time Label -->
+            <div class={`p-2 text-sm text-slate-500 border-b border-slate-200 ${timeSlot.endsWith(':00') ? 'font-medium' : ''}`}>
+              {timeSlot}
+            </div>
+            
+            <!-- Activity Cells -->
+            {days.map(day => {
+              const daySchedule = mergedSchedule.find(s => s.day === day);
+              const activity = isActivityAtTimeSlot(daySchedule?.activities, timeSlot);
+              
+              // Determine if this is the start of an activity
+              const isActivityStart = activity && activity.startTime.endsWith(timeSlot.split(':')[1]);
+              
+              // Calculate rowspan based on activity duration
+              let rowspan = 0;
+              if (isActivityStart && activity) {
+                const [startHour, startMinute] = activity.startTime.split(':').map(Number);
+                const [endHour, endMinute] = activity.endTime.split(':').map(Number);
+                
+                const startTimeInMinutes = startHour * 60 + startMinute;
+                const endTimeInMinutes = endHour * 60 + endMinute;
+                
+                rowspan = (endTimeInMinutes - startTimeInMinutes) / 30;
+              }
+              
+              return (
+                <>
+                  {isActivityStart ? (
+                    <div 
+                      class={`border-b border-l border-slate-200 p-2 ${
+                        activity.type === 'meal' 
+                          ? 'bg-forest-100 text-forest-800' 
+                          : activity.type === 'break' 
+                            ? 'bg-slate-100 text-slate-700'
+                            : 'bg-campfire-50 text-campfire-800'
+                      }`}
+                      style={`grid-row: span ${rowspan}`}
+                    >
+                      <div class="font-medium">{activity.name}</div>
+                      {activity.description && (
+                        <div class="text-xs mt-1">{activity.description}</div>
+                      )}
+                      <div class="text-xs mt-1 opacity-75">
+                        {activity.startTime} - {activity.endTime}
+                      </div>
+                    </div>
+                  ) : !activity ? (
+                    <div class="border-b border-l border-slate-200 p-2"></div>
+                  ) : null}
+                </>
+              );
+            })}
+          </>
+        ))}
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-4 text-sm text-slate-500">
+    <p>* All participants are expected to attend lunch (12:30-13:30) and dinner (18:30-19:30) each day.</p>
+  </div>
+</div> 

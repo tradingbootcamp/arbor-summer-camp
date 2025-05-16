@@ -1,0 +1,424 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { AstroSeoProps } from "@astrolib/seo";
+import { getCollection } from "astro:content";
+import BranchCard from "@components/branches/BranchCard.astro";
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// Get only incubator branches
+const incubatorBranches = (await getCollection("branches"))
+	.filter((branch) => {
+		const [postLang, ...slug] = branch.slug.split("/");
+		return postLang === lang && branch.data.isIncubator === true;
+	})
+	.map((branch) => {
+		const [postLang, slug] = branch.slug.split("/");
+
+		return {
+			...branch,
+			slug: slug,
+		};
+	})
+	// Sort by order first, then by pubDate as a fallback
+	.sort((a, b) => {
+		// First sort by order
+		if (a.data.order !== b.data.order) {
+			return a.data.order - b.data.order;
+		}
+		// If orders are the same, fall back to pubDate
+		return Number(b.data.pubDate) - Number(a.data.pubDate);
+	});
+
+const seo: AstroSeoProps = {
+	title: "Pedagogy Incubator - Arbor Summer College",
+	description: "Learn about our pedagogy incubator for experimental learning experiences",
+	canonical: "https://summercampcomingsoon.com/incubator/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<section class="py-16 px-4 sm:px-6 lg:px-8">
+		<div class="mx-auto max-w-7xl mt-10">
+			<div class="text-center mb-12">
+				<h1 class="text-4xl font-bold mb-4  text-forest-950">Branch Incubator</h1>
+				<p class="text-xl max-w-3xl mx-auto  text-forest-800">
+					A pedagogy playground to workshop your workshops
+				</p>
+			</div>
+
+			        {/* Calendar Visualization */}
+					<div class="mb-12 mx-auto overflow-x-auto hidden lg:block">
+						<div class="min-w-[800px]">
+						  {/* Calendar Header */}
+						  <div class="grid grid-cols-14 border-b-2 border-gray-900">
+
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Mon</div>
+							  <div>May 26</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Tue</div>
+							  <div>May 27</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Wed</div>
+							  <div>May 28</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Thu</div>
+							  <div>May 29</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Fri</div>
+							  <div>May 30</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Sat</div>
+							  <div>May 31</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Sun</div>
+							  <div>Jun 1</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Mon</div>
+							  <div>Jun 2</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Tue</div>
+							  <div>Jun 3</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Wed</div>
+							  <div>Jun 4</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Thu</div>
+							  <div>Jun 5</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Fri</div>
+							  <div>Jun 6</div>
+							</div>
+							<div class="p-2 text-center border-r-2 border-gray-900 font-semibold">
+							  <div class="text-lg">Sat</div>
+							  <div>Jun 7</div>
+							</div>
+							<div class="p-2 text-center font-semibold">
+							  <div class="text-lg">Sun</div>
+							  <div>Jun 8</div>
+							</div>
+						  </div>
+						  
+						  {/* Calendar Body */}
+						  <div class="h-24 relative">
+
+							{/* Arbor Pedagogy Incubator */}
+							<a href="/incubator" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer hover:bg-black/60 hover:text-white transition-colors duration-300 absolute left-0 w-[28.57%] h-full bg-forest-500/20 flex items-center justify-center text-lg font-semibold border-gray-900">
+							  Branch Incubator
+							  <div class="absolute right-[-25%] top-0 w-[25%] h-full">
+								<div class="w-full h-full bg-forest-500/20 group-hover:bg-black/60 transition-colors duration-300" style={{clipPath: "polygon(0 100%, 0 0, 100% 0)"}}></div>
+							  </div>
+							</a>
+
+
+							{/* LessOnline */}
+							<a href="https://less.online" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer hover:bg-black/60 hover:text-white transition-colors duration-300 absolute left-[35.70%] w-[14.28%] h-full bg-amber-100/40 flex items-center justify-center text-lg font-semibold border-gray-900">
+							  LessOnline
+							  <div class="absolute left-[-50%] top-0 w-[50%] h-full">
+								<div class="w-full h-full bg-amber-100/40 group-hover:bg-black/60 transition-colors duration-300" style={{clipPath: "polygon(0 100%, 100% 0, 100% 100%)"}}></div>
+							  </div>
+							</a>
+							
+							{/* Arbor Summer College */}
+							<a href="https://summercampcomingsoon.com/" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer hover:bg-black/60 hover:text-white transition-colors duration-300 absolute left-[50%] w-[28.57%] h-full bg-amber-400/40 flex items-center justify-center text-lg font-semibold">
+							  Arbor Summer College
+							  <div class="absolute right-[-25%] top-0 w-[25%] h-full">
+								<div class="w-full h-full bg-amber-400/40 group-hover:bg-black/60 transition-colors duration-300" style={{clipPath: "polygon(0 100%, 0 0, 100% 0)"}}></div>
+							  </div>
+							</a>
+							
+							{/* Manifest */}
+							<a href="https://manifest.is" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer hover:bg-black/60 hover:text-white transition-colors duration-300 absolute right-0 w-[14.27%] h-full bg-[#ee7644] flex items-center justify-center text-lg font-semibold">
+							  <div class="absolute left-[-50%] top-0 w-[50%] h-full">
+								<div class="w-full h-full bg-[#ee7644] group-hover:bg-black/60 transition-colors duration-300" style={{clipPath: "polygon(0 100%, 100% 0, 100% 100%)"}}></div>
+							  </div>
+							  Manifest
+							</a>
+						  </div>
+						</div>
+					  </div>
+			  
+					  {/* Mobile Calendar Visualization */}
+					  <div class="mb-12 max-w-4xl mx-auto lg:hidden">
+						<div class="space-y-4">
+					      {/* Arbor Pedagogy Incubator */}
+						  <div class="bg-forest-500/20 p-4 rounded-lg border-2 border-gray-900">
+							<div class="flex items-center justify-between gap-8">
+							  <h3 class="text-lg font-semibold">Arbor Pedagogy Incubator</h3>
+							  <p class="text-lg text-gray-600">Mon, May 26 - Thu, May 29</p>
+							</div>
+						  </div>
+						
+						  {/* LessOnline */}
+						  <div class="bg-[#f8f3e2] p-4 rounded-lg border-2 border-gray-900">
+							<div class="flex items-center justify-between gap-8">
+							  <h3 class="text-lg font-semibold">LessOnline</h3>
+							  <p class="text-lg text-gray-600">Fri, May 30 - Sun, Jun 1</p>
+							</div>
+						  </div>
+						  
+						  {/* Arbor Summer College */}
+						  <div class="bg-[#f4b942] p-4 rounded-lg border-2 border-gray-900">
+							<div class="flex items-center justify-between gap-8">
+							  <h3 class="text-lg font-semibold">Arbor Summer College</h3>
+							  <p class="text-lg text-gray-600">Mon, Jun 2 - Fri, Jun 6</p>
+							</div>
+						  </div>
+						  
+						  {/* Manifest */}
+						  <div class="bg-[#7dd3fc] p-4 rounded-lg border-2 border-gray-900">
+							<div class="flex items-center justify-between gap-8">
+							  <h3 class="text-lg font-semibold">Manifest</h3>
+							  <p class="text-lg text-gray-600">Fri, Jun 6 - Sun, Jun 8</p>
+							</div>
+						  </div>
+						</div>
+					  </div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+				<div class="lg:col-span-7 prose prose-lg">
+					<p class="mb-4">
+						<b><i>Have you run your workshop before? Skip the incubator and <a href="https://airtable.com/appTX8ljKL2tArGsn/pagVYRe2JGYyIWm11/form" target="_blank" rel="noopener noreferrer">apply to run an independent branch</a>.</i></b>
+					</p>
+					<p class="mb-4">
+						The Arbor Pedagogy Incubator (May 26-29) is where branch leaders with promising ideas but limited teaching experience can develop their curriculum with feedback and support.
+					</p>
+					<p class="mb-4">
+						During the incubator, you'll learn everything from "how to model what's happening in your students' minds" to "what supplies are in your bootcamp go-box?" and get to playtest your classes on each other.
+					</p>
+					<p class="mb-4">
+						Essentially, we are running "running a bootcamp" bootcamp. We provide a template based on what we've figured out over the past year, give you a container to modify that template with substantial feedback, and throw resources at you that we wish we would have had when we were running our first bootcamp.				
+					</p>
+				</div>
+				
+				<div class="lg:col-span-5">
+					<div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100">
+						<div class="bg-sunshine-500 py-3 px-6 flex justify-between items-center">
+							<h3 class="text-xl font-bold text-black">Incubator Benefits</h3>
+						</div>
+						
+						<div class="p-6">
+							<ul class="space-y-3">
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Physical resources and materials</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Structured pedagogy training and curriculum development</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Opportunity to playtest your workshop to a representative group of students, plus line-edits from us</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>A forcing function to actually prepare your workshop more than 30m before your workshop</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>An <span class="tooltip-trigger border-b-2 border-dotted border-black/50 relative cursor-help inline">Arbor&nbsp;Apprentice<span class="tooltip top-8 left-0 w-80 bg-white/90 backdrop-blur-sm text-forest-800 text-xs py-1 px-2 rounded shadow-md opacity-0 invisible transition-opacity duration-200 pointer-events-none z-10 font-mono fixed">
+											Arbor Apprentices are alums of our programs who are trained to help branch leaders, via both pedagogical and logistical support. They'll also participate in the incubator, with a slightly different focus — for example, with classes like "how to be a good whiteboard scribe when someone is teaching."
+										</span></span> assigned to support your branch</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Templates for many of the things you might forget about by default — like orientation and feedback forms, t-shirts, good Airtable and Discord workflows, etc.</span>
+								</li>
+								<li class="flex items-start">
+									<span class="text-sunshine-500 mr-2 text-xl">•</span>
+									<span>Connections with potential sponsors and collaborators</span>
+								</li>
+							</ul>
+							
+							<div class="mt-6 pt-6 border-t border-slate-200">
+								<div class="">
+									<a href="https://airtable.com/appTX8ljKL2tArGsn/pagVYRe2JGYyIWm11/form" class="block w-full p-4 bg-sunshine-500 hover:bg-sunshine-600 text-black text-center font-bold rounded-lg transition-colors">
+										Apply to the Incubator
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-12">
+				<h2 class="text-3xl font-bold mb-6">Incubated Branches</h2>
+				<!-- <p class="text-xl mb-8">
+					Explore the branches that have gone through our pedagogy incubator and will be offered at Summer College
+				</p> -->
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					incubatorBranches.map((branch) => (
+						<BranchCard
+							coverImage={branch.data.coverImage.source}
+							coverPosition={branch.data.coverImage.position}
+							title={branch.data.title}
+							shortDescription={branch.data.shortDescription}
+							instructor={branch.data.instructor}
+							instructorPosition={branch.data.instructor.image.position}
+							cost={branch.data.cost}
+							isIncubator={branch.data.isIncubator}
+							link={`/branches/${branch.slug}`}
+						/>
+					))
+				}
+			</div>
+
+			{incubatorBranches.length === 0 && (
+				<div class="text-center py-12">
+					<p class="text-lg text-gray-600">No incubated branches available yet. Check back soon!</p>
+				</div>
+			)}
+		</div>
+	</section>
+
+	<!-- <section class="bg-forest-50 py-16 px-4 sm:px-6 lg:px-8">
+		<div class="mx-auto max-w-7xl">
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-bold mb-4">Join the Incubator</h2>
+				<p class="text-xl max-w-3xl mx-auto">
+					Have an idea for a branch? Apply to join our pedagogy incubator and bring your vision to life.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+				<div class="bg-white p-8 rounded-xl shadow-sm">
+					<h3 class="text-2xl font-bold mb-4">For New Teachers</h3>
+					<p class="mb-4">
+						If you have a compelling idea but limited teaching experience, the incubator provides the support and structure you need to develop an effective curriculum.
+					</p>
+					<p class="mb-4">
+						You'll receive guidance on pedagogy, activity design, and facilitation techniques to ensure your branch delivers a transformative learning experience.
+					</p>
+					<a href="/branches/incubated" class="inline-block mt-4 px-6 py-3 bg-sunshine-500 hover:bg-sunshine-600 text-black font-bold rounded-lg transition-colors">
+						Apply as a New Teacher
+					</a>
+				</div>
+
+				<div class="bg-white p-8 rounded-xl shadow-sm">
+					<h3 class="text-2xl font-bold mb-4">For Experienced Educators</h3>
+					<p class="mb-4">
+						If you already have teaching experience but want to experiment with new approaches or content, the incubator offers a collaborative environment to refine your ideas.
+					</p>
+					<p class="mb-4">
+						You'll have the opportunity to playtest your curriculum with peers, receive feedback, and iterate on your approach before Summer College.
+					</p>
+					<a href="/branches/independent" class="inline-block mt-4 px-6 py-3 bg-forest-500 hover:bg-forest-600 text-white font-bold rounded-lg transition-colors">
+						Run an Independent Branch
+					</a>
+				</div>
+			</div>
+		</div>
+	</section> -->
+</BaseLayout>
+
+<script>
+	import { gsap } from "gsap";
+
+	function initTooltips() {
+		// Tooltip functionality
+		const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
+		
+		tooltipTriggers.forEach(trigger => {
+			const tooltip = trigger.querySelector('.tooltip');
+			
+			// For desktop: mouseover/mouseout
+			trigger.addEventListener('mouseenter', () => {
+				if (tooltip) {
+					// Position the tooltip based on trigger's position
+					const triggerRect = trigger.getBoundingClientRect();
+					const tooltipRect = tooltip.getBoundingClientRect();
+					
+					// Center horizontally below the trigger
+					const left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+					const top = triggerRect.bottom + 8; // 8px below the trigger
+					
+					// Ensure tooltip stays within viewport
+					const adjustedLeft = Math.max(10, Math.min(left, window.innerWidth - tooltipRect.width - 10));
+					
+					tooltip.style.left = `${adjustedLeft}px`;
+					tooltip.style.top = `${top}px`;
+					
+					gsap.to(tooltip, {
+						opacity: 1,
+						visibility: 'visible',
+						duration: 0.2,
+						ease: 'power1.out'
+					});
+				}
+			});
+			
+			trigger.addEventListener('mouseleave', () => {
+				if (tooltip) {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
+			
+			// For mobile: touch events
+			trigger.addEventListener('touchstart', (e) => {
+				e.preventDefault();
+				if (tooltip) {
+					// Toggle tooltip visibility
+					if (tooltip.style.opacity === '1') {
+						gsap.to(tooltip, {
+							opacity: 0,
+							visibility: 'hidden',
+							duration: 0.2,
+							ease: 'power1.in'
+						});
+					} else {
+						gsap.to(tooltip, {
+							opacity: 1,
+							visibility: 'visible',
+							duration: 0.2,
+							ease: 'power1.out'
+						});
+					}
+				}
+			});
+		});
+		
+		// Close tooltip when clicking elsewhere on mobile
+		document.addEventListener('touchstart', (e) => {
+			const tooltips = document.querySelectorAll('.tooltip-trigger');
+			tooltips.forEach(trigger => {
+				const tooltip = trigger.querySelector('.tooltip');
+				if (!trigger.contains(e.target) && tooltip && tooltip.style.opacity === '1') {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
+		});
+	}
+
+	// Run the initialization function
+	document.addEventListener("DOMContentLoaded", initTooltips);
+</script> 

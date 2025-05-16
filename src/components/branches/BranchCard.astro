@@ -1,0 +1,200 @@
+---
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const { 
+    coverImage, 
+    coverPosition,
+    title, 
+    shortDescription, 
+    link, 
+    cost, 
+    instructor, 
+    isIncubator,
+    instructorPosition = "center",
+    instructorWidth = "60%",
+    class: className,
+    dates = null // New prop for dates
+} = Astro.props;
+
+// Calculate position classes based on instructorPosition
+let positionClass = "left-1/2 transform -translate-x-1/2"; // Default (center)
+let incubatorPosition = "right-4"; // Default incubator position
+
+if (instructorPosition === "left") {
+    positionClass = "left-[18%] transform -translate-x-1/2";
+    incubatorPosition = "right-4"; // Instructor left, incubator right
+} else if (instructorPosition === "right") {
+    positionClass = "left-[78%] transform -translate-x-1/2";
+    incubatorPosition = "left-4"; // Instructor right, incubator left
+} else if (instructorPosition === "leftish") {
+    positionClass = "left-[25%] transform -translate-x-1/2";
+    incubatorPosition = "right-4"; // Instructor leftish, incubator right
+} else if (instructorPosition === "rightish") {
+    positionClass = "left-[60%] transform -translate-x-1/2";
+    incubatorPosition = "left-4"; // Instructor rightish, incubator left
+} else if (typeof instructorPosition === "number") {
+    // Allow numeric values (0-100) for precise positioning
+    positionClass = `left-[${instructorPosition}%] transform -translate-x-1/2`;
+    // For numeric positions, place incubator on opposite side
+    incubatorPosition = instructorPosition < 50 ? "right-4" : "left-4";
+}
+
+// Helper function to determine if a path is a string path
+const isStringPath = (path) => typeof path === 'string';
+---
+
+<li class:list={["flex flex-col branch-card-container", className]}>
+    <a href={translatePath(link)} aria-label={`Branch: ${title}`} class="branch-card-link">
+        <div class="relative h-[15rem] md:h-[25rem] overflow-hidden rounded-md lg:rounded-lg branch-card">
+            <!-- Cover Image (Background) -->
+            {isStringPath(coverImage) ? (
+                <img 
+                    class="h-full w-full object-cover transition-all duration-300 cover-image" 
+                    src={coverImage} 
+                    alt={title} 
+                    style={{ objectPosition: coverPosition || 'center' }}
+                />
+            ) : (
+                <Image 
+                    class="h-full w-full object-cover transition-all duration-300 cover-image" 
+                    src={coverImage} 
+                    alt={title} 
+                    style={{ objectPosition: coverPosition || 'center' }}
+                />
+            )}
+            
+            <!-- Instructor Cutout Overlay -->
+            {instructor.image && (
+                <div class={`absolute top-0 ${positionClass} instructor-cutout-container`} style={`width: ${instructorWidth};`}>
+                    {isStringPath(instructor.image.source) ? (
+                        <img 
+                            src={instructor.image.source} 
+                            alt={instructor.image.alt}
+                            class="h-full w-auto object-contain instructor-cutout" 
+                            style={instructorPosition === "leftish" ? "object-position: top;" : ""}
+                        />
+                    ) : (
+                        <Image 
+                            src={instructor.image.source} 
+                            alt={instructor.image.alt}
+                            class="h-full w-auto object-contain instructor-cutout" 
+                            style={instructorPosition === "leftish" ? "object-position: top;" : ""}
+                        />
+                    )}
+                </div>
+            )}
+            
+            <!-- Banner at bottom that cuts off instructor image -->
+            <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-3 md:p-4 banner-overlay">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-mono text-md md:text-lg font-medium uppercase tracking-wide md:mt-0 lg:text-xl text-black">
+                        {title}
+                    </h3>
+                    <span class="font-mono text-base font-bold text-black">{cost}</span>
+                </div>
+                <div class="mt-1 md:mt-3">
+                    <p class="text-xs md:text-sm text-slate-600">{shortDescription}</p>
+                    <div class="mt-1 md:mt-2 flex items-center justify-between">
+                        <span class="text-xs md:text-sm text-slate-600 italic">{instructor.name}</span>
+                        {dates && (
+                            <span class="text-xs px-2 py-0.5 bg-campfire-100 text-campfire-800 rounded-full font-medium whitespace-nowrap">
+                                {dates}
+                            </span>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    
+    <!-- {isIncubator && (
+        <a href={translatePath("/incubator")} target="_blank" class={`absolute top-4 ${incubatorPosition} bg-sunshine-500 hover:bg-sunshine-600 text-black px-3 py-1 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105 cursor-pointer z-30 incubator-badge`}>
+            Incubator
+        </a>
+    )} -->
+</li>
+
+<style>
+    .branch-card-container {
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .branch-card-container:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .branch-card {
+        border: 2px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+    
+    .branch-card-container:hover .branch-card {
+        border-color: theme('colors.campfire.500'/0.5);
+    }
+    
+    .branch-card-container:hover .cover-image {
+        opacity: 1 !important;
+    }
+    
+    /* Add hover styles for text elements */
+    .branch-card-container:hover h3,
+    .branch-card-container:hover .text-base.font-bold,
+    .branch-card-container:hover .text-sm.text-slate-600,
+    .branch-card-container:hover .text-base.font-medium,
+    .branch-card-container:hover .text-xs.bg-campfire-100 {
+        color: theme('colors.campfire.800');
+        transition: color 0.3s ease;
+    }
+    
+    .cover-image {
+        opacity: 0.5;
+    }
+    
+    .instructor-cutout-container {
+        /* Ensure the instructor image is positioned correctly */
+        z-index: 10;
+        pointer-events: none; /* Allow clicks to pass through to the link */
+        position: absolute;
+        bottom: 0;
+        /* Width is now set inline via the instructorWidth prop */
+        height: 90%;
+        /* Use transform for positioning without affecting size */
+        transform: translateX(-50%);
+    }
+    
+    .instructor-cutout {
+        /* Adjust these values as needed for your specific cutout images */
+        object-position: bottom;
+        filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+        width: auto;
+        height: 100%;
+        max-height: 100%;
+        /* Center the image within its container */
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .banner-overlay {
+        /* Create a banner that appears to cut off the instructor image */
+        z-index: 20;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Add styles for the cover image */
+    .cover-image-container {
+        position: relative;
+    }
+    
+    /* Ensure the incubator badge doesn't trigger the card hover effect */
+    .incubator-badge {
+        position: absolute;
+        z-index: 30;
+    }
+</style> 

@@ -17,7 +17,7 @@ const { seo: seoProp } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
-const shareImage = new URL("/images/meta/adverse_selection_banner.webp ", Astro.site).toString();
+const shareImage = new URL("/images/branch-covers/adverse_selection_banner.webp", Astro.site).toString();
 
 const defaultSeo: AstroSeoProps = {
 	title: "Arbor Summer College",
@@ -82,10 +82,10 @@ function cursorFollowerActive() {
 			document.documentElement.classList.add('light');
 		</script>
 	</head>
-	<body class="bg-slate-50">
+	<body class="bg-forest-50">
 		<BackgroundTexture />
 		<Navigation />
-		{cursorFollowerActive() && <BlobCursorFollower />}
+		<!-- {cursorFollowerActive() && <BlobCursorFollower />} -->
 		<slot />
 		<Footer />
 	</body>

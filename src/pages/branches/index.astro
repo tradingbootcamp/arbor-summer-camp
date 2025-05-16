@@ -1,0 +1,71 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { AstroSeoProps } from "@astrolib/seo";
+import { getCollection } from "astro:content";
+import BranchCard from "@components/branches/BranchCard.astro";
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const allBranches = (await getCollection("branches"))
+	.filter((branch) => {
+		const [postLang, ...slug] = branch.slug.split("/");
+		return postLang === lang;
+	})
+	.map((branch) => {
+		const [postLang, slug] = branch.slug.split("/");
+
+		return {
+			...branch,
+			slug: slug,
+		};
+	})
+	// Sort by order first, then by pubDate as a fallback
+	.sort((a, b) => {
+		// First sort by order
+		if (a.data.order !== b.data.order) {
+			return a.data.order - b.data.order;
+		}
+		// If orders are the same, fall back to pubDate
+		return Number(b.data.pubDate) - Number(a.data.pubDate);
+	});
+
+const seo: AstroSeoProps = {
+	title: "Branches - Arbor Summer College",
+	description: "Explore the various branches available at Arbor Summer College",
+	canonical: "https://summercampcomingsoon.com/branches/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<section class="py-16 px-4 sm:px-6 lg:px-8">
+		<div class="mx-auto max-w-7xl">
+			<div class="text-center mb-16">
+				<h1 class="text-4xl font-bold mb-4">Summer College Branches</h1>
+				<p class="text-xl max-w-3xl mx-auto">
+					Explore our diverse range of branches, each offering a unique learning experience
+					during your stay at Arbor Summer College.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					allBranches.map((branch) => (
+						<BranchCard
+							coverImage={branch.data.coverImage.source}
+							coverPosition={branch.data.coverImage.position}
+							title={branch.data.title}
+							shortDescription={branch.data.shortDescription}
+							instructor={branch.data.instructor}
+							cost={branch.data.cost}
+							isIncubator={branch.data.isIncubator}
+							link={`/branches/${branch.slug}`}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</BaseLayout> 

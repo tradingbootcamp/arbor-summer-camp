@@ -11,16 +11,7 @@
 }
 
 :root {
-	font-family: "Inter", sans-serif;
-}
-
-@supports (font-variation-settings: normal) {
-	:root {
-		font-family: "Inter var", sans-serif;
-	}
-}
-
-:root {
+	font-family: "Quicksand", sans-serif;
 	--astro-code-color-text: #ffffff;
 	--astro-code-color-background: #131313;
 	--astro-code-token-constant: #8b919b;
@@ -36,6 +27,19 @@
 	--base-padding-x: max(6vw, 60px);
 	--base-padding-y: clamp(30px, 4vw, 50px);
 	--gold-500: #edb74d;
+	--campfire-500: #f97316;
+	--campfire-600: #ea580c;
+	--campfire-700: #c2410c;
+	--campfire-800: #9a3412;
+	--campfire-900: #7c2d12;
+	--campfire-950: #431407;
+	--forest-800: #166534;
+}
+
+@supports (font-variation-settings: normal) {
+	:root {
+		font-family: "Quicksand", sans-serif;
+	}
 }
 
 @media (max-width: 812px) {
@@ -47,7 +51,7 @@
 
 html {
 	scrollbar-gutter: stable;
-	@apply overflow-x-hidden bg-slate-100 text-stone-900;
+	@apply overflow-x-hidden bg-forest-50 text-stone-900;
 }
 
 /* Custom scrollbar */
@@ -104,14 +108,13 @@ html {
 }
 
 .prose-styles {
-	@apply prose mx-auto max-w-3xl text-slate-500 prose-headings:font-bold prose-headings:tracking-tighter prose-headings:text-black prose-a:text-slate-500 hover:prose-a:text-black prose-blockquote:border-l-slate-950 prose-blockquote:text-slate-500 prose-code:text-black prose-pre:rounded-lg prose-li:marker:text-slate-500;
+	@apply prose mx-auto max-w-3xl text-slate-500 prose-headings:font-bold prose-headings:tracking-tighter prose-headings:text-black prose-a:text-forest-800 hover:prose-a:text-campfire-600 prose-blockquote:border-l-slate-950 prose-blockquote:text-slate-500 prose-code:text-black prose-pre:rounded-lg prose-li:marker:text-slate-500;
 }
 
 .section {
 	position: relative;
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(12, minmax(0, 1fr));
 	column-gap: var(--grid-gap);
 	padding: var(--base-padding-y) var(--base-padding-x);
 }
