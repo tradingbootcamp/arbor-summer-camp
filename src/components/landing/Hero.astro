@@ -25,7 +25,11 @@ const translatePath = useTranslatedPath(lang);
 				<!-- Content below the title -->
 				<div class="flex flex-col items-center gap-2 text-center">
 					<p id="hero-subtitle" class="max-w-5xl font-mono lg:text-lg text-forest-900 text-shadow-sm opacity-0 translate-y-8">
-						A festival for the broader Lighthaven community the week between 
+						A <span class="tooltip-trigger relative cursor-help">micromester
+							<span class="tooltip absolute top-8 left-1/2 -translate-x-1/2 w-40 bg-white/90 backdrop-blur-sm text-forest-800 text-xs py-1 px-2 rounded shadow-md opacity-0 invisible transition-opacity duration-200 pointer-events-none z-10 font-mono">
+								like a minimester, but even smaller
+							</span>
+						</span> of workshops and bootcamps the week between 
 						<a href="https://less.online" target="_blank" class="text-forest-900 hover:text-campfire-600 transition-colors">LessOnline</a>&nbsp;and&nbsp;<a href="https://manifest.is" target="_blank" class="text-forest-900 hover:text-campfire-600 transition-colors">Manifest</a>
 					</p>
 					<div id="hero-cta" class="flex flex-col items-center justify-center gap-3 lg:col-start-1 mt-4 opacity-0 translate-y-8">
@@ -106,6 +110,22 @@ const translatePath = useTranslatedPath(lang);
 	.text-shadow-sm {
 		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 	}
+	
+	/* Tooltip styles */
+	.tooltip-trigger {
+		/* Removed the border-bottom style */
+	}
+	
+	.tooltip::after {
+		content: '';
+		position: absolute;
+		bottom: 100%; /* Changed from top to bottom */
+		left: 50%;
+		transform: translateX(-50%);
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent transparent rgba(255, 255, 255, 0.9) transparent; /* Changed arrow direction */
+	}
 </style>
 
 <script>
@@ -162,6 +182,71 @@ const translatePath = useTranslatedPath(lang);
 		const goProjectsButton = document.getElementById("go-projects-button");
 		goProjectsButton?.addEventListener("click", function () {
 			gsap.to(window, { duration: 0.5, scrollTo: "#explanation" });
+		});
+		
+		// Tooltip functionality
+		const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
+		
+		tooltipTriggers.forEach(trigger => {
+			const tooltip = trigger.querySelector('.tooltip');
+			
+			// For desktop: mouseover/mouseout
+			trigger.addEventListener('mouseenter', () => {
+				if (tooltip) {
+					gsap.to(tooltip, {
+						opacity: 1,
+						visibility: 'visible',
+						duration: 0.2,
+						ease: 'power1.out'
+					});
+				}
+			});
+			
+			trigger.addEventListener('mouseleave', () => {
+				if (tooltip) {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
+			
+			// For mobile: touch events
+			trigger.addEventListener('touchstart', (e) => {
+				e.preventDefault();
+				if (tooltip) {
+					// Toggle tooltip visibility
+					if (tooltip.style.opacity === '1') {
+						gsap.to(tooltip, {
+							opacity: 0,
+							visibility: 'hidden',
+							duration: 0.2,
+							ease: 'power1.in'
+						});
+					} else {
+						gsap.to(tooltip, {
+							opacity: 1,
+							visibility: 'visible',
+							duration: 0.2,
+							ease: 'power1.out'
+						});
+					}
+				}
+			});
+			
+			// Close tooltip when clicking elsewhere on mobile
+			document.addEventListener('touchstart', (e) => {
+				if (!trigger.contains(e.target) && tooltip && tooltip.style.opacity === '1') {
+					gsap.to(tooltip, {
+						opacity: 0,
+						visibility: 'hidden',
+						duration: 0.2,
+						ease: 'power1.in'
+					});
+				}
+			});
 		});
 	}
 
