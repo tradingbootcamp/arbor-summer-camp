@@ -59,7 +59,6 @@ const seo: AstroSeoProps = {
 					<Content />
 				</div>
 				
-				<BranchSchedule schedule={entry.data.schedule} />
 			</div>
 
 			<div class="lg:col-span-2">
@@ -120,6 +119,10 @@ const seo: AstroSeoProps = {
 					)}
 				</div>
 			</div>
+
+			
 		</div>
+ 		<BranchSchedule schedule={entry.data.schedule} />
+
 	</article>
 </BaseLayout> 
