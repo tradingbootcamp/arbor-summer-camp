@@ -67,7 +67,7 @@ const seo: AstroSeoProps = {
 						<Image 
 							src={entry.data.instructor.image.source} 
 							alt={entry.data.instructor.image.alt}
-							class="h-auto max-w-[100px] rounded object-contain" 
+							class="h-auto max-w-[140px] rounded object-contain border border-campfire-400 shadow-lg p-2 py-0" 
 						/>
 						<div>
 							<h3 class="font-medium">Instructor</h3>
@@ -85,7 +85,7 @@ const seo: AstroSeoProps = {
 						<p class="text-2xl font-bold">{entry.data.cost}</p>
 					</div>
 
-					{entry.data.sponsor && (
+					<!-- {entry.data.sponsor && (
 						<div class="mb-6">
 							<h3 class="font-medium mb-1">Sponsored by</h3>
 							{entry.data.sponsor.link ? (
@@ -105,7 +105,7 @@ const seo: AstroSeoProps = {
 								Sponsor this branch!
 							</a>
 						</div>
-					)}
+					)} -->
 
 					{entry.data.purchaseLink && (
 						<a 
