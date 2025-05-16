@@ -33,6 +33,7 @@
 	--campfire-800: #9a3412;
 	--campfire-900: #7c2d12;
 	--campfire-950: #431407;
+	--forest-800: #166534;
 }
 
 @supports (font-variation-settings: normal) {

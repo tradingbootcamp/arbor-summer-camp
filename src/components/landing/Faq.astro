@@ -11,58 +11,38 @@ const translatePath = useTranslatedPath(lang);
 // Replace these with your actual translations once we confirm it works
 const faqs = [
 	{
-		question: "I have an idea. Can I bring my workshop/talk/thing here?",
-		answer: "Yes, absolutely. The framework for this is that you run a branch, which is a multi-day workshop or class. For less established projects we also provide pedagogical training beforehand and resources during Summer College. <a href='/incubator/'>Learn more →</a>"
-	},
-	{
-		question: "When and where is it happening?",
-		answer: "It's taking place from June 2-6 at <a href='https://www.lighthaven.space'>Lighthaven</a>, which is located at 2740 Telegraph Avenue, Berkeley, CA. The event includes lunch and dinner every day."
-	},
-	{
 		question: "How can I get tickets?",
-		answer: "You can purchase tickets directly from our website. If you want to take a branch, you will need to purchase a ticket for it. Each of LessOnline, Summer College, and Manifest require separate tickets."
+		answer: "Tickets for Arbor Summer College campus access are available at the <a href='https://www.havenbookings.space/festival-season' target='_blank' rel='noopener noreferrer'>Lighthaven Festival Season Ticket Store</a> and cost $375. If you want to enroll in a branch, you will need to purchase a separate ticket for that branch — once you <a href='https://airtable.com/apprhYrZf0T8NcmEp/pagqeE8CJT0WopSRp/form'>sign up for a branch</a>, we'll send you payment details."
+	},
+	{
+		question: "Who, what, where, when, and why?",
+		answer: "<ul class='list-disc pl-5 space-y-1'><li>Who: ~300 folks in town for <a href='https://www.havenbookings.space/festival-season'>Lighthaven Festival Season</a></li><li>What's included: Campus access, meals, swag, and evening activities, plus branch-specific content.</li><li>When: Monday June 2 - Friday June 6</li><li>Where: <a href='https://www.lighthaven.space'>Lighthaven</a>, 2740 Telegraph Avenue, Berkeley, CA</li><li>Why: Look, if you want to run a branch on philosophy, you can submit a proposal <a href='https://airtable.com/appTX8ljKL2tArGsn/pagVYRe2JGYyIWm11/form' target='_blank' rel='noopener noreferrer'>here</a>.</li></ul>"
 	},
 	{
 		question: "Is housing provided?",
 		answer: "A limited number of onsite rooms <a href='https://www.havenbookings.space/events/festival-season-2025' target='_blank' rel='noopener noreferrer'>can be purchased from Lighthaven</a>, but there will be many times more people in attendance than rooms, so most people will have to find other housing."
 	},
 	{
-		question: "Can I bring my kids?",
-		answer: "Yes! Kids are very welcome at the event. There will be dedicated programming for children, the parameters of which are still being worked out. If you are bringing your kids, please let us know so we can orient to how many there are going to be."
+		question: "Is food provided?",
+		answer: "Yes! We will be providing lunch, dinner, and snacks every day. Branches will only run during non-meal times, which are designated as communal times to hang out with others on campus."
 	},
 	{
-		question: "There's multiple branches I'm interested in that are happening at the same time. Can I do both somehow?",
-		answer: "Unfortunately, no. The branches are not designed for people to drop in and out. We recommend picking one and committing to it."
-	}
+		question: "Can I bring my kids?",
+		answer: "Yes! Kids are very welcome at the event. We are still searching for a branch leader to coordinate children's programming — if that might be you, please <a href='https://airtable.com/appTX8ljKL2tArGsn/pagVYRe2JGYyIWm11/form' target='_blank' rel='noopener noreferrer'>let us know</a>."
+	},
+	{
+		question: "Can I volunteer in exchange for a free ticket?",
+		answer: "We have a limited number of free ASC entry tickets available for volunteers. Please fill out <a href='https://airtable.com/appTX8ljKL2tArGsn/pagVYRe2JGYyIWm11/form' target='_blank' rel='noopener noreferrer'>this form</a> and select \"Volunteer / Ops\" under \"Any other roles that appeal to you?\" to let us know you're interested in volunteering."
+	},
+	{
+		question: "I'm interested in taking multiple branches. Can I sign up for more than one?",
+		answer: "By default, no. The branches are not designed for people to drop in and out, and many of them are very intense. We recommend picking one and sticking to it. That said, there are a few single day branches that might be possible to fit together, and if you're interested in that, please let us know <a href='https://airtable.com/apprhYrZf0T8NcmEp/pagqeE8CJT0WopSRp/form' target='_blank' rel='noopener noreferrer'>via the registration form</a>."
+	},
+	{
+		question: "I have an idea for a branch. Can I run my bootcamp/workshop/interpretive dance at ASC?",
+		answer: "The main bottleneck is physical space at Lighthaven. If you have something you'd like to run, please <a href='https://airtable.com/apprhYrZf0T8NcmEp/pagqeE8CJT0WopSRp/form' target='_blank' rel='noopener noreferrer'>let us know</a> and we'll see if we can work something out."
+	},
 ];
-
-// Uncomment this once we confirm the component works
-// const faqs = [
-//     {
-//         question: t("faqs.question1"),
-//         answer: t("faqs.answer1"),
-//     },
-//     {
-//         question: t("faqs.question2"),
-//         answer: t("faqs.answer2"),
-//     },
-//     {
-//         question: t("faqs.question3"),
-//         answer: t("faqs.answer3"),
-//     },
-//     {
-//         question: t("faqs.question4"),
-//         answer: t("faqs.answer4"),
-//     },
-//     {
-//         question: t("faqs.question5"),
-//         answer: t("faqs.answer5"),
-//     },
-//     {
-//         question: t("faqs.question6"),
-//         answer: t("faqs.answer6"),
-//     },
-// ];
 ---
 
 <section id="faq" class:list={["section faq-section relative bg-forest-50 text-forest-950 faq-content", className]}>
@@ -101,6 +81,12 @@ const faqs = [
 	details summary::-webkit-details-marker {
 		display: none;
 	}
+
+	ul {
+		list-style-type: disc;
+		margin-left: 1.5rem;
+		color: var(--forest-800);
+	}
 	
 	.faq-section {
 		position: relative;
@@ -135,6 +121,11 @@ const faqs = [
 	
 	:global(.faq-content a:hover) {
 		color: var(--campfire-700) !important;
+	}
+	
+	/* Ensure list items have the correct color */
+	:global(.faq-content li) {
+		color: var(--forest-800) !important;
 	}
 </style>
 
