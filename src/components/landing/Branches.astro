@@ -37,8 +37,8 @@ const allBranches = (await getCollection("branches"))
 		<ol class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-y-10">
 			{
 				allBranches.map((branch) => {
-					// Special case for Trading Bootcamp
-					const instructorWidth = branch.data.title === "Trading Bootcamp" ? "80%" : "60%";
+					// Special case for Trading Bootcamp and How to Edit
+					const instructorWidth = branch.data.title === "Trading Bootcamp" || branch.data.title === "How to Edit" ? "80%" : "60%";
 					
 					return (
 						<BranchCard
