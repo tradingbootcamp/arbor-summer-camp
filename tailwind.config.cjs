@@ -13,6 +13,9 @@ module.exports = {
 			"2xl": "1536px",
 		},
 		extend: {
+			gridTemplateColumns: {
+				"14": "repeat(14, minmax(0, 1fr))",
+			},
 			borderRadius: {
 				"4xl": "2rem",
 				"5xl": "3rem",
