@@ -14,7 +14,9 @@ const translatePath = useTranslatedPath(lang);
 			<div class="flex flex-col items-center justify-center pt-[5vh] gap-4 md:gap-4 lg:gap-4">
 				<!-- Date line above the title -->
 				<p id="hero-date" class="text-center font-mono text-md md:text-xl font-bold text-campfire-600 text-shadow-sm opacity-0 translate-y-8">
-					Monday, June 2 – Friday, June 6
+					<span class="inline md:inline">Monday, June 2 – Friday, June 6</span>
+					<span class="hidden md:inline"> | </span>
+					<span class="hidden md:inline"><a href="https://lighthaven.org" target="_blank" class="text-campfire-600 hover:text-campfire-500 transition-colors">Lighthaven&nbsp;Campus</a>,&nbsp;Berkeley&nbsp;CA</span>
 				</p>
 				
 				<!-- Title container -->
@@ -24,7 +26,7 @@ const translatePath = useTranslatedPath(lang);
 				
 				<!-- Content below the title -->
 				<div class="flex flex-col items-center gap-2 text-center">
-					<p id="hero-subtitle" class="max-w-5xl font-mono lg:text-lg text-forest-900 text-shadow-sm opacity-0 translate-y-8">
+					<p id="hero-subtitle" class="max-w-6xl font-mono md:text-lg lg:text-xl text-forest-900 text-shadow-sm opacity-0 translate-y-8">
 						A <span class="tooltip-trigger relative cursor-help">micromester
 							<span class="tooltip absolute top-8 left-1/2 -translate-x-1/2 w-40 bg-white/90 backdrop-blur-sm text-forest-800 text-xs py-1 px-2 rounded shadow-md opacity-0 invisible transition-opacity duration-200 pointer-events-none z-10 font-mono">
 								like a minimester, but even smaller
