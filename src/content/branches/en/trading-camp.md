@@ -20,7 +20,7 @@ dates: "June 3-5, 2025"
 isIncubator: false
 purchaseLink: "https://trading.camp"
 pubDate: 2024-04-15
-order: 1
+order: 8
 # schedule:
 #   - day: "Monday"
 #     activities:

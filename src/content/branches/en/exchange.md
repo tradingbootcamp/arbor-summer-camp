@@ -15,7 +15,7 @@ cost: "$150"
 dates: "June 3-5, 2025"
 isIncubator: true
 pubDate: 2024-04-15
-order: 3
+order: 1
 ---
 
 Stock exchanges routinely process tens of thousands of messages per second, and are designed to process millions in case of high volatility. This isn’t particularly surprising in itself -- Google handles approximately this many queries. What’s surprising is that stock exchanges can do this on a single server, whereas Google’s search engine runs on untold fleets of machines around the world.

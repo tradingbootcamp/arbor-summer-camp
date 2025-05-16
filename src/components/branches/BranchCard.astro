@@ -73,13 +73,15 @@ const isStringPath = (path) => typeof path === 'string';
                         <img 
                             src={instructor.image.source} 
                             alt={instructor.image.alt}
-                            class="h-[90%] w-auto object-contain instructor-cutout" 
+                            class="h-full w-auto object-contain instructor-cutout" 
+                            style={instructorPosition === "leftish" ? "object-position: top;" : ""}
                         />
                     ) : (
                         <Image 
                             src={instructor.image.source} 
                             alt={instructor.image.alt}
-                            class="h-[90%] w-auto object-contain instructor-cutout" 
+                            class="h-full w-auto object-contain instructor-cutout" 
+                            style={instructorPosition === "leftish" ? "object-position: top;" : ""}
                         />
                     )}
                 </div>
