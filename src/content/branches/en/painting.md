@@ -16,7 +16,7 @@ cost: "$120"
 dates: "Tues-Thurs"
 isIncubator: false
 pubDate: 2024-04-15
-order: 5
+order: 4
 ---
 
 This class will not teach technical skill; its focus is working around its lack. I assume your goal is to capture ideas in your head, or interesting scenes that you see in real life, and have it look kind of nice.

@@ -16,7 +16,7 @@ cost: "$150"
 dates: "Tues-Thurs"
 isIncubator: true
 pubDate: 2024-04-15
-order: 2
+order: 3
 ---
 
 Code Bloom is a 3-day workshop where you'll go from zero coding knowledge to creating functional web applications through our "vibe coding" approach, no coding experience required. You'll spend most of your time actively building projects, with instructors ready to help when you hit roadblocks.

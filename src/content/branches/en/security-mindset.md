@@ -15,7 +15,7 @@ cost: "$150"
 dates: "Tues-Thurs"
 isIncubator: true
 pubDate: 2024-04-15
-order: 4
+order: 5
 ---
 
 This is an experimental 3-day workshop that teaches the security mindset. By solving an eclectic set of puzzles and challenges, you'll learn to take an attacker's-eye view of a wide range of digital, physical, and social systems.
