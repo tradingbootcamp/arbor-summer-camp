@@ -16,6 +16,7 @@ const {
     instructor, 
     isIncubator,
     instructorPosition = "center",
+    instructorWidth = "60%",
     class: className 
 } = Astro.props;
 
@@ -33,7 +34,7 @@ if (instructorPosition === "left") {
     positionClass = "left-[25%] transform -translate-x-1/2";
     incubatorPosition = "right-4"; // Instructor leftish, incubator right
 } else if (instructorPosition === "rightish") {
-    positionClass = "left-[70%] transform -translate-x-1/2";
+    positionClass = "left-[60%] transform -translate-x-1/2";
     incubatorPosition = "left-4"; // Instructor rightish, incubator left
 } else if (typeof instructorPosition === "number") {
     // Allow numeric values (0-100) for precise positioning
@@ -68,7 +69,7 @@ const isStringPath = (path) => typeof path === 'string';
             
             <!-- Instructor Cutout Overlay -->
             {instructor.image && (
-                <div class={`absolute top-0 ${positionClass} instructor-cutout-container`}>
+                <div class={`absolute top-0 ${positionClass} instructor-cutout-container`} style={`width: ${instructorWidth};`}>
                     {isStringPath(instructor.image.source) ? (
                         <img 
                             src={instructor.image.source} 
@@ -155,8 +156,7 @@ const isStringPath = (path) => typeof path === 'string';
         pointer-events: none; /* Allow clicks to pass through to the link */
         position: absolute;
         bottom: 0;
-        /* Set a fixed width instead of auto to maintain consistency */
-        width: 60%; /* Fixed percentage width */
+        /* Width is now set inline via the instructorWidth prop */
         height: 90%;
         /* Use transform for positioning without affecting size */
         transform: translateX(-50%);

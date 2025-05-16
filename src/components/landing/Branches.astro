@@ -34,26 +34,27 @@ const allBranches = (await getCollection("branches"))
 <section id="branches" class:list={["section branches-section home-dark-section py-4", className]}>
 	<div class="col-start-1 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<!-- <h2 class="text-3xl font-bold mb-12 text-center">Summer College Branches</h2> -->
-		<ol class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:gap-24">
+		<ol class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 gap-y-12">
 			{
-				allBranches.map((branch, index) => (
-					<BranchCard
-						coverImage={branch.data.coverImage.source}
-						coverPosition={branch.data.coverImage.position}
-						title={branch.data.title}
-						shortDescription={branch.data.shortDescription}
-						instructor={branch.data.instructor}
-						instructorPosition={branch.data.instructor.image.position}
-						cost={branch.data.cost}
-						isIncubator={branch.data.isIncubator}
-						link={`/branches/${branch.slug}`}
-						class={
-							index % 2 === 0
-								? `md:col-start-1 md:row-start-${Math.floor(index / 2) * 2 + 1} md:row-span-2`
-								: `md:col-start-2 md:row-start-${Math.floor(index / 2) * 2 + 2} md:row-span-2`
-						}
-					/>
-				))
+				allBranches.map((branch) => {
+					// Special case for Trading Bootcamp
+					const instructorWidth = branch.data.title === "Quant Trading Bootcamp" ? "80%" : "60%";
+					
+					return (
+						<BranchCard
+							coverImage={branch.data.coverImage.source}
+							coverPosition={branch.data.coverImage.position}
+							title={branch.data.title}
+							shortDescription={branch.data.shortDescription}
+							instructor={branch.data.instructor}
+							instructorPosition={branch.data.instructor.image.position}
+							instructorWidth={instructorWidth}
+							cost={branch.data.cost}
+							isIncubator={branch.data.isIncubator}
+							link={`/branches/${branch.slug}`}
+						/>
+					);
+				})
 			}
 		</ol>
 	</div>
@@ -81,7 +82,6 @@ const allBranches = (await getCollection("branches"))
 	gsap.registerPlugin(ScrollTrigger);
 
 	function init() {
-		const branches = gsap.utils.toArray(".branches-section ol li") as gsap.DOMTarget[];
 		const previews = gsap.utils.toArray(".branches-section ol li .cover-image") as gsap.DOMTarget[];
 		previews.forEach((preview) => {
 			gsap.from(preview, {
@@ -97,22 +97,7 @@ const allBranches = (await getCollection("branches"))
 			});
 		});
 
-		if (window.innerWidth >= 768) {
-			branches.forEach((branch) => {
-				gsap.to(branch, {
-					scrollTrigger: {
-						trigger: ".branches-section ol",
-						start: "top bottom",
-						end: "bottom center",
-						scrub: 1,
-						markers: false,
-					},
-					ease: "none",
-					// Reduce the animation distance to prevent overlap
-					y: `-100px`, // Changed from -200px to -100px
-				});
-			});
-		}
+		// Removed the vertical animation that was causing cards to overlap
 	}
 
 	document.removeEventListener("DOMContentLoaded", init);
