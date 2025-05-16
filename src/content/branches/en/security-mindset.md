@@ -14,7 +14,6 @@ coverImage:
 cost: "$150"
 dates: "June 2-6, 2025"
 isIncubator: true
-purchaseLink: "https://example.com"
 pubDate: 2024-04-15
 order: 4
 ---

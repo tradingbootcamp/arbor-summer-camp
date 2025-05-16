@@ -82,7 +82,7 @@ const branchesCollection = defineCollection({
 				link: z.string().optional(),
 			}).optional(),
 			isIncubator: z.boolean().default(false),
-			purchaseLink: z.string().optional(),
+			purchaseLink: z.string().optional().default("https://bit.ly/asc-branches"),
 			pubDate: z.date(),
 			order: z.number().default(999),
 		}),

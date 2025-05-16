@@ -107,9 +107,18 @@ const seo: AstroSeoProps = {
 						</div>
 					)} -->
 
-					{entry.data.purchaseLink && (
+					{entry.data.purchaseLink !== undefined ? (
 						<a 
 							href={entry.data.purchaseLink} 
+							class="block w-full py-3 px-4 bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{entry.data.cost === "By application" ? "Apply Now" : "Register Now"}
+						</a>
+					) : (
+						<a 
+							href="https://bit.ly/asc-branches" 
 							class="block w-full py-3 px-4 bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
 							target="_blank"
 							rel="noopener noreferrer"

@@ -12,10 +12,9 @@ coverImage:
   source: "@assets/images/branch-covers/lighthaven.png"
   alt: "Aerial Silks banner"
   position: "right"
-cost: "$150"
+cost: "$120"
 dates: "June 3-5, 2025"
 isIncubator: false
-purchaseLink: "https://example.com"
 pubDate: 2024-04-15
 order: 6
 ---

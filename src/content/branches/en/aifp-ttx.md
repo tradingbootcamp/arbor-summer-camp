@@ -2,7 +2,7 @@
 title: "AGI table-top exercise"
 shortDescription: "Simulate the development of superintelligence in 2027"
 instructor:
-  name: "Eli Lifland & Jonas Vollmer"
+  name: "Eli Lifland, Jonas Vollmer"
   image:
     source: "@assets/images/instructors/eli.png"
     alt: "Daniel Kokotajlo"
