@@ -46,20 +46,20 @@ if (instructorPosition === "left") {
 const isStringPath = (path) => typeof path === 'string';
 ---
 
-<li class:list={["flex flex-col", className]}>
-    <a href={translatePath(link)} target="_blank" aria-label={`Branch: ${title}`}>
-        <div class="relative h-[25rem] overflow-hidden rounded-md lg:rounded-lg">
+<li class:list={["flex flex-col branch-card-container", className]}>
+    <a href={translatePath(link)} aria-label={`Branch: ${title}`} class="branch-card-link">
+        <div class="relative h-[25rem] overflow-hidden rounded-md lg:rounded-lg branch-card">
             <!-- Cover Image (Background) -->
             {isStringPath(coverImage) ? (
                 <img 
-                    class="h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-300 cover-image" 
+                    class="h-full w-full object-cover transition-all duration-300 cover-image" 
                     src={coverImage} 
                     alt={title} 
                     style={{ objectPosition: coverPosition || 'center' }}
                 />
             ) : (
                 <Image 
-                    class="h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-300 cover-image" 
+                    class="h-full w-full object-cover transition-all duration-300 cover-image" 
                     src={coverImage} 
                     alt={title} 
                     style={{ objectPosition: coverPosition || 'center' }}
@@ -85,12 +85,6 @@ const isStringPath = (path) => typeof path === 'string';
                 </div>
             )}
             
-            {isIncubator && (
-                <a href={translatePath("/incubator")} target="_blank" class={`absolute top-4 ${incubatorPosition} bg-sunshine-500 hover:bg-sunshine-600 text-black px-3 py-1 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105 cursor-pointer z-30`}>
-                    Incubator
-                </a>
-            )}
-            
             <!-- Banner at bottom that cuts off instructor image -->
             <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-4 banner-overlay">
                 <div class="flex items-center justify-between">
@@ -99,28 +93,60 @@ const isStringPath = (path) => typeof path === 'string';
                     </h3>
                     <span class="font-mono text-base font-bold text-black">{cost}</span>
                 </div>
-                <p class="mt-2 text-sm text-slate-600 line-clamp-1">{shortDescription}</p>
+                <div class="mt-2">
+                    <p class="text-sm text-slate-600 line-clamp-1">{shortDescription}</p>
+                    <div class="mt-1 flex items-center justify-between">
+                        <span class="text-sm text-slate-600 italic">{instructor.name}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </a>
     
-    <div class="px-2 py-4">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center">
-                <span class="text-sm">{instructor.name}</span>
-            </div>
-            <a 
-                href={translatePath(link)} 
-                target="_blank"
-                class="text-base font-medium hover:text-primary-700"
-            >
-                Learn more &rarr;
-            </a>
-        </div>
-    </div>
+    {isIncubator && (
+        <a href={translatePath("/incubator")} target="_blank" class={`absolute top-4 ${incubatorPosition} bg-sunshine-500 hover:bg-sunshine-600 text-black px-3 py-1 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105 cursor-pointer z-30 incubator-badge`}>
+            Incubator
+        </a>
+    )}
 </li>
 
 <style>
+    .branch-card-container {
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .branch-card-container:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .branch-card {
+        border: 2px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+    
+    .branch-card-container:hover .branch-card {
+        border-color: theme('colors.campfire.500'/0.5);
+    }
+    
+    .branch-card-container:hover .cover-image {
+        opacity: 1 !important;
+    }
+    
+    /* Add hover styles for text elements */
+    .branch-card-container:hover h3,
+    .branch-card-container:hover .text-base.font-bold,
+    .branch-card-container:hover .text-sm.text-slate-600,
+    .branch-card-container:hover .text-base.font-medium {
+        color: theme('colors.campfire.800');
+        transition: color 0.3s ease;
+    }
+    
+    .cover-image {
+        opacity: 0.5;
+    }
+    
     .instructor-cutout-container {
         /* Ensure the instructor image is positioned correctly */
         z-index: 10;
@@ -155,5 +181,11 @@ const isStringPath = (path) => typeof path === 'string';
     /* Add styles for the cover image */
     .cover-image-container {
         position: relative;
+    }
+    
+    /* Ensure the incubator badge doesn't trigger the card hover effect */
+    .incubator-badge {
+        position: absolute;
+        z-index: 30;
     }
 </style> 
