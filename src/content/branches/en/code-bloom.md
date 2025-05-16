@@ -1,6 +1,6 @@
 ---
 title: "Code Bloom"
-shortDescription: "Build real web applications with AI tools, no coding experience required."
+shortDescription: "Vibe-coding for the non-coder"
 instructor:
   name: "Yoav Tzfati"
   image:
@@ -19,6 +19,6 @@ pubDate: 2024-04-15
 order: 2
 ---
 
-Code Bloom is a 3-day workshop where you'll go from zero coding knowledge to creating functional web applications through our "vibe coding" approach. You'll spend most of your time actively building projects, with instructors ready to help when you hit roadblocks.
+Code Bloom is a 3-day workshop where you'll go from zero coding knowledge to creating functional web applications through our "vibe coding" approach, no coding experience required. You'll spend most of your time actively building projects, with instructors ready to help when you hit roadblocks.
 
 AI coding tools are quietly approaching human-level capabilities, and now's the ideal time to learn how to direct them effectively. At Code Bloom, you'll develop practical skills to leverage today's AI tools and learn to use our library of resources including code templates and optimized prompts that you'll take home after the workshop. Consider it a practical shortcut to turning your concepts into reality.
