@@ -2,10 +2,10 @@
 title: "Quant Trading Bootcamp"
 shortDescription: "Learn how to think like a trader"
 instructor:
-  name: "David Holt, Ricki Heicklen, Ross Rheingans-Yoo"
+  name: "David Holt, Ross Rheingans-Yoo, Ricki Heicklen"
   image:
-    source: "@assets/images/instructors/ricki_david_ross.png"
-    alt: "Ricki Heicklen, David Holt, Ross Rheingans-Yoo"
+    source: "@assets/images/instructors/david_ross_ricki.png"
+    alt: "David Holt, Ross Rheingans-Yoo, Ricki Heicklen"
     position: "rightish"
   link: "/author/ricki-heicklen"
 coverImage:

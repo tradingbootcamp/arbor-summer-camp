@@ -1,6 +1,6 @@
 ---
-title: "Designing AI Interfaces for Better Epistemics"
-shortDescription: "Workshop to develop new interfaces that improve human thinking"
+title: "AI for Epistemics"
+shortDescription: "Designing AI interfaces that improve human thinking"
 instructor:
   name: "Nicholas Dupuis"
   image:
