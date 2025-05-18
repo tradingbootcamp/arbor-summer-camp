@@ -8,9 +8,9 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
 const seo: AstroSeoProps = {
-  title: "Sponsor a Branch - Arbor Summer College",
-  description: "Support innovative learning experiences at Arbor Summer College by sponsoring a branch.",
-  canonical: "https://summercampcomingsoon.com/sponsors/",
+  title: "Sponsor a Branch - Arbor Summer Camp",
+  description: "Support innovative learning experiences at Arbor Summer Camp by sponsoring a branch.",
+  canonical: "https://arborsummer.camp/sponsors/",
 };
 
 // Sponsorship tiers data
@@ -23,7 +23,7 @@ const sponsorshipTiers = [
       "Logo on branch page",
       "Logo on branch materials",
       "Mentioned in branch announcements",
-      "1 free ticket to Summer College",
+      "1 free ticket to Arbor Summer Camp",
     ]
   },
   {
@@ -34,7 +34,7 @@ const sponsorshipTiers = [
       "All Silver tier benefits",
       "Larger logo placement",
       "Opportunity to provide branded swag",
-      "2 free tickets to Summer College",
+      "2 free tickets to Arbor Summer Camp",
       "Social media recognition"
     ]
   },
@@ -46,7 +46,7 @@ const sponsorshipTiers = [
       "All Gold tier benefits",
       "Premium logo placement",
       "Dedicated sponsor spotlight",
-      "3 free tickets to Summer College",
+      "3 free tickets to Arbor Summer Camp",
       "Speaking opportunity at branch event",
       "Access to participant contact list (opt-in)"
     ]
@@ -67,13 +67,13 @@ const sponsorshipTiers = [
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
         <div class="lg:col-span-7 prose prose-lg">
           <p class="mb-4">
-            Arbor Summer College brings together curious minds for a week of experimental learning and community building. By sponsoring a branch, you're supporting innovative educational experiences while connecting with our engaged community.
+            Arbor Summer Camp brings together curious minds for a week of experimental learning and community building. By sponsoring a branch, you're supporting innovative educational experiences while connecting with our engaged community.
           </p>
           <p class="mb-4">
-            Each branch at Summer College represents a unique learning opportunity, from trading bootcamps to aerial silks, AI wargaming to security mindset training. Your sponsorship helps make these experiences possible and accessible to more participants.
+            Each branch at ASC represents a unique learning opportunity, from trading bootcamps to aerial silks, AI wargaming to security mindset training. Your sponsorship helps make these experiences possible and accessible to more participants.
           </p>
           <p class="mb-4">
-            We offer three sponsorship tiers, each with increasing visibility and benefits. Whether you're looking to support a specific branch that aligns with your organization's interests or want to contribute to the broader Summer College ecosystem, we have options for you.
+            We offer three sponsorship tiers, each with increasing visibility and benefits. Whether you're looking to support a specific branch that aligns with your organization's interests or want to contribute to the broader Arbor Summer Camp ecosystem, we have options for you.
           </p>
           <p class="mb-4">
             Interested in becoming a sponsor? Contact us to discuss available branches and customized sponsorship opportunities.
@@ -106,7 +106,7 @@ const sponsorshipTiers = [
                 </li>
                 <li class="flex items-start">
                   <span class="text-forest-500 mr-2 text-xl">•</span>
-                  <span>Free tickets to Summer College events</span>
+                  <span>Free tickets to Arbor Summer Camp events</span>
                 </li>
               </ul>
               
@@ -170,7 +170,7 @@ const sponsorshipTiers = [
             
             <div class="p-6 mt-auto">
               <a 
-                href={`mailto:ricki@trading.camp?subject=Arbor%20Summer%20College%20${tier.name}%20Sponsorship%20Inquiry&body=${tier.greeting}%0A%0AI'm%20interested%20in%20learning%20more%20about%20the%20${tier.name}%20sponsorship%20tier%20for%20an%20incubated%20branch%20at%20Arbor%20Summer%20College.`} 
+                href={`mailto:ricki@trading.camp?subject=Arbor%20Summer%20Camp%20${tier.name}%20Sponsorship%20Inquiry&body=${tier.greeting}%0A%0AI'm%20interested%20in%20learning%20more%20about%20the%20${tier.name}%20sponsorship%20tier%20for%20an%20incubated%20branch%20at%20Arbor%20Summer%20Camp.`} 
                 class={`block w-full p-3 text-center font-bold rounded-lg transition-colors ${
                   tier.name === "Silver" ? "bg-slate-300 hover:bg-slate-400 text-slate-800" : 
                   tier.name === "Gold" ? "bg-sunshine-400 hover:bg-sunshine-500 text-black" : 
@@ -199,14 +199,14 @@ const sponsorshipTiers = [
               Support several branches that align with your organization's interests and receive discounted rates and additional benefits.
             </p>
             <p class="mb-4">
-              Multi-branch sponsorships offer increased visibility across different participant groups and enhanced recognition throughout Summer College.
+              Multi-branch sponsorships offer increased visibility across different participant groups and enhanced recognition throughout Arbor Summer Camp.
             </p>
           </div>
 
           <div class="bg-white p-8 rounded-xl shadow-sm">
             <h3 class="text-2xl font-bold mb-4">Event-Wide Sponsorship</h3>
             <p class="mb-4">
-              Become a primary sponsor for the entire Summer College event with prominent placement in all marketing materials and event spaces.
+              Become a primary sponsor for the entire Arbor Summer Camp event with prominent placement in all marketing materials and event spaces.
             </p>
             <p class="mb-4">
               Event-wide sponsors receive the highest level of visibility and recognition, along with opportunities for deeper engagement with participants.

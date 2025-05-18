@@ -17,16 +17,16 @@ const { seo: seoProp } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
-const shareImage = new URL("/images/branch-covers/adverse_selection_banner.webp", Astro.site).toString();
+const shareImage = new URL("/images/oli_asc_cover.png", Astro.site).toString();
 
 const defaultSeo: AstroSeoProps = {
-	title: "Arbor Summer College",
+	title: "Arbor Summer Camp",
 	description:
 		"A container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.",
-	canonical: "https://summercampcomingsoon.com",
+	canonical: "https://arborsummer.camp",
 	openGraph: {
-		url: "https://summercampcomingsoon.com",
-		title: "Arbor Summer College",
+		url: "https://arborsummer.camp",
+		title: "Arbor Summer Camp",
 		description:
 			"A container for the greater Lighthaven community to run intimate, multi-day events in the most target-rich environment that exists for them, anywhere in the world, any time in the year.",
 		images: [
@@ -45,7 +45,7 @@ const defaultSeo: AstroSeoProps = {
 				type: "image/gif",
 			},
 		],
-		site_name: "Arbor Summer College",
+		site_name: "Arbor Summer Camp",
 	},
 	// twitter: {
 	// 	handle: "@summercampcomingsoon",

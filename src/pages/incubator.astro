@@ -32,15 +32,9 @@ const incubatorBranches = (await getCollection("branches"))
 		// If orders are the same, fall back to pubDate
 		return Number(b.data.pubDate) - Number(a.data.pubDate);
 	});
-
-const seo: AstroSeoProps = {
-	title: "Pedagogy Incubator - Arbor Summer College",
-	description: "Learn about our pedagogy incubator for experimental learning experiences",
-	canonical: "https://summercampcomingsoon.com/incubator/",
-};
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout>
 	<section class="py-16 px-4 sm:px-6 lg:px-8">
 		<div class="mx-auto max-w-7xl mt-10">
 			<div class="text-center mb-12">
@@ -134,9 +128,9 @@ const seo: AstroSeoProps = {
 							  </div>
 							</a>
 							
-							{/* Arbor Summer College */}
-							<a href="https://summercampcomingsoon.com/" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer hover:bg-black/60 hover:text-white transition-colors duration-300 absolute left-[50%] w-[28.57%] h-full bg-amber-400/40 flex items-center justify-center text-lg font-semibold">
-							  Arbor Summer College
+							{/* Arbor Summer Camp */}
+							<a href="https://arborsummer.camp/" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer hover:bg-black/60 hover:text-white transition-colors duration-300 absolute left-[50%] w-[28.57%] h-full bg-amber-400/40 flex items-center justify-center text-lg font-semibold">
+							  Arbor Summer Camp
 							  <div class="absolute right-[-25%] top-0 w-[25%] h-full">
 								<div class="w-full h-full bg-amber-400/40 group-hover:bg-black/60 transition-colors duration-300" style={{clipPath: "polygon(0 100%, 0 0, 100% 0)"}}></div>
 							  </div>
@@ -172,10 +166,10 @@ const seo: AstroSeoProps = {
 							</div>
 						  </div>
 						  
-						  {/* Arbor Summer College */}
+						  {/* Arbor Summer Camp */}
 						  <div class="bg-[#f4b942] p-4 rounded-lg border-2 border-gray-900">
 							<div class="flex items-center justify-between gap-8">
-							  <h3 class="text-lg font-semibold">Arbor Summer College</h3>
+							  <h3 class="text-lg font-semibold">Arbor Summer Camp</h3>
 							  <p class="text-lg text-gray-600">Mon, Jun 2 - Fri, Jun 6</p>
 							</div>
 						  </div>
@@ -261,7 +255,7 @@ const seo: AstroSeoProps = {
 			<div class="mb-12">
 				<h2 class="text-3xl font-bold mb-6">Incubated Branches</h2>
 				<!-- <p class="text-xl mb-8">
-					Explore the branches that have gone through our pedagogy incubator and will be offered at Summer College
+					Explore the branches that have gone through our pedagogy incubator and will be offered at Arbor Summer Camp
 				</p> -->
 			</div>
 
@@ -320,7 +314,7 @@ const seo: AstroSeoProps = {
 						If you already have teaching experience but want to experiment with new approaches or content, the incubator offers a collaborative environment to refine your ideas.
 					</p>
 					<p class="mb-4">
-						You'll have the opportunity to playtest your curriculum with peers, receive feedback, and iterate on your approach before Summer College.
+						You'll have the opportunity to playtest your curriculum with peers, receive feedback, and iterate on your approach before Summer Camp.
 					</p>
 					<a href="/branches/independent" class="inline-block mt-4 px-6 py-3 bg-forest-500 hover:bg-forest-600 text-white font-bold rounded-lg transition-colors">
 						Run an Independent Branch

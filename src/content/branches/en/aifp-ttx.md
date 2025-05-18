@@ -22,4 +22,4 @@ order: 9
 
 The researchers behind AI 2027 have developed a tabletop exercise based on their scenario forecast. It takes ~3.5 hours and allows 8–14 players to take on different roles, such as the US president, the frontier AI company CEO, China, or the company’s safety team. It aims to accurately simulate what actions their actor would take throughout 2027.
 
-No technical knowledge is required. Many previous participants found the exercise very valuable for developing their own thinking about how AGI might go and what they might want to do about it. Eli Lifland (researcher at the AI Futures Project) and Jonas Vollmer (their COO) will be at Arbor Summer College to run the tabletop exercise.
+No technical knowledge is required. Many previous participants found the exercise very valuable for developing their own thinking about how AGI might go and what they might want to do about it. Eli Lifland (researcher at the AI Futures Project) and Jonas Vollmer (their COO) will be at Arbor Summer Camp to run the tabletop exercise.
