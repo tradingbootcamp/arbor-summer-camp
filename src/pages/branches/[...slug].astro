@@ -77,7 +77,11 @@ const seo: AstroSeoProps = {
 
 					<div class="mb-6">
 						<h3 class="font-medium mb-1">Dates</h3>
-						<p class="text-lg">{entry.data.dates}</p>
+						<p class="text-lg">
+							{entry.data.dates === "Single day" 
+								? "This is a one-day class that will be run multiple times over the course of the week." 
+								: entry.data.dates}
+						</p>
 					</div>
 
 					<div class="mb-6">
