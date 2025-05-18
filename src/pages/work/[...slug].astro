@@ -20,36 +20,36 @@ const { Content } = await entry.render();
 const seo: AstroSeoProps = {
 	title: `Project ${entry.data.title} - Arbor Summer Camp`,
 	description: entry.data.description,
-	canonical: `https://summercampcomingsoon.com/work/${entry.slug}/`,
+	canonical: `https://arborsummer.camp/work/${entry.slug}/`,
 	openGraph: {
 		url: entry.slug,
 		title: entry.data.title,
 		description: "{frontmatter.description}",
 		images: [
 			{
-				url: "https://summercampcomingsoon.com/opengraph/social-og.jpg",
+				url: "https://arborsummer.camp/opengraph/social-og.jpg",
 				width: 1200,
 				height: 630,
 				alt: "Social open graph",
 				type: "image/jpeg",
 			},
 			{
-				url: "https://summercampcomingsoon.com/opengraph/twitter-og.jpg",
+				url: "https://arborsummer.camp/opengraph/twitter-og.jpg",
 				width: 4096,
 				height: 4096,
 				alt: "Twitter open graph",
 				type: "image/jpeg",
 			},
-			{ url: "https://summercampcomingsoon.com/opengraph/social-og.jpg" },
-			{ url: "https://summercampcomingsoon.com/opengraph/twitter-og.jpg" },
+			{ url: "https://arborsummer.camp/opengraph/social-og.jpg" },
+			{ url: "https://arborsummer.camp/opengraph/twitter-og.jpg" },
 		],
 		site_name: "Arbor Summer Camp",
 	},
-	twitter: {
-		handle: "@summercampcomingsoon",
-		site: "@summercampcomingsoon",
-		cardType: "summary_large_image",
-	},
+	// twitter: {
+	// 	handle: "@arborsummer",
+	// 	site: "@arborsummer",
+	// 	cardType: "summary_large_image",
+	// },
 };
 ---
 

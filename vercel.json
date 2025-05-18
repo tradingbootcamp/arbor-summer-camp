@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "https://arborsummer.college/:path*",
+      "destination": "https://arborsummer.camp/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://www.arborsummer.college/:path*",
+      "destination": "https://arborsummer.camp/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://summercampcomingsoon.com/:path*",
+      "destination": "https://arborsummer.camp/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://www.summercampcomingsoon.com/:path*",
+      "destination": "https://arborsummer.camp/:path*",
+      "permanent": true
+    }
+  ]
+} 
