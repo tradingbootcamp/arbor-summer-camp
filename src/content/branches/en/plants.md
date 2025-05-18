@@ -14,7 +14,7 @@ coverImage:
   position: "right"
 cost: "$250"
 dates: "Single day"
-isIncubator: true
+isIncubator: false
 pubDate: 2024-04-15
 order: 9
 ---
