@@ -19,4 +19,4 @@ pubDate: 2024-04-15
 order: 7
 ---
 
-Sydney Vox Arx will teach morning aerial silks classes Tuesday, Wednesday, and Thursday. Sydney is an experienced aerial silk artist -- and an experienced teacher.
+Sydney Vox Arx will teach morning aerial silks classes Tuesday, Wednesday, and Thursday.
