@@ -125,20 +125,20 @@ const seo: AstroSeoProps = {
 					{entry.data.purchaseLink !== undefined ? (
 						<a 
 							href={entry.data.purchaseLink} 
-							class="block w-full py-3 px-4 bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
+							class="block w-full py-3 px-4 text-lg lg:text-xl bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							{entry.data.cost === "Apply" ? "Apply Now" : "Register Now"}
+							{entry.data.cost === "Apply" ? "Apply Now" : "TICKETS"}
 						</a>
 					) : (
 						<a 
 							href="https://www.havenbookings.space/festival-season#branches" 
-							class="block w-full py-3 px-4 bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
+							class="block w-full py-3 px-4 text-lg lg:text-xl bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							{entry.data.cost === "Apply" ? "Apply Now" : "Register Now"}
+							{entry.data.cost === "Apply" ? "Apply Now" : "TICKETS"}
 						</a>
 					)}
 				</div>
