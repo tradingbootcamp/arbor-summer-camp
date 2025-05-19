@@ -82,7 +82,7 @@ const branchesCollection = defineCollection({
 				link: z.string().optional(),
 			}).optional(),
 			isIncubator: z.boolean().default(false),
-			purchaseLink: z.string().optional().default("https://bit.ly/asc-branches"),
+			purchaseLink: z.string().optional().default("https://www.havenbookings.space/festival-season#branches"),
 			pubDate: z.date(),
 			order: z.number().default(999),
 		}),
