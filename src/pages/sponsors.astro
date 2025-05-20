@@ -17,38 +17,41 @@ const seo: AstroSeoProps = {
 const sponsorshipTiers = [
   {
     name: "Silver",
-    price: "$2,500",
+    price: "$5,000",
     greeting: "Hi Ricki,",
     perks: [
-      "Logo on branch page",
-      "Logo on branch materials",
-      "Mentioned in branch announcements",
-      "1 free ticket to Arbor Summer Camp",
+      "Name and logo on swag",
+      "Name and logo on website",
+      "Name and logo in announcements"
     ]
   },
   {
     name: "Gold",
-    price: "$5,000",
+    price: "$10,000",
+    limited: "Limited to 3 sponsors",
     greeting: "Hey Ricki,",
     perks: [
-      "All Silver tier benefits",
-      "Larger logo placement",
-      "Opportunity to provide branded swag",
-      "2 free tickets to Arbor Summer Camp",
-      "Social media recognition"
+      "Name and logo on swag",
+      "Name and logo on website",
+      "Name and logo in announcements",
+      "Access to attendee resumes and careers database",
+      "Giant banners on campus",
+      "Up to 30-minute slot to talk to students"
     ]
   },
   {
     name: "Platinum",
-    price: "$10,000",
+    price: "$18,000",
+    limited: "Limited to 1 sponsor",
     greeting: "Hello Ricki,",
     perks: [
-      "All Gold tier benefits",
-      "Premium logo placement",
-      "Dedicated sponsor spotlight",
-      "3 free tickets to Arbor Summer Camp",
-      "Speaking opportunity at branch event",
-      "Access to participant contact list (opt-in)"
+      "Name and logo on swag",
+      "Name and logo on website",
+      "Name and logo in announcements",
+      "Access to attendee resumes and careers database",
+      "Giant banners on campus",
+      "Up to 30-minute slot to talk to students",
+      "Booth at the career fair Friday night"
     ]
   }
 ];
@@ -128,11 +131,11 @@ const sponsorshipTiers = [
       <div class="mb-12">
         <h2 class="text-3xl font-bold mb-6">Sponsorship Tiers</h2>
         <p class="text-xl mb-8">
-          Choose the sponsorship level that best fits your organization's goals
+          Choose the sponsorship level for a specific branch that best fits your organization's goals
         </p>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-8 mb-16">
+      <div class="flex flex-col md:flex-row gap-8 mb-8">
         {sponsorshipTiers.map((tier) => (
           <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100 flex flex-col flex-1 h-full">
             <div class={`py-4 px-6 ${
@@ -150,11 +153,16 @@ const sponsorshipTiers = [
                 tier.name === "Gold" ? "text-black" : 
                 "text-slate-800"
               }`}>{tier.price}</p>
+              {tier.limited && <p class={`text-sm font-medium ${
+                tier.name === "Silver" ? "text-slate-700" : 
+                tier.name === "Gold" ? "text-black" : 
+                "text-slate-700"
+              }`}>{tier.limited}</p>}
             </div>
             
             <div class="p-6 flex-grow">
               <h4 class="font-bold text-lg mb-4">Benefits Include:</h4>
-              <ul class="space-y-3 mb-6">
+              <ul class="space-y-3 mb-0">
                 {tier.perks.map((perk) => (
                   <li class="flex items-start">
                     <span class={`mr-2 text-xl rounded-full w-5 h-5 flex items-center justify-center text-white ${
