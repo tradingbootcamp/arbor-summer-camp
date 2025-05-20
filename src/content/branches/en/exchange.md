@@ -33,4 +33,4 @@ General topics:
 - Auctions
 - Implied matching
 
-*Rachel Wonnacott has been a trading firm software engineer for five years.*
+*Rachel Wonnacott was a core software engineer at [Old Mission Capital](https://www.oldmissioncapital.com) 2019-2025. She loves trading systems.*
