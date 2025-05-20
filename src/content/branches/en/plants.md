@@ -13,7 +13,7 @@ coverImage:
   alt: "Plant Genetic Engineering Lab banner"
   position: "right"
 cost: "$250"
-dates: "Single day"
+dates: "Single day, Tues, Weds, and Thurs"
 isIncubator: false
 pubDate: 2024-04-15
 order: 9
@@ -21,6 +21,7 @@ order: 9
 Join us for a hands-on experience in plant genetic engineering! This is an introductory workshop - attendees of all backgrounds are welcome, non-bio folks especially. Learn about fundamental DNA tools, understand how agrobacterium is used as a vehicle for delivering genes into plants, gain wet-lab experience with sterile microbial culture, and insert a gene encoding for production of beetroot pigment into tobacco, all in one day. Participants will also take home a plant genetic engineering kit! After successful transformation, plant leaves will turn red in a matter of days.
 
 ​Kit Components:
+
 - Nicotiana tabacum plant with pot and soil
 - Agrobacterium with RUBY Plasmid
 - Petri dish with LB agar

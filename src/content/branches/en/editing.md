@@ -13,7 +13,7 @@ coverImage:
   alt: "Editing workshop banner"
   position: "right"
 cost: "$150"
-dates: "Single day"
+dates: "Single day, Thurs"
 isIncubator: true
 pubDate: 2024-04-15
 order: 2
