@@ -37,4 +37,4 @@ Join us for a hands-on experience in plant genetic engineering! This is an intro
 
 Unable to attend? Interested in other classes like plant tissue culture and bioluminescent algae? [Join our mailing list](https://tinyurl.com/wet-lab-bio-mailchimp) to hear about upcoming Bay Area workshops!
 
-*Anthony Neil Tan is a UC Berkeley trained bioengineer whose projects center on enhancing high-value plants through genetic engineering. He is the current President of [Counter Culture Labs](https://www.counterculturelabs.org/), Oakland's community biology laboratory founded in 2012.*
+*Anthony Neil Tan is a UC Berkeley trained bioengineer whose projects center on enhancing high-value plants through genetic engineering. He is the current President of [Counter Culture Labs](https://www.counterculturelabs.org/), Oakland's community biology laboratory founded in 2012. Feel free to shoot me an email at [anthony@counterculturelabs.org](anthony@counterculturelabs.org) to connect!"*
