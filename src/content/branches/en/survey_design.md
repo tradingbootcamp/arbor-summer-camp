@@ -21,8 +21,8 @@ pubDate: 2024-04-15
 order: 2
 ---
 
-Aella will go through the process of building a survey from start to finish. The workshop will cover how to write good questions that get at the core of what you're trying to measure, how to reason about things like sample size, marketing, and statistical significance, and how to analyze the results.
+Aella will go through the process of building a survey from start to finish. The workshop will cover how to write good questions that get at the core of what you're trying to measure, how to reason about things like marketing, sample size, and statistical significance, and how to analyze the results.
 
-The class will start with a hypothesis, and walk through the process of formulating questions together. We'll then actually run that survey on internet users, get some scrappy results, and wade through the data.
+The class will start with a hypothesis, and walk through the process of formulating questions. We'll then actually run that survey on internet users, get some scrappy results, and wade through the data together.
 
 *Aella is an independent sexologist. More of her writing can be found at [Knowingless](https://aella.substack.com/).*
