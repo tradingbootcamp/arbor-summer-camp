@@ -1,6 +1,6 @@
 ---
 title: "GPU Programming"
-shortDescription: "Learn how to program GPUs"
+shortDescription: "Learn how to program GPUs for AI"
 duration: 3
 instructor:
   name: "Sophia Wisdom"
@@ -22,4 +22,8 @@ pubDate: 2024-04-15
 order: 11
 ---
 
-More information coming soon!
+The class will be focused on how to program GPUs for modern AI systems. We will teach the intuitions between GPU hardware basics that GPU software naturally flows from. Then we will teach performance modeling: AI programs are generally simple, and performance can often be understood with one or two formulas.
+
+Then we will teach you how to use one of the major tools we  have: Triton. The rest of the class will be exercises with guidance.
+
+*Sophia Wisdom taught herself GPU programming in 2022 after realizing AI was going to be a big deal. She worked at [magic.dev](https://magic.dev) on implementing their novel architecture on GPUs. Recently she has been selling data to AI companies and is working on a LLM inference engine.*
