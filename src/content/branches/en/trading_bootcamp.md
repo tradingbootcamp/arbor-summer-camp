@@ -17,6 +17,8 @@ pageImage:
   position: "center"
 cost: "$1,850"
 dates: "Tues-Thurs"
+dates_long: "Tuesday June 3 - Thursday June 5 (with optional programming Friday morning)"
+times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: false
 purchaseLink: "https://airtable.com/appTX8ljKL2tArGsn/pagSnjPOt9DdmlT1B/form"
 pubDate: 2024-04-15

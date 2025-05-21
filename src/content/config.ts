@@ -63,6 +63,8 @@ const branchesCollection = defineCollection({
 			}).optional(),
 			cost: z.string(),
 			dates: z.string(),
+			dates_long: z.string(),
+			times: z.string(),
 			schedule: z.array(
 				z.object({
 					day: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]),

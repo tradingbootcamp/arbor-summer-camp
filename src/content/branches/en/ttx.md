@@ -13,7 +13,9 @@ coverImage:
   alt: "AIFP TTX"
   position: "right"
 cost: "Apply"
-dates: "Single day"
+dates: "Single day, Tues, Weds, and Thurs"
+dates_long: "Tuesday June 3, Wednesday June 4, and Thursday June 5 (three separate instances)"
+times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: false
 purchaseLink: "https://airtable.com/appPNss2oaCbmycbh/pagQyf3LnlqvfCa9l/form"
 pubDate: 2024-04-15

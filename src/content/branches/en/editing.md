@@ -13,7 +13,9 @@ coverImage:
   alt: "Editing workshop banner"
   position: "right"
 cost: "$150"
-dates: "Single day, Thurs"
+dates: "Single day, Weds"
+dates_long: "Wednesday June 4"
+times: "10am-12:30pm, 2pm-6:30pm"
 isIncubator: true
 pubDate: 2024-04-15
 order: 2

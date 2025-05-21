@@ -14,6 +14,8 @@ coverImage:
   position: "right"
 cost: "$120"
 dates: "Tues-Thurs"
+dates_long: "Tuesday June 3 - Thursday June 5"
+times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: false
 pubDate: 2024-04-15
 order: 4
