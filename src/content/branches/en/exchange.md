@@ -1,6 +1,7 @@
 ---
 title: "How to Build an Exchange"
 shortDescription: "Exploring techniques to build high throughput software systems"
+duration: 3
 instructor:
   name: "Rachel Wonnacott"
   image:

@@ -1,6 +1,7 @@
 ---
 title: "GPU Programming"
 shortDescription: "Learn how to program GPUs"
+duration: 3
 instructor:
   name: "Sophia Wisdom"
   image:

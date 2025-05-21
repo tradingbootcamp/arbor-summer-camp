@@ -1,6 +1,7 @@
 ---
 title: "Security Mindset"
 shortDescription: "Analyze and break complex real-world systems by thinking like an attacker."
+duration: 3
 instructor:
   name: "Twig Theis"
   image:

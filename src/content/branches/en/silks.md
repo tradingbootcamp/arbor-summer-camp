@@ -1,6 +1,7 @@
 ---
 title: "Aerial Silks"
 shortDescription: "Hang with Sydney"
+duration: 3
 instructor:
   name: "Sydney Von Arx"
   image:

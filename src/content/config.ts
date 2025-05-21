@@ -87,6 +87,7 @@ const branchesCollection = defineCollection({
 			purchaseLink: z.string().optional().default("https://www.havenbookings.space/festival-season#branches"),
 			pubDate: z.date(),
 			order: z.number().default(999),
+			duration: z.number().default(4), // Number of days the branch runs
 		}),
 });
 

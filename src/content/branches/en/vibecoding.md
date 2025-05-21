@@ -1,6 +1,7 @@
 ---
 title: "Code Bloom"
 shortDescription: "Vibe-coding for the non-coder"
+duration: 3
 instructor:
   name: "Yoav Tzfati"
   image:

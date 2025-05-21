@@ -1,6 +1,7 @@
 ---
 title: "How to Edit"
 shortDescription: "Learn the art (and concrete strategies) of editing with Asterisk's editors"
+duration: 1
 instructor:
   name: "Clara Collier, Jake Eaton"
   image:

@@ -1,6 +1,7 @@
 ---
 title: "AI for Epistemics"
 shortDescription: "Designing AI interfaces that improve human thinking"
+duration: 3
 instructor:
   name: "Nicholas Dupuis"
   image:

@@ -1,6 +1,7 @@
 ---
 title: "Plant Genetic Engineering Lab"
 shortDescription: "Insert a gene encoding for red pigment into a plant!"
+duration: 1
 instructor:
   name: "Anthony Neil Tan"
   image:

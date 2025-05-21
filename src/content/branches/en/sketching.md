@@ -1,6 +1,7 @@
 ---
 title: "Sketchy Tactics"
 shortDescription: "Making visual art look good without technical skill"
+duration: 3
 instructor:
   name: "Sy Etirabys"
   image:

@@ -1,6 +1,7 @@
 ---
 title: "How to Run a Survey"
 shortDescription: "Design, market, and analyze a survey from scratch"
+duration: 1
 instructor:
   name: "Aella"
   image:

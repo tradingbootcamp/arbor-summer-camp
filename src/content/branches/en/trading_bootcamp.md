@@ -1,6 +1,7 @@
 ---
 title: "Trading Bootcamp"
 shortDescription: "Learn how to think like a trader"
+duration: 3
 instructor:
   name: "David Holt, Ricki Heicklen, Ross Rheingans-Yoo"
   image:
