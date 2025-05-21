@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import type { AstroSeoProps } from "@astrolib/seo";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BranchSchedule from "@components/branches/BranchSchedule.astro";
+import { URLS } from "@/constants";
 
 export async function getStaticPaths() {
 	const branchEntries = await getCollection("branches");
@@ -137,7 +138,7 @@ const seo: AstroSeoProps = {
 						</a>
 					) : (
 						<a 
-							href="https://www.havenbookings.space/festival-season#branches" 
+							href={URLS.HAVEN_BOOKINGS_BRANCHES} 
 							class="block w-full py-3 px-4 text-lg lg:text-xl bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
 							target="_blank"
 							rel="noopener noreferrer"
