@@ -7,7 +7,7 @@ export const defaultLang = "en";
 export const ui = {
 	en: {
 		or: "or",
-		tickets: "Tickets ($375+)",
+		tickets: "Tickets",
 		contact: "Contact",
 		contacts: "Contacts",
 		contactus: "Contact us",
