@@ -1,6 +1,6 @@
 ---
-title: "How to Design a Survey"
-shortDescription: "Build, run, and analyze a survey from scratch"
+title: "How to Run a Survey"
+shortDescription: "Design, market, and analyze a survey from scratch"
 instructor:
   name: "Aella"
   image:
