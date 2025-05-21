@@ -13,12 +13,12 @@ coverImage:
   alt: "Editing workshop banner"
   position: "right"
 cost: "$150"
-dates: "Single day, Weds"
+dates: "Wednesday"
 dates_long: "Wednesday June 4"
 times: "10am-12:30pm, 2pm-6:30pm"
 isIncubator: true
 pubDate: 2024-04-15
-order: 2
+order: 3
 ---
 
 In this workshop, we'll be walking through the editing process that we use at Asterisk — and in our own writing — to reshape and refine non-fiction pieces. Self-editing is one of the best ways to level up your own writing, but rarely is anyone taught strategies for doing so. Bring a piece (1000-2000 words) you'd like to get edited!
