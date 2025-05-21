@@ -25,3 +25,5 @@ This is an experimental 3-day workshop that teaches the security mindset. By sol
 To defend against intelligent adversaries - human or not - you need to be able to think like an attacker, whether you're building software systems or working to reduce risks to humanity. This course won't focus on teaching you the details of specific technologies, vulnerabilities, or exploits. Instead, you'll learn transferable high-level techniques and ways of thinking, which you can apply in almost any domain to achieve your goals or to protect what you care about.
 
 Basic familiarity with Python and Linux is a prerequisite, but no previous security knowledge is assumed.
+
+*Twig has worked on the attacker's side of the security industry for almost a decade, during which time they've had the chance to hack everything from smart locks to heavy construction equipment. Currently, they work as a hardware and embedded security consultant. In their free time, they enjoy playing CTFs, experimenting with modular synthesizers, and interacting with cats.* 
