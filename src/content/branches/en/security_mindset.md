@@ -17,7 +17,7 @@ dates_long: "Tuesday June 3 - Thursday June 5"
 times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: true
 pubDate: 2024-04-15
-order: 5
+order: 8
 ---
 
 This is an experimental 3-day workshop that teaches the security mindset. By solving an eclectic set of puzzles and challenges, you'll learn to take an attacker's-eye view of a wide range of digital, physical, and social systems.
