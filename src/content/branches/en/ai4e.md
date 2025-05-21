@@ -31,3 +31,5 @@ Our mission is to BREAK OUT of the limiting chatbot/agent frame and re-imagine w
   * Individual vs Collective
   * Raising the floor vs raising the ceiling
 * Collaboratively design new interfaces to improve human thinking
+
+*Nicholas Dupuis is a co-founder of [Mosaic Labs](https://mosaic-labs.org/), a non-profit developing AI-assisted epistemic tools.*
