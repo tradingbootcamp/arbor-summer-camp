@@ -16,7 +16,7 @@ coverImage:
 cost: "$250"
 dates: "Single day (T, W, Th)"
 dates_long: "Tuesday June 3, Wednesday June 4, and Thursday June 5 (three separate instances)"
-times: "Daily 10am-12:30pm, 2pm-6:30pm"
+times: "Daily 2pm-6:30pm"
 isIncubator: false
 pubDate: 2024-04-15
 order: 7
