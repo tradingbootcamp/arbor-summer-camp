@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+import ImageCarousel from "./ImageCarousel.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -92,6 +93,9 @@ const translatePath = useTranslatedPath(lang);
         </div>
       </div>
     </div>
+
+    <!-- Add the image carousel -->
+    <ImageCarousel />
   </div>
 </section>
 
