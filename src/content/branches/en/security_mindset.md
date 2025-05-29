@@ -27,4 +27,4 @@ To defend against intelligent adversaries - human or not - you need to be able t
 
 Basic familiarity with Python and Linux is a prerequisite, but no previous security knowledge is assumed.
 
-*Twig has worked on the attacker's side of the security industry for almost a decade, during which time they've had the chance to hack everything from smart locks to heavy construction equipment. Currently, they work as a hardware and embedded security consultant. In their free time, they enjoy playing CTFs, experimenting with modular synthesizers, and interacting with cats.* 
+*Twig has worked on the attacker's side of the security industry for almost a decade, during which time they've had the chance to hack everything from smart locks to heavy construction equipment. Currently, they work as a hardware and embedded security consultant. In their free time, they enjoy playing CTFs, experimenting with modular synthesizers, and interacting with cats.*
