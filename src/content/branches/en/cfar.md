@@ -21,7 +21,6 @@ dates: "Mon-Thurs"
 dates_long: "Monday, June 2, 2pm - Thursday, June 5, 12:30pm"
 times: "Daily 9am-12:30pm, 2pm-6:30pm"
 isIncubator: false
-purchaseLink: "https://airtable.com/appTX8ljKL2tArGsn/pagSnjPOt9DdmlT1B/form"
 pubDate: 2024-05-28
 order: 6
 ---
