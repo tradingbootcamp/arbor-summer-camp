@@ -10,7 +10,7 @@ instructor:
     position: "rightish"
   link: "/author/ricki-heicklen"
 coverImage:
-  source: "@assets/images/branch-covers/cfar_logo_brain.png"
+  source: "@assets/images/branch-covers/cfar.png"
   alt: "CFAR card image"
 pageImage:
   source: "@assets/images/branch-covers/cfar.png"
