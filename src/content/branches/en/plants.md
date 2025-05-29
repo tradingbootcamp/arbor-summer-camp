@@ -1,6 +1,6 @@
 ---
-title: "Plant Genetic Engineering Lab"
-shortDescription: "Insert a gene encoding for red pigment into a plant!"
+title: "Hacking Plants"
+shortDescription: "Edit a gene for red pigment into a plant!"
 duration: 1
 instructor:
   name: "Anthony Neil Tan"
@@ -23,7 +23,7 @@ order: 7
 ---
 Join us for a hands-on experience in plant genetic engineering! This is an introductory workshop - attendees of all backgrounds are welcome, non-bio folks especially. Learn about fundamental DNA tools, understand how agrobacterium is used as a vehicle for delivering genes into plants, gain wet-lab experience with sterile microbial culture, and insert a gene encoding for production of beetroot pigment into tobacco, all in one day. Participants will also take home a plant genetic engineering kit! After successful transformation, plant leaves will turn red in a matter of days.
 
-​Kit Components:
+Kit components _(provided by us)_:
 
 - Nicotiana tabacum plant with pot and soil
 - Agrobacterium with RUBY Plasmid

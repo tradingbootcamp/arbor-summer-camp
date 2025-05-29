@@ -1,6 +1,6 @@
 ---
-title: "Experimental CFAR mini-workshop!"
-shortDescription: "Learn rationality skills with classes from the Center for Applied Rationality!"
+title: "Applied Rationality"
+shortDescription: "New, experimental applied-rationality classes (and some classics)"
 duration: 4
 instructor:
   name: "Jack Carroll, Davis Kingsley"
@@ -10,7 +10,7 @@ instructor:
     position: "rightish"
   link: "/author/ricki-heicklen"
 coverImage:
-  source: "@assets/images/branch-covers/cfar.png"
+  source: "@assets/images/branch-covers/cfar_logo_brain.png"
   alt: "CFAR card image"
 pageImage:
   source: "@assets/images/branch-covers/cfar.png"
