@@ -22,4 +22,4 @@ pubDate: 2024-04-15
 order: 15
 ---
 
-Embrace serendipity. Just go to summer camp and see your friends.
+Embrace serendipity. Just go to summer camp, see your friends, and do unconference stuff.
