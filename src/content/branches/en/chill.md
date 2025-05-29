@@ -3,11 +3,11 @@ title: "Chill out"
 shortDescription: "Don't do any of this stuff"
 duration: 5
 instructor:
-  name: "You?"
+  name: "You & your friends"
   image:
     source: "@assets/images/instructors/blankperson.png"
     alt: "You?"
-    position: "leftish"
+    position: "rightish"
   link: "/author/you"
 coverImage:
   source: "@assets/images/branch-covers/lighthaven.png"
