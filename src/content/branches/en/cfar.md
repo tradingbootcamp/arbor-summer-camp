@@ -1,5 +1,5 @@
 ---
-title: "Applied Rationality"
+title: "CFAR mini-workshop"
 shortDescription: "New, experimental applied-rationality classes (and some classics)"
 duration: 4
 instructor:
