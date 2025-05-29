@@ -35,4 +35,10 @@ Activities:
 - Teams draft design proposals for handling specific challenges
 - Individuals to optimize market components in toy market environments
 
+Prerequisites:
+
+- No trading or finance experience needed.
+- Basic coding experience is required.
+- Bring your own laptop.
+
 *Rachel Wonnacott was a core software engineer at a proprietary trading firm from 2019 to 2025.*
