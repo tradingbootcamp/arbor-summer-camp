@@ -91,11 +91,12 @@ const allBranches = (await getCollection("branches"))
 					trigger: preview,
 					start: "top bottom",
 					end: "center center",
-					scrub: 1,
+					scroller: window,
+					scrub: true,
 					markers: false,
 				},
-				ease: "power3.out",
-				"--clip": "30%",
+				ease: "none",
+				"--clip": "10%",
 			});
 		});
 
