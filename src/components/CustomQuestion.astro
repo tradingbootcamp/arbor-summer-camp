@@ -3,7 +3,7 @@ const { class: className } = Astro.props;
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
 import CustomButton from "@components/global/CustomButton.astro";
 import RickiImage from "@assets/images/instructors/ricki_asc.png";
-
+import { MailIcon } from "@lucide/astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
@@ -71,13 +71,17 @@ const translatePath = useTranslatedPath(lang);
           </div>
         </div>
         
-        <div class="hidden lg:flex flex-shrink-0 items-end self-stretch">
-          <a href="mailto:ricki@trading.camp" class="transition-transform duration-300 hover:scale-105 cursor-pointer">
+        <div class="hidden lg:flex flex-col items-center flex-shrink-0 self-stretch group">
+          <a href="mailto:ricki@trading.camp" class="transition-transform duration-300 group-hover:scale-105 cursor-pointer">
             <img 
               src={RickiImage.src} 
               alt="Instructor Ricki" 
-              class="w-72 h-auto mb-16"
+              class="w-72 h-auto mb-4"
             />
+            <div class="group-hover:flex w-full justify-center hidden gap-2 items-center">
+              <MailIcon class="w-4 h-4" stroke-width={2} />
+              <span>ricki@trading.camp</span>
+            </div>
           </a>
         </div>
       </div>
