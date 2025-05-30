@@ -13,7 +13,7 @@ coverImage:
   source: "@assets/images/branch-covers/sprouts.png"
   alt: "Sprouts banner"
   position: "right"
-cost: "$0"
+cost: "$1"
 dates: "Single day (Weds)"
 dates_long: "Wednesday, June 4"
 times: "10:30AM-3PM"
