@@ -20,7 +20,7 @@ times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: false
 purchaseLink: "https://airtable.com/appPNss2oaCbmycbh/pagQyf3LnlqvfCa9l/form"
 pubDate: 2024-04-15
-order: 10
+order: 11
 ---
 
 The researchers behind AI 2027 have developed a tabletop exercise based on their scenario forecast. It takes ~3.5 hours and allows 8–14 players to take on different roles, such as the US president, the frontier AI company CEO, China, or the company’s safety team. It aims to accurately simulate what actions their actor would take throughout 2027.

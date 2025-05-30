@@ -19,7 +19,7 @@ dates_long: "Tuesday June 3 - Thursday June 5"
 times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: true
 pubDate: 2024-04-15
-order: 11
+order: 3
 ---
 
 We're going to spend three days re-designing the future of human+machine interaction, exploring beyond chat bots and agents to invent new ways to support HUMAN thinking with advanced AI. This is not a hackathon! While we encourage you to (vibe)code wherever it helps, you are not expected to have a technical background, and the outputs are welcome to be anywhere on the spectrum from rough sketches to functional prototypes.

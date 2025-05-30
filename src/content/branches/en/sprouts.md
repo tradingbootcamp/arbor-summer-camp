@@ -19,7 +19,7 @@ dates_long: "Wednesday, June 4"
 times: "10:30AM-3PM"
 isIncubator: false
 pubDate: 2024-04-15
-order: 7
+order: 13
 ---
 This is a real-world business-building activity for kids (ages: 5-12). They will start a business, operate it at Lighthaven, and earn real profits, all within a single day.
 

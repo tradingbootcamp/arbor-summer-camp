@@ -23,7 +23,7 @@ times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: false
 purchaseLink: "https://airtable.com/appTX8ljKL2tArGsn/pagSnjPOt9DdmlT1B/form"
 pubDate: 2024-04-15
-order: 5
+order: 8
 # schedule:
 #   - day: "Monday"
 #     activities:

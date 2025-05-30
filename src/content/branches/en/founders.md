@@ -20,7 +20,7 @@ isIncubator: false
 purchaseLink: "https://manifoldmarkets.notion.site/1fa54492ea7a8038ad7af6950e644abe?pvs=105"
 pubDate: 2024-04-15
 duration: 1
-order: 12
+order: 14
 ---
 
 Are you running a startup? A charity? Some other weird, ambitious project that's trying to do good for the world? Come to Founder's Circle to debug your hardest problem, shore up fundamentals, and learn from other founders facing similar issues.

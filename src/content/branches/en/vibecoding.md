@@ -19,7 +19,7 @@ dates_long: "Tuesday June 3 - Thursday June 5"
 times: "Daily 10am-12:30pm, 2pm-6:30pm"
 isIncubator: true
 pubDate: 2024-04-15
-order: 9
+order: 4
 ---
 
 Code Bloom is a 3-day workshop where you'll go from zero coding knowledge to creating functional web applications through our "vibe coding" approach, no coding experience required. You'll spend most of your time actively building projects, with instructors ready to help when you hit roadblocks.

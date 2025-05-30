@@ -19,7 +19,7 @@ dates_long: "Monday June 2"
 times: "10am-12:30pm, 2pm-6:30pm"
 isIncubator: true
 pubDate: 2024-04-15
-order: 2
+order: 7
 ---
 
 Aella will go through the process of building a survey from start to finish. The workshop will cover how to write good questions that get at the core of what you're trying to measure, how to reason about things like marketing, sample size, and statistical significance, and how to analyze the results.
