@@ -1,6 +1,6 @@
 ---
 title: "AI 2027 table-top exercise"
-shortDescription: "Simulate the development of superintelligence in 2027"
+shortDescription: "Simulate the development, deployment, and geopolitics of artificial superintelligence"
 duration: 1
 instructor:
   name: "Jonas Vollmer"
