@@ -23,6 +23,9 @@ importers:
       '@cloudflare/pages-plugin-mailchannels':
         specifier: 0.1.5
         version: 0.1.5
+      '@lucide/astro':
+        specifier: ^0.511.0
+        version: 0.511.0(astro@5.7.13(@types/node@22.13.11)(jiti@2.4.2)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
       astro:
         specifier: ^5.7.13
         version: 5.7.13(@types/node@22.13.11)(jiti@2.4.2)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0)
@@ -551,6 +554,11 @@ packages:
 
   '@lhci/utils@0.14.0':
     resolution: {integrity: sha512-LyP1RbvYQ9xNl7uLnl5AO8fDRata9MG/KYfVFKFkYenlsVS6QJsNjLzWNEoMIaE4jOPdQQlSp4tO7dtnyDxzbQ==}
+
+  '@lucide/astro@0.511.0':
+    resolution: {integrity: sha512-Qq3WAQVyL+mMSl8UYJJdfIbhfO/tskRRDWilZcwxazhd+e99KfSbxS1q0xjrCIUN4VFD8W/BCcNasChJqQv/8A==}
+    peerDependencies:
+      astro: ^4 || ^5
 
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
@@ -4617,6 +4625,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@lucide/astro@0.511.0(astro@5.7.13(@types/node@22.13.11)(jiti@2.4.2)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))':
+    dependencies:
+      astro: 5.7.13(@types/node@22.13.11)(jiti@2.4.2)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0)
+
   '@mdx-js/mdx@3.1.0(acorn@8.14.1)':
     dependencies:
       '@types/estree': 1.0.6
@@ -4767,11 +4779,11 @@ snapshots:
 
   '@puppeteer/browsers@2.8.0':
     dependencies:
-      debug: 4.4.0
+      debug: 4.4.1
       extract-zip: 2.0.1
       progress: 2.0.3
       proxy-agent: 6.5.0
-      semver: 7.7.1
+      semver: 7.7.2
       tar-fs: 3.0.8
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -7897,10 +7909,10 @@ snapshots:
     dependencies:
       '@puppeteer/browsers': 2.8.0
       chromium-bidi: 2.1.2(devtools-protocol@0.0.1413902)
-      debug: 4.4.0
+      debug: 4.4.1
       devtools-protocol: 0.0.1413902
       typed-query-selector: 2.12.0
-      ws: 8.18.1
+      ws: 8.18.2
     transitivePeerDependencies:
       - bare-buffer
       - bufferutil
