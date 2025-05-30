@@ -1,5 +1,5 @@
 ---
-title: "AGI table-top exercise"
+title: "AI 2027 table-top exercise"
 shortDescription: "Simulate the development of superintelligence in 2027"
 duration: 1
 instructor:
