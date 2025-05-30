@@ -22,8 +22,25 @@ pubDate: 2024-04-15
 order: 5
 ---
 
-The class will be focused on how to program GPUs for modern AI systems. We will teach the intuitions between GPU hardware basics that GPU software naturally flows from. Then we will teach performance modeling: AI programs are generally simple, and performance can often be understood with one or two formulas.
+The class will be focused on how to program GPUs for modern AI systems.
 
-Then we will teach you how to use one of the major tools we  have: Triton. The rest of the class will be exercises with guidance.
+General topics:
+
+- Intuition for how GPU hardware basics naturally prescribe the style of GPU software
+- GPU performance modeling - AI programs are generally simple, and performance can often be understood with one or two formulas
+- Triton programming language for efficiently implementing AI programs on a GPU
+
+Activities:
+
+- Building spreadsheet models for the runtime performance of AI programs
+- Guided exercises translating simple Python code using Pytorch for ML to run on GPUs using Triton
+
+Prerequesites:
+
+- Interest in thinking deeply about computer hardware is expected
+- General coding experience is required
+- Basic familiarity with the C programming language is helpful
+- No experience with GPU programming or AI/ML techniques is needed
+- Bring your own laptop
 
 *Sophia Wisdom taught herself GPU programming in 2022 after realizing AI was going to be a big deal. She worked at [magic.dev](https://magic.dev) on implementing their novel architecture on GPUs. Recently she has been selling data to AI companies and is working on a LLM inference engine.*
