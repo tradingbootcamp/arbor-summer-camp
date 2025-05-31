@@ -167,24 +167,10 @@ const translatePath = useTranslatedPath(lang);
 		border-color: transparent transparent rgba(255, 255, 255, 0.9) transparent; /* Changed arrow direction */
 	}
 	/* Scroll indicator styles */
-	/* #scroll-indicator {
-		animation: flowDown 2s ease--out infinite;
+	#scroll-indicator {
+		opacity: 0;
 	}
 
-	@keyframes flowDown {
-		0% {
-			transform: translate(-50%, 0);
-			opacity: 0.9;
-		}
-		50% {
-			transform: translate(-50%, 39px);
-			opacity: 0.1;
-		}
-		100% {
-			transform: translate(-50%, 40px);
-			opacity: 0;
-		}
-	} */
 </style>
 
 <script>
@@ -201,9 +187,10 @@ const translatePath = useTranslatedPath(lang);
 		const heroSubtitle = document.getElementById("hero-subtitle");
 		const heroCta = document.getElementById("hero-cta");
 
-		// Create a timeline for sequential animation - no need to set initial states in JS
-		// as they're now set in the HTML/CSS
-		const tl = gsap.timeline();
+		// Create a timeline for sequential animation
+		const tl = gsap.timeline({
+			onComplete: ()=>{setTimeout(startScrollIndicator, 1000)} // Start scroll indicator when hero animation completes
+		});
 
 		// Animate date first
 		tl.to(heroDate, {
@@ -223,7 +210,7 @@ const translatePath = useTranslatedPath(lang);
 				ease: "power3.out",
 			},
 			"-=0.4",
-		); // Start slightly before the previous animation finishes
+		);
 
 		// Then animate subtitle
 		tl.to(
@@ -320,87 +307,91 @@ const translatePath = useTranslatedPath(lang);
 			});
 		});
 	}
-	// Handle scroll indicator visibility
-	const scrollIndicator = document.getElementById("scroll-indicator");
-	if (scrollIndicator) {
-		// Variable to track the maximum opacity based on scroll
-		let scrollOpacity = 1;
-		let fullyFaded = false;
-		const TOTAL_DISPLACEMENT = 25;
-		const FADE_IN_DURATION = 0.25;
-		const FADE_OUT_DURATION = .5;
-		const ANIMATION_DURATION = 2.3;
-		
-		// Set initial state
-		gsap.set(scrollIndicator, {
-			opacity: 1,
-			y: 0
-		});
 
-		// Create a simple progress animation that we'll use to calculate position and opacity
-		let progress = { value: 0 };
-		
-		const pulseAnimation = gsap.to(progress, {
-			value: 1,
-			duration: ANIMATION_DURATION,
-			ease: "none",
-			repeat: -1,
-			onUpdate: () => {
-				if (fullyFaded) {
-					return;
+	// Move scroll indicator logic into a separate function
+	function startScrollIndicator() {
+		const scrollIndicator = document.getElementById("scroll-indicator");
+		if (scrollIndicator) {
+			// Variable to track the maximum opacity based on scroll
+			let scrollOpacity = 1;
+			const TOTAL_DISPLACEMENT = 25;
+			const FADE_IN_DURATION = 0.25;
+			const FADE_OUT_DURATION = .5;
+			const ANIMATION_DURATION = 2.3;
+			
+			// Set initial state and start the animation
+			gsap.set(scrollIndicator, {
+				opacity: 1,
+				y: 0
+			});
+
+			// Create a simple progress animation that we'll use to calculate position and opacity
+			let progress = { value: 0 };
+			
+			const pulseAnimation = gsap.to(progress, {
+				value: 1,
+				duration: ANIMATION_DURATION,
+				ease: "none",
+				repeat: -1,
+				onUpdate: () => {
+					const currentProgress = progress.value;
+					
+					// Calculate y position (always goes from 0 to TOTAL_DISPLACEMENT)
+					const yPosition = currentProgress * TOTAL_DISPLACEMENT;
+					
+					// Calculate opacity based on progress and scrollOpacity
+					let opacity;
+					if (currentProgress <= FADE_IN_DURATION / ANIMATION_DURATION) {
+						// Fade in phase
+						const fadeInProgress = currentProgress / (FADE_IN_DURATION / ANIMATION_DURATION);
+						opacity = fadeInProgress * scrollOpacity;
+					} else if (currentProgress >= 1 - FADE_OUT_DURATION / ANIMATION_DURATION) {
+						// Fade out phase
+						const fadeOutStart = (1 - FADE_OUT_DURATION / ANIMATION_DURATION);
+						const fadeOutProgress = (currentProgress - fadeOutStart)/(1 - fadeOutStart);
+						opacity = scrollOpacity * (1 - fadeOutProgress);
+					} else {
+						opacity = scrollOpacity;
+					}
+					
+					gsap.set(scrollIndicator, {
+						y: yPosition,
+						opacity: opacity
+					});
+				},
+				onRepeat: () => {
+					// Reset progress
+					progress.value = 0;
 				}
-				const currentProgress = progress.value;
+			});
+
+			// Create scroll-triggered fade effect (updates the max opacity)
+			window.addEventListener("scroll", () => {
+				const scrollY = window.scrollY;
+				const viewportHeight = window.innerHeight;
 				
-				// Calculate y position (always goes from 0 to TOTAL_DISPLACEMENT)
-				const yPosition = currentProgress * TOTAL_DISPLACEMENT;
+				// Start fading when we've scrolled 20% of viewport height
+				// Fully fade out by 80% of viewport height
+				const fadeStartPoint = viewportHeight * 0.1;
+				const fadeEndPoint = viewportHeight * 0.5;
 				
-				// Calculate opacity based on progress and scrollOpacity
-				let opacity;
-				if (currentProgress <= FADE_IN_DURATION / ANIMATION_DURATION) {
-					// Fade in phase
-					const fadeInProgress = currentProgress / (FADE_IN_DURATION / ANIMATION_DURATION);
-					opacity = fadeInProgress * scrollOpacity;
-				} else if (currentProgress >= 1 - FADE_OUT_DURATION / ANIMATION_DURATION) {
-					// Fade out phase
-					const fadeOutStart = (1 - FADE_OUT_DURATION / ANIMATION_DURATION);
-					const fadeOutProgress = (currentProgress - fadeOutStart)/(1 - fadeOutStart);
-					opacity = scrollOpacity * (1 - fadeOutProgress);
+				if (scrollY > fadeStartPoint) {
+					// Calculate opacity based on scroll progress
+					const fadeProgress = (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint);
+					scrollOpacity = Math.max(0, 1 - fadeProgress);
+					if (scrollOpacity == 0) {
+						gsap.to(scrollIndicator, {
+							opacity: 0,
+							duration: 0.2,
+							ease: "none"
+						});
+						pulseAnimation.kill();
+					}
 				} else {
-					opacity = scrollOpacity;
+					scrollOpacity = 1;
 				}
-				
-				gsap.set(scrollIndicator, {
-					y: yPosition,
-					opacity: opacity
-				});
-			},
-			onRepeat: () => {
-				// Reset progress
-				progress.value = 0;
-			}
-		});
-
-		// Create scroll-triggered fade effect (updates the max opacity)
-		window.addEventListener("scroll", () => {
-			const scrollY = window.scrollY;
-			const viewportHeight = window.innerHeight;
-			
-			// Start fading when we've scrolled 20% of viewport height
-			// Fully fade out by 80% of viewport height
-			const fadeStartPoint = viewportHeight * 0.1;
-			const fadeEndPoint = viewportHeight * 0.5;
-			
-			if (scrollY > fadeStartPoint) {
-				// Calculate opacity based on scroll progress
-				const fadeProgress = (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint);
-				scrollOpacity = Math.max(0, 1 - fadeProgress);
-				if (scrollOpacity == 0) {
-					fullyFaded = true;
-				}
-			} else {
-				scrollOpacity = 1;
-			}
-		});
+			});
+		}
 	}
 
 	// Run the animation as soon as possible, not just on DOMContentLoaded
