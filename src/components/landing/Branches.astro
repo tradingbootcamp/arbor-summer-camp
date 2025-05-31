@@ -31,7 +31,7 @@ const allBranches = (await getCollection("branches"))
 	});
 ---
 
-<section id="branches" class:list={["section branches-section home-dark-section", className]}>
+<section id="branches" class:list={["section branches-section home-dark-section scroll-mt-16", className]}>
 	<div class="col-start-1 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<h2 class="text-center">Branches</h2>
 		<h4 class="text-md font-bold mb-12 text-center text-gray-500">A bootcamp, class, or multi-day quest</h3>
@@ -73,7 +73,6 @@ const allBranches = (await getCollection("branches"))
 		min-height: 60vh;
 		position: relative;
 		z-index: 1;
-		margin-top: 2rem;
 	}
 </style>
 
