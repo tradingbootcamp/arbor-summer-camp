@@ -4,7 +4,7 @@ import SponsorsImage from "@assets/images/sponsors.png";
 
 <section id="sponsors" class="max-w-3xl mx-auto scroll-mt-16 flex flex-col items-center">
     <h2 class="text-center">Sponsors</h2>
-    <div class="my-3 w-full px-3 flex flex-col font-montserrat uppercase font-extrabold text-gradient-orange">
+    <div class="my-3 w-full max-w-[410px] sm:max-w-[500px] md:max-w-none px-3 flex flex-col font-montserrat uppercase font-extrabold text-gradient-orange">
         <div class="flex flex-row items-center justify-between w-full tracking-widest">
             <span class="tier1"><a href="https://metagame.games" title="Metagame 2025" target="_blank" class="hover:underline">Metagame 2025</a></span>
             <span class="tier1">•</span>
@@ -42,21 +42,21 @@ import SponsorsImage from "@assets/images/sponsors.png";
     /* Mobile responsive styles */
     @media (max-width: 768px) {
         .tier1 {
-            font-size: 2.2em; /* scaled down from 3em */
+            font-size: 1.8em; /* scaled down from 3em */
         }
         .tier2 {
-            font-size: 1.5em; /* scaled down from 2.5em */
+            font-size: 1.3em; /* scaled down from 2.5em */
         }
         .tier3 {
-            font-size: 1.2em; /* scaled down from 2em */
+            font-size: 1em; /* scaled down from 2em */
         }
         .tier4 {
-            font-size: 0.6em; /* scaled down from .75em */
+            font-size: 0.5em; /* scaled down from .75em */
         }
     }
 
     /* Extra small mobile devices */
-    @media (max-width: 480px) {
+    @media (max-width: 540px) {
         .tier1 {
             font-size: 1.4em;
         }
