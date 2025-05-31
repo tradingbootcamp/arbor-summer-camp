@@ -5,7 +5,7 @@ duration: 1
 instructor:
   name: "Jonas Vollmer"
   image:
-    source: "@assets/images/instructors/eli.png"
+    source: "@assets/images/instructors/jonas.png"
     alt: "Daniel Kokotajlo"
     position: "leftish"
   link: "/author/daniel-kokotajlo"
