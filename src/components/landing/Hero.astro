@@ -7,42 +7,70 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
+<div class="absolute top-0 left-0 w-full" style="height: 100vh; z-index: 10; pointer-events: none;">
+	<div class="relative w-full h-full">
+		<div id="scroll-indicator" class="absolute bottom-2 left-1/2 -translate-x-1/2 text-campfire-600 pointer-events-auto">
+			<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M3 10l9 5 9-5"/>
+			</svg>
+		</div>
+	</div>
+</div>
 <section id="hero" class="section home-dark-section hero hero-background min-h-screen">
 	<div class="flex h-full flex-col">
-		<div class="relative flex flex-col justify-around items-center rounded-lg pb-10 lg:rounded-4xl" style="min-height: 80vh;">
+		<div class="relative flex flex-col items-center justify-around rounded-lg pb-10 lg:rounded-4xl" style="min-height: 80vh;">
 			<!-- Using flex column instead of absolute positioning for better responsiveness -->
-			<div class="flex flex-col items-center justify-center gap-4 md:gap-4 lg:gap-4 bg-opacity-70 bg-slate-400 rounded-xl sm:rounded-3xl md:rounded-4xl p-6 md:p-12 w-fit">
+			<div
+				class="flex w-fit flex-col items-center justify-center gap-4 rounded-xl bg-slate-400 bg-opacity-70 p-6 sm:rounded-3xl md:gap-4 md:rounded-4xl md:p-12 lg:gap-4">
 				<!-- Date line above the title -->
 				<div class="flex flex-col items-center justify-center">
-					<p id="hero-date" class="flex flex-col sm:block text-center font-mono text-md md:text-xl font-bold text-campfire-700 opacity-0 translate-y-8">
+					<p
+						id="hero-date"
+						class="text-md flex translate-y-8 flex-col text-center font-mono font-bold text-campfire-700 opacity-0 sm:block md:text-xl">
 						<span class="text-sm md:text-xl">Monday, June 2 – Friday, June 6</span>
 						<!-- Mobile location -->
-						<span class="inline sm:hidden text-sm text-campfire-700"><a href="https://lighthaven.org" target="_blank" class="underline">Lighthaven&nbsp;Campus</a>,&nbsp;Berkeley&nbsp;CA</span>
+						<span class="inline text-sm text-campfire-700 sm:hidden">
+							<a href="https://lighthaven.org" target="_blank" class="underline">Lighthaven Campus</a>, Berkeley CA
+						</span>
 						<!-- Desktop location -->
-						<span class="hidden md:inline"> | </span>
-						<span class="hidden md:inline"><a href="https://lighthaven.org" target="_blank" class=" hover:text-campfire-600 transition-colors underline">Lighthaven&nbsp;Campus</a>,&nbsp;Berkeley&nbsp;CA</span>
+						<span class="hidden md:inline">|</span>
+						<span class="hidden md:inline">
+							<a href="https://lighthaven.org" target="_blank" class="underline transition-colors hover:text-campfire-600">
+								Lighthaven&nbsp;Campus
+							</a>,&nbsp;Berkeley&nbsp;CA
+						</span>
 					</p>
-					
 				</div>
 				<!-- Title container -->
-				<h1 id="hero-title" class="text-center font-display text-6xl font-extrabold uppercase sm:text-7xl md:text-7xl lg:text-8xl text-forest-950 text-shadow opacity-0 translate-y-8">
+				<h1
+					id="hero-title"
+					class="text-shadow translate-y-8 text-center font-display text-6xl font-extrabold uppercase text-forest-950 opacity-0 sm:text-7xl md:text-7xl lg:text-8xl">
 					ARBOR SUMMER CAMP
 				</h1>
-				
+
 				<!-- Content below the title -->
 				<div class="flex flex-col items-center gap-2 text-center">
-					<p id="hero-subtitle" class="max-w-6xl font-mono md:text-lg lg:text-xl text-forest-900 text-shadow-sm opacity-0 translate-y-8">
-						A <span class="tooltip-trigger relative cursor-help">micromester
-							<span class="tooltip absolute top-8 left-1/2 -translate-x-1/2 w-40 bg-white/90 backdrop-blur-sm text-forest-800 text-xs py-1 px-2 rounded shadow-md opacity-0 invisible transition-opacity duration-200 pointer-events-none z-10 font-mono">
+					<p id="hero-subtitle" class="text-shadow-sm max-w-6xl translate-y-8 font-mono text-forest-900 opacity-0 md:text-lg lg:text-xl">
+						A <span class="tooltip-trigger relative cursor-help">
+							micromester
+							<span
+								class="tooltip pointer-events-none invisible absolute left-1/2 top-8 z-10 w-40 -translate-x-1/2 rounded bg-white/90 px-2 py-1 font-mono text-xs text-forest-800 opacity-0 shadow-md backdrop-blur-sm transition-opacity duration-200">
 								like a minimester, but even smaller
 							</span>
-						</span> of workshops and bootcamps the week between 
-						<a href="https://less.online" target="_blank" class="text-forest-900 hover:text-campfire-600 transition-colors underline">LessOnline</a>&nbsp;and&nbsp;<a href="https://manifest.is" target="_blank" class="text-forest-900 hover:text-campfire-600 transition-colors underline">Manifest</a>
+						</span> of workshops and bootcamps the week between
+						<a href="https://less.online" target="_blank" class="text-forest-900 underline transition-colors hover:text-campfire-600">
+							LessOnline
+						</a>&nbsp;and&nbsp;<a
+							href="https://manifest.is"
+							target="_blank"
+							class="text-forest-900 underline transition-colors hover:text-campfire-600">
+							Manifest
+						</a>
 					</p>
-					<div id="hero-cta" class="flex flex-col items-center justify-center gap-3 lg:col-start-1 mt-4 opacity-0 translate-y-8">
-						<div class="rounded-lg bg-campfire-500 hover:bg-campfire-600 transition-colors" data-cursor-hover data-cursor-parallax>
+					<div id="hero-cta" class="mt-4 flex translate-y-8 flex-col items-center justify-center gap-3 opacity-0 lg:col-start-1">
+						<div class="rounded-lg bg-campfire-500 transition-colors hover:bg-campfire-600" data-cursor-hover data-cursor-parallax>
 							<a
-								class="flex w-full flex-1 items-center justify-center py-2 text-4xl text-white transition-all hover:text-white sm:w-auto px-6 lg:px-8 sm:text-5xl font-display font-bold"
+								class="flex w-full flex-1 items-center justify-center px-6 py-2 font-display text-4xl font-bold text-white transition-all hover:text-white sm:w-auto sm:text-5xl lg:px-8"
 								aria-label="Buy Tickets"
 								href={PATHS.TICKETS}
 								target="_blank"
@@ -51,11 +79,14 @@ const translatePath = useTranslatedPath(lang);
 							</a>
 						</div>
 
-						<small class="text-forest-900 font-medium">
+						<small class="font-medium text-forest-900">
 							or
-							<LinkBlend id="go-projects-button" isButton={true} class="text-campfire-800 hover:text-campfire-500">scroll to see more</LinkBlend>
+							<LinkBlend id="go-projects-button" isButton={true} class="text-campfire-800 hover:text-campfire-500"
+								>scroll to see more</LinkBlend
+							>
 						</small>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -80,7 +111,7 @@ const translatePath = useTranslatedPath(lang);
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-image: url('/images/oli_asc_cover.png');
+		background-image: url("/images/oli_asc_cover.png");
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -93,7 +124,7 @@ const translatePath = useTranslatedPath(lang);
 
 	/* Replace dark overlay with a light, sunny one */
 	.hero-background::before {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -110,23 +141,23 @@ const translatePath = useTranslatedPath(lang);
 	.hero h3 {
 		margin: 0;
 	}
-	
+
 	/* Adjust text shadow for better readability on bright background */
 	.text-shadow {
 		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 	}
-	
+
 	.text-shadow-sm {
 		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 	}
-	
+
 	/* Tooltip styles */
 	.tooltip-trigger {
 		/* Removed the border-bottom style */
 	}
-	
+
 	.tooltip::after {
-		content: '';
+		content: "";
 		position: absolute;
 		bottom: 100%; /* Changed from top to bottom */
 		left: 50%;
@@ -135,6 +166,25 @@ const translatePath = useTranslatedPath(lang);
 		border-style: solid;
 		border-color: transparent transparent rgba(255, 255, 255, 0.9) transparent; /* Changed arrow direction */
 	}
+	/* Scroll indicator styles */
+	/* #scroll-indicator {
+		animation: flowDown 2s ease--out infinite;
+	}
+
+	@keyframes flowDown {
+		0% {
+			transform: translate(-50%, 0);
+			opacity: 0.9;
+		}
+		50% {
+			transform: translate(-50%, 39px);
+			opacity: 0.1;
+		}
+		100% {
+			transform: translate(-50%, 40px);
+			opacity: 0;
+		}
+	} */
 </style>
 
 <script>
@@ -150,112 +200,199 @@ const translatePath = useTranslatedPath(lang);
 		const heroTitle = document.getElementById("hero-title");
 		const heroSubtitle = document.getElementById("hero-subtitle");
 		const heroCta = document.getElementById("hero-cta");
-		
+
 		// Create a timeline for sequential animation - no need to set initial states in JS
 		// as they're now set in the HTML/CSS
 		const tl = gsap.timeline();
-		
+
 		// Animate date first
 		tl.to(heroDate, {
 			duration: 0.8,
 			opacity: 1,
 			y: 0,
-			ease: "power3.out"
+			ease: "power3.out",
 		});
-		
+
 		// Then animate title
-		tl.to(heroTitle, {
-			duration: 1,
-			opacity: 1,
-			y: 0,
-			ease: "power3.out"
-		}, "-=0.4"); // Start slightly before the previous animation finishes
-		
+		tl.to(
+			heroTitle,
+			{
+				duration: 1,
+				opacity: 1,
+				y: 0,
+				ease: "power3.out",
+			},
+			"-=0.4",
+		); // Start slightly before the previous animation finishes
+
 		// Then animate subtitle
-		tl.to(heroSubtitle, {
-			duration: 0.8,
-			opacity: 1,
-			y: 0,
-			ease: "power3.out"
-		}, "-=0.4");
-		
+		tl.to(
+			heroSubtitle,
+			{
+				duration: 0.8,
+				opacity: 1,
+				y: 0,
+				ease: "power3.out",
+			},
+			"-=0.4",
+		);
+
 		// Finally animate CTA
-		tl.to(heroCta, {
-			duration: 0.8,
-			opacity: 1,
-			y: 0,
-			ease: "power3.out"
-		}, "-=0.4");
+		tl.to(
+			heroCta,
+			{
+				duration: 0.8,
+				opacity: 1,
+				y: 0,
+				ease: "power3.out",
+			},
+			"-=0.4",
+		);
 
 		// Handle scroll button
 		const goProjectsButton = document.getElementById("go-projects-button");
 		goProjectsButton?.addEventListener("click", function () {
 			gsap.to(window, { duration: 0.5, scrollTo: "#explanation" });
 		});
-		
+
 		// Tooltip functionality
-		const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
-		
-		tooltipTriggers.forEach(trigger => {
-			const tooltip = trigger.querySelector('.tooltip');
-			
+		const tooltipTriggers = document.querySelectorAll(".tooltip-trigger");
+
+		tooltipTriggers.forEach((trigger) => {
+			const tooltip = trigger.querySelector(".tooltip");
+
 			// For desktop: mouseover/mouseout
-			trigger.addEventListener('mouseenter', () => {
+			trigger.addEventListener("mouseenter", () => {
 				if (tooltip) {
 					gsap.to(tooltip, {
 						opacity: 1,
-						visibility: 'visible',
+						visibility: "visible",
 						duration: 0.2,
-						ease: 'power1.out'
+						ease: "power1.out",
 					});
 				}
 			});
-			
-			trigger.addEventListener('mouseleave', () => {
+
+			trigger.addEventListener("mouseleave", () => {
 				if (tooltip) {
 					gsap.to(tooltip, {
 						opacity: 0,
-						visibility: 'hidden',
+						visibility: "hidden",
 						duration: 0.2,
-						ease: 'power1.in'
+						ease: "power1.in",
 					});
 				}
 			});
-			
+
 			// For mobile: touch events
-			trigger.addEventListener('touchstart', (e) => {
+			trigger.addEventListener("touchstart", (e) => {
 				e.preventDefault();
 				if (tooltip) {
 					// Toggle tooltip visibility
-					if (tooltip.style.opacity === '1') {
+					if (tooltip.style.opacity === "1") {
 						gsap.to(tooltip, {
 							opacity: 0,
-							visibility: 'hidden',
+							visibility: "hidden",
 							duration: 0.2,
-							ease: 'power1.in'
+							ease: "power1.in",
 						});
 					} else {
 						gsap.to(tooltip, {
 							opacity: 1,
-							visibility: 'visible',
+							visibility: "visible",
 							duration: 0.2,
-							ease: 'power1.out'
+							ease: "power1.out",
 						});
 					}
 				}
 			});
-			
+
 			// Close tooltip when clicking elsewhere on mobile
-			document.addEventListener('touchstart', (e) => {
-				if (!trigger.contains(e.target) && tooltip && tooltip.style.opacity === '1') {
+			document.addEventListener("touchstart", (e) => {
+				if (!trigger.contains(e.target) && tooltip && tooltip.style.opacity === "1") {
 					gsap.to(tooltip, {
 						opacity: 0,
-						visibility: 'hidden',
+						visibility: "hidden",
 						duration: 0.2,
-						ease: 'power1.in'
+						ease: "power1.in",
 					});
 				}
 			});
+		});
+	}
+	// Handle scroll indicator visibility
+	const scrollIndicator = document.getElementById("scroll-indicator");
+	if (scrollIndicator) {
+		// Variable to track the maximum opacity based on scroll
+		let scrollOpacity = 1;
+		const TOTAL_DISPLACEMENT = 25;
+		const FADE_IN_DURATION = 0.25;
+		const FADE_OUT_DURATION = .5;
+		const ANIMATION_DURATION = 2.3;
+		
+		// Set initial state
+		gsap.set(scrollIndicator, {
+			opacity: 1,
+			y: 0
+		});
+
+		// Create a simple progress animation that we'll use to calculate position and opacity
+		let progress = { value: 0 };
+		
+		const pulseAnimation = gsap.to(progress, {
+			value: 1,
+			duration: ANIMATION_DURATION,
+			ease: "none",
+			repeat: -1,
+			onUpdate: () => {
+				const currentProgress = progress.value;
+				
+				// Calculate y position (always goes from 0 to TOTAL_DISPLACEMENT)
+				const yPosition = currentProgress * TOTAL_DISPLACEMENT;
+				
+				// Calculate opacity based on progress and scrollOpacity
+				let opacity;
+				if (currentProgress <= FADE_IN_DURATION / ANIMATION_DURATION) {
+					// Fade in phase
+					const fadeInProgress = currentProgress / (FADE_IN_DURATION / ANIMATION_DURATION);
+					opacity = fadeInProgress * scrollOpacity;
+				} else if (currentProgress >= 1 - FADE_OUT_DURATION / ANIMATION_DURATION) {
+					// Fade out phase
+					const fadeOutStart = (1 - FADE_OUT_DURATION / ANIMATION_DURATION);
+					const fadeOutProgress = (currentProgress - fadeOutStart)/(1 - fadeOutStart);
+					opacity = scrollOpacity * (1 - fadeOutProgress);
+				} else {
+					opacity = scrollOpacity;
+				}
+				
+				gsap.set(scrollIndicator, {
+					y: yPosition,
+					opacity: opacity
+				});
+			},
+			onRepeat: () => {
+				// Reset progress
+				progress.value = 0;
+			}
+		});
+
+		// Create scroll-triggered fade effect (updates the max opacity)
+		window.addEventListener("scroll", () => {
+			const scrollY = window.scrollY;
+			const viewportHeight = window.innerHeight;
+			
+			// Start fading when we've scrolled 20% of viewport height
+			// Fully fade out by 80% of viewport height
+			const fadeStartPoint = viewportHeight * 0.1;
+			const fadeEndPoint = viewportHeight * 0.5;
+			
+			if (scrollY > fadeStartPoint) {
+				// Calculate opacity based on scroll progress
+				const fadeProgress = (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint);
+				scrollOpacity = Math.max(0, 1 - fadeProgress);
+			} else {
+				scrollOpacity = 1;
+			}
 		});
 	}
 
