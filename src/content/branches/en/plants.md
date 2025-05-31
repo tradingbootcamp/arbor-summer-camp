@@ -14,9 +14,9 @@ coverImage:
   alt: "Plant Genetic Engineering Lab banner"
   position: "right"
 cost: "$250"
-dates: "Single day (T, W, Th)"
-dates_long: "Tuesday June 3, Wednesday June 4, and Thursday June 5 (three separate instances)"
-times: "Daily 2pm-6:30pm"
+dates: "Single day (T, Th)"
+dates_long: "Tuesday June 3 and Thursday June 5 (two separate instances)"
+times: "2pm-6:30pm"
 isIncubator: false
 pubDate: 2024-04-15
 order: 12
