@@ -36,6 +36,24 @@
 	--forest-800: #166534;
 }
 
+/* Headers */
+
+h1 {
+  @apply text-5xl font-extrabold leading-tight;
+}
+
+h2 {
+  @apply text-3xl font-bold leading-snug;
+}
+
+h3 {
+  @apply text-2xl font-semibold leading-snug;
+}
+
+h4 {
+  @apply text-xl font-medium;
+}
+
 @supports (font-variation-settings: normal) {
 	:root {
 		font-family: "Quicksand", sans-serif;
