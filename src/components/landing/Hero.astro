@@ -325,6 +325,7 @@ const translatePath = useTranslatedPath(lang);
 	if (scrollIndicator) {
 		// Variable to track the maximum opacity based on scroll
 		let scrollOpacity = 1;
+		let fullyFaded = false;
 		const TOTAL_DISPLACEMENT = 25;
 		const FADE_IN_DURATION = 0.25;
 		const FADE_OUT_DURATION = .5;
@@ -345,6 +346,9 @@ const translatePath = useTranslatedPath(lang);
 			ease: "none",
 			repeat: -1,
 			onUpdate: () => {
+				if (fullyFaded) {
+					return;
+				}
 				const currentProgress = progress.value;
 				
 				// Calculate y position (always goes from 0 to TOTAL_DISPLACEMENT)
@@ -390,6 +394,9 @@ const translatePath = useTranslatedPath(lang);
 				// Calculate opacity based on scroll progress
 				const fadeProgress = (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint);
 				scrollOpacity = Math.max(0, 1 - fadeProgress);
+				if (scrollOpacity == 0) {
+					fullyFaded = true;
+				}
 			} else {
 				scrollOpacity = 1;
 			}
