@@ -189,12 +189,12 @@ const translatePath = useTranslatedPath(lang);
 
 		// Create a timeline for sequential animation
 		const tl = gsap.timeline({
-			onComplete: ()=>{setTimeout(startScrollIndicator, 1000)} // Start scroll indicator when hero animation completes
+			onComplete: ()=>{setTimeout(startScrollIndicator, 1200)} // Start scroll indicator when hero animation completes
 		});
 
 		// Animate date first
 		tl.to(heroDate, {
-			duration: 0.8,
+			duration: 1.5,
 			opacity: 1,
 			y: 0,
 			ease: "power3.out",
@@ -204,7 +204,7 @@ const translatePath = useTranslatedPath(lang);
 		tl.to(
 			heroTitle,
 			{
-				duration: 1,
+				duration: 1.5,
 				opacity: 1,
 				y: 0,
 				ease: "power3.out",
@@ -216,7 +216,7 @@ const translatePath = useTranslatedPath(lang);
 		tl.to(
 			heroSubtitle,
 			{
-				duration: 0.8,
+				duration: 1.2,
 				opacity: 1,
 				y: 0,
 				ease: "power3.out",
@@ -228,7 +228,7 @@ const translatePath = useTranslatedPath(lang);
 		tl.to(
 			heroCta,
 			{
-				duration: 0.8,
+				duration: 1.2,
 				opacity: 1,
 				y: 0,
 				ease: "power3.out",
