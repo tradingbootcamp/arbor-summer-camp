@@ -1,0 +1,72 @@
+---
+import SponsorsImage from "@assets/images/sponsors.png";
+---
+
+<section id="sponsors" class="max-w-3xl mx-auto">
+    <h2 class="text-center">Sponsors</h2>
+    <div class="my-3 w-full px-3 flex flex-col font-montserrat uppercase font-extrabold text-gradient-orange">
+        <div class="flex flex-row items-center justify-between w-full tracking-widest">
+            <span class="tier1"><a href="https://metagame.games" title="Metagame 2025" target="_blank" class="hover:underline">Metagame 2025</a></span>
+            <span class="tier1">•</span>
+            <span class="tier1"><a href="https://manifest.is" title="Manifest" target="_blank" class="hover:underline">Manifest</a></span>
+        </div>
+        <div class="flex flex-row items-center justify-between w-full">
+            <span class="tier2"><a href="https://moxsf.com" title="Mox" target="_blank" class="hover:underline">Mox</a></span>
+            <span class="tier2">•</span>
+            <span class="tier2"><a href="https://www.kalzumeus.com" title="Patio11" target="_blank" class="hover:underline">Patio11</a></span>
+            <span class="font-normal text-2xl sm:text-4xl">|</span>
+            <span class="tier3"> <a href="https://ought.org" title="Ought" target="_blank" class="hover:underline">Ought</a> </span>
+            <span class="font-normal text-2xl sm:text-4xl">|</span>
+            <span class="tier4 whitespace-normal"><a href="https://outofthisbox.show" title="Out of this Box: The Last Musical (Written By Humans)" target="_blank" class="hover:underline">Out of this Box: The Last<br>Musical (Written By Humans)</a></span>
+        </div>
+    </div>
+</section>
+<style>
+    .text-gradient-orange {
+        @apply bg-gradient-to-r from-orange-400 to-rose-400 text-transparent bg-clip-text;
+    }
+    .tier1 {
+        font-size: 3em;
+    }
+    .tier2 {
+        font-size: 2.5em;
+    }
+    .tier3 {
+        font-size: 2em;
+    }
+    .tier4 {
+        font-size: .75em;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+        .tier1 {
+            font-size: 2.2em; /* scaled down from 3em */
+        }
+        .tier2 {
+            font-size: 1.5em; /* scaled down from 2.5em */
+        }
+        .tier3 {
+            font-size: 1.2em; /* scaled down from 2em */
+        }
+        .tier4 {
+            font-size: 0.6em; /* scaled down from .75em */
+        }
+    }
+
+    /* Extra small mobile devices */
+    @media (max-width: 480px) {
+        .tier1 {
+            font-size: 1.4em;
+        }
+        .tier2 {
+            font-size: 1.2em;
+        }
+        .tier3 {
+            font-size: 1em;
+        }
+        .tier4 {
+            font-size: 0.5em;
+        }
+    }
+</style>
