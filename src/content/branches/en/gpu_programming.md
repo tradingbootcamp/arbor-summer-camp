@@ -22,13 +22,15 @@ pubDate: 2024-04-15
 order: 5
 ---
 
-The class will be focused on how to program GPUs for modern AI systems.
+Learn high-level GPU architecture and how to build modern AI systems quickly and efficiently!
 
 General topics:
 
 - Intuition for how GPU hardware basics naturally prescribe the style of GPU software
 - GPU performance modeling - AI programs are generally simple, and performance can often be understood with one or two formulas
 - Triton programming language for efficiently implementing AI programs on a GPU
+- How to write fast implementations for every part of a transformer
+- How to adapt existing performant activation functions and models for your specific idiosyncratic use-case
 
 Activities:
 
