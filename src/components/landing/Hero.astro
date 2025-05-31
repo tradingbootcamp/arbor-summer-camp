@@ -7,9 +7,9 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<div class="absolute top-0 left-0 w-full" style="height: 100vh; z-index: 10; pointer-events: none;">
+<div class="absolute top-0 left-0 w-full h-[100dvh] z-10 pointer-events-none">
 	<div class="relative w-full h-full">
-		<div id="scroll-indicator" class="absolute bottom-2 left-1/2 -translate-x-1/2 text-campfire-600 pointer-events-auto">
+		<div id="scroll-indicator" class="absolute bottom-1 left-1/2 -translate-x-1/2 text-campfire-600 pointer-events-auto">
 			<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 				<path d="M3 10l9 5 9-5"/>
 			</svg>
@@ -189,7 +189,7 @@ const translatePath = useTranslatedPath(lang);
 
 		// Create a timeline for sequential animation
 		const tl = gsap.timeline({
-			onComplete: ()=>{setTimeout(startScrollIndicator, 1200)} // Start scroll indicator when hero animation completes
+			onComplete: ()=>{setTimeout(startScrollIndicator, 2000)} // Start scroll indicator when hero animation completes
 		});
 
 		// Animate date first
