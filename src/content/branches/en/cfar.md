@@ -16,7 +16,7 @@ pageImage:
   source: "@assets/images/branch-covers/cfar.png"
   alt: "CFAR banner"
   position: "center"
-cost: "$750"
+cost: "$500"
 dates: "Mon-Thurs"
 dates_long: "Monday, June 2, 2pm - Thursday, June 5, 12:30pm"
 times: "Daily 9am-12:30pm, 2pm-6:30pm"
