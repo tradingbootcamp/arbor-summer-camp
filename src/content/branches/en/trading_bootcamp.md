@@ -20,6 +20,14 @@ cost: "$1,850"
 dates: "Tues-Thurs"
 dates_long: "Tuesday June 3 - Thursday June 5 (with optional programming Friday morning)"
 times: "Daily 10am-12:30pm, 2pm-6:30pm"
+timeslots:
+  - { day: "June 3", timeSlot: "morning" }
+  - { day: "June 3", timeSlot: "afternoon" }
+  - { day: "June 4", timeSlot: "morning" }
+  - { day: "June 4", timeSlot: "afternoon" }
+  - { day: "June 5", timeSlot: "morning" }
+  - { day: "June 5", timeSlot: "afternoon" }
+color: "bg-blue-500"
 isIncubator: false
 purchaseLink: "https://airtable.com/appTX8ljKL2tArGsn/pagSnjPOt9DdmlT1B/form"
 pubDate: 2024-04-15

@@ -17,6 +17,18 @@ cost: "$0"
 dates: "Monday-Friday"
 dates_long: "Monday June 2 - Friday June 6"
 times: "All day"
+timeslots:
+  - { day: "June 2", timeSlot: "morning" }
+  - { day: "June 2", timeSlot: "afternoon" }
+  - { day: "June 3", timeSlot: "morning" }
+  - { day: "June 3", timeSlot: "afternoon" }
+  - { day: "June 4", timeSlot: "morning" }
+  - { day: "June 4", timeSlot: "afternoon" }
+  - { day: "June 5", timeSlot: "morning" }
+  - { day: "June 5", timeSlot: "afternoon" }
+  - { day: "June 6", timeSlot: "morning" }
+  - { day: "June 6", timeSlot: "afternoon" }
+color: "bg-gray-400"
 isIncubator: false
 pubDate: 2024-04-15
 order: 15
