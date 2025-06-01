@@ -5,6 +5,7 @@ import type { AstroSeoProps } from "@astrolib/seo";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BranchSchedule from "@components/branches/BranchSchedule.astro";
 import { URLS } from "@/constants";
+import QRCode from "react-qr-code"
 
 export async function getStaticPaths() {
 	const branchEntries = await getCollection("branches");
@@ -40,8 +41,8 @@ const seo: AstroSeoProps = {
 		site_name: "Arbor Summer Camp",
 	},
 };
+const link_url = `https://arborsummer.camp/branches/${entry.slug.split("/").slice(1)}/`
 ---
-
 <BaseLayout seo={seo}>
 	<article class="mx-auto max-w-7xl px-4 py-16 sm:px-10 lg:px-16 mt-10">
 		<div class="mb-12">
@@ -77,32 +78,12 @@ const seo: AstroSeoProps = {
 						</div>
 					</div>
 
-					<div class="mb-6">
-						<p class="text-lg font-semibold">
-							{entry.data.dates === "Single day" 
-								? "This is a one-day class that will be run multiple times over the course of the week." 
-								: entry.data.dates_long}
-						</p>
-						{entry.data.times && (
-							<p class="text-md text-slate-700 mt-1">
-								<span class="inline-block">⏱️</span> {entry.data.times}
-							</p>
-						)}
-					</div>
-
-					<div class="mb-6">
-						<h3 class="font-medium mb-1">Cost</h3>
-						<div class="space-y-2">
-							<p class="flex items-center">
-								<span class="text-2xl font-bold">{entry.data.cost === "Apply" ? "By application" : entry.data.cost}</span>
-								<span class="text-sm ml-2 text-slate-600">for this branch</span>
-							</p>
-							<p class="flex items-center">
-								<span class="text-2xl font-bold">+</span>
-								<a href="https://bit.ly/sc-tickets" class="text-2xl font-bold text-campfire-500 hover:text-campfire-600 transition-colors ml-1" target="_blank" rel="noopener noreferrer">${110 * entry.data.duration}</a>
-								<span class="text-sm ml-2 text-slate-600">for {entry.data.duration} ASC day pass{entry.data.duration > 1 ? "es" : ""}, or $450 for the week</span>
-							</p>
-						</div>
+					<div class="flex flex-col items-center justify-center gap-2">
+						<img
+						src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${link_url}`}
+						alt="QR code for your-url.com"
+						/>
+						<span class="font-semibold">{link_url}</span>
 					</div>
 
 					<!-- {entry.data.sponsor && (
@@ -127,25 +108,6 @@ const seo: AstroSeoProps = {
 						</div>
 					)} -->
 
-					{entry.data.purchaseLink !== undefined ? (
-						<a 
-							href={entry.data.purchaseLink} 
-							class="block w-full py-3 px-4 text-lg lg:text-xl bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{entry.data.cost === "Apply" ? "Apply Now" : "TICKETS"}
-						</a>
-					) : (
-						<a 
-							href={URLS.HAVEN_BOOKINGS_BRANCHES} 
-							class="block w-full py-3 px-4 text-lg lg:text-xl bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{entry.data.cost === "Apply" ? "Apply Now" : "TICKETS"}
-						</a>
-					)}
 				</div>
 			</div>
 
