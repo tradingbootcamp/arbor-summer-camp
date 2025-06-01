@@ -37,7 +37,7 @@ Activities:
 - Building spreadsheet models for the runtime performance of AI programs
 - Guided exercises translating simple Python code using Pytorch for ML to run on GPUs using Triton
 
-Prerequesites:
+Prerequisites:
 
 - Interest in thinking deeply about computer hardware is expected
 - General coding experience is required
