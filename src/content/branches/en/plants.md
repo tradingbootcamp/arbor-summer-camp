@@ -17,6 +17,10 @@ cost: "$250"
 dates: "Single day (T, Th)"
 dates_long: "Tuesday June 3 and Thursday June 5 (two separate instances)"
 times: "2pm-6:30pm"
+timeslots:
+  - { day: "June 3", timeSlot: "afternoon" }
+  - { day: "June 5", timeSlot: "afternoon" }
+color: "bg-lime-500"
 isIncubator: false
 pubDate: 2024-04-15
 order: 12

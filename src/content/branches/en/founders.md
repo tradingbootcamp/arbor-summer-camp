@@ -16,6 +16,10 @@ cost: "Apply"
 dates: "Wed"
 dates_long: "Wednesday June 4"
 times: "10am-12:30pm, 2pm-6:00pm"
+timeslots:
+  - { day: "June 4", timeSlot: "morning" }
+  - { day: "June 4", timeSlot: "afternoon" }
+color: "bg-indigo-500"
 isIncubator: false
 purchaseLink: "https://manifoldmarkets.notion.site/1fa54492ea7a8038ad7af6950e644abe?pvs=105"
 pubDate: 2024-04-15
@@ -31,6 +35,6 @@ We'll have:
 - Deep dives on each of your projects, working through a specific problem you're currently facing
 - 1:1s with advisors and peers
 
-Founder’s Circle is free, but by application only. We’re selecting 6-12 founders with great track records or outlier potential. Participants should commit to spending ~2 hours on pre-work (filling out a 1-pager about your project) & pre-reading.
+Founder's Circle is free, but by application only. We're selecting 6-12 founders with great track records or outlier potential. Participants should commit to spending ~2 hours on pre-work (filling out a 1-pager about your project) & pre-reading.
 
 _Austin, Patrick and Ajeya have seen it all: tech startups, charities, bootstrapped companies, research projects, philanthropic grants, coworking spaces, conferences, podcasts, and particularly well-written blog posts._

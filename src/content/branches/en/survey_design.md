@@ -17,6 +17,10 @@ cost: "$350"
 dates: "Monday"
 dates_long: "Monday June 2"
 times: "10am-12:30pm, 2pm-6:30pm"
+timeslots:
+  - { day: "June 2", timeSlot: "morning" }
+  - { day: "June 2", timeSlot: "afternoon" }
+color: "bg-teal-500"
 isIncubator: true
 pubDate: 2024-04-15
 order: 7

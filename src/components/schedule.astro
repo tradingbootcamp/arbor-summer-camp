@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Gantt, { type ClassSchedule } from '@components/Gantt.tsx';
+
+// Get all branch content
+const branches = await getCollection('branches', (entry) => {
+  // Only get English branches
+  return entry.id.startsWith('en/');
+});
+
+// Convert branch data to Gantt format
+const ganttClasses: ClassSchedule[] = branches.map((branch) => ({
+  id: branch.slug,
+  name: branch.data.title,
+  slug: branch.slug.split('/')[1],
+  sessions: branch.data.timeslots || [],
+  color: branch.data.color || 'bg-gray-400'
+}));
+
+// Sort by order if available
+ganttClasses.sort((a, b) => {
+  const branchA = branches.find(branch => branch.slug === a.id);
+  const branchB = branches.find(branch => branch.slug === b.id);
+  const orderA = branchA?.data.order || 999;
+  const orderB = branchB?.data.order || 999;
+  return orderA - orderB;
+});
+---
+<section id="schedule" class="container mx-auto flex flex-col items-center mb-6 scroll-mt-12">
+  <h2>Schedule</h2>
+  <Gantt classes={ganttClasses} client:load />
+</section>

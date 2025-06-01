@@ -1,0 +1,36 @@
+---
+import Calendar from "@components/Calendar.tsx";
+import { getCollection } from "astro:content";
+
+const allBranches = await getCollection("branches");
+
+const allCalendarEvents = allBranches
+  .filter(branch => {
+    const [lang] = branch.slug.split("/");
+    // More robust filtering: check that calendar_date_info exists, 
+    // events exists, and events array is not empty
+    return lang === "en" && 
+           branch.data.calendar_date_info?.events && 
+           Array.isArray(branch.data.calendar_date_info.events) &&
+           branch.data.calendar_date_info.events.length > 0;
+  })
+  .flatMap((branch, branchIndex) => {
+    const events = branch.data.calendar_date_info!.events; // No need for fallback since we filtered
+    
+    return events.map(event => {
+      try {
+        return {
+          start: new Date(event.start),
+          end: new Date(event.end),
+          title: branch.data.title,
+        };
+      } catch (error) {
+        console.warn(`Invalid date format in branch ${branch.data.title}:`, event);
+        throw error;
+      }
+    }).filter(Boolean); // Remove any null events from invalid dates
+  })
+  .flat(); // Flatten in case any branch returned multiple events or nulls
+console.log(allCalendarEvents)
+---
+return <Calendar events={allCalendarEvents} client:load />
