@@ -14,12 +14,12 @@ coverImage:
   alt: "Survey Design banner"
   position: "right"
 cost: "$350"
-dates: "Monday"
-dates_long: "Monday June 2"
-times: "10am-12:30pm, 2pm-6:30pm"
+dates: "Mon & Fri"
+dates_long: "Monday June 2 and Friday June 6"
+times: "Monday 2pm-6:30pm, Friday 10am-12:30pm"
 timeslots:
-  - { day: "June 2", timeSlot: "morning" }
   - { day: "June 2", timeSlot: "afternoon" }
+  - { day: "June 6", timeSlot: "morning" }
 color: "bg-teal-500"
 isIncubator: true
 pubDate: 2024-04-15
