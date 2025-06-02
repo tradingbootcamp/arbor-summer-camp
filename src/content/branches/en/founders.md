@@ -13,7 +13,7 @@ coverImage:
     alt: "Founder's Circle banner"
     position: "right"
 cost: "Apply"
-dates: "Wed"
+dates: "Single day (W)"
 dates_long: "Wednesday June 4"
 times: "10am-12:30pm, 2pm-6:00pm"
 timeslots:
