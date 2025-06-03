@@ -13,7 +13,7 @@ coverImage:
   source: "@assets/images/branch-covers/survey_cover.webp"
   alt: "Survey Design banner"
   position: "right"
-cost: "$350"
+cost: "$150"
 dates: "Mon & Fri"
 dates_long: "Monday June 2 and Friday June 6"
 times: "Monday 2pm-6:30pm, Friday 10am-12:30pm"
