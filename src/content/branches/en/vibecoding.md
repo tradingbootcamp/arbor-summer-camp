@@ -13,7 +13,7 @@ coverImage:
   source: "@assets/images/branch-covers/Code_Bloom.png"
   alt: "Code Bloom banner"
   position: "right"
-cost: "$300"
+cost: "$450"
 dates: "Tues-Thurs"
 dates_long: "Tuesday June 3 - Thursday June 5"
 times: "Daily 10am-12:30pm, 2pm-6:30pm"
