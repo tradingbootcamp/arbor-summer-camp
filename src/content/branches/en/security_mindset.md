@@ -12,7 +12,7 @@ instructor:
 coverImage:
   source: "@assets/images/branch-covers/security_mindset.png"
   alt: "Security Mindset banner"
-cost: "$150"
+cost: "$450"
 dates: "Tues-Thurs"
 dates_long: "Tuesday June 3 - Thursday June 5"
 times: "Daily 10am-12:30pm, 2pm-6:30pm"
