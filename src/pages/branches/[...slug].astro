@@ -97,55 +97,12 @@ const seo: AstroSeoProps = {
 								<span class="text-2xl font-bold">{entry.data.cost === "Apply" ? "By application" : entry.data.cost}</span>
 								<span class="text-sm ml-2 text-slate-600">for this branch</span>
 							</p>
-							<p class="flex items-center">
-								<span class="text-2xl font-bold">+</span>
-								<a href="https://bit.ly/sc-tickets" class="text-2xl font-bold text-campfire-500 hover:text-campfire-600 transition-colors ml-1" target="_blank" rel="noopener noreferrer">${110 * entry.data.duration}</a>
-								<span class="text-sm ml-2 text-slate-600">for {entry.data.duration} ASC day pass{entry.data.duration > 1 ? "es" : ""}, or $450 for the week</span>
-							</p>
 						</div>
 					</div>
 
-					<!-- {entry.data.sponsor && (
-						<div class="mb-6">
-							<h3 class="font-medium mb-1">Sponsored by</h3>
-							{entry.data.sponsor.link ? (
-								<a href={entry.data.sponsor.link} class="text-primary-600 hover:text-primary-800">
-									{entry.data.sponsor.name}
-								</a>
-							) : (
-								<p>{entry.data.sponsor.name}</p>
-							)}
-						</div>
-					)}
-
-					{!entry.data.sponsor && (
-						<div class="mb-6">
-							<h3 class="font-medium mb-1">Sponsorship</h3>
-							<a href="/contact" class="text-primary-600 hover:text-primary-800">
-								Sponsor this branch!
-							</a>
-						</div>
-					)} -->
-
-					{entry.data.purchaseLink !== undefined ? (
-						<a 
-							href={entry.data.purchaseLink} 
-							class="block w-full py-3 px-4 text-lg lg:text-xl bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{entry.data.cost === "Apply" ? "Apply Now" : "TICKETS"}
-						</a>
-					) : (
-						<a 
-							href={URLS.HAVEN_BOOKINGS_BRANCHES} 
-							class="block w-full py-3 px-4 text-lg lg:text-xl bg-campfire-500 hover:bg-campfire-600 text-white text-center font-bold rounded-lg transition-colors"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{entry.data.cost === "Apply" ? "Apply Now" : "TICKETS"}
-						</a>
-					)}
+					<div class="block w-full py-3 px-4 text-lg bg-forest-800 text-white text-center font-bold rounded-lg">
+						This event has concluded
+					</div>
 				</div>
 			</div>
 
