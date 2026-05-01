@@ -17,10 +17,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          bun-version: latest
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -35,18 +41,18 @@ jobs:
 
       - name: Install GSAP Business
         run: |
-          bun install @gsap/business
-          bun install gsap@npm:@gsap/business
+          pnpm add @gsap/business
+          pnpm add gsap@npm:@gsap/business
         env:
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
 
       - name: Install remaining dependencies
-        run: bun install --no-cache
+        run: pnpm install
         env:
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
 
       - name: Build
-        run: bun run build
+        run: pnpm run build
         env:
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
           PUBLIC_AIRTABLE_API_KEY: ${{ secrets.PUBLIC_AIRTABLE_API_KEY }}

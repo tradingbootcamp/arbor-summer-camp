@@ -4,11 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- **Start development server**: `bun run dev` (or `npm run dev`)
-- **Build for production**: `bun run build` 
-- **Preview production build**: `bun run preview`
-- **Generate PWA assets**: `bun run pwa:generate-assets`
-- **Deploy to Vercel**: `bun run vercel-build`
+- **Start development server**: `pnpm dev`
+- **Build for production**: `pnpm build`
+- **Preview production build**: `pnpm preview`
+- **Deploy to Vercel**: `pnpm vercel-build`
 
 ## Architecture Overview
 
