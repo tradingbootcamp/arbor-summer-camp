@@ -32,8 +32,8 @@ Mintaka is a template made with [Astro](https://astro.build), [Tailwind](https:/
 
 On the folder run
 
-1. `bun install`  <small>(or `yarn` or `pnpm i`)</small>
-2. `bun run dev`  <small>(or `yarn dev` or `pnpm dev`)</small>
+1. `pnpm install`
+2. `pnpm dev`
 
 ## ✅ Features
 

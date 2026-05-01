@@ -5,5 +5,5 @@ echo "//npm.greensock.com/:_authToken=$GSAP_TOKEN" >> .npmrc
 echo "@gsap:registry=https://npm.greensock.com" >> .npmrc
 
 # Continue with normal build
-bun install
-bun run build
+pnpm install --frozen-lockfile
+pnpm run build
