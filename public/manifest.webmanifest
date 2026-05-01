@@ -9,7 +9,7 @@
 	"short_name": "Arbor",
 	"icons": [
 		{
-			"src": "/images/minimal_green_cs_tree_logo.svg",
+			"src": "/arbor-tree-logo.svg",
 			"sizes": "64x64 192x192 512x512",
 			"type": "image/svg+xml",
 			"purpose": "any maskable"
